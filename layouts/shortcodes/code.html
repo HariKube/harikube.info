@@ -1,0 +1,31 @@
+{{ $lang := .Get 0 }}
+{{ $code := .Inner }}
+{{ $filename := .Get 1 }}
+
+{{ $resource := resources.FromString "" $code }}
+{{ $uniqueFilename := printf "evaluated-code-%s.html" (md5 $code) }}
+{{ $evaluatedCode := $resource | resources.ExecuteAsTemplate $uniqueFilename . }}
+
+<div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style="max-width: 800px; border-radius: 0.5rem;">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+        <div class="text-sm text-gray-200 font-mono">
+            {{ with $filename }}
+                {{ . }}
+            {{ end }}
+        </div>
+        <div class="flex space-x-2">
+            <button onclick="copyContentToClipboard('{{ md5 $code }}')" class="text-sm text-gray-200 font-mono">copy</button>
+            <textarea id="code-{{ md5 $code }}" style="display: none;">{{ $evaluatedCode.Content }}</textarea>
+        </div>
+    </div>
+    <div class="p-4 overflow-x-auto">
+        {{ highlight $evaluatedCode.Content $lang "linenos=table,linenostart=1,hl_lines=,lineanchors=line" }}
+    </div>
+</div>
+
+<script type="text/javascript">
+function copyContentToClipboard(id) {
+    const code = document.querySelector('#code-' + id);
+    navigator.clipboard.writeText(code.value);
+}
+</script>

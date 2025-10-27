@@ -1,0 +1,11 @@
+{{ $code := .Inner }}
+
+{{ $resource := resources.FromString "" $code }}
+{{ $uniqueFilename := printf "evaluated-code-%s.html" (md5 $code) }}
+{{ $evaluatedCode := $resource | resources.ExecuteAsTemplate $uniqueFilename . }}
+
+<div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style="max-width: 800px; border-radius: 0.5rem; margin-top: -30px;">
+    <div class="p-4 overflow-x-auto">
+        {{ highlight $evaluatedCode.Content "bash" "linenos=false" }}
+    </div>
+</div>

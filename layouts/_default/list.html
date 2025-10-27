@@ -1,0 +1,70 @@
+{{ define "main" }}
+<div class="container mx-auto px-4 py-12">
+    <div class="max-w-7xl mx-auto">
+        {{ if .IsHome }}
+            <h1 class="text-4xl font-bold mb-8">{{ .Site.Title }}</h1>
+        {{ else if eq .Section "blog" }}
+            <h1 class="text-4xl font-bold mb-8">{{ .Site.Params.blog.title }}</h1>
+            {{ with .Site.Params.blog.subtitle }}
+                <div class="text-xl text-gray-600 mb-8">{{ . }}</div>
+            {{ end }}
+        {{ else }}
+            <h1 class="text-4xl font-bold mb-8">{{ .Title }}</h1>
+            {{ with .Description }}
+                <div class="text-xl text-gray-600 mb-8">{{ . }}</div>
+            {{ end }}
+        {{ end }}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {{ $paginator := .Paginate .Pages }}
+            {{ range $paginator.Pages }}
+                {{ partial "post-card.html" . }}
+            {{ end }}
+        </div>
+
+        {{ $paginator := .Paginate .Pages }}
+        {{ if gt $paginator.TotalPages 1 }}
+            <nav class="mt-12 flex justify-between items-center">
+                {{ if $paginator.HasPrev }}
+                    <a href="{{ $paginator.Prev.URL }}" 
+                       class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Previous
+                    </a>
+                {{ else }}
+                    <div></div>
+                {{ end }}
+
+                <div class="flex space-x-2">
+                    {{ range $paginator.Pagers }}
+                        {{ if eq . $paginator }}
+                            <span class="px-4 py-2 bg-primary-600 text-white rounded-lg">
+                                {{ .PageNumber }}
+                            </span>
+                        {{ else }}
+                            <a href="{{ .URL }}" 
+                               class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200">
+                                {{ .PageNumber }}
+                            </a>
+                        {{ end }}
+                    {{ end }}
+                </div>
+
+                {{ if $paginator.HasNext }}
+                    <a href="{{ $paginator.Next.URL }}" 
+                       class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200">
+                        Next
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                {{ else }}
+                    <div></div>
+                {{ end }}
+            </nav>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

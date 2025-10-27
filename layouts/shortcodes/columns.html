@@ -1,0 +1,27 @@
+<style type="text/css">
+  .shortcode-container {
+    display: flex;
+    gap: 2rem; /* Or a fixed pixel value like 20px */
+    flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+  }
+
+  .shortcode-container > div {
+    flex: 1; /* Makes each div take up an equal share */
+    min-width: 0; /* Prevents overflow issues */
+  }
+
+  @media (max-width: 1248px) {
+    .shortcode-container {
+      flex-direction: column; /* Stacks columns on smaller screens */
+    }
+  }
+</style>
+
+<div class="shortcode-container">
+    {{ $parts := split .Inner "|||" }}
+    {{ range $parts }}
+        <div>
+            {{ . | markdownify }}
+        </div>
+    {{ end }}
+</div>

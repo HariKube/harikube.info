@@ -1,0 +1,44 @@
+name: Validation
+
+on:
+  push:
+    branches-ignore:
+    - release-v**
+    - rc-v**
+    - beta-v**
+    - alpha-v**
+    - dev-v**
+
+  pull_request:
+    branches: [main]
+
+concurrency: 
+  group: ${{ github.ref_name }}-preview
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    if: contains(github.event.head_commit.message, '+PV')
+    runs-on: linux-amd64
+    timeout-minutes: 360
+    steps:
+    - uses: actions/checkout@v4
+    - uses: snickerbockers/submodules-init@v4
+    - run: make gen
+    - run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+    - run: |
+        docker rm -f harikube-localtunnel-${{ steps.extract_branch.outputs.branch }} ||:
+        docker rm -f harikube-preview-${{ steps.extract_branch.outputs.branch }} ||:
+    - run: docker build -t harikube-preview/${{ steps.extract_branch.outputs.branch }} .
+    - run: docker run --rm --name harikube-preview-${{ steps.extract_branch.outputs.branch }} --entrypoint=timeout -d harikube-preview/${{ steps.extract_branch.outputs.branch }} 6h /docker-entrypoint.sh nginx -g "daemon off;"
+    - run: sleep 30
+    - run: docker run --rm --name harikube-localtunnel-${{ steps.extract_branch.outputs.branch }} --network=container:harikube-preview-${{ steps.extract_branch.outputs.branch }} --entrypoint=timeout -d node:23-alpine 6h npx -y localtunnel --port 80
+    - name: Print URL
+      run: |
+        echo "Password: $(curl -s ifconfig.me)"
+        timeout 5m docker logs harikube-localtunnel-${{ steps.extract_branch.outputs.branch }} -f ||true
+    - run: sleep 21600

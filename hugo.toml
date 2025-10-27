@@ -1,0 +1,197 @@
+# Basic Configuration
+baseURL = "/"
+languageCode = "en-us"
+title = "HariKube"
+theme = "hugo-saasify-theme"
+
+# Required Features
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+enableEmoji = true
+enableGitInfo = true
+uglyURLs = false
+canonifyURLs = true
+
+# Required Module Configuration
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.80.0"
+
+# Required Build Configuration
+[build]
+  writeStats = true      # Required for TailwindCSS
+
+# Required Markup Configuration
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    codeFences = true
+  [markup.goldmark.renderer]
+    unsafe = true       # Allow HTML in markdown
+  [markup.tableOfContents]
+    endLevel = 2
+    ordered = false
+    startLevel = 2
+
+# Theme Parameters
+[params]
+  description = "HariKube is a Kubernetes-native platform that enhances scalability, performance, and developer experience by distributing data to multiple databases."
+  author = "Richárd Kovács"
+  logo = "/images/harikube-logo.png"      # Path to your logo
+  # Google Analytics ID (e.g., "G-XXXXXXXXXX")
+  googleAnalytics = "G-YVQCSK996Q"  # Only enabled in production
+  chimpStatic = "ce88ef7143c9148f30f7cda5f/10ef28bb04b6ce918a13dc417"  # Only enabled in production
+
+  middlewareImage = "middleware"
+  middlewareVersion = "beta-v1.0.0-18"
+  supportedMiddlewareVersions = "beta-v1.0.0-18"
+  operatorImage = "operator"
+  operatorVersion = "beta-v1.0.0-2"
+  supportedOperatorVersions = "beta-v1.0.0-2"
+  kubernetesImages = "kube-apiserver,kube-controller-manager,kubernetes"
+  kubernetesVersion = "v1.34.1"
+  supportedKubernetesVersions = "v1.33.5,v1.34.0,v1.34.1"
+
+  # Header Configuration
+  [params.header]
+    background = "bg-white/80 backdrop-blur-sm"
+    border = "border-b border-gray-100"
+    
+    # Header Logo
+    [params.header.logo]
+      src = "/images/harikube-logo.png"
+    
+    # Header Buttons (optional)
+    [params.header.buttons]
+      [params.header.buttons.getStarted]
+        text = "Try Open Beta"
+        url = "/beta-invitation/"
+
+  # Blog configuration
+  [params.blog]
+    enable = true
+    title = "Latest Articles"
+    subtitle = "Learn more about HariKube development and best practices"
+    
+    # Blog CTA configuration
+    [params.blog.cta]
+      enable = true  # Enable/disable CTA in blog posts
+    
+    # Sidebar configuration
+    [params.blog.sidebar]
+      # Recent articles section
+      [params.blog.sidebar.recent]
+        enable = true
+        title = "Recent Articles"
+        count = 5
+      
+      # Categories section
+      [params.blog.sidebar.categories]
+        enable = false
+        title = "Categories"
+      
+      # Tags section
+      [params.blog.sidebar.tags]
+        enable = true
+        title = "Popular Tags"
+        count = 20
+
+      # Subscribe form section
+      [params.blog.sidebar.subscribe]
+        enable = false
+        title = "Subscribe to Newsletter"
+        description = "Get the latest posts delivered right to your inbox"
+        action = "https://formspree.io/f/your-form-id"
+        emailName = "email"
+        buttonText = "Subscribe"
+        placeholder = "Enter your email"
+        disclaimer = "We respect your privacy. Unsubscribe at any time."
+
+  # Global CTA Configuration (optional)
+  [params.cta]
+    enable = true
+    title = "Ready to Get Started?"
+    description = "We're getting close to launch, and we want you to be one of the first to experience Cloud-Native microservice development in scale."
+    [params.cta.primary_button]
+      text = "Get Started"
+      url = "/get-started/"
+    [params.cta.secondary_button]
+      text = "Try Open Beta"
+      url = "/beta-invitation/"
+
+  # Social Media Links (optional)
+  [params.social]
+    linkedin = "https://linkedin.com/company/harikube/"
+    # twitter = "https://twitter.com/yourusername"
+    # github = "https://github.com/yourusername"
+
+# Navigation Menu
+[menu]
+  [[menu.main]]
+    name = "Download"
+    url = "/beta-invitation/"
+    weight = 1
+  [[menu.main]]
+    name = "Features"
+    weight = 2
+    [menu.main.params]
+      has_submenu = true
+      submenu = [
+        { name = "Performance", url = "/features/performance/" },
+        { name = "Infrastructure Flexibility", url = "/features/flexible-stack/" },
+        { name = "Data Isolation", url = "/features/data-isolation/" },
+        { name = "Developer Experience", url = "/features/developer-experience/" }
+      ]
+  [[menu.main]]
+    name = "Docs"
+    weight = 3
+    [menu.main.params]
+      has_submenu = true
+      submenu = [
+        { name = "Overview", url = "/docs/overview/" },
+        { name = "Installation", url = "/docs/installation/" },
+        { name = "Custom Resource", url = "/docs/custom-resource/" },
+        { name = "Automation", url = "/docs/automation/" },
+        { name = "Monitoring", url = "/docs/monitoring/" },
+        { name = "Future Plans", url = "/docs/future-plans/" }
+      ]
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 4
+  [[menu.main]]
+    name = "FAQ"
+    url = "/faq/"
+    weight = 5
+
+  # Footer Column 1 Menu
+  # [[menu.footer_column_1]]
+    # name = "Careers"
+    # url = "/careers/"
+    # weight = 1
+
+  # Footer Column 2 Menu
+  [[menu.footer_column_2]]
+    name = "About Us"
+    url = "/company/"
+    weight = 1
+  [[menu.footer_column_2]]
+    name = "Careers"
+    url = "/careers/"
+    weight = 2
+
+  # Footer Column 3 Menu
+  [[menu.footer_column_3]]
+    name = "Terms and Conditions"
+    url = "/terms-conditions/"
+    weight = 1
+  [[menu.footer_column_3]]
+    name = "End User License Agreement"
+    url = "/eula/"
+    weight = 2
+  [[menu.footer_column_3]]
+    name = "Service Level Agreement"
+    url = "/sla/"
+    weight = 2

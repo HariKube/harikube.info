@@ -1,0 +1,22 @@
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "{{ .Page.Params.title }}",
+    "description": "{{ .Page.Params.description }}",
+    "url": "https://harikube.info{{ .Page.RelPermalink | safeJS }}",
+    "dateModified": "2025-04-04",
+    "author": {
+        "@type": "Organization",
+        "name": "HariKube"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "HariKube",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://harikube.info/images/harikube-logo.png"
+        }
+    }
+}
+</script>

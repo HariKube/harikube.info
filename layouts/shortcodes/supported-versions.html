@@ -1,0 +1,25 @@
+{{ .Inner }}
+
+{{ $registry := .Get 0 }}
+{{ $images := .Get 1 }}
+{{ $imageList := index .Site.Params $images }}
+{{ $versions := .Get 2 }}
+{{ $versionList := index .Site.Params $versions }}
+
+{{ range split $versionList "," }}
+    {{ if eq $versions "supportedMiddlewareVersions" }}
+        <a href="/manifests/harikube-middleware-deployment-{{ . }}.yaml"></a>
+        <a href="/manifests/harikube-middleware-vcluster-api-{{ . }}.yaml"></a>
+        <a href="/manifests/harikube-middleware-vcluster-workload-{{ . }}.yaml"></a>
+    {{ end }}
+    {{ if eq $versions "supportedOperatorVersions" }}
+        <a href="/manifests/harikube-operator-{{ . }}.yaml"></a>
+    {{ end }}
+{{ end }}
+
+{{ range split $imageList "," }}
+    {{ $image := . }}
+    {{ range split $versionList "," }}
+        {{ $registry }}/harikube/{{ $image }}:{{ . }}
+    {{ end }}
+{{ end }}

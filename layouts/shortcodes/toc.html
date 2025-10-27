@@ -1,0 +1,16 @@
+<style>
+    html {
+      scroll-padding-top: 100px;
+    }
+</style>
+
+<div class="bg-gray-50 p-6 rounded-lg mb-8">
+    <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
+    {{ if .Page.Params.prevTitle }}
+    <ul><li><a href="{{ .Page.Params.prevLink }}"><-- {{ .Page.Params.prevTitle }}</a></li></ul>
+    {{ end }}
+    {{ .Page.TableOfContents }}
+    {{ if .Page.Params.nextTitle }}
+    <ul><li><a href="{{ .Page.Params.nextLink }}">{{ .Page.Params.nextTitle }} --></a></li></ul>
+    {{ end }}
+</div>

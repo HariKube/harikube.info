@@ -1,0 +1,87 @@
+{{ define "main" }}
+<div class="container mx-auto px-4 py-12">
+    <!-- Two Column Layout for Content and Sidebar -->
+    <div class="flex flex-col lg:flex-row gap-8 mb-12">
+        <!-- Main Content -->
+        <article class="flex-1">
+            <header class="mb-8">
+                {{ with .Params.categories }}
+                    <div class="mb-4">
+                        {{ range . }}
+                            <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}/" 
+                               class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100 mr-2">
+                                {{ . }}
+                            </a>
+                        {{ end }}
+                    </div>
+                {{ end }}
+
+                <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+                
+                {{ partial "post-meta.html" . }}
+            </header>
+
+            {{ with .Params.featured_image }}
+                <div class="mb-8">
+                    <img src="{{ . }}" 
+                         alt="{{ $.Title }}" 
+                         class="w-full h-auto rounded-lg"
+                         style="max-width: 800px"
+                         loading="lazy">
+                </div>
+            {{ end }}
+
+            <div class="prose prose-lg max-w-none">
+                {{ .Content }}
+            </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="lg:w-80 xl:w-96">
+            {{ partial "sidebar.html" . }}
+        </aside>
+    </div>
+
+    <!-- Full-width Navigation Section -->
+    <nav class="border-t border-gray-200 mt-12 pt-8">
+        <div class="flex justify-between items-center">
+            {{ with .PrevInSection }}
+                <a href="{{ .RelPermalink }}" 
+                   class="group flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <div>
+                        <div class="text-sm text-gray-600">Previous Post</div>
+                        <div class="font-medium group-hover:text-primary-600">{{ .Title }}</div>
+                    </div>
+                </a>
+            {{ else }}
+                <div></div>
+            {{ end }}
+            
+            {{ with .NextInSection }}
+                <a href="{{ .RelPermalink }}" 
+                   class="group flex items-center text-right">
+                    <div>
+                        <div class="text-sm text-gray-600">Next Post</div>
+                        <div class="font-medium group-hover:text-primary-600">{{ .Title }}</div>
+                    </div>
+                    <svg class="w-5 h-5 ml-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            {{ else }}
+                <div></div>
+            {{ end }}
+        </div>
+    </nav>
+
+    <!-- Full-width CTA Section -->
+    {{ if and .Site.Params.blog.cta.enable .Site.Params.cta.enable }}
+        <div class="mt-16">
+            {{ partial "components/cta.html" . }}
+        </div>
+    {{ end }}
+</div>
+{{ end }}

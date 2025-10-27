@@ -1,0 +1,4 @@
+{{ $paramName := .Get "param" }}
+{{ $paramValue := index .Site.Params $paramName }}
+
+<a href="{{ .Get "prefix" }}{{ $paramValue }}{{ .Get "sufix" }}">{{ .Get "text" }}</a>
