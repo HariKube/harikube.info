@@ -14,7 +14,10 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GIT_TOKEN  }}
 
 jobs:
   release:

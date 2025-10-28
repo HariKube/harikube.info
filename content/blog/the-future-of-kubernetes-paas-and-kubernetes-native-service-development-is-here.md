@@ -84,7 +84,6 @@ Current available platforms separate these domains:
 HariKube **brings them together** into a single architecture, centered on the Kubernetes API and powered by its dynamic data backend. This hybrid model:
 
  - **Unifies three different development paradigms** on one platform. Functions, operators, and REST APIs are all exposed through the Kubernetes API. This simplifies observability, policy enforcement, and lifecycle management.
- - **Easier horizontal scaling**, multi-database routing prevents the traditional ETCD bottleneck, allowing control plane throughput to scale with workload size.
  - **Reduces time to market**, because developers can focus entirely on business logic instead of building bespoke infrastructure layers.
  - **Cuts development costs**, by eliminating the need to maintain separate stacks for serverless, operators, and APIs.
  - **Lower learning curve**, developers don’t need to learn multiple frameworks or infrastructure stacks. They can pick the layer that matches their problem domain.
