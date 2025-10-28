@@ -125,7 +125,7 @@ canonifyURLs = true
   [params.social]
     linkedin = "https://linkedin.com/company/harikube/"
     # twitter = "https://twitter.com/yourusername"
-    # github = "https://github.com/yourusername"
+    github = "https://github.com/HariKube"
 
 # Navigation Menu
 [menu]
