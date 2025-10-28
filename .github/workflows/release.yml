@@ -54,18 +54,16 @@ jobs:
         tags: ${{ vars.REGISTRY }}/${{ vars.REGISTRY_USER }}/harikube.info:${{ steps.extract_branch.outputs.branch }}
     - name: Create release
       if: ${{ !startsWith(github.ref, 'refs/heads/dev-') }}
-      uses: softprops/action-gh-release@v2
+      uses: mhmxs/milestone-release-action@main
       with:
-        tag_name: ${{ steps.extract_branch.outputs.branch }}
-        name: ${{ steps.extract_branch.outputs.branch }}
-        body: |
+        milestone-title: ${{ steps.extract_branch.outputs.branch }}
+        pre-body: |
             # HariKube Website
             
             `docker pull ${{ vars.REGISTRY }}/${{ vars.REGISTRY_USER }}/harikube.info:${{ steps.extract_branch.outputs.branch }}`
+
+            ## Release Notes
         draft: true
         prerelease: ${{ startsWith(github.ref, 'refs/heads/rc-') || startsWith(github.ref, 'refs/heads/beta-') || startsWith(github.ref, 'refs/heads/alpha-') }}
-        generate_release_notes: true
-        files: |
-          README.md
-          LICENSE
-          public.tar.gz
+        files: README.md,LICENSE,public.tar.gz
+          
