@@ -124,7 +124,7 @@ kubectl create secret docker-registry harikube-registry-secret \
 --docker-password='<my$secure@password>' \
 --namespace=harikube
 kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-2.yaml
-kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-beta-v1.0.0-18.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-beta-v1.0.0-19.yaml
 {{< /code >}}
 
 Wait for all pods are running in `harikube` namespace.
@@ -181,7 +181,7 @@ Crucially, this Kubernetes environment serves **only as your control plane and d
 {{< output >}}No resources found
 {{< /output >}}
 
-> If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-beta-v1.0.0-18.yaml` instead of the API only manifest.
+> If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-beta-v1.0.0-19.yaml` instead of the API only manifest.
 
 Now you can apply your Custom Resource Definition to extend your Kubernetes API with your custom type.
 
