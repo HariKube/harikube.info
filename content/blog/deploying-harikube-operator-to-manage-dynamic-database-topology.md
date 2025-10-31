@@ -92,6 +92,7 @@ metadata:
   name: example1
   labels:
     # Disables Kubernetes Controller Manager operations on this instance
+    # For more info please visit /docs/custom-resource page
     skip-controller-manager-metadata-caching: "true"
 spec:
   color: blue

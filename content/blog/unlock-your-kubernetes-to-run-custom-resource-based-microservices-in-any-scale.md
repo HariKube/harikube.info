@@ -201,6 +201,16 @@ spec:
 EOF
 {{< /code >}}
 
+Verify the resources are exists.
+
+{{< code bash >}}kubectl get shirts
+{{< /code >}}
+{{< output >}}NAME       COLOR   SIZE
+example1   blue    S
+example2   blue    M
+example3   green   M
+{{< /output >}}
+
 You can verify that HariKube has stored all `shirts` in the selected SQLite database:
 
 {{< code bash >}}# All three `shirts` you created
