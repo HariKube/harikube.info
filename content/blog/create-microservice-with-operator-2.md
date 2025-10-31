@@ -173,6 +173,8 @@ Awesome! Now that you've finished your first simple controller, you've seen how 
 
 While the Kubernetes API has built-in validators for its core and custom resources, these are often not enough to enforce the complex business logic and custom constraints required by your applications, which is why you sometimes need to write a custom validator.
 
+However, if you only need a declarative policy to simply validate resources the `ValidatingAdmissionPolicy` is a more effective choice. For complete and detailed information, please refer to the following the link: [Validating Admission Policy](https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy).
+
 {{< code bash >}}../bin/kubebuilder create webhook --group example --version v1 --kind Task --programmatic-validation --defaulting
 {{< /code >}}
 
@@ -218,6 +220,8 @@ func (v *TaskCustomValidator) ValidateDelete(ctx context.Context, obj runtime.Ob
 ## Mutating Resources via Webhook
 
 A mutation webhook is a powerful Kubernetes mechanism for automatically changing or injecting resources before they are persisted, perfect for adding default values or make any conversion before they are written to the database.
+
+However, if you only need a declarative policy to ensure a label on each resources the `MutatingAdmissionPolicy` is a simpler and more effective choice. We've provided a simple example on the [Custom Resource -->](/docs/custom-resource/) page, but for complete and detailed information, please refer to the following the link: [Mutating Admission Policy](https://kubernetes.io/docs/reference/access-authn-authz/mutating-admission-policy).
 
 Open the same `internal/webhook/v1/task_webhook.go` file to implement your mutation logic.
 
