@@ -42,7 +42,7 @@ In this example you'll create a cluster scope `ClusterTask` and a namespaced sco
     Kind:  "ClusterTask",
     Verbs: []string{"get", "list", "watch", "create", "update", "delete"},
   },
-  CustomResources: kaf.CustomResource{
+  CustomResource: kaf.CustomResource{
     CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
       w.Header().Set("Content-Type", "application/json; charset=utf-8")
     },
@@ -70,7 +70,7 @@ In this example you'll create a cluster scope `ClusterTask` and a namespaced sco
     Kind:       "CustomTask",
     Verbs:      []string{"get", "list", "watch", "create", "update", "delete"},
   },
-  CustomResources: kaf.CustomResource{
+  CustomResource: kaf.CustomResource{
     CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
       w.Header().Set("Content-Type", "application/json; charset=utf-8")
     },
