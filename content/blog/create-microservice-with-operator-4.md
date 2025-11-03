@@ -42,26 +42,24 @@ In this example you'll create a cluster scope `ClusterTask` and a namespaced sco
     Kind:  "ClusterTask",
     Verbs: []string{"get", "list", "watch", "create", "update", "delete"},
   },
-  CustomResources: []kaf.CustomResource{
-    {
-      CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
+  CustomResources: kaf.CustomResource{
+    CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
     },
   },
 },
@@ -72,26 +70,24 @@ In this example you'll create a cluster scope `ClusterTask` and a namespaced sco
     Kind:       "CustomTask",
     Verbs:      []string{"get", "list", "watch", "create", "update", "delete"},
   },
-  CustomResources: []kaf.CustomResource{
-    {
-      CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
-      WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "application/json; charset=utf-8")
-      },
+  CustomResources: kaf.CustomResource{
+    CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    },
+    WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set("Content-Type", "application/json; charset=utf-8")
     },
   },
 },
@@ -182,92 +178,68 @@ Add service implementation to `kaf.ServerConfig.APIKInds`.
     Kind:       "CombinedTask",
     Verbs:      []string{"get", "list", "watch"},
   },
-  Resources: []kaf.Resource{
-    {
-      CreateNew: func() (schema.GroupVersionResource, client.Object) {
-        return examplev1.GroupVersion.WithResource("tasks"), &examplev1.Task{}
-      },
-      CreateNewList: func() (schema.GroupVersionResource, client.ObjectList) {
-        return examplev1.GroupVersion.WithResource("tasklist"), &examplev1.TaskList{}
-      },
-      ListCallback: func(ctx context.Context, namespace, _ string, objList client.ObjectList) (any, error) {
-        taskList, ok := objList.(*examplev1.TaskList)
-        if !ok {
-          return nil, fmt.Errorf("failed to convert tasklist for: %s", objList.GetObjectKind().GroupVersionKind().String())
+  Resource: kaf.Resource{
+    CreateNew: func() (schema.GroupVersionResource, client.Object) {
+      return examplev1.GroupVersion.WithResource("tasks"), &examplev1.Task{}
+    },
+    CreateNewList: func() (schema.GroupVersionResource, client.ObjectList) {
+      return examplev1.GroupVersion.WithResource("tasklist"), &examplev1.TaskList{}
+    },
+    ListCallback: func(ctx context.Context, namespace, _ string, objList client.ObjectList) (any, error) {
+      taskList, ok := objList.(*examplev1.TaskList)
+      if !ok {
+        return nil, fmt.Errorf("failed to convert tasklist for: %s", objList.GetObjectKind().GroupVersionKind().String())
+      }
+
+      combinedTasks := CombinedTaskList{
+        TypeMeta: metav1.TypeMeta{
+          Kind:       "CombinedTaskList",
+          APIVersion: Group + "/" + Version,
+        },
+        ListMeta: metav1.ListMeta{
+          ResourceVersion:    taskList.ResourceVersion,
+          Continue:           taskList.Continue,
+          RemainingItemCount: taskList.RemainingItemCount,
+        },
+        Items: []CombinedTask{},
+      }
+
+      rawLabelSelector := "example.example.com/task-uid=" + string(taskList.Items[0].UID)
+      if len(taskList.Items) > 1 {
+        taskUIDs := make([]string, 0, len(taskList.Items))
+        for _, t := range taskList.Items {
+          taskUIDs = append(taskUIDs, string(t.UID))
         }
 
-        combinedTasks := CombinedTaskList{
-          TypeMeta: metav1.TypeMeta{
-            Kind:       "CombinedTaskList",
-            APIVersion: Group + "/" + Version,
-          },
-          ListMeta: metav1.ListMeta{
-            ResourceVersion:    taskList.ResourceVersion,
-            Continue:           taskList.Continue,
-            RemainingItemCount: taskList.RemainingItemCount,
-          },
-          Items: []CombinedTask{},
+        rawLabelSelector = "example.example.com/task-uid in (" + strings.Join(taskUIDs, ",") + ")"
+      }
+
+      eventLabelSelector, _ := labels.Parse(rawLabelSelector)
+
+      events := corev1.EventList{}
+      if err := kubeClient.List(ctx, &events, &client.ListOptions{
+        Namespace:     namespace,
+        LabelSelector: eventLabelSelector,
+      }); err != nil {
+        return nil, fmt.Errorf("failed to list events: %v", err)
+      }
+
+      eventsByUID := map[string][]corev1.Event{}
+      for _, e := range events.Items {
+        uid := e.Labels["example.example.com/task-uid"]
+        if _, ok := eventsByUID[uid]; !ok {
+          eventsByUID[uid] = []corev1.Event{}
         }
+        eventsByUID[uid] = append(eventsByUID[uid], e)
+      }
 
-        rawLabelSelector := "example.example.com/task-uid=" + string(taskList.Items[0].UID)
-        if len(taskList.Items) > 1 {
-          taskUIDs := make([]string, 0, len(taskList.Items))
-          for _, t := range taskList.Items {
-            taskUIDs = append(taskUIDs, string(t.UID))
-          }
+      items, err := meta.ExtractList(objList)
+      if err != nil {
+        return nil, fmt.Errorf("failed to extract list: %v", err)
+      }
 
-          rawLabelSelector = "example.example.com/task-uid in (" + strings.Join(taskUIDs, ",") + ")"
-        }
-
-        eventLabelSelector, _ := labels.Parse(rawLabelSelector)
-
-        events := corev1.EventList{}
-        if err := kubeClient.List(ctx, &events, &client.ListOptions{
-          Namespace:     namespace,
-          LabelSelector: eventLabelSelector,
-        }); err != nil {
-          return nil, fmt.Errorf("failed to list events: %v", err)
-        }
-
-        eventsByUID := map[string][]corev1.Event{}
-        for _, e := range events.Items {
-          uid := e.Labels["example.example.com/task-uid"]
-          if _, ok := eventsByUID[uid]; !ok {
-            eventsByUID[uid] = []corev1.Event{}
-          }
-          eventsByUID[uid] = append(eventsByUID[uid], e)
-        }
-
-        items, err := meta.ExtractList(objList)
-        if err != nil {
-          return nil, fmt.Errorf("failed to extract list: %v", err)
-        }
-
-        for _, t := range items {
-          task := t.(*examplev1.Task)
-
-          ct := CombinedTask{
-            TypeMeta: metav1.TypeMeta{
-              Kind:       "CombinedTask",
-              APIVersion: Group + "/" + Version,
-            },
-            ObjectMeta: task.ObjectMeta,
-            Spec:       task.Spec,
-            Status: TaskStatus{
-              Events: eventsByUID[string(task.UID)],
-            },
-          }
-
-          combinedTasks.Items = append(combinedTasks.Items, ct)
-        }
-
-        return combinedTasks, nil
-      },
-      WatchCallback: func(ctx context.Context, _, _ string, unstructuredObj *unstructured.Unstructured) (any, error) {
-        task := examplev1.Task{}
-        if err := runtime.DefaultUnstructuredConverter.FromUnstructured(unstructuredObj.Object, &task); err != nil {
-          return nil, fmt.Errorf("failed to convert unstructured: %v", err)
-        }
+      for _, t := range items {
+        task := t.(*examplev1.Task)
 
         ct := CombinedTask{
           TypeMeta: metav1.TypeMeta{
@@ -276,25 +248,48 @@ Add service implementation to `kaf.ServerConfig.APIKInds`.
           },
           ObjectMeta: task.ObjectMeta,
           Spec:       task.Spec,
+          Status: TaskStatus{
+            Events: eventsByUID[string(task.UID)],
+          },
         }
 
-        eventLabelSelector, _ := labels.Parse("example.example.com/task-uid=" + string(task.UID))
+        combinedTasks.Items = append(combinedTasks.Items, ct)
+      }
 
-        events := corev1.EventList{}
-        if err := kubeClient.List(ctx, &events, &client.ListOptions{
-          Namespace:     task.Namespace,
-          LabelSelector: eventLabelSelector,
-        }); err != nil {
-          return nil, fmt.Errorf("failed to list events: %v", err)
-        }
-
-        ct.Status = TaskStatus{
-          Events: events.Items,
-        }
-
-        return ct, nil
-      },
+      return combinedTasks, nil
     },
+    WatchCallback: func(ctx context.Context, _, _ string, unstructuredObj *unstructured.Unstructured) (any, error) {
+      task := examplev1.Task{}
+      if err := runtime.DefaultUnstructuredConverter.FromUnstructured(unstructuredObj.Object, &task); err != nil {
+        return nil, fmt.Errorf("failed to convert unstructured: %v", err)
+      }
+
+      ct := CombinedTask{
+        TypeMeta: metav1.TypeMeta{
+          Kind:       "CombinedTask",
+          APIVersion: Group + "/" + Version,
+        },
+        ObjectMeta: task.ObjectMeta,
+        Spec:       task.Spec,
+      }
+
+      eventLabelSelector, _ := labels.Parse("example.example.com/task-uid=" + string(task.UID))
+
+      events := corev1.EventList{}
+      if err := kubeClient.List(ctx, &events, &client.ListOptions{
+        Namespace:     task.Namespace,
+        LabelSelector: eventLabelSelector,
+      }); err != nil {
+        return nil, fmt.Errorf("failed to list events: %v", err)
+      }
+
+      ct.Status = TaskStatus{
+        Events: events.Items,
+      }
+
+      return ct, nil
+    },
+
   },
 },
 {{< /code >}}
