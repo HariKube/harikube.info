@@ -32,7 +32,7 @@ testimonials:
   "@type": "WebSite",
   "name": "HariKube",
   "url": "https://harikube.info",
-  "description": "HariKube is a tool that transforms Kubernetes into a full-fledged Platform-as-a-Service (PaaS), making it simple to build and manage microservices using Cloud-Native methods.",
+  "description": "With HariKube, it becomes your platform-as-a-service — scalable, fast, and vendor-agnostic — so you can build, deploy, and grow without worrying about database limits or infrastructure complexity.",
   "publisher": {
     "@type": "Organization",
     "name": "HariKube",
@@ -46,7 +46,7 @@ testimonials:
 </script>
 
 {{< hero 
-    headline="Turning Kubernetes into a platform for growth"
+    headline="Kubernetes isn’t just infrastructure anymore."
     sub_headline="HariKube is a tool that transforms Kubernetes into a full-fledged Platform-as-a-Service (PaaS), making it simple to build and manage microservices using Cloud-Native methods."
     primary_button_text="Get Started"
     primary_button_url="/get-started/"
