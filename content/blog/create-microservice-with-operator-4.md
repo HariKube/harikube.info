@@ -42,7 +42,7 @@ In this example you'll create a cluster scope `ClusterTask` and a namespaced sco
     Kind:  "ClusterTask",
     Verbs: []string{"get", "list", "watch", "create", "update", "delete"},
   },
-  CustomResource: kaf.CustomResource{
+  CustomResource: &kaf.CustomResource{
     CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
       w.Header().Set("Content-Type", "application/json; charset=utf-8")
     },
@@ -70,7 +70,7 @@ In this example you'll create a cluster scope `ClusterTask` and a namespaced sco
     Kind:       "CustomTask",
     Verbs:      []string{"get", "list", "watch", "create", "update", "delete"},
   },
-  CustomResource: kaf.CustomResource{
+  CustomResource: &kaf.CustomResource{
     CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
       w.Header().Set("Content-Type", "application/json; charset=utf-8")
     },
@@ -178,7 +178,7 @@ Add service implementation to `kaf.ServerConfig.APIKInds`.
     Kind:       "CombinedTask",
     Verbs:      []string{"get", "list", "watch"},
   },
-  Resource: kaf.Resource{
+  Resource: &kaf.Resource{
     CreateNew: func() (schema.GroupVersionResource, client.Object) {
       return examplev1.GroupVersion.WithResource("tasks"), &examplev1.Task{}
     },
