@@ -130,12 +130,16 @@ canonifyURLs = true
 # Navigation Menu
 [menu]
   [[menu.main]]
-    name = "Download"
-    url = "/beta-invitation/"
+    name = "Blog"
+    url = "/blog/"
     weight = 1
   [[menu.main]]
-    name = "Features"
+    name = "Download"
+    url = "/beta-invitation/"
     weight = 2
+  [[menu.main]]
+    name = "Features"
+    weight = 3
     [menu.main.params]
       has_submenu = true
       submenu = [
@@ -146,7 +150,7 @@ canonifyURLs = true
       ]
   [[menu.main]]
     name = "Docs"
-    weight = 3
+    weight = 4
     [menu.main.params]
       has_submenu = true
       submenu = [
@@ -157,10 +161,6 @@ canonifyURLs = true
         { name = "Monitoring", url = "/docs/monitoring/" },
         { name = "Future Plans", url = "/docs/future-plans/" }
       ]
-  [[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    weight = 4
   [[menu.main]]
     name = "FAQ"
     url = "/faq/"
