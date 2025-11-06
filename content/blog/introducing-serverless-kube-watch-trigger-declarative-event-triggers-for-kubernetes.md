@@ -179,9 +179,9 @@ If you want to try it or contribute, the [README](https://github.com/HariKube/se
 
 Your feedback is invaluable in helping us improve this operator. If you encounter any issues, have a suggestion for a new feature, or simply want to share your experience, we want to hear from you!
 
-- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/mhmxs/serverless-kube-watch-trigger/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version).
-- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/mhmxs/serverless-kube-watch-trigger/issues) and use the `enhancement` label. Describe the use case and how the new feature would benefit the community.
-- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/mhmxs/serverless-kube-watch-trigger/discussions).
+- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/HariKube/serverless-kube-watch-trigger/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version).
+- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/HariKube/serverless-kube-watch-trigger/issues) and use the `enhancement` label. Describe the use case and how the new feature would benefit the community.
+- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/HariKube/serverless-kube-watch-trigger/discussions).
 
 ---
 

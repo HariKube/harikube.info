@@ -326,9 +326,9 @@ We hope this tool empowers you to unlock new levels of performance and simplicit
 
 Your feedback is invaluable in helping us improve this framework. If you encounter any issues, have a suggestion for a new feature, or simply want to share your experience, we want to hear from you!
 
-- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/mhmxs/kubernetes-aggregator-framework/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version, Go version).
-- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/mhmxs/kubernetes-aggregator-framework/issues) and use the feature request label. Describe the use case and how the new feature would benefit the community.
-- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/mhmxs/kubernetes-aggregator-framework/discussions).
+- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/HariKube/kubernetes-aggregator-framework/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version, Go version).
+- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/HariKube/kubernetes-aggregator-framework/issues) and use the feature request label. Describe the use case and how the new feature would benefit the community.
+- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/HariKube/kubernetes-aggregator-framework/discussions).
 
 ---
 
