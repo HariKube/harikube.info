@@ -12,7 +12,7 @@ featured_image: "/images/blog/the-future-of-kubernetes-paas-and-kubernetes-nativ
 
 We at **HariKube** strongly believe in the transformative power of cutting-edge technology to shape the future of service development. As the digital landscape continues to evolve at an unprecedented pace, the need for robust, scalable, and efficient Cloud-Native infrastructure becomes paramount. We are committed to **turning Kubernetes into a real Platform-as-a-Service (PaaS), where it not just orchestrates individual services, but becomes the source of truth for the entire platform**. Join us as we delve into the exciting advancements and upcoming trends that define ...
 
-## The Future of Kubernetes and Service Development
+## ✨ The Future of Kubernetes and Service Development
 
 This vision leads us to a fundamental shift: **Imagine Kubernetes itself evolving beyond an orchestrator and becoming the definitive platform**. We're talking about a single control plane for managing not just containers, but also serving serverless functions, operator based microservices, and all your custom APIs. This is achievable now. By combining HariKube’s innovative dynamic data layer, automated serverless function triggers, intelligent operator loops, and a smart utilization of the Kubernetes Aggregation API, we are ushering in a world where Kubernetes is the singular, intelligent operating system for your entire Cloud-Native estate.
 
@@ -22,7 +22,7 @@ This comprehensive approach achieves a powerful double-win: we are simultaneousl
 
 The result is a streamlined, resilient platform that offers not just scale, but agility. By empowering development teams with clean interfaces and giving platform teams powerful, flexible tools, HariKube achieves the ultimate goal: **making the Kubernetes platform disappear, leaving only pure business value behind**.
 
-## The Single Source of Truth: Unified Service Design
+## 🦄 The Single Source of Truth: Unified Service Design
 
 With HariKube, Kubernetes is no longer just a platform; it becomes the **single source of truth** for your entire Cloud-Native ecosystem. This fundamental shift means you eliminate the need for complex, layered infrastructure tools. Why? Because when everything—from microservices and operators to ephemeral serverless functions—communicates only through the extended Kubernetes API, Kubernetes itself manages all policy, messages, networking, state, and role-based-access-control. This unified control plane eliminates the friction and complexity of maintaining external service discovery, configuration layers, service inter-communications, external databases, and other networking tools. In this new paradigm, the architecture is so cohesive and Kubernetes-native that we have to introduce a new abstraction: **The Service Mesh is Dead**. Its core functionalities (like traffic routing, security, access control, and observability) are now handled directly by the high-performance, API-centric platform that HariKube has enabled.
 
@@ -58,6 +58,8 @@ Kubernetes design tradeoffs.
 | Relational Logic | Complex joins or relations between data entities are not supported |
 | Limited Data Filtering | No advanced query engine included within Kubernetes |
 
+You can try operator based microservice development today. We Open-Sourced modified Kubernetes and Kine versions with the support of storage-side filtering. For more information please follow the blogpost here: [Build Your Kubernetes Platform-as-a-Service Today](/blog/build-your-kubernetes-platform-as-a-service-today/).
+
 To dive deep into the best practices, patterns, and code examples for building next-generation operators on HariKube, be sure to visit our comprehensive series of blog posts dedicated exclusively to these topics:
 
  - [A Quick Dive into Kubernetes Operators - APIs](/blog/create-microservice-with-operator/)
@@ -91,7 +93,7 @@ HariKube **brings them together** into a single architecture, centered on the Ku
  - **Consistent development workflow**, via functions, operators, and APIs all use the same CRD-based declarative model.
  - **Local-first development**, because HariKube is transparent, developers can run stock/vanilla stacks locally or in ephemeral dev environments without any dependencies.
  
-## Stop Waiting: Welcome to the Cloud-Native-Platform-as-a-Service Reality
+## 🛑 Stop Waiting: Welcome to the Cloud-Native-Platform-as-a-Service Reality
 
 The architectural innovations we've detailed—solving the scalability crisis and unifying service design—are not roadmap promises; they are current reality. At HariKube, we've moved past the traditional concept of Kubernetes as merely a container scheduler. We have engineered the components to **allow businesses to deploy the future today**. This means you don't have to wait for the cloud vendors or upstream Kubernetes to catch up to the needs of modern enterprise scale.
 
@@ -163,7 +165,7 @@ You now benefit from:
  - Fine-Grained Resource Synchronization between host and virtual clusters
  - Unified Service Design
 
-## The Demo Time: Let's See It in Action
+## 🚀 The Demo Time: Let's See It in Action
 
 Now that the HariKube PaaS foundation is successfully laid, let's see how our unified service design simplifies creating a totally new, custom service type. We begin by applying a standard Custom Resource Definition (CRD). This simple kubectl apply command registers a completely new resource—in this case, a `Shirt` service—directly into the control plane. Because HariKube automatically handles the dynamic data layer and API extension, this new custom resource instantly inherits all the massive scalability and unified platform features we've discussed, making it a first-class citizen of your new PaaS.
 
@@ -241,7 +243,7 @@ Verify the resources are NOT exists.
 
 The most critical realization here is that resources like your custom `Shirt` object **do not exist on this host cluster**. They are stored exclusively on the virtual cluster's API. All instances of those application-specific resources are held securely and scalably in the external database defined in your **HariKube topology configuration**. The host cluster's only concern is managing the infrastructure components required to run the services, virtual API and the physical nodes, while the virtual API cluster handles your APIs nothing else. This proves the **separation of concerns** is not just an organizational policy, but a core architectural fact.
 
-## The Future is Yours to Build
+## 🏗️ The Future is Yours to Build
 
 We've shown you the architecture, demonstrated the separation, and confirmed that the future of Kubernetes—the highly scalable, unified PaaS—is not a conceptual vision, but a deployable reality right now.
 

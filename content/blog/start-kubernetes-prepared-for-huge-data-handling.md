@@ -10,13 +10,13 @@ featured_image: "/images/blog/start-kubernetes-prepared-for-huge-data-handling.p
 
 {{< toc >}}
 
-## Building a Custom Kubernetes Cluster with Kind and HariKube
+## 👷 Building a Custom Kubernetes Cluster with Kind and HariKube
 
 This tutorial walks you through setting up a Kubernetes cluster using [Kind](https://kind.sigs.k8s.io) (Kubernetes in Docker), but with a twist: you’ll use custom Kubernetes images and an external [HariKube](/) middleware for storage. This approach is ideal for developers and operators who want to test new Kubernetes versions or integrate with a different storage backend.
 
 > *Large dataset support based on storage-side filtering is not available in vanilla Kubernetes. Follow this post for instructions to running a custom version of Kubernetes.
 
-## Running HariKube Middleware
+## 🚀 Running HariKube Middleware
 
 First, let’s set up your HariKube data store. Normally, Kubernetes relies on [ETCD](https://etcd.io/) as its primary database. Instead of letting Kind run its own embedded ETCD instance, you’ll launch a custom "middleware" container that provides an ETCD API endpoint—powered by HariKube.
 
@@ -40,7 +40,7 @@ Now, run the HariKube middleware container:
   --endpoint='multi://sqlite:///db/main.db?_journal=WAL&cache=shared'
 {{< /code >}}
 
-## Configuring and Creating the Kind Cluster
+## 🔨 Configuring and Creating the Kind Cluster
 
 Next, let’s configure Kind to use your custom HariKube backend. The `kind-config.yaml` file tells Kind how to build the cluster and connect to your middleware.
 

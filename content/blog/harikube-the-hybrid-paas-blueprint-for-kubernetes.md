@@ -3,8 +3,8 @@ title: "We make Kubernetes work at enterprise scale - no more ETCD limits"
 date: 2025-10-06
 author: "Richard Kovacs"
 description: "HariKube unifies different service designs into a scalable hybrid architecture."
-categories: ["Infrastructure", "Microservice"]
-tags: ["kubernetes", "serverless", "devops", "custom resource", "scalability", "infrastructure", "microservice"]
+categories: ["Microservice"]
+tags: ["kubernetes", "serverless", "custom resource", "scalability", "microservice"]
 featured_image: "/images/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes.png"
 ---
 
@@ -28,7 +28,7 @@ HariKube changes this. By **replacing ETCD with a database-agnostic backend topo
 
 ---
 
-## 🧱 1️⃣ HariKube — Dynamic, Database-Agnostic Data Backend
+## 🧱 HariKube — Dynamic, Database-Agnostic Data Backend
 
 HariKube replaces ETCD with a flexible middleware that routes different resource types to different databases — MySQL, Postgres, SQLite, or others. The Kubernetes API becomes a **scalable, modular data fabric**, decoupled from a single store.
 
@@ -36,7 +36,7 @@ HariKube replaces ETCD with a flexible middleware that routes different resource
 
 ---
 
-## ⚡ 2️⃣ Serverless — Nanoservice Layer
+## ⚡ Serverless — Nanoservice Layer
 
 With a lightweight watch connector, every Custom Resource Definition (CRD) or core resource change can trigger a function running on OpenFaaS or Knative. The function layer provides **event-driven business logic** without requiring operators, custom APIs, or external event buses.
 
@@ -54,7 +54,7 @@ With a lightweight watch connector, every Custom Resource Definition (CRD) or co
 
 ---
 
-## 🔁 3️⃣ Operators — Microservice Layer
+## 🔁 Operators — Microservice Layer
 
 Operators remain the best way to handle **stateful, long-lived, or complex business logic**. With HariKube’s data fabric, operators behave like regular microservices without being bottlenecked by ETCD.
 
@@ -66,7 +66,7 @@ When you need reconcile loops, complex dependencies, or imperative operations �
 
 ---
 
-## 🌐 4️⃣ Kubernetes Aggregation API Layer — Traditional REST API Layer
+## 🌐 Kubernetes Aggregation API Layer — Traditional REST API Layer
 
 Some use cases don’t fit into serverless or operator patterns — for example, **classic REST APIs**, querying, or external integrations. Here, Kubernetes’ **Aggregation API layer** lets you embed a custom API server directly into the Kubernetes control plane.
 

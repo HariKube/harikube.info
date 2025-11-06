@@ -20,7 +20,7 @@ nextLink: "/blog/create-microservice-with-operator-3/"
 
 {{< toc >}}
 
-## Implement Your Business Logic: The Controller
+## 🎛️ Implement Your Business Logic: The Controller
 
 Now that you've completed the first part of this series, you're ready to implement your core business logic within the controller. Your `kubebuilder` command has already generated a controller stub for you; all you need to do is edit the `internal/controller/task_controller.go` file. In this section, you'll learn how to react to different events within your cluster and create new events in Kubernetes to signal important state changes.
 
@@ -169,7 +169,7 @@ Validate business logic by fetching events of the `Task` object.
 
 Awesome! Now that you've finished your first simple controller, you've seen how to implement the core logic of an Operator. While this was just a basic example, it's a huge first step and the foundation for building more complex applications. You're now ready to move on to more advanced topics, like validating or mutation your resources.
 
-## Custom Validation of Resources via Webhook
+## 🪝 Custom Validation of Resources via Webhook
 
 While the Kubernetes API has built-in validators for its core and custom resources, these are often not enough to enforce the complex business logic and custom constraints required by your applications, which is why you sometimes need to write a custom validator.
 
@@ -217,7 +217,7 @@ func (v *TaskCustomValidator) ValidateDelete(ctx context.Context, obj runtime.Ob
 }
 {{< /code >}}
 
-## Mutating Resources via Webhook
+## 🎨 Mutating Resources via Webhook
 
 A mutation webhook is a powerful Kubernetes mechanism for automatically changing or injecting resources before they are persisted, perfect for adding default values or make any conversion before they are written to the database.
 
@@ -249,7 +249,7 @@ func (d *TaskCustomDefaulter) Default(_ context.Context, obj runtime.Object) err
 
 If you recall, the `Task` custom resource we created earlier included labels for filtering and a finalizer to control object deletion. Now, with this simple mutation webhook, you can automate the process of adding these fields, so users don't have to.
 
-## Deploying Webhooks
+## 🚀 Deploying Webhooks
 
 First you have to deploy `cert-manager` to enable automatic certificate generation of the webhooks.
 

@@ -20,11 +20,11 @@ nextLink: "/blog/create-microservice-with-operator-4/"
 
 {{< toc >}}
 
-## The Challenge with Kubernetes Data
+## 📈 The Challenge with Kubernetes Data
 
 Kubernetes is an incredibly powerful container orchestration platform, but it has some limitations you should be aware of. One key challenge is its **limited data filtering capabilities**. While it excels at managing and scaling workloads, the platform doesn't include an advanced query engine out of the box. This means you can't easily perform complex, fine-grained searches or data manipulation directly within Kubernetes, which can be a roadblock when you need to find records based on **full text search** for example.
 
-## Finding a Solution
+## 💡 Finding a Solution
 
 Don't let this limitation discourage you! The good news is that there are many robust **alternatives for advanced data filtering** and full text search that integrate seamlessly with Kubernetes. These external solutions are specifically designed to handle the complex queries and data analysis that Kubernetes lacks. This blog post will explore how you can overcome this challenge, focusing on one powerful solution that will give you the flexibility and control you need to effectively filter your data.
 
@@ -46,7 +46,7 @@ server's logic. There are plenty of other options like:
     these resources instead of relaying on Kubernetes API.
 </pre>
 
-## Prepare Server Manifests
+## 🪢 Prepare Server Manifests
 
 By creating an [APIService](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#apiservicespec-v1-apiregistration-k8s-io) object, you tell Kubernetes to route specific API requests to your own, purpose-built API server. This server can be designed to do anything, from collecting metrics (like the Metrics Server) to providing full-text search capabilities on your data. Because the data is stored and managed by your external service, you have complete control over how it is queried, filtered, and presented. This approach offers a seamless user experience, as the custom APIs are accessed with the same tools and authentication methods as the core Kubernetes APIs, but they are powered by a solution optimized for the task.
 
@@ -254,7 +254,7 @@ Add the lines below to the `replacements` section in `config/default/kustomizati
         create: true
 {{< /code >}}
 
-## Implement Aggregation Server
+## 🧑‍🏭 Implement Aggregation Server
 
 It is time to write the aggregation service implementation itself. Create the file `internal/apiserver/task_search.go` with the following content.
 The solution includes a tool that indexes data to make searching for task details easier and also has a raw endpoint to filter results.

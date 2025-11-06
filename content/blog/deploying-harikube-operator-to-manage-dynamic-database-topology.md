@@ -4,7 +4,7 @@ date: 2025-08-15
 author: "Richard Kovacs"
 description: "Step-by-step instructions how to deploy HariKube operator."
 categories: ["Infrastructure"]
-tags: ["kubernetes", "devops", "custom resource", "scalability", "development"]
+tags: ["kubernetes", "devops", "scalability"]
 featured_image: "/images/blog/deploying-harikube-operator-to-manage-dynamic-database-topology.png"
 ---
 
@@ -16,7 +16,7 @@ featured_image: "/images/blog/deploying-harikube-operator-to-manage-dynamic-data
 
 {{< toc >}}
 
-## Installing Essential Kubernetes Add-ons
+## 🔌 Installing Essential Kubernetes Add-ons
 
 To get started, let's install two popular open-source add-ons: [Cert-Manager](https://github.com/cert-manager/cert-manager) for automated certificate management, and the [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator) for monitoring and alerting. These add-ons are widely used and will help your cluster run smoothly.
 
@@ -24,7 +24,7 @@ To get started, let's install two popular open-source add-ons: [Cert-Manager](ht
 kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
 {{< /code >}}
 
-## Deploying the HariKube Operator
+## ✨ Deploying the HariKube Operator
 
 > ⚠️ HariKube images aren’t public yet. If you’d like to try them, request a free trial version on the [Open Beta invitation](/beta-invitation/) page.
 
@@ -48,7 +48,7 @@ Now, deploy the HariKube Operator to your cluster. This operator will manage you
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-2.yaml
 {{< /code >}}
 
-## Configuring the Operator and Registering a Custom Resource
+## 🔨 Configuring the Operator and Registering a Custom Resource
 
 Let’s create your first topology configuration. This tells the HariKube Operator how to route data for a specific custom resource.
 
@@ -74,7 +74,7 @@ Apply the configuration:
 {{< code bash >}}kubectl apply -f topology-shirts.yaml
 {{< /code >}}
 
-## Defining and Deploying a New Application Resource
+## 🚀 Defining and Deploying a New Application Resource
 
 To see HariKube in action, let’s define a new custom resource type. We’ll use a simple example: a `Shirt` resource.
 

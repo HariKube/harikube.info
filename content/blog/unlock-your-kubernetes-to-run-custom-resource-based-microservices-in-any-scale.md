@@ -4,13 +4,13 @@ date: 2025-05-24
 author: "Richard Kovacs"
 description: "Learn about how to distributes Kubernetes database load across multiple databases."
 categories: ["Infrastructure", "Microservice"]
-tags: ["kubernetes", "devops", "custom resource", "scalability", "infrastructure"]
+tags: ["kubernetes", "custom resource", "scalability", "infrastructure", "microservice"]
 featured_image: "/images/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale.png"
 ---
 
 {{< toc >}}
 
-## The Rise of Custom Resources and Their Challenges
+## 🌅 The Rise of Custom Resources and Their Challenges
 
 I don't need to introduce Kubernetes in this post, as it is the de facto standard for running microservices at scale. Kubernetes provides a robust infrastructure not only for running workloads, but also for exposing services, securing applications, configuring authorization, and much more. The introduction of [custom defined resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) extended Kubernetes’ capabilities, enabling developers to implement custom services and controllers without worrying about the underlying infrastructure. This innovation promised faster development and portability. Over the past few years, custom resources and operators/controllers have become increasingly popular. [Crossplane](https://www.crossplane.io/) marked another significant shift, allowing management of resources outside the cluster.
 
@@ -26,7 +26,7 @@ These are some of the reasons why custom resources and controllers are used to s
 
 We are not without hope...
 
-## The Future of Data Management on Kubernetes
+## ✨ The Future of Data Management on Kubernetes
 
 Before discussing the solution, let’s highlight the limitations of custom resource controllers in Kubernetes.
 
@@ -43,7 +43,7 @@ It’s time to meet [HariKube](https://harikube.info). HariKube is a middleware 
 
 HariKube supports multiple backends, each with different capabilities for data access and filtering. The table below outlines which storage engines are compatible and whether they support storage-side filtering for efficient querying. Find full list of databases [here](/docs/overview/#-supported-databases).
 
-## Getting Started
+## 👷 Getting Started
 
 First, configure your databases in `docker-compose.yaml`.
 

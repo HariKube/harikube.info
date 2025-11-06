@@ -12,21 +12,21 @@ nextLink: "/blog/create-microservice-with-operator-2/"
 
 {{< toc >}}
 
-## What is Kubernetes and Why It's So Popular
+## ❓ What is Kubernetes and Why It's So Popular
 
 Kubernetes is an open-source platform for **automating the deployment, scaling, and management of containerized applications**. It groups containers that make up an application into logical units for easy management and discovery. The popularity of Kubernetes stems from its ability to solve many of the challenges associated with managing modern, distributed applications. It provides a standardized way to handle container orchestration, ensuring applications are resilient, scalable, and portable across different cloud and on-premise environments. By abstracting the underlying infrastructure, Kubernetes allows developers to focus on writing code rather than worrying about operational complexities.
 
-## The Desired State and Controller Design Pattern
+## 🪢 The Desired State and Controller Design Pattern
 
 At the heart of Kubernetes is the concept of a **desired state**. This is a declarative model where you define the state you want your applications to be in, and Kubernetes works tirelessly to achieve and maintain that state. For example, you can declare that you want three replicas of a web server pod to be running at all times. A **controller** is a key component that implements this pattern. It's a control loop that continuously monitors the **current state** of the cluster and compares it to the **desired state** specified in the cluster's configuration. If there's a discrepancy (e.g., a pod crashes, so there are now only two replicas), the controller takes action to reconcile the two states (e.g., it starts a new pod). This design pattern is a fundamental reason for Kubernetes' self-healing capabilities.
 
-## Custom Resources and Operators
+## 🍮 Custom Resources and Operators
 
 While Kubernetes has built-in resources like Pods, Services, and Deployments, it might not always have the perfect primitive for your specific application. This is where **Custom Resources** (CRs) come in. CRs are API extensions that allow you to define your own types of objects within the Kubernetes API. For example, if you're running a database, you could create a Database custom resource with fields for version, size, and user credentials.
 
 An **Operator** is a specific type of controller that manages these custom resources. Operators encode the operational knowledge required to manage a complex application, like a database or a message queue. They extend the Kubernetes API by adding a new API type (the Custom Resource) and a controller that watches and manages that API type.
 
-## Features Kubernetes Gives to Run Operators
+## ✨ Features Kubernetes Gives to Run Operators
 
 Kubernetes provides a rich set of features that empower operators to extend its native functionality and manage complex applications. These features are the building blocks that an operator uses to achieve its desired state.
 
@@ -56,7 +56,7 @@ Kubernetes provides a rich set of features that empower operators to extend its 
    - **Tekton**: A powerful and flexible open-source framework for creating CI/CD systems, allowing developers to build, test, and deploy applications across various cloud platforms.
    - **Falco**: A cloud-native security tool that detects and alerts on suspicious behaviors in your cluster, such as a shell running in a container or a process spawning in an unusual location.
 
-## The Downside of Kubernetes Operators
+## ⁉️ The Downside of Kubernetes Operators
 
 However, custom controllers face significant challenges when handling large volumes of data. Kubernetes relies on [ETCD](https://etcd.io/) for all data storage, which limits scalability, flexibility, and performance for complex or high-volume workloads. What are the main issues?
 
@@ -79,13 +79,13 @@ While Kubernetes provides powerful APIs for managing the state of applications, 
 
 > 💡 Don't worry, the Kubernetes API aggregation layer can help overcome the limitations of the core API server by allowing you to extend the API with custom APIs that are served by a separate backend, or extension API server. This setup enables you to implement specific logic and capabilities that aren't available in the core API.
 
-## Turn Kubernetes into a Real Platform-as-a-Service
+## 🃏 Turn Kubernetes into a Real Platform-as-a-Service
 
 It’s time to meet [HariKube](https://harikube.info). HariKube is a middleware that transparently distributes database load across multiple vendor-agnostic databases, delivering low latency, high throughput, and a true cloud-native development experience. It achieves exceptional performance through data distribution and optimized database routing. By offloading resource-intensive workloads from ETCD, HariKube ensures consistent responsiveness and operational efficiency at scale. It enables strict data separation across namespaces, resource types, or services—helping organizations meet security and compliance requirements without sacrificing scalability or performance. Additionally, HariKube simplifies developer workflows by abstracting infrastructure complexity. Developers can focus on data structures and business logic while the platform handles data routing and storage. HariKube is fully transparent; Kubernetes does not notice it is not communicating with an ETCD instance. You can use vanilla Kubernetes for development with limited data, and deploy HariKube in production to handle large datasets and distribute data across multiple backends.
 
 HariKube supports multiple backends, each with different capabilities for data access and filtering. The table below outlines which storage engines are compatible and whether they support storage-side filtering for efficient querying. Find full list of databases [here](/docs/overview/#-supported-databases).
 
-## Craft Your First Operator Based Microservice
+## 🧑‍🏭 Craft Your First Operator Based Microservice
 
 You can develop operators in various programming languages, but some have more mature frameworks than others. The most popular language for operator development is [Go](https://go.dev/), primarily due to its strong type system and the existence of robust frameworks. Other languages with operator development capabilities include [C#](https://github.com/dotnet/dotnet-operator-sdk), [Python](https://github.com/nolar/kopf), [Java](https://github.com/operator-framework/java-operator-sdk), [Rust](https://github.com/kube-rs/kube), [Javascript](https://www.npmjs.com/package/@dot-i/k8s-operator) and increasing. However, the Go-based tools are generally considered the most mature and widely adopted within the Kubernetes community.
 

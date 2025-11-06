@@ -3,7 +3,7 @@ title: "Introducing Serverless Kube Watch Trigger: Declarative Event Triggers fo
 date: 2025-10-18
 author: "Richard Kovacs"
 description: "Learn how to Kubernetes as source of serverless functions."
-categories: ["Microservice"]
+categories: ["Microservice", "Open-Source"]
 tags: ["kubernetes", "serverless", "microservice"]
 featured_image: "/images/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes.png"
 ---
@@ -174,6 +174,14 @@ Small building blocks. Clear contracts. Native integration.
 That’s the direction we’re heading.
 
 If you want to try it or contribute, the [README](https://github.com/HariKube/serverless-kube-watch-trigger/blob/main/README.md) in the repository has all the details.
+
+## 🙏 Share Feedback and Report Issues
+
+Your feedback is invaluable in helping us improve this operator. If you encounter any issues, have a suggestion for a new feature, or simply want to share your experience, we want to hear from you!
+
+- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/mhmxs/serverless-kube-watch-trigger/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version).
+- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/mhmxs/serverless-kube-watch-trigger/issues) and use the `enhancement` label. Describe the use case and how the new feature would benefit the community.
+- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/mhmxs/serverless-kube-watch-trigger/discussions).
 
 ---
 

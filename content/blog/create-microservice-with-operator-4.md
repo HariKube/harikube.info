@@ -20,7 +20,7 @@ prevLink: "/blog/create-microservice-with-operator-3/"
 
 In the previous parts of this series, we built the foundation for a Kubernetes operator, explored how to expose and manage custom resources and implememnted a custom search API. Now, let’s take the next step: **implementing fully custom APIs inside Kubernetes**. This allows you to present complex, aggregated, or domain-specific custom logic directly through the Kubernetes API.
 
-## Implement a Fully Customized API
+## 🧑‍🏭 Implement a Fully Customized API
 
 Sometimes, the built-in API and operator capabilities aren't enough, especially when dealing with complex data relationships or when you need fine-grained control over the data retrieval process. In these cases, you can implement fully customized services using an **aggregation API**.
 
@@ -120,7 +120,7 @@ kubectl get customtasks foo -w
 kubectl delete customtasks foo
 {{< /code >}}
 
-## Extending Built-in Resources with Aggregated Endpoints
+## ➕ Extending Built-in Resources with Aggregated Endpoints
 
 The next service extends the Kubernetes API by creating a new combinedtasks endpoint. This endpoint behaves like any other Kubernetes resource (get, list, and watch), but instead of returning a plain Task, it provides a richer view that includes:
 
