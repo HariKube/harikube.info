@@ -2,7 +2,7 @@
 {{ $title := .Get "title" }}
 {{ $description := .Get "description" }}
 {{ $badge := .Get "badge" }}
-{{ $badgeColor := .Get "badgeColor" | default "#5573df" }}
+{{ $badgeColor := .Get "badgeColor" | default "#00a3ff" }}
 {{ $image := .Get "image" }}
 {{ $buttonText := .Get "buttonText" | default "Learn More" }}
 {{ $buttonLink := .Get "buttonLink" | default "#" }}
@@ -20,8 +20,9 @@
     <div class="space-y-6 {{ if eq $imagePosition "left" }}order-1 lg:order-2{{ end }}">
         <style>
             .badge {
-                background-color: color-mix(in srgb, var(--badge-color) 10%, transparent);
+                background-color: color-mix(in srgb, var(--badge-color) 20%, transparent);
                 color: var(--badge-color);
+                border: 1px solid color-mix(in srgb, var(--badge-color) 30%, transparent);
             }
             .badge-icon {
                 color: var(--badge-color);
@@ -29,14 +30,14 @@
         </style>
         <div class="badge inline-block px-4 py-2 rounded-full font-medium">{{ $badge }}</div>
         <h3 class="text-2xl md:text-3xl font-bold">{{ $title }}</h3>
-        <p class="text-lg text-gray-600">{{ $description }}</p>
+        <p class="text-lg text-gray-300">{{ $description }}</p>
         <ul class="space-y-4">
             {{ range $features }}
             <li class="flex items-center space-x-3">
                 <svg class="badge-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                 </svg>
-                <span>{{ . | default "" }}</span>
+                <span class="text-gray-300">{{ . | default "" }}</span>
             </li>
             {{ end }}
         </ul>

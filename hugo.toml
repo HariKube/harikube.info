@@ -56,8 +56,8 @@ canonifyURLs = true
 
   # Header Configuration
   [params.header]
-    background = "bg-white/80 backdrop-blur-sm"
-    border = "border-b border-gray-100"
+    background = "bg-gray-950/90 backdrop-blur-sm"
+    border = "border-b border-cyan-500/20"
     
     # Header Logo
     [params.header.logo]

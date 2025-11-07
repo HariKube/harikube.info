@@ -1,0 +1,28 @@
+{{ if .Site.Params.cta.enable }}
+<section class="cta-section">
+    <div class="container">
+        {{ $angle := .Site.Params.cta.gradient_angle | default 45 }}
+        {{ $from := .Site.Params.cta.gradient_from }}
+        {{ $to := .Site.Params.cta.gradient_to }}
+        <div class="relative rounded-lg overflow-hidden bg-gradient-to-r from-cyan-600 to-purple-600 cta-gradient border border-cyan-500/30"
+             style="--gradient-angle: {{ $angle }}; --gradient-from: {{ $from }}; --gradient-to: {{ $to }}">
+            <div class="relative text-center max-w-3xl mx-auto px-6 py-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">{{ .Site.Params.cta.title }}</h2>
+                <p class="text-xl text-gray-200 mb-8">{{ .Site.Params.cta.description }}</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    {{ with .Site.Params.cta.primary_button }}
+                        <a href="{{ .url }}" class="btn bg-white text-cyan-600 hover:bg-gray-100 hover:shadow-lg hover:shadow-cyan-500/30">
+                            {{ .text }}
+                        </a>
+                    {{ end }}
+                    {{ with .Site.Params.cta.secondary_button }}
+                        <a href="{{ .url }}" class="btn border-2 border-white text-white hover:bg-white/10">
+                            {{ .text }}
+                        </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
