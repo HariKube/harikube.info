@@ -161,6 +161,8 @@ Once again these resources are only exists on the virtual cluster, and they back
 example3   green   M
 {{< /output >}}
 
+> We strongly recommend to read the [Custom Resources](/docs/custom-resource/) section of our documentation, because you could find more detailed information about serving huge amount of custom resources efficiently.
+
 ## 🧠 Final Thoughts
 
 The journey to an unconstrained, scalable Kubernetes platform begins here. The limitations imposed by ETCD and the inefficiency of client-side filtering have long bottlenecked enterprise adoption and prevented Kubernetes from fully realizing its potential as a true PaaS.
