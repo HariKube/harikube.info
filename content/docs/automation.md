@@ -40,7 +40,7 @@ Once installation has finished, create your database instances themselves. Pleas
 
 Next step is configuring and deploying HariKube Operator. The operator is a standard Kubernetes operator, so if you are familiar with operators, you are good to go.
 
-> Images are not public, please ask for registry user via info@inspirnation.eu or follow [get started](/get-started/) page.
+> ⚠️ HariKube images aren’t public yet. If you’d like to try them, request a free trial version on the [Open Beta invitation](/beta-invitation/) page.
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-operator-{{ .Site.Params.operatorVersion }}.yaml
 {{< /code >}}

@@ -115,9 +115,6 @@ canonifyURLs = true
     title = "Ready to Get Started?"
     description = "We're getting close to launch, and we want you to be one of the first to experience Cloud-Native microservice development in scale."
     [params.cta.primary_button]
-      text = "Get Started"
-      url = "/get-started/"
-    [params.cta.secondary_button]
       text = "Try Open Beta"
       url = "/beta-invitation/"
 
