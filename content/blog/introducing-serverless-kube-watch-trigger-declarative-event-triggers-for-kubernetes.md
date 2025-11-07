@@ -3,7 +3,7 @@ title: "Introducing Serverless Kube Watch Trigger: Declarative Event Triggers fo
 date: 2025-10-18
 author: "Richard Kovacs"
 description: "Learn how to Kubernetes as source of serverless functions."
-categories: ["Microservice", "Open-Source"]
+categories: ["Open-Source", "Microservice"]
 tags: ["kubernetes", "serverless", "microservice"]
 featured_image: "/images/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes.png"
 ---
