@@ -171,10 +171,11 @@ Now that the HariKube PaaS foundation is successfully laid, let's see how our un
 
 First you have to connect to the virtual Kubernetes API. PLease install [vCluster](https://www.vcluster.com/docs/platform/install/quick-start-guide#download-and-install-vcluster-cli), and execute the following command.
 
-{{< code bash >}}vcluster connect harikube
+{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deploy/harikube --timeout=5m
+vcluster connect harikube
 {{< /code >}}
 
-> vCluster simplifies the operational workflow by automatically updating your local environment.
+> vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
 
 Crucially, this Kubernetes environment serves **only as your control plane and data source**, containing no application Pods; it is purpose-built to serve your APIs.
 

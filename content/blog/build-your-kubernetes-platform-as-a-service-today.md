@@ -93,12 +93,15 @@ To execute this, simply run the following command:
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
 
-{{< code bash >}}vcluster connect kine
+{{< code bash >}}kubectl wait -n kine --for=jsonpath='{.status.readyReplicas}'=1 deploy/kine --timeout=5m
+vcluster connect kine
 {{< /code >}}
 
 You are now connected to a highly performant, isolated control plane that is no longer limited by ETCD or client-side filtering. Congratulations on taking the first step towards truly scalable cloud-native development!
 
 Once connected, vCluster changes your current local `KUBECONFIG` file to point directly to the virtual control plane. This is seamless for developers and means all subsequent kubectl commands will interact with your new, scalable instance. When you are finished working on the virtual cluster, you can easily swap back to your host cluster by running the command `vcluster disconnect`.
+
+> vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
 
 Now, create your first custom resource. Apply the definition file:
 
@@ -150,7 +153,7 @@ example2   blue    M
 example3   green   M
 {{< /output >}}
 
-Once again these resources are only exists on the virtual cluster, and they backed by the SQLite database which supports storage side filtering, so you can get for example green shirts without moving all shirts from database to Kubernetes API server.
+Once again these resources are only exists on the virtual cluster, and they backed by the SQLite database which supports storage side filtering, so you can get for example green shirts without moving all shirts from the database to Kubernetes API server.
 
 {{< code bash >}}kubectl get shirts -l color=green
 {{< /code >}}
