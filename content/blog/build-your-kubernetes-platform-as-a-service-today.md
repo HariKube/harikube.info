@@ -2,7 +2,7 @@
 title: "Build Your Kubernetes Platform-as-a-Service Today"
 date: 2025-11-06
 author: "Richard Kovacs"
-description: "Learn how to crush the biggest scalability bottlenecks in Kubernetes."
+description: "Learn how to crush the biggest scalability bottlenecks in Kubernetes with open-source."
 categories: ["Open-Source", "Infrastructure", "Microservice"]
 tags: ["kubernetes", "scalability", "infrastructure", "microservice"]
 featured_image: "/images/blog/build-your-kubernetes-platform-as-a-service-today.png"
