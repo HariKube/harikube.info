@@ -100,6 +100,64 @@ You are now connected to a highly performant, isolated control plane that is no 
 
 Once connected, vCluster changes your current local `KUBECONFIG` file to point directly to the virtual control plane. This is seamless for developers and means all subsequent kubectl commands will interact with your new, scalable instance. When you are finished working on the virtual cluster, you can easily swap back to your host cluster by running the command `vcluster disconnect`.
 
+Now, create your first custom resource. Apply the definition file:
+
+{{< code bash >}}kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/customresourcedefinition/shirt-resource-definition.yaml
+{{< /code >}}
+
+Then add a few resources:
+
+{{< code bash >}}cat | kubectl apply -f - <<EOF
+apiVersion: stable.example.com/v1
+kind: Shirt
+metadata:
+  name: example1
+  labels:
+    color: blue
+spec:
+  color: blue
+  size: S
+---
+apiVersion: stable.example.com/v1
+kind: Shirt
+metadata:
+  name: example2
+  labels:
+    color: blue
+spec:
+  color: blue
+  size: M
+---
+apiVersion: stable.example.com/v1
+kind: Shirt
+metadata:
+  name: example3
+  labels:
+    color: green
+spec:
+  color: green
+  size: M
+EOF
+{{< /code >}}
+
+Verify the resources are exists.
+
+{{< code bash >}}kubectl get shirts
+{{< /code >}}
+{{< output >}}NAME       COLOR   SIZE
+example1   blue    S
+example2   blue    M
+example3   green   M
+{{< /output >}}
+
+Once again these resources are only exists on the virtual cluster, and they backed by the SQLite database which supports storage side filtering, so you can get for example green shirts without moving all shirts from database to Kubernetes API server.
+
+{{< code bash >}}kubectl get shirts -l color=green
+{{< /code >}}
+{{< output >}}NAME       COLOR   SIZE
+example3   green   M
+{{< /output >}}
+
 ## 🧠 Final Thoughts
 
 The journey to an unconstrained, scalable Kubernetes platform begins here. The limitations imposed by ETCD and the inefficiency of client-side filtering have long bottlenecked enterprise adoption and prevented Kubernetes from fully realizing its potential as a true PaaS.
