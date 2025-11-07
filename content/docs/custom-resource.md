@@ -32,6 +32,10 @@ However, if you only need a declarative policy to ensure a label on each resourc
 {
     "details": [
         {
+            "title": "Ensure skip-controller-manager-metadata-caching Label on resources without owners",
+            "file": "docs/details/mutation-admission-policy-controller-manager-skip-ownerless"
+        },
+        {
             "title": "Ensure `skip-controller-manager-metadata-caching` Label on Shirts",
             "file": "docs/details/mutation-admission-policy-controller-manager-skip-shirts"
         },
