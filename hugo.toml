@@ -1,7 +1,7 @@
 # Basic Configuration
 baseURL = "/"
 languageCode = "en-us"
-title = "HariKube"
+title = ""
 theme = "hugo-saasify-theme"
 
 # Required Features
