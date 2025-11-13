@@ -14,13 +14,13 @@
             {{ range $index, $plan := $data.plans }}
             <div class="relative flex flex-col p-6 {{ if $plan.featured }}bg-primary-600 text-white{{ else }}bg-white dark:bg-gray-800{{ end }} rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
                 {{ if $plan.featured }}
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 110px;">
                     <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">Most Popular</span>
                 </div>
                 {{ end }}
                 {{ if $plan.freetier }}
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">Free Trial, €0 for 30 days!</span>
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 185px;">
+                    <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">10% OFF for Beta Testers!</span>
                 </div>
                 {{ end }}
                 
@@ -32,18 +32,82 @@
                 <div class="mb-6">
                     <div class="flex items-baseline">
                         <span class="text-4xl font-extrabold {{ if not $plan.featured }}text-gray-900 dark:text-white{{ end }}">€</span>
-                        <span class="text-5xl font-extrabold tracking-tight {{ if not $plan.featured }}text-gray-900 dark:text-white{{ end }}">{{ $plan.price }}</span>
+                        <span id="price-{{ $index }}" class="text-5xl font-extrabold tracking-tight {{ if not $plan.featured }}text-gray-900 dark:text-white{{ end }}">{{ $plan.price }}</span>
                         <span class="ml-1 {{ if not $plan.featured }}text-gray-500 dark:text-gray-400{{ end }}">/year</span>
                     </div>
                 </div>
                 
+                <script type="text/javascript">
+                    plans = typeof plans != "undefined" ? plans : {};
+                    plans["{{ $index }}"] = JSON.parse({{ $plan | jsonify }});
+
+                    addonManager = typeof addonManager != "undefined" ? addonManager : function(feature, index, featIndex, op) {
+                        currentAddon = document.getElementById("addon-text-" + index + "-" + featIndex).innerHTML;
+
+                        current = 0;
+                        for (c in plans[index]["addons"][feature]) {
+                            if (plans[index]["addons"][feature][c]["text"] == currentAddon) {
+                                current = c;
+                                break;
+                            }
+                        }
+
+                        rmBtn = document.getElementById("addon-rm-" + index + "-" + featIndex);
+                        addBtn = document.getElementById("addon-add-" + index + "-" + featIndex);
+
+                        if (op == "+") {
+                            current++;
+                            if (current > 0) {
+                                rmBtn.style.opacity = 1;
+                                rmBtn.style.pointerEvents = '';
+                                rmBtn.style.cursor = '';
+                            }
+                            if (current + 1 == plans[index]["addons"][feature].length) {
+                                addBtn.style.opacity = 0.3;
+                                addBtn.style.pointerEvents = 'none';
+                                addBtn.style.cursor = 'not-allowed';
+                            }
+                        } else if (op == "-") {
+                            current--;
+                            if (current == 0) {
+                                rmBtn.style.opacity = 0.3;
+                                rmBtn.style.pointerEvents = 'none';
+                                rmBtn.style.cursor = 'not-allowed';
+                            }
+                            if (current < plans[index]["addons"][feature].length) {
+                                addBtn.style.opacity = 1;
+                                addBtn.style.pointerEvents = '';
+                                addBtn.style.cursor = '';
+                            }
+                        }
+
+                        document.getElementById("addon-text-" + index + "-" + featIndex).innerHTML = plans[index]["addons"][feature][current]["text"];
+
+                        price = parseInt(plans[index].price);
+                        for (featIndex in plans[index]["features"]) {
+                            currentAddon = document.getElementById("addon-text-" + index + "-" + featIndex).innerHTML;
+                            for (c in plans[index]["addons"][feature]) {
+                                if (plans[index]["addons"][feature][c]["text"] == currentAddon) {
+                                    price += parseInt(plans[index]["addons"][feature][c]["price"]);
+                                }
+                            }
+                        }
+                        
+                        document.getElementById("price-" + index).innerHTML = price;
+                    };
+                </script>
+
                 <ul class="mb-8 space-y-4 flex-grow">
-                    {{ range $plan.features }}
+                    {{ range $featIndex, $feature := $plan.features }}
                     <li class="flex items-center">
                         <svg class="w-5 h-5 {{ if $plan.featured }}text-white{{ else }}text-green-500 dark:text-green-400{{ end }} mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="{{ if not $plan.featured }}text-gray-600 dark:text-gray-400{{ end }}">{{ . }}</span>
+                        <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="{{ if not $plan.featured }}text-gray-600 dark:text-gray-400{{ end }}" style="max-width: 75%;">{{ $feature }}</span>
+                        {{ if index $plan.addons . }}
+                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="#"  onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
+                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="#" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>
+                        {{ end }}
                     </li>
                     {{ end }}
                 </ul>
