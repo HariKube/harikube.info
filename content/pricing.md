@@ -29,137 +29,65 @@ layout: "pricing"
     "description": "Because every company needs to innovate to win. And the Kubernetes platform is your base of innovation.",
     "plans": [
         {
+            "name": "Open-Source Edition",
+            "price": "0",
+            "description": "Perfect for standalone projects and environments where one database is sufficient.",
+            "features": [
+                "Database number: 1",
+                "Community support: No limits",
+                "Support coverage: Self-service",
+                "Support channels: Community Forum"
+            ],
+            "button": {
+                "text": "Download",
+                "url": "https://github.com/HariKube/kine/releases/tag/release-v0.14.6"
+            }
+        },
+        {
             "name": "Community Edition",
             "price": "0",
             "description": "The perfect starting point for personal projects and prototypes.",
             "features": [
-                "Manual configuration",
-                "Instance number: 1",
+                "Manual database configuration",
                 "Database number: 10",
                 "Community support: No limits",
                 "Support coverage: Self-service",
                 "Support channels: Community Forum"
             ],
             "button": {
-                "text": "Get started",
-                "url": "/get-started/"
+                "text": "Coming Soon / Join Beta",
+                "url": "/beta-invitation/"
             }
         },
         {
-            "name": "Starter Edition",
-            "price": "24900",
+            "name": "Business Edition",
+            "price": "14900",
             "description": "Ideal for startups and small businesses looking to get up and running quickly.",
             "freetier": true,
+            "featured": true,
             "features": [
-                "Automatic configuration",
-                "Instance number: 1",
-                "Database number: 25",
-                "SLA: 99.95%",
+                "Automatic database configuration",
+                "Database number: 20",
                 "Maintenance updates: 12 months",
                 "Premium support: 12 months",
                 "Support coverage: 8x5",
                 "Support channels: Community Forum, Email"
             ],
+            "addons": {
+                "Database number: 20": [
+                    { "text": "Database number: 20", "price": 0 },
+                    { "text": "Database number: 30", "price": 5000 },
+                    { "text": "Database number: 40", "price": 10000 },
+                    { "text": "Database number: 50", "price": 15000 }
+                ],
+                "Support coverage: 8x5": [
+                    { "text": "Support coverage: 8x5", "price": 0 },
+                    { "text": "Support coverage: 24x7", "price": 12000 }
+                ]
+            },
             "button": {
-                "text": "Get started",
-                "url": "/get-started/"
-            }
-        },
-        {
-            "name": "Business Edition",
-            "price": "49900",
-            "description": "Designed for businesses requiring a reliable foundation for their large-scale applications.",
-            "features": [
-                "Automatic configuration",
-                "Instance number: 1",
-                "Database number: 50",
-                "SLA: 99.95%",
-                "Maintenance updates: 24 months",
-                "Premium support: 12 months",
-                "Support coverage: 8x5",
-                "Support channels: Community Forum, Email",
-                "Production Runbook",
-                "Onboarding Support"
-            ],
-            "button": {
-                "text": "Get started",
-                "url": "/get-started/"
-            }
-        },
-        {
-            "name": "Business Edition+",
-            "price": "69900",
-            "description": "Get the power of the Business Edition plus advanced monitoring and 24/7 support for mission-critical operations.",
-            "featured": true,
-            "features": [
-                "Automatic configuration",
-                "Instance number: 2",
-                "Database number: 50",
-                "Advanced Monitoring",
-                "Alerting and Notifications",
-                "SLA: 99.95%",
-                "Maintenance updates: 24 months",
-                "Premium support: 12 months",
-                "Support coverage: 24x7",
-                "Support channels: Community Forum, Email, Slack",
-                "Production Runbook",
-                "Onboarding Support"
-            ],
-            "button": {
-                "text": "Get started",
-                "url": "/get-started/"
-            }
-        },
-        {
-            "name": "Enterprise Edition",
-            "price": "89900",
-            "description": "Built for high-demand, enterprise-level applications with a dedicated success manager to ensure your success.",
-            "features": [
-                "Automatic configuration",
-                "Instance number: 1",
-                "Database number: 100",
-                "Advanced Monitoring",
-                "Alerting and Notifications",
-                "SLA: 99.99%",
-                "Maintenance updates: 24 months",
-                "Premium support: 12 months",
-                "Support coverage: 24x7",
-                "Support channels: Community Forum, Email, Slack",
-                "Production Runbook",
-                "Onboarding Support",
-                "Dedicated Customer Success Manager",
-                "Professional Services available",
-                "Strategic Planning and Consulting"
-            ],
-            "button": {
-                "text": "Get started",
-                "url": "/get-started/"
-            }
-        },
-        {
-            "name": "Enterprise Edition+",
-            "price": "119900",
-            "description": "Our most comprehensive plan for large-scale, high-performance applications that demand the highest level of support and reliability.",
-            "features": [
-                "Automatic configuration",
-                "Instance number: 2",
-                "Database number: 100",
-                "Advanced Monitoring",
-                "Alerting and Notifications",
-                "SLA: 99.99%",
-                "Maintenance updates: 36 months",
-                "Premium support: 12 months",
-                "Support coverage: 24x7",
-                "Support channels: Community Forum, Email, Slack",
-                "Production Runbook",
-                "Onboarding Support",
-                "Dedicated Customer Success Manager",
-                "Professional Services available",
-                "Strategic Planning and Consulting"
-            ],
-            "button": {
-                "text": "Get started",
-                "url": "/get-started/"
+                "text": "Coming Soon / Join Beta",
+                "url": "/beta-invitation/"
             }
         }
     ]
@@ -172,6 +100,7 @@ layout: "pricing"
     "description": "Find answers to frequently asked questions about our pricing plans and features.",
     "questions": [
         {
+            "disabled": true,
             "question": "Do you offer a free trial or a freemium plan?",
             "answer": "The Starter Edition offers a free trial so you can experience our key features before committing to a plan. The Community Edition is our freemium option, which is always free to use."
         },
@@ -188,18 +117,22 @@ layout: "pricing"
             "answer": "All subscriptions are for a one-year term."
         },
         {
+            "disabled": true,
             "question": "What is premium support for HariKube?",
             "answer": "Premium support varies by plan and includes dedicated support channels, a dedicated engineer, and tiered response times based on severity."
         },
         {
+            "disabled": true,
             "question": "What payment methods do you offer?",
             "answer": "We offer payment via bank transfer based on an issued invoice."
         },
         {
+            "disabled": true,
             "question": "How can I upgrade/downgrade/cancel my plan?",
             "answer": "You can upgrade at any time by paying the difference in price. Downgrades and cancellations are not permitted during the subscription term."
         },
         {
+            "disabled": true,
             "question": "Can I get a refund?",
             "answer": "We do not offer refunds. We encourage you to use the free trial with our Starter Edition or the perpetually free Community Edition to ensure the service meets your needs before purchasing a paid plan."
         },
@@ -208,6 +141,7 @@ layout: "pricing"
             "answer": "The Community Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Starter Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
         },
         {
+            "disabled": true,
             "question": "What is the SLA for HariKube?",
             "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 99.95% SLA for Starter, Business, and Business+ editions and a 99.99% SLA for Enterprise and Enterprise+ editions."
         },
@@ -220,10 +154,12 @@ layout: "pricing"
             "answer": "With Manual Configuration (Community Edition), you need to manually edit a configuration file and restart the middleware to apply any changes. Automatic Configuration (all paid editions) allows for dynamic changes to take effect immediately without needing to restart the middleware."
         },
         {
+            "disabled": true,
             "question": "What is a Production Runbook?",
             "answer": "A Production Runbook is a comprehensive, step-by-step guide for common operational tasks and troubleshooting procedures. It's designed to help your team efficiently manage and maintain your system, ensuring consistency and reliability."
         },
         {
+            "disabled": true,
             "question": "What is Advanced Monitoring and Alerting and Notifications?",
             "answer": "These features provide built-in system monitoring, log collection, and automated alerts. This allows you to proactively track performance, gather data, and receive instant notifications for any potential issues."
         },

@@ -131,12 +131,16 @@ canonifyURLs = true
     url = "/blog/"
     weight = 1
   [[menu.main]]
-    name = "Download"
-    url = "/beta-invitation/"
+    name = "Pricing"
+    url = "/pricing/"
     weight = 2
   [[menu.main]]
-    name = "Features"
+    name = "Download"
+    url = "/beta-invitation/"
     weight = 3
+  [[menu.main]]
+    name = "Features"
+    weight = 4
     [menu.main.params]
       has_submenu = true
       submenu = [
@@ -147,7 +151,7 @@ canonifyURLs = true
       ]
   [[menu.main]]
     name = "Docs"
-    weight = 4
+    weight = 5
     [menu.main.params]
       has_submenu = true
       submenu = [
@@ -161,7 +165,7 @@ canonifyURLs = true
   [[menu.main]]
     name = "FAQ"
     url = "/faq/"
-    weight = 5
+    weight = 6
 
   # Footer Column 1 Menu
   # [[menu.footer_column_1]]
