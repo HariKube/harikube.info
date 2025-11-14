@@ -35,9 +35,41 @@ Why It Matters
 
  - **Transforms Kubernetes into a true Platform-as-a-Service (PaaS)** – HariKube abstracts data infrastructure complexity, allowing developer teams to focus solely on business logic. This streamlined workflow not only accelerates development but also reduces operational overhead and infrastructurerelated  development costs.
 
+ - **Unifying different service designs** - For years, Kubernetes has been the foundation of modern cloud infrastructure. But while it excels at scheduling, scaling, and managing workloads, its application development experience has been fragmented.
+
 HariKube empowers platform teams to handle scale, compliance, and infrastructure complexity—while developers stay focused on writing and deploying great software.
 
-## ⚠️ Limitations
+:
+
+ - Serverless functions live in Knative or OpenFaaS.
+ - Operators are built with Kubebuilder or Kopf for infrastructure related developments.
+ - REST APIs are bolted on via Ingress and separate application stacks.
+
+HariKube changes this. By replacing ETCD with a database-agnostic backend topology and connecting Kubernetes watches to serverless runtimes, reconciliation loops, and custom APIs. It turns Kubernetes into a true Cloud-Native Platform-as-a-Service.
+
+## Serverless — Nanoservice Layer
+
+With a lightweight [watch connector](https://github.com/HariKube/serverless-kube-watch-trigger), every Custom Resource Definition (CRD) or core resource change can trigger a function running on OpenFaaS or Knative. The function layer provides event-driven business logic without requiring operators, custom APIs, or external event buses.
+
+ - Developers only need a CRD and a function image.
+ - Kubernetes acts as the event source.
+ - The function focuses on logic, the platform handles everything else.
+
+Function languages: Go, Python, Node.js/TypeScript, Java, C#/.NET, Ruby, PHP, Rust.
+
+ > In practice, any language that runs in a container and speaks HTTP works.
+
+## Operators — Microservice Layer
+
+Operators remain the best way to handle stateful, long-lived, or complex business logic. With HariKube’s data fabric, operators behave like regular microservices without being bottlenecked by ETCD.
+
+ - Developers only need a CRD and an operator image.
+ - Kubernetes acts as the event source and API.
+ - The operator focuses on logic, the platform handles everything else.
+
+Operator languages: Go, Python, Java, Node.js/TypeScript, Rust, C#/.NET.
+
+### ⚠️ Limitations
 
 While HariKube improves performance over single-ETCD setups, it inherits some
 Kubernetes design tradeoffs.
@@ -50,5 +82,20 @@ Kubernetes design tradeoffs.
 | Limited Data Filtering | No advanced query engine included within Kubernetes |
 
 > 💡 Don't worry, the Kubernetes API aggregation layer can help overcome the limitations of the core API server by allowing you to extend the API with custom APIs that are served by a separate backend, or extension API server. This setup enables you to implement specific logic and capabilities that aren't available in the core API.
+
+## Kubernetes Aggregation API Layer — Traditional REST API Layer
+
+Some use cases don’t fit into serverless or operator patterns — for example, classic REST APIs, querying, or external integrations. Here, Kubernetes’ Aggregation API layer lets you embed a custom API server directly into the Kubernetes control plane.
+
+ - Developers can deliver hybrid or full autonome services.
+ - Kubernetes acts as the API.
+
+Typical REST/API languages: Go, Python, Node.js/TypeScript, Java, C#/.NET, Rust, Ruby, PHP.
+
+ > In practice, any language that runs in a container and speaks HTTP works.
+
+---
+
+By unifying Serverless Functions, Operators, and Custom REST APIs into a single platform powered by the HariKube dynamic data layer, you overcome ETCD limits and transform Kubernetes into a full, scalable, and language-agnostic Hybrid PaaS.
 
  #### [<-- Data Isolation](/features/data-isolation/)
