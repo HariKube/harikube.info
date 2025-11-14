@@ -105,8 +105,8 @@
                         </svg>
                         <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="{{ if not $plan.featured }}text-gray-600 dark:text-gray-400{{ end }}" style="max-width: 75%;">{{ $feature }}</span>
                         {{ if index $plan.addons . }}
-                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="#"  onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
-                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="#" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>
+                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="/pricing/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
+                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="/pricing/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>
                         {{ end }}
                     </li>
                     {{ end }}
