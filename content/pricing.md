@@ -80,11 +80,6 @@ layout: "pricing"
                     { "text": "Database number: 40", "price": 10000 },
                     { "text": "Database number: 50", "price": 15000 }
                 ],
-                "Maintenance updates: 12 months": [
-                    { "text": "Maintenance updates: 12 months", "price": 0 },
-                    { "text": "Maintenance updates: 24 months", "price": 4000 },
-                    { "text": "Maintenance updates: 36 months", "price": 8000 }
-                ],
                 "Support coverage: 8x5": [
                     { "text": "Support coverage: 8x5", "price": 0 },
                     { "text": "Support coverage: 24x7", "price": 12000 }
