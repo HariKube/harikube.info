@@ -52,6 +52,33 @@ description: "Learn about our mission, leadership team, and the investors backin
                 image="/images/company/anett.png"
                 linkedin="https://www.linkedin.com/in/anettguth/"
             >}}
+            {{< team-member 
+                name="Lutz Grochowski"
+                title="Administrative Support"
+                image="/images/company/lutz.jpg"
+                linkedin="https://www.linkedin.com/in/lutz-grochowski-bab648380/"
+                email="lutz.grochowski@inspirnation.eu"
+            >}}
+        </div>
+    </div>
+{{< /section-container >}}
+
+{{< section-container class="py-20 bg-gray-50" >}}
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Co-Founders</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {{< team-member 
+                name="Richárd Kovács"
+                image="/images/company/mhmxs.jpg"
+            >}}
+            {{< team-member 
+                name="Tobias Heinrichs"
+                image="/images/company/tobias.jpg"
+            >}}
+            {{< team-member 
+                name="Joachim Kreye"
+                image="/images/company/joachim.jpg"
+            >}}
         </div>
     </div>
 {{< /section-container >}}
