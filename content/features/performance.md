@@ -6,7 +6,7 @@ badge: "Performance"
 badgeColor: "#2563eb"
 features:
   - title: "Low-latency data access"
-    description: "Applications can quickly retrieve and store data-even when the data is spread across multiple databases-thanks to optimized routing. Compared to a single overloaded database, this distributed approach reduces contention, balances load, and delivers faster, more reliable responses under scale."
+    description: "Applications can quickly retrieve and store data—even when the data is spread across multiple databases—thanks to optimized routing. Compared to a single overloaded database, this distributed approach reduces contention, balances load, and delivers faster, more reliable responses under scale."
   - title: "Optimized for high-throughput"
     description: "HariKube efficiently distributes workload-intensive operations across multiple databases, minimizing bottlenecks and ensuring consistent performance even under heavy traffic. Under high load, a single service’s database remains isolated, ensuring that performance issues don’t impact data access for other services or workloads."
   - title: "Supports workload-aware data placement"
@@ -19,7 +19,7 @@ features:
 
 Kubernetes has become the de facto standard for orchestrating containerized applications due to its flexibility, extensibility, and ability to automate deployment, scaling, and operations. It enables teams to adopt microservices architectures, build scalable cloud-native platforms, and maintain service reliability even under dynamic workloads.
 
-At the heart of Kubernetes lies ETCD, a distributed key-value store that serves as the central source of truth for the cluster. All critical cluster data-such as node states, configurations, secrets, and custom resource definitions (CRDs)-are stored and retrieved from ETCD. While ETCD is fast and reliable for core Kubernetes operations, it's not designed to act as a general-purpose data store.
+At the heart of Kubernetes lies ETCD, a distributed key-value store that serves as the central source of truth for the cluster. All critical cluster data—such as node states, configurations, secrets, and custom resource definitions (CRDs)—are stored and retrieved from ETCD. While ETCD is fast and reliable for core Kubernetes operations, it's not designed to act as a general-purpose data store.
 
 As teams scale their Kubernetes environments or begin to use CRDs for large, dynamic workloads, ETCD becomes a performance bottleneck:
 
@@ -27,7 +27,7 @@ As teams scale their Kubernetes environments or begin to use CRDs for large, dyn
 
  - **Limited capacity even with vertical scaling** – ETCD struggles to handle large volumes of high-throughput data, even when deployed on high-performance hardware. Its single read/write path and centralized data access model create a bottleneck under heavy load, limiting overall system scalability.
 
- - **Using ETCD to store non-core, high-volume workloads** – such as application state, dynamic configuration, or large custom resource datasets-can overwhelm its intended capacity. This not only slows down critical control plane operations like scheduling and service discovery but also increases the risk of cascading failures across the cluster when ETCD becomes unresponsive or resource-constrained.
+ - **Using ETCD to store non-core, high-volume workloads** – such as application state, dynamic configuration, or large custom resource datasets—can overwhelm its intended capacity. This not only slows down critical control plane operations like scheduling and service discovery but also increases the risk of cascading failures across the cluster when ETCD becomes unresponsive or resource-constrained.
 
  - **Complex and risky maintenance and recovery** – As ETCD usage expands beyond core Kubernetes data, backup and disaster recovery processes become more error-prone and time-consuming. Since ETCD remains a single point of failure for the control plane, any misstep in handling its growing data volume can lead to critical cluster and business service outages.
 

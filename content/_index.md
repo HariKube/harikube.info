@@ -32,7 +32,7 @@ testimonials:
   "@type": "WebSite",
   "name": "HariKube",
   "url": "https://harikube.info",
-  "description": "With HariKube, it becomes your platform-as-a-service - scalable, fast, and vendor-agnostic - so you can build, deploy, and grow without worrying about database limits or infrastructure complexity.",
+  "description": "With HariKube, it becomes your platform-as-a-service — scalable, fast, and vendor-agnostic — so you can build, deploy, and grow without worrying about database limits or infrastructure complexity.",
   "publisher": {
     "@type": "Organization",
     "name": "HariKube",
@@ -138,7 +138,7 @@ testimonials:
 
 {{< features-section 
     title="HariKube redefines the way we think about Kubernetes"
-    description="Kubernetes relies on ETCD for all data storage, which limits scalability, flexibility, and performance for complex or high-volume workloads-HariKube solves this by offloading data to multiple databases which are optimized for handling large-scale, high-throughput data workloads, transforming Kubernetes into a scalable, extensible, and developer-friendly PaaS."
+    description="Kubernetes relies on ETCD for all data storage, which limits scalability, flexibility, and performance for complex or high-volume workloads—HariKube solves this by offloading data to multiple databases which are optimized for handling large-scale, high-throughput data workloads, transforming Kubernetes into a scalable, extensible, and developer-friendly PaaS."
 >}}
 
 {{< feature
@@ -167,7 +167,7 @@ testimonials:
 
 {{< feature
     title="Fine-Grained Data Isolation for Security and Compliance"
-    description="HariKube enables strict data separation across namespaces, resource types, or services-helping organizations meet security and compliance requirements without sacrificing scalability or performance."
+    description="HariKube enables strict data separation across namespaces, resource types, or services—helping organizations meet security and compliance requirements without sacrificing scalability or performance."
     badge="Security & Compliance"
     badgeColor="#0f766e"
     image="/images/data-isolation.png"

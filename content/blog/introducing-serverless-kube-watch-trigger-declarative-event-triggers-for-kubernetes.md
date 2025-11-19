@@ -10,7 +10,7 @@ featured_image: "/images/blog/introducing-serverless-kube-watch-trigger-declarat
 
 {{< toc >}}
 
-Today we’re releasing something small, simple, open-source, and surprisingly powerful: [serverless-kube-watch-trigger](https://github.com/HariKube/serverless-kube-watch-trigger), a Kubernetes Custom Resource Definition that turns cluster events into HTTP calls - directly and declaratively.
+Today we’re releasing something small, simple, open-source, and surprisingly powerful: [serverless-kube-watch-trigger](https://github.com/HariKube/serverless-kube-watch-trigger), a Kubernetes Custom Resource Definition that turns cluster events into HTTP calls — directly and declaratively.
 
 No glue scripts. No extra brokers. No complex controllers. Just YAML.
 
@@ -159,11 +159,11 @@ Within the **HariKube** ecosystem, `serverless-kube-watch-trigger` acts as the s
 
 - It connects **Kubernetes watches** directly to **functions** or **APIs**.
 - It works out of the box with **OpenFaaS**, **Knative**, or any HTTP endpoint.
-- It uses **no custom controller logic** - just Kubernetes’ built-in reconciliation.
+- It uses **no custom controller logic** — just Kubernetes’ built-in reconciliation.
 
 This aligns with HariKube’s philosophy: let Kubernetes *be the platform*.
 
-Instead of bolting on more systems, reuse what already exists - RBAC, namespaces, CRDs, and event streams - and keep logic outside the cluster.
+Instead of bolting on more systems, reuse what already exists — RBAC, namespaces, CRDs, and event streams — and keep logic outside the cluster.
 
 ## 🧠 Final Thoughts
 
@@ -191,4 +191,4 @@ Your feedback is invaluable in helping us improve this operator. If you encounte
 
 That's the message! serverless-kube-watch-trigger is a **Kubernetes Custom Resource** that declaratively turns **cluster events** (watches) into **HTTP calls**, enabling simple, no-code automation. This lets you connect Kubernetes resource changes directly to **OpenFaaS, Knative, or any webhook**, aligning with HariKube's goal of making Kubernetes the core, event-driven platform without requiring complex operators or external brokers.
 
-Thank you for following along! If you have questions or ideas, please share them-we’d love to hear from you.
+Thank you for following along! If you have questions or ideas, please share them—we’d love to hear from you.

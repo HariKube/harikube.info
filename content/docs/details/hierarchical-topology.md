@@ -21,7 +21,7 @@ Initialize your primary middleware instance to act as the entry point for Kubern
 
 - Rest of the objects are stored in the default database.
 
-As shown, this middleware connects to a backing etcd server to store and retrieve objects within the kube-system namespace. However, instead of connecting directly to etcd, you can deploy another middleware that listens on kube-system.etcd.server:2379. This allows you to insert an additional routing layer between Kubernetes and the storage backend - enabling advanced behaviors, all while preserving the etcd-compatible API surface.
+As shown, this middleware connects to a backing etcd server to store and retrieve objects within the kube-system namespace. However, instead of connecting directly to etcd, you can deploy another middleware that listens on kube-system.etcd.server:2379. This allows you to insert an additional routing layer between Kubernetes and the storage backend — enabling advanced behaviors, all while preserving the etcd-compatible API surface.
 
 > Update your endpoints, because the example uses Docker bridge IP!
 

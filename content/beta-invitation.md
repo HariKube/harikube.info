@@ -10,9 +10,9 @@ description: ""
 
 **Scale your Kubernetes workloads with precision. Distribute your data like a pro.**
 
-We’re excited to invite you to participate in the **Open Beta of HariKube** - a groundbreaking Kubernetes middleware that brings powerful database routing and dynamic data topologies into your cluster, and turns your Kubernetes into a real Platform-as-a-Service for microservices.
+We’re excited to invite you to participate in the **Open Beta of HariKube** — a groundbreaking Kubernetes middleware that brings powerful database routing and dynamic data topologies into your cluster, and turns your Kubernetes into a real Platform-as-a-Service for microservices.
 
-HariKube enables you to separate storage logic from application code, so you can scale, isolate, or route data across multiple databases - all while keeping full compatibility with Kubernetes-native APIs like CRDs, RBAC, and webhooks. Whether you're running a multi-tenant SaaS, orchestrating microservices with strict data boundaries, or optimizing database-heavy analytics workloads, HariKube helps you:
+HariKube enables you to separate storage logic from application code, so you can scale, isolate, or route data across multiple databases — all while keeping full compatibility with Kubernetes-native APIs like CRDs, RBAC, and webhooks. Whether you're running a multi-tenant SaaS, orchestrating microservices with strict data boundaries, or optimizing database-heavy analytics workloads, HariKube helps you:
 
 **Simplifies service development** by letting developer teams to focus purely on business logig.
 
@@ -24,9 +24,9 @@ HariKube enables you to separate storage logic from application code, so you can
 
 **Compose flat or hierarchical data topologies** tailored to your service mesh, tenancy model, or data access patterns.
 
-The beta includes access to HariKube’s core components, dynamic database routing system and a customized Kubernetes version to achieve support of huge datasets (optional). By default, it integrates seamlessly with Kubernetes and turns it into a real PaaS. Setup is minimal - you can get started with just a YAML file and a running database.
+The beta includes access to HariKube’s core components, dynamic database routing system and a customized Kubernetes version to achieve support of huge datasets (optional). By default, it integrates seamlessly with Kubernetes and turns it into a real PaaS. Setup is minimal — you can get started with just a YAML file and a running database.
 
-Participation is **free during 6-month trial**, and governed by our EULA. You’ll be among the first to shape a new standard in Kubernetes-native database management - and your feedback will help optimize performance, usability, and production-readiness for GA.
+Participation is **free during 6-month trial**, and governed by our EULA. You’ll be among the first to shape a new standard in Kubernetes-native database management — and your feedback will help optimize performance, usability, and production-readiness for GA.
 
 |||
 
@@ -172,13 +172,13 @@ if (window.location.hash == "#thanks") {
 **HariKube solves these problems** by introducing:
 
 ✅ A Kubernetes-native Data Routing Layer
-Route workloads to dedicated or shared databases based on declarative topology configs - with native support for per-namespace, per-resource, or tree-structured hierarchies.
+Route workloads to dedicated or shared databases based on declarative topology configs — with native support for per-namespace, per-resource, or tree-structured hierarchies.
 
 ✅ Pluggable Backends with zero downtime
 Choose the best storage for each use case: SQLite for lightweight services or MySQL/PostgreSQL for production-grade performance.
 
 ✅ ETCD Offload with Full API Compatibility
-Your existing Kubernetes tooling keeps working - but the data doesn’t live in ETCD anymore. Think: safer upgrades, less compaction pressure, and no schema hacks.
+Your existing Kubernetes tooling keeps working — but the data doesn’t live in ETCD anymore. Think: safer upgrades, less compaction pressure, and no schema hacks.
 
 # 📝 Share your experiences!
 

@@ -1,7 +1,7 @@
 ---
 title: "Future Plans"
 layout: "simple"
-description: "The current version of the software represents an MVP (Minimum Valuable Product), designed to validate the core concept and demonstrate the potential of the architecture in real-world scenarios. While it delivers the essential functionality and shows promising performance, there is still significant room for improvement across various areas-including automation, observability, performance, security, and advanced scaling features. This foundation provides a solid starting point for iterative enhancements based on user feedback and evolving use cases."
+description: "The current version of the software represents an MVP (Minimum Valuable Product), designed to validate the core concept and demonstrate the potential of the architecture in real-world scenarios. While it delivers the essential functionality and shows promising performance, there is still significant room for improvement across various areas—including automation, observability, performance, security, and advanced scaling features. This foundation provides a solid starting point for iterative enhancements based on user feedback and evolving use cases."
 prevTitle: "Monitoring"
 prevLink: "/docs/monitoring/"
 ---

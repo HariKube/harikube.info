@@ -85,7 +85,7 @@ HariKube supports multiple backends, each with different capabilities regarding 
 | <a href="https://www.yugabyte.com/" target="_blank">**YugabyteDB**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | <a href="https://www.sqlite.org/" target="_blank">**SQLite**</a> | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 
-> ℹ️ Storage-side filtering means the database can apply selectors (`label`, `field`) before returning data-reducing memory usage and improving performance at scale.
+> ℹ️ Storage-side filtering means the database can apply selectors (`label`, `field`) before returning data—reducing memory usage and improving performance at scale.
 
 ## 💼 Common Use Cases
 

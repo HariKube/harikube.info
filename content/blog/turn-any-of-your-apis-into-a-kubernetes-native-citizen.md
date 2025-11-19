@@ -12,7 +12,7 @@ featured_image: "/images/blog/turn-any-of-your-apis-into-a-kubernetes-native-cit
 
 ## ⚡ Transforming APIs into Kubernetes-Native Citizens
 
-The power of Kubernetes lies in its unified control plane and its resource model. But what if you could make any of your existing APIs or services behave like a native Kubernetes resource-complete with `kubectl` compatibility, cluster-level governance, and seamless integration?
+The power of Kubernetes lies in its unified control plane and its resource model. But what if you could make any of your existing APIs or services behave like a native Kubernetes resource—complete with `kubectl` compatibility, cluster-level governance, and seamless integration?
 
 Developing extensions via the **Kubernetes Aggregation Layer** has traditionally been a highly complex task, demanding deep knowledge of internal API structures, serialization, and resource handling. This steep learning curve often prevents developers from extending Kubernetes as much as they'd like.
 
@@ -316,7 +316,7 @@ kubectl get combinedtasks -n default foo -o yaml
 
 We've explored how the kubernetes-aggregator-framework dramatically simplifies the complex world of the Kubernetes Aggregation Layer. The ability to expose any of your existing APIs as native Kubernetes Custom Resources is a game-changer.
 
-By abstracting away the heavy lifting-like handling API registration, request routing, serialization, and proper Kubernetes API conventions-the framework allows you to focus purely on your core business logic. You gain the best of both worlds: the **simplicity of standard API development** coupled with the **powerful, unified control plane** that Kubernetes offers.
+By abstracting away the heavy lifting—like handling API registration, request routing, serialization, and proper Kubernetes API conventions—the framework allows you to focus purely on your core business logic. You gain the best of both worlds: the **simplicity of standard API development** coupled with the **powerful, unified control plane** that Kubernetes offers.
 
 This framework is not just about making development easier; it’s about enhancing your cluster’s capabilities. You can now enforce consistent security policies, leverage standard tooling like kubectl, and achieve genuine **Kubernetes-native integration** for every microservice you build.
 
