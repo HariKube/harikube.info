@@ -44,7 +44,7 @@ layout: "pricing"
             }
         },
         {
-            "name": "Community Edition",
+            "name": "Personal Edition",
             "price": "0",
             "description": "The perfect starting point for personal projects and prototypes.",
             "features": [
