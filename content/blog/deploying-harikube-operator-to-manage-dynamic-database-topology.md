@@ -111,4 +111,4 @@ To verify everything is working, check the database for your new `Shirt` resourc
 
 And that’s the final step! You’ve successfully deployed the **HariKube Operator** and configured a **dynamic database topology** for your custom resources. This setup gives you **data isolation, lower latency, and virtually unlimited storage** by offloading custom resource data from ETCD to dedicated backends like SQLite, truly turning Kubernetes into a scalable Platform-as-a-Service.
 
-Thank you for reading! If you have questions or ideas, please share them—we’d love to hear from you.
+Thank you for reading! If you have questions or ideas, please share them-we’d love to hear from you.

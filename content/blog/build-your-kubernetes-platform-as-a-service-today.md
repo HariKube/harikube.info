@@ -12,9 +12,9 @@ featured_image: "/images/blog/build-your-kubernetes-platform-as-a-service-today.
 
 ## 💡 Our Mission at HariKube: Unlocking Kubernetes' True Potential
 
-The promise of **Kubernetes** was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale—specifically, the limitations of **ETCD** and a fragmented application development experience. The result? A fantastic container orchestrator, but a **broken Platform-as-a-Service (PaaS)**.
+The promise of **Kubernetes** was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of **ETCD** and a fragmented application development experience. The result? A fantastic container orchestrator, but a **broken Platform-as-a-Service (PaaS)**.
 
-We believe that the Kubernetes API should be the single, scalable, and language-agnostic foundation for every cloud-native workload—from event-driven nanoservices to complex stateful microservices and classic REST APIs. Read the full article [[→]](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/)
+We believe that the Kubernetes API should be the single, scalable, and language-agnostic foundation for every cloud-native workload-from event-driven nanoservices to complex stateful microservices and classic REST APIs. Read the full article [[→]](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/)
 
 ## 🛑 The Scalability Wall: ETCD Limits and Client-Side Filtering
 
@@ -66,7 +66,7 @@ By using this open-source toolset, developers can immediately start building mor
 
 ## ⚙️ Step 1: Bring Your Cluster
 
-The power of the HariKube open-source toolset lies in its agnosticism—it is designed to work with any existing Kubernetes distribution you use today. There is no vendor lock-in and no need to migrate to a specific cloud provider or distribution.
+The power of the HariKube open-source toolset lies in its agnosticism-it is designed to work with any existing Kubernetes distribution you use today. There is no vendor lock-in and no need to migrate to a specific cloud provider or distribution.
 
 Whether you are running:
 

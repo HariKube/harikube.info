@@ -18,7 +18,7 @@ This tutorial walks you through setting up a Kubernetes cluster using [Kind](htt
 
 ## 🚀 Running HariKube Middleware
 
-First, let’s set up your HariKube data store. Normally, Kubernetes relies on [ETCD](https://etcd.io/) as its primary database. Instead of letting Kind run its own embedded ETCD instance, you’ll launch a custom "middleware" container that provides an ETCD API endpoint—powered by HariKube.
+First, let’s set up your HariKube data store. Normally, Kubernetes relies on [ETCD](https://etcd.io/) as its primary database. Instead of letting Kind run its own embedded ETCD instance, you’ll launch a custom "middleware" container that provides an ETCD API endpoint-powered by HariKube.
 
 > ⚠️ HariKube images aren’t public yet. If you’d like to try them, request a free trial version on the [Open Beta invitation](/beta-invitation/) page.
 
@@ -106,4 +106,4 @@ Wait for your Kubernetes cluster to restart and come back online with the custom
 
 That’s it! You’ve just built a Kubernetes cluster that’s **ready for serious data handling**. With HariKube, you can design your own data topology and take advantage of **lower latency, higher throughput, true data isolation, virtually unlimited storage, and a much simpler development experience**. HariKube supports both flat and hierarchical topologies, so you can organize your databases like leaves on a tree.
 
-Thank you for following along! If you have questions or ideas, please share them—we’d love to hear from you.
+Thank you for following along! If you have questions or ideas, please share them-we’d love to hear from you.
