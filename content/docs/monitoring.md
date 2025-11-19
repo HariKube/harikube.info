@@ -75,7 +75,7 @@ This approach enables **uniform monitoring dashboards**, regardless of whether y
 
 HariKube exposes standard gRPC client-side metrics, with each request labeled by endpoint, giving you full visibility into downstream communication patterns and performance.
 
-This approach enables **latency, error, and retry tracking** for each remote interaction — ideal for diagnosing slow or unreliable dependencies.
+This approach enables **latency, error, and retry tracking** for each remote interaction - ideal for diagnosing slow or unreliable dependencies.
 
 Each database is assigned a unique label based on `db=endpoints` to simplify metric identification and filtering.
 

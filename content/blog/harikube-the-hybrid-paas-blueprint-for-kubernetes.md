@@ -10,9 +10,9 @@ featured_image: "/images/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes.
 
 {{< toc >}}
 
-**Imagine a world where Kubernetes itself becomes the platform** — not just for container orchestration, but for **functions, microservices, and APIs**. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible — it’s here.
+**Imagine a world where Kubernetes itself becomes the platform** - not just for container orchestration, but for **functions, microservices, and APIs**. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible - it’s here.
 
-This blog post explores how HariKube unifies these layers into a single hybrid architecture, enabling developers to build **nanoservices, microservices, and REST APIs** on the same platform — in any language they choose.
+This blog post explores how HariKube unifies these layers into a single hybrid architecture, enabling developers to build **nanoservices, microservices, and REST APIs** on the same platform - in any language they choose.
 
 ---
 
@@ -28,15 +28,15 @@ HariKube changes this. By **replacing ETCD with a database-agnostic backend topo
 
 ---
 
-## 🧱 HariKube — Dynamic, Database-Agnostic Data Backend
+## 🧱 HariKube - Dynamic, Database-Agnostic Data Backend
 
-HariKube replaces ETCD with a flexible middleware that routes different resource types to different databases — MySQL, Postgres, SQLite, or others. The Kubernetes API becomes a **scalable, modular data fabric**, decoupled from a single store.
+HariKube replaces ETCD with a flexible middleware that routes different resource types to different databases - MySQL, Postgres, SQLite, or others. The Kubernetes API becomes a **scalable, modular data fabric**, decoupled from a single store.
 
 > 🧠 Kubernetes stops being just a control plane store and becomes a **distributed, extensible data platform**.
 
 ---
 
-## ⚡ Serverless — Nanoservice Layer
+## ⚡ Serverless - Nanoservice Layer
 
 With a lightweight watch connector, every Custom Resource Definition (CRD) or core resource change can trigger a function running on OpenFaaS or Knative. The function layer provides **event-driven business logic** without requiring operators, custom APIs, or external event buses.
 
@@ -54,11 +54,11 @@ With a lightweight watch connector, every Custom Resource Definition (CRD) or co
 
 ---
 
-## 🔁 Operators — Microservice Layer
+## 🔁 Operators - Microservice Layer
 
 Operators remain the best way to handle **stateful, long-lived, or complex business logic**. With HariKube’s data fabric, operators behave like regular microservices without being bottlenecked by ETCD.
 
-When you need reconcile loops, complex dependencies, or imperative operations — this is your layer.
+When you need reconcile loops, complex dependencies, or imperative operations - this is your layer.
 
 **Operator languages:** Go, Python, Java, Node.js/TypeScript, Rust, C#/.NET.
 
@@ -66,9 +66,9 @@ When you need reconcile loops, complex dependencies, or imperative operations �
 
 ---
 
-## 🌐 Kubernetes Aggregation API Layer — Traditional REST API Layer
+## 🌐 Kubernetes Aggregation API Layer - Traditional REST API Layer
 
-Some use cases don’t fit into serverless or operator patterns — for example, **classic REST APIs**, querying, or external integrations. Here, Kubernetes’ **Aggregation API layer** lets you embed a custom API server directly into the Kubernetes control plane.
+Some use cases don’t fit into serverless or operator patterns - for example, **classic REST APIs**, querying, or external integrations. Here, Kubernetes’ **Aggregation API layer** lets you embed a custom API server directly into the Kubernetes control plane.
 
 **Typical REST/API languages:** Go, Python, Node.js/TypeScript, Java, C#/.NET, Rust, Ruby, PHP.
 
@@ -122,16 +122,16 @@ HariKube **brings them together** into a single architecture, centered on the Ku
 
 ## ✨ A New Platform Strategy
 
-This is more than technical elegance — it’s a blueprint for the next generation of cloud platforms:
+This is more than technical elegance - it’s a blueprint for the next generation of cloud platforms:
 
 👉 Kubernetes as a **Function + Microservice + REST API runtime**  
 👉 HariKube as a **database-agnostic, extensible data fabric**  
 👉 Watch connectors as **event-bus-free serverless triggers**  
 👉 Controller loops as **new way of microservice development**  
 👉 Aggregation API as the **native API gateway**  
-👉 Developers using Go, Python, Node.js, Java, .NET, Rust, Ruby, PHP, or even C++ — all on the same platform.
+👉 Developers using Go, Python, Node.js, Java, .NET, Rust, Ruby, PHP, or even C++ - all on the same platform.
 
-🚀 **HariKube transforms Kubernetes into a full hybrid PaaS** — flexible, language-agnostic, and built for the future.
+🚀 **HariKube transforms Kubernetes into a full hybrid PaaS** - flexible, language-agnostic, and built for the future.
 
 ---
 

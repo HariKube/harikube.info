@@ -124,8 +124,8 @@ kubectl delete customtasks foo
 
 The next service extends the Kubernetes API by creating a new combinedtasks endpoint. This endpoint behaves like any other Kubernetes resource (get, list, and watch), but instead of returning a plain Task, it provides a richer view that includes:
 
-- The Task itself — with its metadata and spec fields (priority, deadline, details, etc.).
-- All related Events — collected by label selector and attached under the status.events field.
+- The Task itself - with its metadata and spec fields (priority, deadline, details, etc.).
+- All related Events - collected by label selector and attached under the status.events field.
 
 In other words, a CombinedTask is a merged resource that combines the task object and its lifecycle history.
 
