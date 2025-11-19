@@ -46,6 +46,12 @@ description: "Learn about our mission, leadership team, and the investors backin
                 linkedin="https://www.linkedin.com/in/mhmxs/"
                 email="ricsi.kovacs@inspirnation.eu"
             >}}
+            {{< team-member 
+                name="Anett Kádár"
+                title="Chief Revenue Officer"
+                image="/images/company/anett.png"
+                linkedin="https://www.linkedin.com/in/anettguth/"
+            >}}
         </div>
     </div>
 {{< /section-container >}}
