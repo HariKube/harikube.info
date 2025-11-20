@@ -171,7 +171,7 @@ Now that the HariKube PaaS foundation is successfully laid, let's see how our un
 
 First you have to connect to the virtual Kubernetes API. PLease install [vCluster](https://www.vcluster.com/docs/platform/install/quick-start-guide#download-and-install-vcluster-cli), and execute the following command.
 
-{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deploy/harikube --timeout=5m
+{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
 vcluster connect harikube
 {{< /code >}}
 
