@@ -86,9 +86,11 @@
                         price = parseInt(plans[index].price);
                         for (featIndex in plans[index]["features"]) {
                             currentAddon = document.getElementById("addon-text-" + index + "-" + featIndex).innerHTML;
-                            for (c in plans[index]["addons"][feature]) {
-                                if (plans[index]["addons"][feature][c]["text"] == currentAddon) {
-                                    price += parseInt(plans[index]["addons"][feature][c]["price"]);
+                            for (f in plans[index]["addons"]) {
+                                for (c in plans[index]["addons"][f]) {
+                                    if (plans[index]["addons"][f][c]["text"] == currentAddon) {
+                                        price += parseInt(plans[index]["addons"][f][c]["price"]);
+                                    }
                                 }
                             }
                         }
