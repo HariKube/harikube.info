@@ -9,9 +9,6 @@ on:
     - alpha-v**
     - dev-v**
 
-  pull_request:
-    branches: [main]
-
 concurrency: 
   group: ${{ github.ref_name }}-preview
   cancel-in-progress: true
