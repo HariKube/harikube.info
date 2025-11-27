@@ -118,7 +118,7 @@ spec:
 
 Install the controller.
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/serverless-kube-watch-trigger/releases/download/beta-v1.0.0-6/bundle.yaml
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/serverless-kube-watch-trigger/releases/download/beta-v1.0.0-7/bundle.yaml
 {{< /code >}}
 
 Configure RBAC and enable deployments for the operator.
