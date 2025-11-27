@@ -47,7 +47,7 @@ testimonials:
 
 {{< hero 
     headline="Kubernetes isn’t just infrastructure anymore."
-    sub_headline="HariKube is a tool that transforms Kubernetes into a full-fledged Platform-as-a-Service (PaaS), making it simple to build and manage microservices using Cloud-Native methods."
+    sub_headline="When Kubernetes taps out, your business slows down. HariKube keeps it moving. HariKube elevates Kubernetes into a Cloud-Native Platform-as-a-Service with dynamic multi-database routing - removing etcd bottlenecks - enabling 20–50× more operations per second under even peak load, and allows your services to become first-class citizens in Kubernetes instead of running their own infrastructure on top of it."
     primary_button_text="Try Open Beta"
     primary_button_url="/beta-invitation/"
     secondary_button_text=""
@@ -72,123 +72,32 @@ testimonials:
   </div>
 </div>
 
-<style type="text/css">
-  section:first-of-type img {
-    cursor: pointer;
-  }
-
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.4);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  }
-
-  .modal-content {
-    aspect-ratio: 16 / 9;
-    background-color: rgba(0,0,0,0.4);
-    margin: 5% auto;
-    padding: 10px;
-    max-width: 80vw;
-    max-height: 70vh;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  #hero-video {
-    width: 100%;
-    height: 100%;
-    max-width: 1920px;
-    max-height: 1080px;
-  }
-</style>
-<script type="text/javascript">
-  modalVideo = document.querySelector('#modal-video');
-  heroVideo = document.querySelector('#hero-video');
-
-  document.querySelector('section:first-of-type img').addEventListener("click", (event) => {
-    modalVideo.style.display = "block";
-    heroVideo.play();
-  });
-
-  modalVideo.addEventListener("click", (event) => {
-    heroVideo.pause();
-    modalVideo.style.display = "none";
-  });
-
-  heroVideo.addEventListener('ended', () => {
-    modalVideo.style.display = "none";
-  });
-</script>
+<link rel="stylesheet" href="/css/video.css" />
+<script type="text/javascript" src="/js/video.js"></script>
 
 <!---
 {{< client-logos animate="true" >}}
 --->
 
+{{< details >}}
+{
+    "details": [
+        {
+            "title": "🐌 Is Infrastructure Code Slowing and Fragmenting Your Development?",
+            "file": "details/devexp"
+        },
+        {
+            "title": "📉 Is ETCD Limiting Your Kubernetes Scaling?",
+            "file": "details/scalingexp"
+        }
+    ]
+}
+{{< /details >}}
+
 {{< features-section 
-    title="HariKube redefines the way we think about Kubernetes"
-    description="Kubernetes relies on ETCD for all data storage, which limits scalability, flexibility, and performance for complex or high-volume workloads-HariKube solves this by offloading data to multiple databases which are optimized for handling large-scale, high-throughput data workloads, transforming Kubernetes into a scalable, extensible, and developer-friendly PaaS."
+    title="🪄 Achieve Both: Performance and Rapid Development"
+    description="HariKube is not a choice between a faster developer experience and technical performance - it delivers comprehensive benefits by addressing both core limitations of standard Kubernetes."
 >}}
-
-{{< feature
-    title="High-Performance Data Management"
-    description="HariKube delivers exceptional performance through data distribution and optimized database routing. By offloading resource-intensive workloads from ETCD, it ensures consistent responsiveness and operational efficiency at scale."
-    badge="Performance"
-    badgeColor="#2563eb"
-    image="/images/performance.png"
-    buttonText="Learn More"
-    buttonLink="/features/performance/"
-    features="Low-latency data access,Optimized for high-throughput,Supports workload-aware data placement,Reduces ETCD contention and overhead"
-    imagePosition="right"
->}}
-
-{{< feature
-    title="Flexible Kubernetes-Native Stack"
-    description="Designed to integrate deeply with Kubernetes while staying loosely coupled, HariKube empowers you to build and extend infrastructure on your terms."
-    badge="Infrastructure Flexibility"
-    badgeColor="#7c3aed"
-    image="/images/architecture.png"
-    buttonText="Learn More"
-    buttonLink="/features/flexible-stack/"
-    features="Pluggable database backends,Dynamic data topologies,Transparent Kubernetes-native integration,Decoupled resource management"
-    imagePosition="left"
->}}
-
-{{< feature
-    title="Fine-Grained Data Isolation for Security and Compliance"
-    description="HariKube enables strict data separation across namespaces, resource types, or services-helping organizations meet security and compliance requirements without sacrificing scalability or performance."
-    badge="Security & Compliance"
-    badgeColor="#0f766e"
-    image="/images/data-isolation.png"
-    buttonText="Learn More"
-    buttonLink="/features/data-isolation/"
-    features="Per-namespace database isolation,Dedicated databases per resource type,Strong workload boundaries,Reduces Security Scope and Maintenance Overhead"
-    imagePosition="right"
->}}
-
-{{< feature
-    title="Streamlined Cloud-Native Development"
-    description="HariKube simplifies the developer workflow by abstracting infrastructure complexity. Focus purely on data structures and business logic while the platform handles data routing and storage."
-    badge="Development"
-    badgeColor="#f59e0b"
-    image="/images/developer-experience.png"
-    buttonText="Learn More"
-    buttonLink="/features/developer-experience/"
-    features="No local infrastructure setup required,Native support for built-in Kubernetes features,Consistent behavior from development to production,Fully documented APIs and integration guides"
-    imagePosition="left"
->}}
-
 {{< /features-section >}}
 
 <!---
