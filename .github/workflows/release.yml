@@ -32,8 +32,8 @@ jobs:
         registry: ${{ vars.REGISTRY }}
         username: ${{ vars.REGISTRY_USER }}
         password: ${{ secrets.REGISTRY_TOKEN }}
-    - name: Generate site
-      run: make gen
+    - name: Validate site
+      run: make validate
       env:
         HUGO_ENV: ${{ startsWith(github.ref, 'refs/heads/release-') && 'production' || 'staging' }}
     - uses: thedoctor0/zip-release@0.7.5
@@ -44,14 +44,14 @@ jobs:
     - name: Extract branch
       id: extract_branch
       run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    - name: Build and push
-      uses: docker/build-push-action@v6
-      with:
-        context: .
-        push: true
-        tags: ${{ vars.REGISTRY }}/${{ vars.REGISTRY_USER }}/harikube.info:${{ steps.extract_branch.outputs.branch }}
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v3
+    # - name: Build and push
+    #   uses: docker/build-push-action@v6
+    #   with:
+    #     context: .
+    #     push: true
+    #     tags: ${{ vars.REGISTRY }}/${{ vars.REGISTRY_USER }}/harikube.info:${{ steps.extract_branch.outputs.branch }}
     - name: Create release
       if: ${{ !startsWith(github.ref, 'refs/heads/dev-') }}
       uses: mhmxs/milestone-release-action@main
@@ -60,10 +60,7 @@ jobs:
         pre-body: |
             # HariKube Website
             
-            `docker pull ${{ vars.REGISTRY }}/${{ vars.REGISTRY_USER }}/harikube.info:${{ steps.extract_branch.outputs.branch }}`
-
             ## Release Notes
         draft: true
         prerelease: ${{ startsWith(github.ref, 'refs/heads/rc-') || startsWith(github.ref, 'refs/heads/beta-') || startsWith(github.ref, 'refs/heads/alpha-') }}
         files: README.md,LICENSE,public.tar.gz
-          
