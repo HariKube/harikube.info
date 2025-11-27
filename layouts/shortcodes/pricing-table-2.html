@@ -1,18 +1,18 @@
 {{ $data := .Inner | unmarshal }}
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         {{ with $data.title }}
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{ . }}</h2>
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">{{ . }}</h2>
             {{ with $data.description }}
-            <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">{{ . }}</p>
+            <p class="mb-5 font-light text-gray-500 sm:text-xl">{{ . }}</p>
             {{ end }}
         </div>
         {{ end }}
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             {{ range $index, $plan := $data.plans }}
-            <div class="relative flex flex-col p-6 {{ if $plan.featured }}bg-primary-600 text-white{{ else }}bg-white dark:bg-gray-800{{ end }} rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
+            <div class="relative flex flex-col p-6 {{ if $plan.featured }}bg-primary-600 text-white{{ else }}bg-white{{ end }} rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
                 {{ if $plan.featured }}
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 110px;">
                     <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">Most Popular</span>
@@ -25,15 +25,15 @@
                 {{ end }}
                 
                 <div class="mb-4">
-                    <h3 class="text-2xl font-bold {{ if $plan.featured }}text-white{{ else }}text-gray-900 dark:text-white{{ end }}">{{ $plan.name }}</h3>
-                    <p class="mt-2 {{ if not $plan.featured }}text-gray-500 dark:text-gray-400{{ end }}">{{ $plan.description }}</p>
+                    <h3 class="text-2xl font-bold {{ if $plan.featured }}text-white{{ else }}text-gray-900{{ end }}">{{ $plan.name }}</h3>
+                    <p class="mt-2 {{ if not $plan.featured }}text-gray-500{{ end }}">{{ $plan.description }}</p>
                 </div>
                 
                 <div class="mb-6">
                     <div class="flex items-baseline">
-                        <span class="text-4xl font-extrabold {{ if not $plan.featured }}text-gray-900 dark:text-white{{ end }}">€</span>
-                        <span id="price-{{ $index }}" class="text-5xl font-extrabold tracking-tight {{ if not $plan.featured }}text-gray-900 dark:text-white{{ end }}">{{ $plan.price }}</span>
-                        <span class="ml-1 {{ if not $plan.featured }}text-gray-500 dark:text-gray-400{{ end }}">/year</span>
+                        <span class="text-4xl font-extrabold {{ if not $plan.featured }}text-gray-900{{ end }}">€</span>
+                        <span id="price-{{ $index }}" class="text-5xl font-extrabold tracking-tight {{ if not $plan.featured }}text-gray-900{{ end }}">{{ $plan.price }}</span>
+                        <span class="ml-1 {{ if not $plan.featured }}text-gray-500{{ end }}">/year</span>
                     </div>
                 </div>
                 
@@ -102,10 +102,10 @@
                 <ul class="mb-8 space-y-4 flex-grow">
                     {{ range $featIndex, $feature := $plan.features }}
                     <li class="flex items-center">
-                        <svg class="w-5 h-5 {{ if $plan.featured }}text-white{{ else }}text-green-500 dark:text-green-400{{ end }} mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 {{ if $plan.featured }}text-white{{ else }}text-green-500{{ end }} mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="{{ if not $plan.featured }}text-gray-600 dark:text-gray-400{{ end }}" style="max-width: 75%;">{{ $feature }}</span>
+                        <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="{{ if not $plan.featured }}text-gray-600{{ end }}" style="max-width: 75%;">{{ $feature }}</span>
                         {{ if index $plan.addons . }}
                             <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="/pricing/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
                             <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="/pricing/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>

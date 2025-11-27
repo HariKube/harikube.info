@@ -46,8 +46,8 @@ testimonials:
 </script>
 
 {{< hero 
-    headline="When Kubernetes taps out, your business slows down."
-    sub_headline="HariKube keeps it moving. HariKube elevates Kubernetes into a Cloud-Native Platform-as-a-Service with dynamic multi-database routing - removing etcd bottlenecks - enabling 20–50× more operations per second under even peak load, and allows your services to become first-class citizens in Kubernetes instead of running their own infrastructure on top of it."
+    headline="When Kubernetes taps out, business slows down!"
+    sub_headline="HariKube keeps it moving. HariKube elevates Kubernetes into a Cloud-Native Platform-as-a-Service with dynamic multi-database routing - by removing ETCD bottlenecks - enabling 20–50× more operations per second even under peak load, and allows your services to become first-class citizens in Kubernetes instead of running their own infrastructure on top of it."
     primary_button_text="Try Open Beta"
     primary_button_url="/beta-invitation/"
     secondary_button_text=""
@@ -79,7 +79,7 @@ testimonials:
 {{< client-logos animate="true" >}}
 --->
 
-{{< details >}}
+{{< details buttonColor="#425ad6" textColor="text-white" arrowColor="text-white" >}}
 {
     "details": [
         {
