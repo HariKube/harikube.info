@@ -40,6 +40,8 @@ The last step depends on your personal taste!
 {{< code bash >}}vcluster connect harikube
 {{< /code >}}
 
+> For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
+
 ### Create deployment with workload capabilities
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-workload-{{ .Site.Params.middlewareVersion }}.yaml
@@ -55,14 +57,14 @@ The last step depends on your personal taste!
 
 > Find the detailed configuration guide on the [documentation](https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml).
 
-{{< code yaml "my-api-only.yaml" >}}controlPlane:
+{{< code yaml "vcluster-config-workload.yaml" >}}controlPlane:
   distro:
     k8s:
       enabled: true
       image:
         registry: quay.io
         repository: harikube/kubernetes
-        tag: {{ .Site.Params.kubernetesVersion }}
+        # tag: v1.34.1
       imagePullPolicy: IfNotPresent
       apiServer:
         enabled: true
@@ -76,9 +78,9 @@ The last step depends on your personal taste!
       controllerManager:
         enabled: true
       scheduler:
-        enabled: false
+        enabled: true
   coredns:
-    enabled: false
+    enabled: true
   backingStore:
     etcd:
       deploy:
@@ -89,38 +91,49 @@ The last step depends on your personal taste!
   statefulSet:
     highAvailability:
       replicas: 1
-
 sync:
   toHost:
     pods:
-      enabled: false
+      enabled: true
     secrets:
-      enabled: false
+      enabled: true
     configMaps:
-      enabled: false
+      enabled: true
     services:
-      enabled: false
+      enabled: true
     endpoints:
-      enabled: false
+      enabled: true
     persistentVolumeClaims:
-      enabled: false
+      enabled: true
+    ingresses:
+      enabled: true
+    networkPolicies:
+      enabled: true
+    persistentVolumes:
+      enabled: true
+    volumeSnapshots:
+      enabled: true
+    storageClasses:
+      enabled: true
+    serviceAccounts:
+      enabled: true
+    podDisruptionBudgets:
+      enabled: true
+    priorityClasses:
+      enabled: true
   fromHost:
-    events:
-      enabled: false
-    nodes:
-      enabled: false
     secrets:
       enabled: true
       mappings:
         byName:
-          "": "harikube"
+          "harikube/topology-config": "harikube/topology-config"
 {{< /code >}}
 
 > If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by enabling `scheduler`, `codedns` and all the necessary synchronizations. Alternatively you can add worker nodes to your virtual cluster.
 
 To create your virtual cluster and automatically configure your local environment for access, execute the following command:
 
-{{< code bash >}}vcluster create my-api-only -n my-api-only -f my-api-only.yaml
+{{< code bash >}}vcluster create vcluster-config-workload -n vcluster-config-workload -f vcluster-config-workload.yaml
 {{< /code >}}
 
 ---

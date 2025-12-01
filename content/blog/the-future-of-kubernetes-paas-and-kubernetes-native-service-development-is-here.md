@@ -129,6 +129,8 @@ kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-2
 kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-beta-v1.0.0-19.yaml
 {{< /code >}}
 
+> For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
+
 Wait for all pods are running in `harikube` namespace.
 
 {{< code bash >}}kubectl get pod -n harikube -w
