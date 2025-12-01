@@ -102,7 +102,7 @@ layout: "pricing"
         {
             "disabled": true,
             "question": "Do you offer a free trial or a freemium plan?",
-            "answer": "The Starter Edition offers a free trial so you can experience our key features before committing to a plan. The Community Edition is our freemium option, which is always free to use."
+            "answer": "The Business Edition offers a free trial so you can experience our key features before committing to a plan. The Personal Edition is our freemium option, which is always free to use."
         },
         {
             "question": "Do you offer custom plans?",
@@ -134,16 +134,16 @@ layout: "pricing"
         {
             "disabled": true,
             "question": "Can I get a refund?",
-            "answer": "We do not offer refunds. We encourage you to use the free trial with our Starter Edition or the perpetually free Community Edition to ensure the service meets your needs before purchasing a paid plan."
+            "answer": "We do not offer refunds. We encourage you to use the free trial with our Business Edition or the perpetually free Personal Edition to ensure the service meets your needs before purchasing a paid plan."
         },
         {
             "question": "Can I get a discount for a non-profit or educational organization?",
-            "answer": "The Community Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Starter Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
+            "answer": "The Personal Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Business Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
         },
         {
             "disabled": true,
             "question": "What is the SLA for HariKube?",
-            "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 99.95% SLA for Starter, Business, and Business+ editions and a 99.99% SLA for Enterprise and Enterprise+ editions."
+            "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 99.95% SLA for Business editions and you can opt-in to 99.99% SLA per instance."
         },
         {
             "question": "What means Maintenance updates?",
@@ -151,7 +151,7 @@ layout: "pricing"
         },
         {
             "question": "What is the difference between Manual and Automatic Configuration?",
-            "answer": "With Manual Configuration (Community Edition), you need to manually edit a configuration file and restart the middleware to apply any changes. Automatic Configuration (all paid editions) allows for dynamic changes to take effect immediately without needing to restart the middleware."
+            "answer": "With Manual Configuration (Personal Edition), you need to manually edit a configuration file and restart the middleware to apply any changes. Automatic Configuration (all paid editions) allows for dynamic changes to take effect immediately without needing to restart the middleware."
         },
         {
             "disabled": true,
@@ -169,7 +169,7 @@ layout: "pricing"
         },
         {
             "question": "Are Professional Services available for extre fees?",
-            "answer": "Yes. Professional Services are available as an add-on to our Enterprise Editions for an additional fee."
+            "answer": "Yes. Professional Services are available as an add-on to our Business Editions for an additional fee."
         },
         {
             "question": "Does HariKube have a Partner Services Program?",
