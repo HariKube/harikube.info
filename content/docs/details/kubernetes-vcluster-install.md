@@ -129,8 +129,6 @@ sync:
           "harikube/topology-config": "harikube/topology-config"
 {{< /code >}}
 
-> If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by enabling `scheduler`, `codedns` and all the necessary synchronizations. Alternatively you can add worker nodes to your virtual cluster.
-
 To create your virtual cluster and automatically configure your local environment for access, execute the following command:
 
 {{< code bash >}}vcluster create vcluster-config-workload -n vcluster-config-workload -f vcluster-config-workload.yaml
