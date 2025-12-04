@@ -146,17 +146,25 @@ This approach enables **real-time visibility** into how effectively revision met
 }
 {{< /details >}}
 
-## ✅ Liveness and Readiness Probes
+## 🩺 Liveness and Readiness Probes
 
-HariKube runs outside the Kubernetes cluster, so it does not support Kubernetes-native liveness or readiness probes directly. However, basic and advanced health information can still be obtained using external tools.
+To check if the HariKube gRPC service is running and ready to accept connections, you should query the standard gRPC Health Checking Protocol (grpc.health.v1.Health).
 
-### Readiness Check
+This protocol provides a defined method (Check) that returns the service's current status, which is more informative than just checking the endpoint's reachability.
 
-You can check whether the HariKube gRPC service is running and accepting HTTP/2 connections with:
+You can use a tool like grpcurl to perform this check.
 
-{{< code bash >}}curl --http2-prior-knowledge -I http://<hariKube-service>:2379
+### Checking Overall Service Health
+
+Use the following command to check the health of the entire gRPC server:
+
+{{< code bash >}}grpcurl -plaintext <hariKube-service>:2379 grpc.health.v1.Health/Check{{< /code >}}
+
+If the service is running and healthy, you will receive a response similar to this:
+
+{{< code json >}}{
+  "status": "SERVING"
+}
 {{< /code >}}
-
-This confirms that the gRPC endpoint is up and reachable via h2c (HTTP/2 over plaintext).
 
 #### [<-- Automation](/docs/automation/) | [Future Plans -->](/docs/future-plans/)

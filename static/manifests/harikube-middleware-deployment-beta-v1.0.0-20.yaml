@@ -1,0 +1,157 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: harikube
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: harikube-db-pvc
+  namespace: harikube
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harikube-middleware
+  namespace: harikube
+  labels:
+    app: harikube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harikube
+  template:
+    metadata:
+      labels:
+        app: harikube
+    spec:
+      terminationGracePeriodSeconds: 31536000
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - arm64
+                    - amd64
+                    - s390x
+                    - ppc64le
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                    - linux
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
+      imagePullSecrets:
+      - name: harikube-registry-secret
+      containers:
+      - name: middleware
+        image: registry.harikube.info/harikube/middleware:beta-v1.0.0-20
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TOPOLOGY_CONFIG
+          value: secret://harikube/topology-config
+        args:
+        - --log-format=json
+        - --slow-sql-threshold=2s
+        - --datastore-max-idle-connections=5
+        - --datastore-max-open-connections=90
+        - --datastore-connection-max-lifetime=5m
+        - --datastore-connection-max-idle-lifetime=5m
+        - --endpoint=multi://sqlite:///db/main.db?_journal=WAL&cache=shared
+        ports:
+        - containerPort: 2379
+          name: api-port
+        - containerPort: 8080
+          name: metrics
+        volumeMounts:
+        - name: db-storage
+          mountPath: /db
+        - name: tmp
+          mountPath: /tmp
+        livenessProbe:
+          grpc:
+            port: 2379
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+          periodSeconds: 20
+          failureThreshold: 3
+        readinessProbe:
+          grpc:
+            port: 2379
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+          periodSeconds: 10
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 65532
+          runAsGroup: 65532
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+      volumes:
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: harikube-db-pvc
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: harikube-middleware-svc
+  namespace: harikube
+spec:
+  type: ClusterIP 
+  selector:
+    app: harikube
+  ports:
+    - name: http
+      protocol: TCP
+      port: 2379
+      targetPort: api-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: harikube-middleware-metrics-svc
+  namespace: harikube
+  labels:
+    app: harikube
+    app.kubernetes.io/component: metrics 
+spec:
+  type: ClusterIP 
+  selector:
+    app: harikube
+  ports:
+    - name: metrics
+      protocol: TCP
+      port: 8080
+      targetPort: metrics
+---

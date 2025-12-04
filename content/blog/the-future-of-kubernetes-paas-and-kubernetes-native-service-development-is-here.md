@@ -125,8 +125,8 @@ kubectl create secret docker-registry harikube-registry-secret \
 --docker-username=<oci-user> \
 --docker-password='<my$secure@password>' \
 --namespace=harikube
-kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-2.yaml
-kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-beta-v1.0.0-19.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-3.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-beta-v1.0.0-20.yaml
 {{< /code >}}
 
 > 🔓 For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
@@ -186,7 +186,7 @@ Crucially, this Kubernetes environment serves **only as your control plane and d
 {{< output >}}No resources found
 {{< /output >}}
 
-> If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-beta-v1.0.0-19.yaml` instead of the API only manifest.
+> If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-beta-v1.0.0-20.yaml` instead of the API only manifest.
 
 Now you can apply your Custom Resource Definition to extend your Kubernetes API with your custom type.
 

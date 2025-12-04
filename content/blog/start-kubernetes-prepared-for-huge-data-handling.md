@@ -36,7 +36,7 @@ Now, run the HariKube middleware container:
   -e ENABLE_TELEMETRY_PUSH=true \
   -v harikube_db:/db \
   -p 2369:2379 \
-  registry.harikube.info/harikube/middleware:beta-v1.0.0-19 \
+  registry.harikube.info/harikube/middleware:beta-v1.0.0-20 \
   --endpoint='multi://sqlite:///db/main.db?_journal=WAL&cache=shared'
 {{< /code >}}
 

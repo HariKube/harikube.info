@@ -513,6 +513,22 @@ spec:
     spec:
       imagePullSecrets:
       - name: harikube-registry-secret
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
+                - amd64
+                - s390x
+                - ppc64le
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
       containers:
       - args:
         - --metrics-bind-address=:8443
@@ -521,7 +537,7 @@ spec:
         - --webhook-cert-path=/tmp/k8s-webhook-server/serving-certs
         command:
         - /manager
-        image: registry.harikube.info/harikube/operator:beta-v1.0.0-2
+        image: registry.harikube.info/harikube/operator:beta-v1.0.0-3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -552,17 +568,31 @@ spec:
           capabilities:
             drop:
             - ALL
+          readOnlyRootFilesystem: true
+          runAsGroup: 65532
+          runAsNonRoot: true
+          runAsUser: 65532
+          seccompProfile:
+            type: RuntimeDefault
         volumeMounts:
+        - mountPath: /tmp
+          name: tmp
         - mountPath: /tmp/k8s-webhook-server/serving-certs
           name: webhook-certs
           readOnly: true
       securityContext:
+        fsGroup: 65532
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 65532
         runAsNonRoot: true
+        runAsUser: 65532
         seccompProfile:
           type: RuntimeDefault
       serviceAccountName: operator-controller-manager
       terminationGracePeriodSeconds: 10
       volumes:
+      - emptyDir: {}
+        name: tmp
       - name: webhook-certs
         secret:
           secretName: webhook-server-cert
@@ -722,4 +752,3 @@ webhooks:
     resources:
     - topologyconfigs
   sideEffects: None
-  

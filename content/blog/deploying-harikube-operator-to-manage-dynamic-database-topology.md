@@ -35,17 +35,17 @@ Start by authenticating your local Docker client with the private registry at `r
 
 Next, pull the HariKube Operator image from our registry:
 
-{{< code bash >}}docker pull registry.harikube.info/harikube/operator:beta-v1.0.0-2
+{{< code bash >}}docker pull registry.harikube.info/harikube/operator:beta-v1.0.0-3
 {{< /code >}}
 
 If you're using Kind for your cluster, load the image into your Kind node:
 
-{{< code bash >}}kind load docker-image -n harikube-cluster registry.harikube.info/harikube/operator:beta-v1.0.0-2
+{{< code bash >}}kind load docker-image -n harikube-cluster registry.harikube.info/harikube/operator:beta-v1.0.0-3
 {{< /code >}}
 
 Now, deploy the HariKube Operator to your cluster. This operator will manage your custom database routing policies and automate topology changes.
 
-{{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-2.yaml
+{{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-3.yaml
 {{< /code >}}
 
 ## 🔨 Configuring the Operator and Registering a Custom Resource
