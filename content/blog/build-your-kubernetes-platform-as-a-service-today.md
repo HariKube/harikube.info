@@ -88,7 +88,7 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 To execute this, simply run the following command:
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/kine/releases/download/release-v0.14.6/vcluster-kine-sqlite.yaml
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/kine/releases/download/release-v0.14.6/vcluster-kine-sqlite-release-v0.14.6.yaml
 {{< /code >}}
 
 > 🔓 For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
