@@ -53,7 +53,7 @@ services:
     image: bitnamilegacy/etcd:3.6.4
     container_name: etcd2379
     network_mode: "host"
-    command: etcd --auto-compaction-mode=revision --auto-compaction-retention=5m
+    command: etcd
 
   mysql3306:
     image: linuxserver/mariadb:10.11.8
@@ -110,7 +110,7 @@ Next, create a data routing configuration file called `topology.yaml`.
 
 After preparing the environment, start the middleware.
 
-> ⚠️ HariKube images aren’t public yet. If you’d like to try them, request a free trial version on the [Open Beta invitation](/beta-invitation/) page.
+> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
 
 Start by authenticating your local Docker client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
 
@@ -119,13 +119,14 @@ Start by authenticating your local Docker client with the private registry at `r
 
 {{< code bash >}}docker run -d \
   --name harikube_middleware \
-  --stop-timeout=-1 \
   --net=host \
+  -e LICENSE_KEY_FILE=/license \
   -e TOPOLOGY_CONFIG=/topology.yaml \
   -e ENABLE_TELEMETRY_PUSH=true \
+  -v ${PWD}/license:/license:ro \
   -v $(pwd)/topology.yaml:/topology.yaml \
   -v harikube_db:/db \
-  registry.harikube.info/harikube/middleware:beta-v1.0.0-20 \
+  registry.harikube.info/harikube/middleware:release-v1.0.0 \
   --listen-address=0.0.0.0:2369 --endpoint='multi://sqlite:///db/main.db?_journal=WAL&cache=shared'
 {{< /code >}}
 
@@ -141,7 +142,7 @@ featureGates:
   "WatchListClient": true
 nodes:
 - role: control-plane
-  image: kindest/node:v1.34.0
+  image: kindest/node:v1.35.0
   kubeadmConfigPatches:
   - |
     kind: ClusterConfiguration

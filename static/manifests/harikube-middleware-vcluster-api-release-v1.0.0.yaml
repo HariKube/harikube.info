@@ -1,0 +1,518 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: harikube
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: harikube-db-pvc
+  namespace: harikube
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harikube-middleware
+  namespace: harikube
+  labels:
+    app: harikube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harikube
+  template:
+    metadata:
+      labels:
+        app: harikube
+    spec:
+      terminationGracePeriodSeconds: 30
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - arm64
+                    - amd64
+                    - s390x
+                    - ppc64le
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                    - linux
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
+      imagePullSecrets:
+      - name: harikube-registry-secret
+      containers:
+      - name: middleware
+        image: registry.harikube.info/harikube/middleware:release-v1.0.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TOPOLOGY_CONFIG
+          value: secret://harikube/topology-config
+        - name: LICENSE_KEY_FILE
+          value: /etc/harikube/license
+        args:
+        - --log-format=json
+        - --slow-sql-threshold=2s
+        - --datastore-max-idle-connections=5
+        - --datastore-max-open-connections=90
+        - --datastore-connection-max-lifetime=5m
+        - --datastore-connection-max-idle-lifetime=5m
+        - --endpoint=multi://sqlite:///db/main.db?_journal=WAL&cache=shared
+        ports:
+        - containerPort: 2379
+          name: api-port
+        - containerPort: 8080
+          name: metrics
+        volumeMounts:
+        - name: license
+          mountPath: /etc/harikube
+          readOnly: true
+        - name: db-storage
+          mountPath: /db
+        - name: tmp
+          mountPath: /tmp
+        livenessProbe:
+          grpc:
+            port: 2379
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+          periodSeconds: 20
+          failureThreshold: 3
+        readinessProbe:
+          grpc:
+            port: 2379
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+          periodSeconds: 10
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 65532
+          runAsGroup: 65532
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+      volumes:
+      - name: license
+        secret:
+          secretName: harikube-license
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: harikube-db-pvc
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: harikube-middleware-svc
+  namespace: harikube
+spec:
+  type: ClusterIP 
+  selector:
+    app: harikube
+  ports:
+    - name: http
+      protocol: TCP
+      port: 2379
+      targetPort: api-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: harikube-middleware-metrics-svc
+  namespace: harikube
+  labels:
+    app: harikube
+    app.kubernetes.io/component: metrics 
+spec:
+  type: ClusterIP 
+  selector:
+    app: harikube
+  ports:
+    - name: metrics
+      protocol: TCP
+      port: 8080
+      targetPort: metrics
+---
+---
+# Source: vcluster/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vc-harikube
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+---
+# Source: vcluster/templates/workload-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vc-workload-harikube
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+---
+# Source: vcluster/templates/config-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "vc-config-harikube"
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+type: Opaque
+data:
+  config.yaml: "Y29udHJvbFBsYW5lOgogIGFkdmFuY2VkOgogICAgY2xvdWRDb250cm9sbGVyTWFuYWdlcjoKICAgICAgZW5hYmxlZDogdHJ1ZQogICAgZGVmYXVsdEltYWdlUmVnaXN0cnk6ICIiCiAgICBnbG9iYWxNZXRhZGF0YToKICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICBoZWFkbGVzc1NlcnZpY2U6CiAgICAgIGFubm90YXRpb25zOiB7fQogICAgICBsYWJlbHM6IHt9CiAgICBrb25uZWN0aXZpdHk6CiAgICAgIGFnZW50OgogICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgICBleHRyYUFyZ3M6IFtdCiAgICAgICAgZXh0cmFFbnY6IFtdCiAgICAgICAgaW1hZ2U6ICIiCiAgICAgICAgaW1hZ2VQdWxsUG9saWN5OiAiIgogICAgICAgIG5vZGVTZWxlY3Rvcjoge30KICAgICAgICByZXBsaWNhczogMQogICAgICAgIHRvbGVyYXRpb25zOiBbXQogICAgICBzZXJ2ZXI6CiAgICAgICAgZW5hYmxlZDogdHJ1ZQogICAgICAgIGV4dHJhQXJnczogW10KICAgIGt1YmVWaXA6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICByZWdpc3RyeToKICAgICAgYW5vbnltb3VzUHVsbDogdHJ1ZQogICAgICBjb25maWc6IHt9CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBzZXJ2aWNlQWNjb3VudDoKICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgaW1hZ2VQdWxsU2VjcmV0czogW10KICAgICAgbGFiZWxzOiB7fQogICAgICBuYW1lOiAiIgogICAgdmlydHVhbFNjaGVkdWxlcjoKICAgICAgZW5hYmxlZDogZmFsc2UKICAgIHdvcmtsb2FkU2VydmljZUFjY291bnQ6CiAgICAgIGFubm90YXRpb25zOiB7fQogICAgICBlbmFibGVkOiB0cnVlCiAgICAgIGltYWdlUHVsbFNlY3JldHM6IFtdCiAgICAgIGxhYmVsczoge30KICAgICAgbmFtZTogIiIKICBiYWNraW5nU3RvcmU6CiAgICBkYXRhYmFzZToKICAgICAgZW1iZWRkZWQ6CiAgICAgICAgZW5hYmxlZDogZmFsc2UKICAgICAgICBleHRyYUFyZ3M6IFtdCiAgICAgIGV4dGVybmFsOgogICAgICAgIGNhRmlsZTogIiIKICAgICAgICBjZXJ0RmlsZTogIiIKICAgICAgICBjb25uZWN0b3I6ICIiCiAgICAgICAgZGF0YVNvdXJjZTogIiIKICAgICAgICBlbmFibGVkOiBmYWxzZQogICAgICAgIGV4dHJhQXJnczogW10KICAgICAgICBpZGVudGl0eVByb3ZpZGVyOiAiIgogICAgICAgIGtleUZpbGU6ICIiCiAgICBldGNkOgogICAgICBkZXBsb3k6CiAgICAgICAgZW5hYmxlZDogZmFsc2UKICAgICAgICBoZWFkbGVzc1NlcnZpY2U6CiAgICAgICAgICBhbm5vdGF0aW9uczoge30KICAgICAgICBzZXJ2aWNlOgogICAgICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgc3RhdGVmdWxTZXQ6CiAgICAgICAgICBhbm5vdGF0aW9uczoge30KICAgICAgICAgIGVuYWJsZVNlcnZpY2VMaW5rczogdHJ1ZQogICAgICAgICAgZW5hYmxlZDogdHJ1ZQogICAgICAgICAgZW52OiBbXQogICAgICAgICAgZXh0cmFBcmdzOiBbXQogICAgICAgICAgaGlnaEF2YWlsYWJpbGl0eToKICAgICAgICAgICAgcmVwbGljYXM6IDEKICAgICAgICAgIGltYWdlOgogICAgICAgICAgICByZWdpc3RyeTogcmVnaXN0cnkuazhzLmlvCiAgICAgICAgICAgIHJlcG9zaXRvcnk6IGV0Y2QKICAgICAgICAgICAgdGFnOiAzLjYuNC0wCiAgICAgICAgICBpbWFnZVB1bGxQb2xpY3k6ICIiCiAgICAgICAgICBsYWJlbHM6IHt9CiAgICAgICAgICBwZXJzaXN0ZW5jZToKICAgICAgICAgICAgYWRkVm9sdW1lTW91bnRzOiBbXQogICAgICAgICAgICBhZGRWb2x1bWVzOiBbXQogICAgICAgICAgICB2b2x1bWVDbGFpbToKICAgICAgICAgICAgICBhY2Nlc3NNb2RlczoKICAgICAgICAgICAgICAtIFJlYWRXcml0ZU9uY2UKICAgICAgICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgICAgICAgcmV0ZW50aW9uUG9saWN5OiBSZXRhaW4KICAgICAgICAgICAgICBzaXplOiA1R2kKICAgICAgICAgICAgICBzdG9yYWdlQ2xhc3M6ICIiCiAgICAgICAgICAgIHZvbHVtZUNsYWltVGVtcGxhdGVzOiBbXQogICAgICAgICAgcG9kczoKICAgICAgICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICAgICAgICAgIGxhYmVsczoge30KICAgICAgICAgIHJlc291cmNlczoKICAgICAgICAgICAgcmVxdWVzdHM6CiAgICAgICAgICAgICAgY3B1OiAyMG0KICAgICAgICAgICAgICBtZW1vcnk6IDE1ME1pCiAgICAgICAgICBzY2hlZHVsaW5nOgogICAgICAgICAgICBhZmZpbml0eToge30KICAgICAgICAgICAgbm9kZVNlbGVjdG9yOiB7fQogICAgICAgICAgICBwb2RNYW5hZ2VtZW50UG9saWN5OiBQYXJhbGxlbAogICAgICAgICAgICBwcmlvcml0eUNsYXNzTmFtZTogIiIKICAgICAgICAgICAgdG9sZXJhdGlvbnM6IFtdCiAgICAgICAgICAgIHRvcG9sb2d5U3ByZWFkQ29uc3RyYWludHM6IFtdCiAgICAgICAgICBzZWN1cml0eToKICAgICAgICAgICAgY29udGFpbmVyU2VjdXJpdHlDb250ZXh0OiB7fQogICAgICAgICAgICBwb2RTZWN1cml0eUNvbnRleHQ6IHt9CiAgICAgIGVtYmVkZGVkOgogICAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICAgICAgZXh0cmFBcmdzOiBbXQogICAgICAgIG1pZ3JhdGVGcm9tRGVwbG95ZWRFdGNkOiBmYWxzZQogICAgICBleHRlcm5hbDoKICAgICAgICBlbmFibGVkOiBmYWxzZQogICAgICAgIGVuZHBvaW50OiAiIgogICAgICAgIHRsczoKICAgICAgICAgIGNhRmlsZTogIiIKICAgICAgICAgIGNlcnRGaWxlOiAiIgogICAgICAgICAga2V5RmlsZTogIiIKICBjb3JlZG5zOgogICAgZGVwbG95bWVudDoKICAgICAgYWZmaW5pdHk6IHt9CiAgICAgIGFubm90YXRpb25zOiB7fQogICAgICBpbWFnZTogIiIKICAgICAgbGFiZWxzOiB7fQogICAgICBub2RlU2VsZWN0b3I6IHt9CiAgICAgIHBvZHM6CiAgICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICAgICAgbGFiZWxzOiB7fQogICAgICByZXBsaWNhczogMQogICAgICByZXNvdXJjZXM6CiAgICAgICAgbGltaXRzOgogICAgICAgICAgY3B1OiAxMDAwbQogICAgICAgICAgbWVtb3J5OiAxNzBNaQogICAgICAgIHJlcXVlc3RzOgogICAgICAgICAgY3B1OiAyMG0KICAgICAgICAgIG1lbW9yeTogNjRNaQogICAgICB0b2xlcmF0aW9uczogW10KICAgICAgdG9wb2xvZ3lTcHJlYWRDb25zdHJhaW50czoKICAgICAgLSBsYWJlbFNlbGVjdG9yOgogICAgICAgICAgbWF0Y2hMYWJlbHM6CiAgICAgICAgICAgIGs4cy1hcHA6IHZjbHVzdGVyLWt1YmUtZG5zCiAgICAgICAgbWF4U2tldzogMQogICAgICAgIHRvcG9sb2d5S2V5OiBrdWJlcm5ldGVzLmlvL2hvc3RuYW1lCiAgICAgICAgd2hlblVuc2F0aXNmaWFibGU6IERvTm90U2NoZWR1bGUKICAgIGVtYmVkZGVkOiBmYWxzZQogICAgZW5hYmxlZDogZmFsc2UKICAgIG92ZXJ3cml0ZUNvbmZpZzogIiIKICAgIG92ZXJ3cml0ZU1hbmlmZXN0czogIiIKICAgIHByaW9yaXR5Q2xhc3NOYW1lOiAiIgogICAgc2VjdXJpdHk6CiAgICAgIGNvbnRhaW5lclNlY3VyaXR5Q29udGV4dDoge30KICAgICAgcG9kU2VjdXJpdHlDb250ZXh0OiB7fQogICAgc2VydmljZToKICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICAgIGxhYmVsczoge30KICAgICAgc3BlYzoKICAgICAgICB0eXBlOiBDbHVzdGVySVAKICBkaXN0cm86CiAgICBrM3M6CiAgICAgIGNvbW1hbmQ6IFtdCiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICAgIGV4dHJhQXJnczogW10KICAgICAgaW1hZ2U6CiAgICAgICAgcmVnaXN0cnk6ICIiCiAgICAgICAgcmVwb3NpdG9yeTogcmFuY2hlci9rM3MKICAgICAgICB0YWc6IHYxLjM0LjEtazNzMQogICAgICBpbWFnZVB1bGxQb2xpY3k6ICIiCiAgICAgIHJlc291cmNlczoKICAgICAgICBsaW1pdHM6CiAgICAgICAgICBjcHU6IDEwMG0KICAgICAgICAgIG1lbW9yeTogMjU2TWkKICAgICAgICByZXF1ZXN0czoKICAgICAgICAgIGNwdTogNDBtCiAgICAgICAgICBtZW1vcnk6IDY0TWkKICAgICAgc2VjdXJpdHlDb250ZXh0OiB7fQogICAgazhzOgogICAgICBhcGlTZXJ2ZXI6CiAgICAgICAgY29tbWFuZDogW10KICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgZXh0cmFBcmdzOgogICAgICAgIC0gLS1mZWF0dXJlLWdhdGVzPVdhdGNoTGlzdD10cnVlLFdhdGNoTGlzdENsaWVudD10cnVlLFZvbHVtZUF0dHJpYnV0ZXNDbGFzcz10cnVlLE11dGF0aW5nQWRtaXNzaW9uUG9saWN5PXRydWUKICAgICAgICAtIC0td2F0Y2gtY2FjaGU9ZmFsc2UKICAgICAgICAtIC0tZXRjZC1zZXJ2ZXJzPWh0dHA6Ly9oYXJpa3ViZS1taWRkbGV3YXJlLXN2Yy5oYXJpa3ViZToyMzc5CiAgICAgICAgLSAtLXJ1bnRpbWUtY29uZmlnPWFkbWlzc2lvbnJlZ2lzdHJhdGlvbi5rOHMuaW8vdjFiZXRhMT10cnVlCiAgICAgICAgLSAtLW1heC1yZXF1ZXN0cy1pbmZsaWdodD05MDAKICAgICAgICAtIC0tbWF4LW11dGF0aW5nLXJlcXVlc3RzLWluZmxpZ2h0PTMwMAogICAgICBjb250cm9sbGVyTWFuYWdlcjoKICAgICAgICBjb21tYW5kOiBbXQogICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgICBleHRyYUFyZ3M6IFtdCiAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgZW52OiBbXQogICAgICBpbWFnZToKICAgICAgICByZWdpc3RyeTogcXVheS5pbwogICAgICAgIHJlcG9zaXRvcnk6IGhhcmlrdWJlL2t1YmVybmV0ZXMKICAgICAgICB0YWc6IHYxLjM1LjAKICAgICAgaW1hZ2VQdWxsUG9saWN5OiBJZk5vdFByZXNlbnQKICAgICAgcmVzb3VyY2VzOgogICAgICAgIGxpbWl0czoKICAgICAgICAgIGNwdTogMTAwbQogICAgICAgICAgbWVtb3J5OiAyNTZNaQogICAgICAgIHJlcXVlc3RzOgogICAgICAgICAgY3B1OiA0MG0KICAgICAgICAgIG1lbW9yeTogNjRNaQogICAgICBzY2hlZHVsZXI6CiAgICAgICAgY29tbWFuZDogW10KICAgICAgICBlbmFibGVkOiBmYWxzZQogICAgICAgIGV4dHJhQXJnczogW10KICAgICAgc2VjdXJpdHlDb250ZXh0OiB7fQogICAgICB2ZXJzaW9uOiAiIgogIGluZ3Jlc3M6CiAgICBhbm5vdGF0aW9uczoKICAgICAgbmdpbnguaW5ncmVzcy5rdWJlcm5ldGVzLmlvL2JhY2tlbmQtcHJvdG9jb2w6IEhUVFBTCiAgICAgIG5naW54LmluZ3Jlc3Mua3ViZXJuZXRlcy5pby9zc2wtcGFzc3Rocm91Z2g6ICJ0cnVlIgogICAgICBuZ2lueC5pbmdyZXNzLmt1YmVybmV0ZXMuaW8vc3NsLXJlZGlyZWN0OiAidHJ1ZSIKICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBob3N0OiBteS1ob3N0LmNvbQogICAgbGFiZWxzOiB7fQogICAgcGF0aFR5cGU6IEltcGxlbWVudGF0aW9uU3BlY2lmaWMKICAgIHNwZWM6CiAgICAgIHRsczogW10KICBwcm94eToKICAgIGJpbmRBZGRyZXNzOiAwLjAuMC4wCiAgICBleHRyYVNBTnM6IFtdCiAgICBwb3J0OiA4NDQzCiAgc2VydmljZToKICAgIGFubm90YXRpb25zOiB7fQogICAgZW5hYmxlZDogdHJ1ZQogICAgaHR0cHNOb2RlUG9ydDogMAogICAga3ViZWxldE5vZGVQb3J0OiAwCiAgICBsYWJlbHM6IHt9CiAgICBzcGVjOgogICAgICB0eXBlOiBDbHVzdGVySVAKICBzZXJ2aWNlTW9uaXRvcjoKICAgIGFubm90YXRpb25zOiB7fQogICAgZW5hYmxlZDogZmFsc2UKICAgIGxhYmVsczoge30KICBzdGFuZGFsb25lOgogICAgZGF0YURpcjogL3Zhci9saWIvdmNsdXN0ZXIKICAgIGpvaW5Ob2RlOgogICAgICBjb250YWluZXJkOgogICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgZW5hYmxlZDogdHJ1ZQogIHN0YXRlZnVsU2V0OgogICAgYW5ub3RhdGlvbnM6IHt9CiAgICBhcmdzOiBbXQogICAgY29tbWFuZDogW10KICAgIGVuYWJsZVNlcnZpY2VMaW5rczogdHJ1ZQogICAgZW52OiBbXQogICAgaGlnaEF2YWlsYWJpbGl0eToKICAgICAgbGVhc2VEdXJhdGlvbjogNjAKICAgICAgcmVuZXdEZWFkbGluZTogNDAKICAgICAgcmVwbGljYXM6IDEKICAgICAgcmV0cnlQZXJpb2Q6IDE1CiAgICBpbWFnZToKICAgICAgcmVnaXN0cnk6IGdoY3IuaW8KICAgICAgcmVwb3NpdG9yeTogbG9mdC1zaC92Y2x1c3Rlci1wcm8KICAgICAgdGFnOiAiIgogICAgaW1hZ2VQdWxsUG9saWN5OiAiIgogICAgaW5pdENvbnRhaW5lcnM6IFtdCiAgICBsYWJlbHM6IHt9CiAgICBwZXJzaXN0ZW5jZToKICAgICAgYWRkVm9sdW1lTW91bnRzOiBbXQogICAgICBhZGRWb2x1bWVzOiBbXQogICAgICBiaW5hcmllc1ZvbHVtZToKICAgICAgLSBlbXB0eURpcjoge30KICAgICAgICBuYW1lOiBiaW5hcmllcwogICAgICBkYXRhVm9sdW1lOiBbXQogICAgICB2b2x1bWVDbGFpbToKICAgICAgICBhY2Nlc3NNb2RlczoKICAgICAgICAtIFJlYWRXcml0ZU9uY2UKICAgICAgICBlbmFibGVkOiBhdXRvCiAgICAgICAgcmV0ZW50aW9uUG9saWN5OiBSZXRhaW4KICAgICAgICBzaXplOiA1R2kKICAgICAgICBzdG9yYWdlQ2xhc3M6ICIiCiAgICAgIHZvbHVtZUNsYWltVGVtcGxhdGVzOiBbXQogICAgcG9kczoKICAgICAgYW5ub3RhdGlvbnM6IHt9CiAgICAgIGxhYmVsczoge30KICAgIHByb2JlczoKICAgICAgbGl2ZW5lc3NQcm9iZToKICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgZmFpbHVyZVRocmVzaG9sZDogNjAKICAgICAgICBpbml0aWFsRGVsYXlTZWNvbmRzOiA2MAogICAgICAgIHBlcmlvZFNlY29uZHM6IDIKICAgICAgICB0aW1lb3V0U2Vjb25kczogMwogICAgICByZWFkaW5lc3NQcm9iZToKICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgZmFpbHVyZVRocmVzaG9sZDogNjAKICAgICAgICBwZXJpb2RTZWNvbmRzOiAyCiAgICAgICAgdGltZW91dFNlY29uZHM6IDMKICAgICAgc3RhcnR1cFByb2JlOgogICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgICBmYWlsdXJlVGhyZXNob2xkOiAzMDAKICAgICAgICBwZXJpb2RTZWNvbmRzOiA2CiAgICAgICAgdGltZW91dFNlY29uZHM6IDMKICAgIHJlc291cmNlczoKICAgICAgbGltaXRzOgogICAgICAgIGVwaGVtZXJhbC1zdG9yYWdlOiAxMEdpCiAgICAgICAgbWVtb3J5OiA0R2kKICAgICAgcmVxdWVzdHM6CiAgICAgICAgY3B1OiAyMDBtCiAgICAgICAgZXBoZW1lcmFsLXN0b3JhZ2U6IDFHaQogICAgICAgIG1lbW9yeTogMjU2TWkKICAgIHNjaGVkdWxpbmc6CiAgICAgIGFmZmluaXR5OiB7fQogICAgICBub2RlU2VsZWN0b3I6IHt9CiAgICAgIHBvZE1hbmFnZW1lbnRQb2xpY3k6IFBhcmFsbGVsCiAgICAgIHByaW9yaXR5Q2xhc3NOYW1lOiAiIgogICAgICB0b2xlcmF0aW9uczogW10KICAgICAgdG9wb2xvZ3lTcHJlYWRDb25zdHJhaW50czogW10KICAgIHNlY3VyaXR5OgogICAgICBjb250YWluZXJTZWN1cml0eUNvbnRleHQ6CiAgICAgICAgYWxsb3dQcml2aWxlZ2VFc2NhbGF0aW9uOiBmYWxzZQogICAgICAgIHJ1bkFzR3JvdXA6IDAKICAgICAgICBydW5Bc1VzZXI6IDAKICAgICAgcG9kU2VjdXJpdHlDb250ZXh0OiB7fQogICAgc2lkZWNhckNvbnRhaW5lcnM6IFtdCiAgICB3b3JraW5nRGlyOiAiIgpkZXBsb3k6CiAgY25pOgogICAgZmxhbm5lbDoKICAgICAgZW5hYmxlZDogdHJ1ZQogIGluZ3Jlc3NOZ2lueDoKICAgIGRlZmF1bHRJbmdyZXNzQ2xhc3M6IHRydWUKICAgIGVuYWJsZWQ6IGZhbHNlCiAga3ViZVByb3h5OgogICAgY29uZmlnOiB7fQogICAgZW5hYmxlZDogdHJ1ZQogICAgZXh0cmFBcmdzOiBbXQogICAgZXh0cmFFbnY6IFtdCiAgICBpbWFnZTogIiIKICAgIGltYWdlUHVsbFBvbGljeTogIiIKICAgIG5vZGVTZWxlY3Rvcjoge30KICAgIHRvbGVyYXRpb25zOiBbXQogIGxvY2FsUGF0aFByb3Zpc2lvbmVyOgogICAgZW5hYmxlZDogdHJ1ZQogIG1ldGFsbGI6CiAgICBlbmFibGVkOiBmYWxzZQogICAgaXBBZGRyZXNzUG9vbDoKICAgICAgYWRkcmVzc2VzOiBbXQogICAgICBsMkFkdmVydGlzZW1lbnQ6IHRydWUKICBtZXRyaWNzU2VydmVyOgogICAgZW5hYmxlZDogZmFsc2UKICB2b2x1bWVTbmFwc2hvdENvbnRyb2xsZXI6CiAgICBlbmFibGVkOiBmYWxzZQpleHBlcmltZW50YWw6CiAgZGVwbG95OgogICAgaG9zdDoKICAgICAgbWFuaWZlc3RzOiAiIgogICAgICBtYW5pZmVzdHNUZW1wbGF0ZTogIiIKICAgIHZjbHVzdGVyOgogICAgICBoZWxtOiBbXQogICAgICBtYW5pZmVzdHM6ICIiCiAgICAgIG1hbmlmZXN0c1RlbXBsYXRlOiAiIgogIHN5bmNTZXR0aW5nczoKICAgIHNldE93bmVyOiB0cnVlCmV4cG9ydEt1YmVDb25maWc6CiAgY29udGV4dDogIiIKICBpbnNlY3VyZTogZmFsc2UKICBzZWNyZXQ6CiAgICBuYW1lOiAiIgogICAgbmFtZXNwYWNlOiAiIgogIHNlcnZlcjogIiIKICBzZXJ2aWNlQWNjb3VudDoKICAgIGNsdXN0ZXJSb2xlOiAiIgogICAgbmFtZTogIiIKICAgIG5hbWVzcGFjZTogIiIKZXh0ZXJuYWw6IHt9CmludGVncmF0aW9uczoKICBjZXJ0TWFuYWdlcjoKICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBzeW5jOgogICAgICBmcm9tSG9zdDoKICAgICAgICBjbHVzdGVySXNzdWVyczoKICAgICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgICAgIHNlbGVjdG9yOgogICAgICAgICAgICBsYWJlbHM6IHt9CiAgICAgIHRvSG9zdDoKICAgICAgICBjZXJ0aWZpY2F0ZXM6CiAgICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgaXNzdWVyczoKICAgICAgICAgIGVuYWJsZWQ6IHRydWUKICBleHRlcm5hbFNlY3JldHM6CiAgICBlbmFibGVkOiBmYWxzZQogICAgc3luYzoKICAgICAgZnJvbUhvc3Q6CiAgICAgICAgY2x1c3RlclN0b3JlczoKICAgICAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICAgICAgICBzZWxlY3RvcjoKICAgICAgICAgICAgbWF0Y2hMYWJlbHM6IHt9CiAgICAgIHRvSG9zdDoKICAgICAgICBleHRlcm5hbFNlY3JldHM6CiAgICAgICAgICBzZWxlY3RvcjoKICAgICAgICAgICAgbWF0Y2hMYWJlbHM6IHt9CiAgICAgICAgc3RvcmVzOgogICAgICAgICAgZW5hYmxlZDogZmFsc2UKICAgICAgICAgIHNlbGVjdG9yOgogICAgICAgICAgICBtYXRjaExhYmVsczoge30KICAgIHdlYmhvb2s6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgaXN0aW86CiAgICBlbmFibGVkOiBmYWxzZQogICAgc3luYzoKICAgICAgdG9Ib3N0OgogICAgICAgIGRlc3RpbmF0aW9uUnVsZXM6CiAgICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgZ2F0ZXdheXM6CiAgICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgICAgdmlydHVhbFNlcnZpY2VzOgogICAgICAgICAgZW5hYmxlZDogdHJ1ZQogIGt1YmVWaXJ0OgogICAgZW5hYmxlZDogZmFsc2UKICAgIHN5bmM6CiAgICAgIGRhdGFWb2x1bWVzOgogICAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICAgIHZpcnR1YWxNYWNoaW5lQ2xvbmVzOgogICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgdmlydHVhbE1hY2hpbmVJbnN0YW5jZU1pZ3JhdGlvbnM6CiAgICAgICAgZW5hYmxlZDogdHJ1ZQogICAgICB2aXJ0dWFsTWFjaGluZUluc3RhbmNlczoKICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgIHZpcnR1YWxNYWNoaW5lUG9vbHM6CiAgICAgICAgZW5hYmxlZDogdHJ1ZQogICAgICB2aXJ0dWFsTWFjaGluZXM6CiAgICAgICAgZW5hYmxlZDogdHJ1ZQogICAgd2ViaG9vazoKICAgICAgZW5hYmxlZDogdHJ1ZQogIG1ldHJpY3NTZXJ2ZXI6CiAgICBlbmFibGVkOiBmYWxzZQogICAgbm9kZXM6IHRydWUKICAgIHBvZHM6IHRydWUKbG9nZ2luZzoKICBlbmNvZGluZzogY29uc29sZQpuZXR3b3JraW5nOgogIGFkdmFuY2VkOgogICAgY2x1c3RlckRvbWFpbjogY2x1c3Rlci5sb2NhbAogICAgZmFsbGJhY2tIb3N0Q2x1c3RlcjogZmFsc2UKICAgIHByb3h5S3ViZWxldHM6CiAgICAgIGJ5SG9zdG5hbWU6IHRydWUKICAgICAgYnlJUDogdHJ1ZQogIHBvZENJRFI6IDEwLjI0NC4wLjAvMTYKICByZXBsaWNhdGVTZXJ2aWNlczoKICAgIGZyb21Ib3N0OiBbXQogICAgdG9Ib3N0OiBbXQogIHJlc29sdmVETlM6IFtdCnBsdWdpbnM6IHt9CnBvbGljaWVzOgogIGNlbnRyYWxBZG1pc3Npb246CiAgICBtdXRhdGluZ1dlYmhvb2tzOiBbXQogICAgdmFsaWRhdGluZ1dlYmhvb2tzOiBbXQogIGxpbWl0UmFuZ2U6CiAgICBhbm5vdGF0aW9uczoge30KICAgIGRlZmF1bHQ6CiAgICAgIGNwdTogIjEiCiAgICAgIGVwaGVtZXJhbC1zdG9yYWdlOiA4R2kKICAgICAgbWVtb3J5OiA1MTJNaQogICAgZGVmYXVsdFJlcXVlc3Q6CiAgICAgIGNwdTogMTAwbQogICAgICBlcGhlbWVyYWwtc3RvcmFnZTogM0dpCiAgICAgIG1lbW9yeTogMTI4TWkKICAgIGVuYWJsZWQ6IGF1dG8KICAgIGxhYmVsczoge30KICAgIG1heDoge30KICAgIG1pbjoge30KICBuZXR3b3JrUG9saWN5OgogICAgYW5ub3RhdGlvbnM6IHt9CiAgICBlbmFibGVkOiBmYWxzZQogICAgZXh0cmFDb250cm9sUGxhbmVSdWxlczogW10KICAgIGV4dHJhV29ya2xvYWRSdWxlczogW10KICAgIGZhbGxiYWNrRG5zOiA4LjguOC44CiAgICBsYWJlbHM6IHt9CiAgICBvdXRnb2luZ0Nvbm5lY3Rpb25zOgogICAgICBpcEJsb2NrOgogICAgICAgIGNpZHI6IDAuMC4wLjAvMAogICAgICAgIGV4Y2VwdDoKICAgICAgICAtIDEwMC42NC4wLjAvMTAKICAgICAgICAtIDEyNy4wLjAuMC84CiAgICAgICAgLSAxMC4wLjAuMC84CiAgICAgICAgLSAxNzIuMTYuMC4wLzEyCiAgICAgICAgLSAxOTIuMTY4LjAuMC8xNgogICAgICBwbGF0Zm9ybTogdHJ1ZQogIHJlc291cmNlUXVvdGE6CiAgICBhbm5vdGF0aW9uczoge30KICAgIGVuYWJsZWQ6IGF1dG8KICAgIGxhYmVsczoge30KICAgIHF1b3RhOgogICAgICBjb3VudC9jb25maWdtYXBzOiAxMDAKICAgICAgY291bnQvZW5kcG9pbnRzOiA0MAogICAgICBjb3VudC9wZXJzaXN0ZW50dm9sdW1lY2xhaW1zOiAyMAogICAgICBjb3VudC9wb2RzOiAyMAogICAgICBjb3VudC9zZWNyZXRzOiAxMDAKICAgICAgY291bnQvc2VydmljZXM6IDIwCiAgICAgIGxpbWl0cy5jcHU6IDIwCiAgICAgIGxpbWl0cy5lcGhlbWVyYWwtc3RvcmFnZTogMTYwR2kKICAgICAgbGltaXRzLm1lbW9yeTogNDBHaQogICAgICByZXF1ZXN0cy5jcHU6IDEwCiAgICAgIHJlcXVlc3RzLmVwaGVtZXJhbC1zdG9yYWdlOiA2MEdpCiAgICAgIHJlcXVlc3RzLm1lbW9yeTogMjBHaQogICAgICByZXF1ZXN0cy5zdG9yYWdlOiAxMDBHaQogICAgICBzZXJ2aWNlcy5sb2FkYmFsYW5jZXJzOiAxCiAgICAgIHNlcnZpY2VzLm5vZGVwb3J0czogMAogICAgc2NvcGVTZWxlY3RvcjoKICAgICAgbWF0Y2hFeHByZXNzaW9uczogW10KICAgIHNjb3BlczogW10KcHJpdmF0ZU5vZGVzOgogIGF1dG9Ob2RlczogW10KICBhdXRvVXBncmFkZToKICAgIGNvbmN1cnJlbmN5OiAxCiAgICBlbmFibGVkOiB0cnVlCiAgZW5hYmxlZDogZmFsc2UKICBqb2luTm9kZToKICAgIGNvbnRhaW5lcmQ6CiAgICAgIGVuYWJsZWQ6IHRydWUKICBrdWJlbGV0OgogICAgY29uZmlnOiB7fQogIHZwbjoKICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBub2RlVG9Ob2RlOgogICAgICBlbmFibGVkOiBmYWxzZQpyYmFjOgogIGNsdXN0ZXJSb2xlOgogICAgZW5hYmxlZDogYXV0bwogICAgZXh0cmFSdWxlczogW10KICAgIG92ZXJ3cml0ZVJ1bGVzOiBbXQogIGVuYWJsZVZvbHVtZVNuYXBzaG90UnVsZXM6CiAgICBlbmFibGVkOiBhdXRvCiAgcm9sZToKICAgIGVuYWJsZWQ6IHRydWUKICAgIGV4dHJhUnVsZXM6IFtdCiAgICBvdmVyd3JpdGVSdWxlczogW10Kc3luYzoKICBmcm9tSG9zdDoKICAgIGNvbmZpZ01hcHM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICAgIG1hcHBpbmdzOgogICAgICAgIGJ5TmFtZToge30KICAgIGNzaURyaXZlcnM6CiAgICAgIGVuYWJsZWQ6IGF1dG8KICAgIGNzaU5vZGVzOgogICAgICBlbmFibGVkOiBhdXRvCiAgICBjc2lTdG9yYWdlQ2FwYWNpdGllczoKICAgICAgZW5hYmxlZDogYXV0bwogICAgZXZlbnRzOgogICAgICBlbmFibGVkOiBmYWxzZQogICAgaW5ncmVzc0NsYXNzZXM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBub2RlczoKICAgICAgY2xlYXJJbWFnZVN0YXR1czogZmFsc2UKICAgICAgZW5hYmxlZDogZmFsc2UKICAgICAgc2VsZWN0b3I6CiAgICAgICAgYWxsOiBmYWxzZQogICAgICAgIGxhYmVsczoge30KICAgICAgc3luY0JhY2tDaGFuZ2VzOiBmYWxzZQogICAgcHJpb3JpdHlDbGFzc2VzOgogICAgICBlbmFibGVkOiBmYWxzZQogICAgcnVudGltZUNsYXNzZXM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBzZWNyZXRzOgogICAgICBlbmFibGVkOiB0cnVlCiAgICAgIG1hcHBpbmdzOgogICAgICAgIGJ5TmFtZToKICAgICAgICAgIGhhcmlrdWJlL3RvcG9sb2d5LWNvbmZpZzogaGFyaWt1YmUvdG9wb2xvZ3ktY29uZmlnCiAgICBzdG9yYWdlQ2xhc3NlczoKICAgICAgZW5hYmxlZDogYXV0bwogICAgdm9sdW1lU25hcHNob3RDbGFzc2VzOgogICAgICBlbmFibGVkOiBmYWxzZQogIHRvSG9zdDoKICAgIGNvbmZpZ01hcHM6CiAgICAgIGFsbDogZmFsc2UKICAgICAgZW5hYmxlZDogZmFsc2UKICAgIGVuZHBvaW50U2xpY2VzOgogICAgICBlbmFibGVkOiB0cnVlCiAgICBlbmRwb2ludHM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBpbmdyZXNzZXM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBuYW1lc3BhY2VzOgogICAgICBlbmFibGVkOiBmYWxzZQogICAgICBtYXBwaW5nc09ubHk6IGZhbHNlCiAgICBuZXR3b3JrUG9saWNpZXM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBwZXJzaXN0ZW50Vm9sdW1lQ2xhaW1zOgogICAgICBlbmFibGVkOiBmYWxzZQogICAgcGVyc2lzdGVudFZvbHVtZXM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICBwb2REaXNydXB0aW9uQnVkZ2V0czoKICAgICAgZW5hYmxlZDogZmFsc2UKICAgIHBvZHM6CiAgICAgIGVuYWJsZWQ6IGZhbHNlCiAgICAgIGVuZm9yY2VUb2xlcmF0aW9uczogW10KICAgICAgaHlicmlkU2NoZWR1bGluZzoKICAgICAgICBlbmFibGVkOiBmYWxzZQogICAgICAgIGhvc3RTY2hlZHVsZXJzOiBbXQogICAgICBwcmlvcml0eUNsYXNzTmFtZTogIiIKICAgICAgcmV3cml0ZUhvc3RzOgogICAgICAgIGVuYWJsZWQ6IHRydWUKICAgICAgICBpbml0Q29udGFpbmVyOgogICAgICAgICAgaW1hZ2U6CiAgICAgICAgICAgIHJlZ2lzdHJ5OiBtaXJyb3IuZ2NyLmlvCiAgICAgICAgICAgIHJlcG9zaXRvcnk6IGxpYnJhcnkvYWxwaW5lCiAgICAgICAgICAgIHRhZzogIjMuMjAiCiAgICAgICAgICByZXNvdXJjZXM6CiAgICAgICAgICAgIGxpbWl0czoKICAgICAgICAgICAgICBjcHU6IDMwbQogICAgICAgICAgICAgIG1lbW9yeTogNjRNaQogICAgICAgICAgICByZXF1ZXN0czoKICAgICAgICAgICAgICBjcHU6IDMwbQogICAgICAgICAgICAgIG1lbW9yeTogNjRNaQogICAgICBydW50aW1lQ2xhc3NOYW1lOiAiIgogICAgICB0cmFuc2xhdGVJbWFnZToge30KICAgICAgdXNlU2VjcmV0c0ZvclNBVG9rZW5zOiBmYWxzZQogICAgcHJpb3JpdHlDbGFzc2VzOgogICAgICBlbmFibGVkOiBmYWxzZQogICAgc2VjcmV0czoKICAgICAgYWxsOiBmYWxzZQogICAgICBlbmFibGVkOiBmYWxzZQogICAgc2VydmljZUFjY291bnRzOgogICAgICBlbmFibGVkOiB0cnVlCiAgICBzZXJ2aWNlczoKICAgICAgZW5hYmxlZDogZmFsc2UKICAgIHN0b3JhZ2VDbGFzc2VzOgogICAgICBlbmFibGVkOiBmYWxzZQogICAgdm9sdW1lU25hcHNob3RDb250ZW50czoKICAgICAgZW5hYmxlZDogZmFsc2UKICAgIHZvbHVtZVNuYXBzaG90czoKICAgICAgZW5hYmxlZDogZmFsc2UKdGVsZW1ldHJ5OgogIGVuYWJsZWQ6IHRydWU="
+---
+# Source: vcluster/templates/clusterrole.yaml
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: vc-harikube-v-harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "persistentvolumes" ]
+    verbs: [ "get", "list" ]
+  - apiGroups: [ "snapshot.storage.k8s.io" ]
+    resources: [ "volumesnapshotclasses" ]
+    verbs: ["get", "list"]
+  - apiGroups: [ "snapshot.storage.k8s.io" ]
+    resources: [ "volumesnapshotcontents" ]
+    verbs: ["create", "delete", "patch", "update", "get", "list"]
+  
+  - apiGroups: [""]
+    resources: [ "namespaces" ]
+    resourceNames: [ "harikube" ]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: [ "secrets" ]
+    verbs: ["list", "watch"]
+  - apiGroups: [""]
+    resources: [ "secrets" ]
+    verbs: ["get"]
+    resourceNames: [ "topology-config" ]
+---
+# Source: vcluster/templates/clusterrolebinding.yaml
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: vc-harikube-v-harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+subjects:
+  - kind: ServiceAccount
+    name: vc-harikube
+    namespace: harikube
+roleRef:
+  kind: ClusterRole
+  name: vc-harikube-v-harikube
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: vcluster/templates/role.yaml
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: vc-harikube
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "secrets", "services", "pods", "pods/attach", "pods/portforward", "pods/exec", "persistentvolumeclaims"]
+    verbs: ["create", "delete", "patch", "update", "get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods/status", "pods/ephemeralcontainers"]
+    verbs: ["patch", "update"]
+  - apiGroups: ["apps"]
+    resources: ["statefulsets", "replicasets", "deployments"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["endpoints", "pods/log"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [ "" ]
+    resources: ["events"]
+    verbs: [ "create", "get", "list", "watch" ]
+  - apiGroups: ["discovery.k8s.io"]
+    resources: [ "endpointslices" ]
+    verbs: [ "create", "list", "get", "delete", "patch", "update", "watch" ]
+  - apiGroups: [ "snapshot.storage.k8s.io" ]
+    resources: [ "volumesnapshots" ]
+    verbs: ["create", "delete", "patch", "update", "get", "list"]
+  - apiGroups: [""]
+    resources: ["serviceaccounts"]
+    verbs: ["create", "delete", "patch", "update", "get", "list", "watch"]
+---
+# Source: vcluster/templates/rolebinding.yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: vc-harikube
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+subjects:
+  - kind: ServiceAccount
+    name: vc-harikube
+    namespace: harikube
+roleRef:
+  kind: Role
+  name: vc-harikube
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: vcluster/templates/headless-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: harikube-headless
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+spec:
+  publishNotReadyAddresses: true
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8443
+      protocol: TCP
+  clusterIP: None
+  selector:
+    app: vcluster
+    release: "harikube"
+---
+# Source: vcluster/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: harikube
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: "harikube"
+    heritage: "Helm"
+    vcluster.loft.sh/service: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8443
+      nodePort: 0
+      protocol: TCP
+    - name: kubelet
+      port: 10250
+      targetPort: 8443
+      nodePort: 0
+      protocol: TCP
+  selector:
+    app: vcluster
+    release: harikube
+---
+# Source: vcluster/templates/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: harikube
+  namespace: harikube
+  labels:
+    app: vcluster
+    chart: "vcluster-0.30.4"
+    release: harikube
+    heritage: "Helm"
+spec:
+  selector:
+    matchLabels:
+      app: vcluster
+      release: "harikube"
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+  serviceName: harikube-headless
+  podManagementPolicy: Parallel
+  
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ReadWriteOnce]
+      resources:
+        requests:
+          storage: 5Gi
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        vClusterConfigHash: "920d0bcb120a87f1e030c7c4f07b49050e2eaffcf980d82b56fa7c56880a7aa9"
+      labels:
+        app: vcluster
+        release: harikube
+    spec:
+      terminationGracePeriodSeconds: 15
+      serviceAccountName: vc-harikube
+      volumes:        
+        - name: helm-cache
+          emptyDir: {}
+        - emptyDir: {}
+          name: binaries
+        - name: tmp
+          emptyDir: {}
+        - name: certs
+          emptyDir: {}
+        - name: vcluster-config
+          secret:
+            secretName: vc-config-harikube
+      initContainers:
+        
+        - name: kubernetes
+          image: "quay.io/harikube/kubernetes:v1.35.0"
+          volumeMounts:
+            - mountPath: /binaries
+              name: binaries
+          command:
+            - cp
+          args:
+            - -r 
+            - /kubernetes/.
+            - /binaries/
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            {}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 40m
+              memory: 64Mi
+      enableServiceLinks: true
+      containers:
+        - name: syncer
+          image: "ghcr.io/loft-sh/vcluster-pro:0.30.4"
+          imagePullPolicy: 
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 60
+            periodSeconds: 2
+            timeoutSeconds: 3
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8443
+              scheme: HTTPS
+            periodSeconds: 2
+            timeoutSeconds: 3
+            failureThreshold: 60
+          startupProbe:
+            httpGet:
+              path: /readyz
+              port: 8443
+              scheme: HTTPS
+            periodSeconds: 6
+            timeoutSeconds: 3
+            failureThreshold: 300
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsGroup: 0
+            runAsUser: 0
+          resources:
+            limits:
+              ephemeral-storage: 10Gi
+              memory: 4Gi
+            requests:
+              cpu: 200m
+              ephemeral-storage: 1Gi
+              memory: 256Mi
+          env:
+            - name: VCLUSTER_NAME
+              value: "harikube"
+            - name: LOFT_LOG_ENCODING
+              value: console
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            
+          volumeMounts:            
+            - name: data
+              mountPath: /data
+            - name: binaries
+              mountPath: /binaries
+            - name: certs
+              mountPath: /pki
+            - name: helm-cache
+              mountPath: /.cache/helm
+            - name: vcluster-config
+              mountPath: /var/lib/vcluster
+            - name: tmp
+              mountPath: /tmp

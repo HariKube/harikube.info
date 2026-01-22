@@ -11,8 +11,8 @@ features:
     description: "HariKube seamlessly extends Kubernetes without disrupting native functionality-supporting RBAC, events, admission webhooks, and other core features out of the box. This ensures full compatibility with existing tooling and policies while enhancing the platform’s data capabilities behind the scenes."
   - title: "Consistent behavior from development to production"
     description: "HariKube preserves standard Kubernetes APIs and resource definitions, ensuring that applications behave identically across development, staging, and production. Since it operates transparently at the infrastructure level, no code changes or environment-specific logic are required."
-  - title: "Fully documented APIs and integration guides"
-    description: "HariKube builds on Kubernetes' well-documented, stable APIs, allowing developers to build and operate applications using only cloud-native tools. There's no need to learn new interfaces-just use standard Kubernetes workflows, with HariKube enhancing the platform transparently behind the scenes."
+  - title: "No vendor locking or 3rd party libraries"
+    description: "By design, it remains vendor lock-free, ensuring you maintain complete sovereignty over your stack and can migrate across providers with ease. Furthermore, it streamlines the engineering workflow by requiring no 3rd-party libraries for development, allowing for a cleaner and more secure codebase."
 ---
 
 {{< ld-docs >}}

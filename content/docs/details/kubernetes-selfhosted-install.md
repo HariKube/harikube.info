@@ -5,6 +5,8 @@ layout: "simple"
 
 Kubernetes is compatible with `HariKube` by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.
 
+> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+
 Start by authenticating your local Docker client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
 
 {{< code bash >}}docker login registry.harikube.info
@@ -12,7 +14,9 @@ Start by authenticating your local Docker client with the private registry at `r
 
 {{< code bash >}}docker run -d \
   --stop-timeout=-1 \
+  -e LICENSE_KEY_FILE=/license \
   -e TOPOLOGY_CONFIG=file:///topology.yaml \
+  -v ${PWD}/license:/license:ro \
   -v $(pwd)/topology.yaml:/topology.yaml \
   -v harikube_db:/db \
   -p 2379:2379 \

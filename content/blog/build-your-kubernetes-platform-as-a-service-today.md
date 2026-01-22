@@ -40,13 +40,74 @@ This toolset consists of two key components:
 
 Kine is an existing etcd-shim (a compatibility layer) that translates the Kubernetes API server's native ETCD API calls into standard SQL queries for backends like SQLite, Postgres, or MySQL. It allows Kubernetes to use these databases instead of ETCD.
 
-Our Modification: The HariKube version of Kine contains crucial enhancements that implement storage-side filtering logic. When the Kubernetes API server issues a request that typically requires client-side filtering (like a label selector), our modified Kine translates that request into an optimized SQL WHERE clause. This offloads the filtering work to the efficient SQL database, drastically cutting down on the amount of data transferred and processed by the API server, directly solving the client-side filtering performance bottleneck.
+Our Modifications:
+ - The HariKube version of Kine contains crucial enhancements that implement storage-side filtering logic. When the Kubernetes API server issues a request that typically requires client-side filtering (like a label selector), our modified Kine translates that request into an optimized SQL WHERE clause. This offloads the filtering work to the efficient SQL database, drastically cutting down on the amount of data transferred and processed by the API server, directly solving the client-side filtering performance bottleneck.
+ - The other feature is storage-side garbage collection. Add a label `skip-controller-manager-metadata-caching=true` to any of your resources to enable storage-side GC. You can automate the label creation with Mutation Admission Policy.
+
+{{< code yaml "skip-controller-manager-metadata-caching.yaml" >}}apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingAdmissionPolicy
+metadata:
+  name: "skip-controller-manager-metadata-caching"
+spec:
+  matchConstraints:
+    resourceRules:
+    - apiGroups:   ["stable.example.com"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE"]
+      resources:   ["shirts"]
+  matchConditions:
+    - name: label-does-not-exist
+      expression: >
+          !has(object.metadata.labels) ||
+          !('skip-controller-manager-metadata-caching' in object.metadata.labels)
+  failurePolicy: Fail
+  reinvocationPolicy: IfNeeded
+  mutations:
+    - patchType: JSONPatch
+      jsonPatch:
+        expression: >
+          has(object.metadata.labels)
+          ? [
+              JSONPatch{
+                op: "add",
+                path: "/metadata/labels/skip-controller-manager-metadata-caching",
+                value: "true"
+              }
+            ]
+          : [
+              JSONPatch{
+                op: "add",
+                path: "/metadata/labels",
+                value: {}
+              },
+              JSONPatch{
+                op: "add",
+                path: "/metadata/labels/skip-controller-manager-metadata-caching",
+                value: "true"
+              }
+            ]
+---
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingAdmissionPolicyBinding
+metadata:
+  name: "skip-controller-manager-metadata-caching"
+spec:
+  policyName: "skip-controller-manager-metadata-caching"
+  matchResources:
+    resourceRules:
+    - apiGroups:   ["stable.example.com"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE"]
+      resources:   ["shirts"]
+{{< /code >}}
 
 2. Modified [Kubernetes Control Plane](https://github.com/HariKube/kubernetes-patches)
 
-While Kine handles the data access layer, to fully leverage the performance gains, we also provide a small set of targeted modifications to the Kubernetes API Server itself.
+While Kine handles the data access layer, to fully leverage the performance gains, we also provide a small set of targeted modifications to the Kubernetes API Server and Controller Manager themself.
 
-The Change: These modifications enhance the way the API server constructs requests to its storage layer (our modified Kine). Specifically, they ensure that the server-side filters (like the label selectors and field selectors) are correctly passed down and translated by Kine into the SQL query, rather than being handled as an afterthought in memory.
+The Changes:
+ - These modifications enhance the way the API server constructs requests to its storage layer (our modified Kine). Specifically, they ensure that the server-side filters (like the label selectors and field selectors) are correctly passed down and translated by Kine into the SQL query, rather than being handled as an afterthought in memory.
+ - Controller Manager skips caching resources labeled with `skip-controller-manager-metadata-caching=true` to avoid filling memory with resources garbage collected by the storage.
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
@@ -95,7 +156,7 @@ To execute this, simply run the following command:
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
 
-{{< code bash >}}kubectl wait -n kine --for=jsonpath='{.status.readyReplicas}'=1 deploy/kine --timeout=5m
+{{< code bash >}}kubectl wait -n kine --for=jsonpath='{.status.readyReplicas}'=1 statefulset/kine --timeout=5m
 vcluster connect kine
 {{< /code >}}
 

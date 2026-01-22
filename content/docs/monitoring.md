@@ -99,7 +99,7 @@ This approach enables **leverage of mature connection pooling, error handling, a
 Each database is assigned a unique label to simplify metric identification and filtering.
 
  - Each database (including Metadata mappers) is assigned a unique label based on `db=endpoint` to simplify metric identification and filtering.
- - The `harikube_sql_*` metrics are custom-built metrics designed to provide a clear overview of all database connections.
+ - The `kine_sql_*` metrics are custom-built metrics designed to provide a clear overview of all database connections.
  
 {{< details >}}
 {

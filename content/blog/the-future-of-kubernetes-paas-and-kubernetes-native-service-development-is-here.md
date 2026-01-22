@@ -16,7 +16,7 @@ We at **HariKube** strongly believe in the transformative power of cutting-edge 
 
 This vision leads us to a fundamental shift: **Imagine Kubernetes itself evolving beyond an orchestrator and becoming the definitive platform**. We're talking about a single control plane for managing not just containers, but also serving serverless functions, operator based microservices, and all your custom APIs. This is achievable now. By combining HariKube’s innovative dynamic data layer, automated serverless function triggers, intelligent operator loops, and a smart utilization of the Kubernetes Aggregation API, we are ushering in a world where Kubernetes is the singular, intelligent operating system for your entire Cloud-Native estate.
 
-The **dynamic data layer** is a critical component designed to address the inherent scalability limitations of Kubernetes' native data store, ETCD. Instead of relying solely on the single, clustered ETCD instance for all cluster state, this dynamic data layer effectively replaces ETCD by allowing you to define a user-defined **database agnostic** topology (flat or hierarchical), chosing any number of the [supported databases](/docs/overview/#-supported-databases) (9 total including MySQL, PgSQL, etc.).
+The **dynamic data layer** is a critical component designed to address the inherent scalability limitations of Kubernetes' native data store, ETCD. Instead of relying solely on the single, clustered ETCD instance for all cluster state, this dynamic data layer effectively replaces ETCD by allowing you to define a user-defined **database agnostic** topology (flat or hierarchical), chosing any number of the [supported databases](/docs/overview/#-supported-databases) (8 total including MySQL, PgSQL, etc.).
 
 This comprehensive approach achieves a powerful double-win: we are simultaneously **unifying disparate service designs** across your system and **eliminating Kubernetes' main scalability bottleneck**. This is the revonutionaly architectural shift: by liberating the control plane from the constraints of single-instance state management, HariKube unlocks true hyperscale for every Kubernetes deployment. By tackling these two critical areas, Kubernetes finally evolves into a true **Cloud-Native-Platform-as-a-Service** (CNPaaS). This transformation is key to driving essential separation of concerns: developer teams can now focus entirely on delivering core business logic, while infrastructure teams can dedicate their expertise to managing and optimizing the underlying infrastructure and platform capabilities. **Infrastructure complexity becomes an API, not a configuration hurdle**. This singular focus accelerates innovation and cuts time-to-market dramatically. Developers are no longer bogged down writing boilerplate YAML, taking care on self-managed databases, managing storage classes, or debugging platform issues-they simply consume the functionalities built-in Kubernetes. 
 
@@ -99,10 +99,6 @@ The architectural innovations we've detailed-solving the scalability crisis and 
 
 Frankly, we're too excited to keep this under wraps any longer! The theoretical elegance of a unified, scalable Kubernetes platform is only half the story; the real power is in the implementation. We can't wait to show you exactly how HariKube transforms these concepts into deployable, functional reality, **changing the way your teams build and manage cloud-native services forever**.
 
-### Prerequisites: Sign Up for Open Beta Access
-
-This platform revolution is happening now, and we want you to be a part of it. To begin leveraging HariKube's unified control plane, dynamic data layer, and truly scalable CNPaaS capabilities, the only prerequisite is signing up. **Access to our Open Beta is now available!** Join the early adopters who are fundamentally changing how they approach cloud-native development. Visit [Open Beta invitation](/beta-invitation/) today to secure your spot and start building on the future of Kubernetes.
-
 ### Bring Your Own Kubernetes
 
 The true power of HariKube's architectural breakthrough is its complete **infrastructure agnosticism**. It doesn't matter if you're running on a hyper-scale **Managed Kubernetes** offering like GKE, EKS, or AKS; on a tightly controlled **Self-Hosted** cluster in your private data center; or on a lightweight **Kind** cluster on a developer's laptop. HariKube supports it all, because it is **totally transparent to Kubernetes itself**. This freedom of choice ensures that you can execute your architecture strategy-from local development to global, federated deployments-without ever sacrificing the enhanced scalability or unified service design that defines the future.
@@ -119,26 +115,31 @@ kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/rele
 
 The moment to stop talking about the future and start building it is now. Assuming you've completed the prerequisite step and have your beta access credentials, executing the fundamental transformation of your Kubernetes cluster requires just a few straightforward commands. By running the following sequence, you will introduce the core HariKube components, implementing a separated Kubernetes API via [vCluster](https://www.vcluster.com) in the background to ensure genuine architectural separation between infrastructure management and service data, and immediately upgrade your Kubernetes environment to a highly scalable, platform-ready PaaS foundation. Get ready to witness the convergence of power and simplicity:
 
+> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+
 {{< code bash >}}kubectl create namespace harikube
-kubectl create secret docker-registry harikube-registry-secret \
+kubectl create secret generic -n harikube harikube-license --from-file=${PWD}/license
+kubectl create secret docker-registry -n harikube harikube-registry-secret \
 --docker-server=registry.harikube.info \
 --docker-username=<oci-user> \
---docker-password='<my$secure@password>' \
---namespace=harikube
-kubectl apply -f https://harikube.info/manifests/harikube-operator-beta-v1.0.0-3.yaml
-kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-beta-v1.0.0-20.yaml
+--docker-password='<my$secure@password>'
+kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.0.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.0.yaml
 {{< /code >}}
 
 > 🔓 For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
 
-Wait for all pods are running in `harikube` namespace.
+> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.0.yaml` instead of the API only manifest.
 
-{{< code bash >}}kubectl get pod -n harikube -w
+Wait for system is up and running.
+
+{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
 {{< /code >}}
 
 Let’s create your first topology configuration. This tells the HariKube Operator how to route data for a specific custom resource, or all records in a namespace for example. You can have as many as you want. For simplicity this example for `Shirts` uses SQLite database, but you can freely select any of the supported databases. For more info please visit the [supported databases](/docs/overview/#-supported-databases) section in the docs.
 
-{{< code yaml "topology-shirts.yaml" >}}apiVersion: harikube.info/v1
+{{< code bash >}}cat | kubectl apply -f - <<EOF
+apiVersion: harikube.info/v1
 kind: TopologyConfig
 metadata:
   name: topologyconfig-shirts
@@ -151,6 +152,7 @@ spec:
     customresource:
       group: stable.example.com
       kind: shirts
+EOF
 {{< /code >}}
 
 While configuring the full dynamic data layer is crucial, we won't deeply dive into the specifics of the topology configuration details here; for comprehensive documentation and examples, please visit the following pages: [topology config](/docs/installation/#-create-database-topology-config-file) and [automation](/docs/automation/).
@@ -173,8 +175,7 @@ Now that the HariKube PaaS foundation is successfully laid, let's see how our un
 
 First you have to connect to the virtual Kubernetes API. PLease install [vCluster](https://www.vcluster.com/docs/platform/install/quick-start-guide#download-and-install-vcluster-cli), and execute the following command.
 
-{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
-vcluster connect harikube
+{{< code bash >}}vcluster connect harikube
 {{< /code >}}
 
 > vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
@@ -185,8 +186,6 @@ Crucially, this Kubernetes environment serves **only as your control plane and d
 {{< /code >}}
 {{< output >}}No resources found
 {{< /output >}}
-
-> If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-beta-v1.0.0-20.yaml` instead of the API only manifest.
 
 Now you can apply your Custom Resource Definition to extend your Kubernetes API with your custom type.
 
@@ -249,5 +248,3 @@ The most critical realization here is that resources like your custom `Shirt` ob
 ## 🏗️ The Future is Yours to Build
 
 We've shown you the architecture, demonstrated the separation, and confirmed that the future of Kubernetes-the highly scalable, unified PaaS-is not a conceptual vision, but a deployable reality right now.
-
-The next step is yours. Stop managing complex infrastructure layers and start focusing on pure business value. Join the [HariKube Open Beta](/beta-invitation/) today. Your platform awaits.

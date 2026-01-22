@@ -45,40 +45,40 @@ canonifyURLs = true
   chimpStatic = "ce88ef7143c9148f30f7cda5f/10ef28bb04b6ce918a13dc417"  # Only enabled in production
 
   middlewareImage = "middleware"
-  middlewareVersion = "beta-v1.0.0-20"
-  supportedMiddlewareVersions = "beta-v1.0.0-17,beta-v1.0.0-18,beta-v1.0.0-19,beta-v1.0.0-20"
+  middlewareVersion = "release-v1.0.0"
+  supportedMiddlewareVersions = "beta-v1.0.0-17,beta-v1.0.0-18,beta-v1.0.0-19,beta-v1.0.0-20,release-v1.0.0"
   operatorImage = "operator"
-  operatorVersion = "beta-v1.0.0-3"
-  supportedOperatorVersions = "beta-v1.0.0-2,beta-v1.0.0-3"
+  operatorVersion = "release-v1.0.0"
+  supportedOperatorVersions = "beta-v1.0.0-2,beta-v1.0.0-3,release-v1.0.0"
   kubernetesImages = "kube-apiserver,kube-controller-manager,kubernetes"
-  kubernetesVersion = "v1.34.1"
-  supportedKubernetesVersions = "v1.33.5,v1.34.0,v1.34.1"
+  kubernetesVersion = "v1.35.0"
+  supportedKubernetesVersions = "v1.34.0,v1.34.1,v1.34.2,v1.35.0"
 
   # Header Configuration
   [params.header]
     background = "bg-white/80 backdrop-blur-sm"
     border = "border-b border-gray-100"
-    
+
     # Header Logo
     [params.header.logo]
       src = "/images/harikube-logo.png"
-    
+
     # Header Buttons (optional)
     [params.header.buttons]
       [params.header.buttons.getStarted]
-        text = "Try Open Beta"
-        url = "/beta-invitation/"
+        text = "Get Started"
+        url = "/get-started/"
 
   # Blog configuration
   [params.blog]
     enable = true
     title = "Latest Articles"
     subtitle = "Learn more about HariKube development and best practices"
-    
+
     # Blog CTA configuration
     [params.blog.cta]
       enable = true  # Enable/disable CTA in blog posts
-    
+
     # Sidebar configuration
     [params.blog.sidebar]
       # Recent articles section
@@ -86,12 +86,12 @@ canonifyURLs = true
         enable = true
         title = "Recent Articles"
         count = 5
-      
+
       # Categories section
       [params.blog.sidebar.categories]
         enable = false
         title = "Categories"
-      
+
       # Tags section
       [params.blog.sidebar.tags]
         enable = true
@@ -115,8 +115,8 @@ canonifyURLs = true
     title = "Ready to Get Started?"
     description = "We're getting close to launch, and we want you to be one of the first to experience Cloud-Native microservice development in scale."
     [params.cta.primary_button]
-      text = "Try Open Beta"
-      url = "/beta-invitation/"
+      text = "Get Started"
+      url = "/get-started/"
 
   # Social Media Links (optional)
   [params.social]
@@ -135,23 +135,20 @@ canonifyURLs = true
     url = "/pricing/"
     weight = 2
   [[menu.main]]
-    name = "Download"
-    url = "/beta-invitation/"
-    weight = 3
-  [[menu.main]]
     name = "Features"
-    weight = 4
+    weight = 3
     [menu.main.params]
       has_submenu = true
       submenu = [
+        { name = "Developer Experience", url = "/features/developer-experience/" },
         { name = "Performance", url = "/features/performance/" },
         { name = "Infrastructure Flexibility", url = "/features/flexible-stack/" },
-        { name = "Data Isolation", url = "/features/data-isolation/" },
-        { name = "Developer Experience", url = "/features/developer-experience/" }
+        { name = "Data Isolation", url = "/features/data-isolation/" }
+        
       ]
   [[menu.main]]
     name = "Docs"
-    weight = 5
+    weight = 4
     [menu.main.params]
       has_submenu = true
       submenu = [
@@ -165,7 +162,7 @@ canonifyURLs = true
   [[menu.main]]
     name = "FAQ"
     url = "/faq/"
-    weight = 6
+    weight = 5
 
   # Footer Column 1 Menu
   # [[menu.footer_column_1]]

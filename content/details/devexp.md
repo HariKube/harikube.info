@@ -20,7 +20,7 @@ Many services built on Kubernetes must carry the burden of managing their own in
     image="/images/developer-experience.png"
     buttonText="Learn More"
     buttonLink="/features/developer-experience/"
-    features="No local infrastructure setup required,Native support for built-in Kubernetes features,Consistent behavior from development to production,Fully documented APIs and integration guides"
+    features="No local infrastructure setup required,Native support for built-in Kubernetes features,Consistent behavior from development to production,No vendor locking or 3rd party libraries"
     imagePosition="right"
 >}}
 

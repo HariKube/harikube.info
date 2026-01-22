@@ -55,21 +55,22 @@ layout: "pricing"
                 "Support channels: Community Forum"
             ],
             "button": {
-                "text": "Coming Soon / Join Beta",
-                "url": "/beta-invitation/"
+                "text": "Order",
+                "url": "/order/"
             }
         },
         {
             "name": "Business Edition",
-            "price": "14900",
+            "price": "19900",
             "description": "Ideal for startups and small businesses looking to get up and running quickly.",
-            "freetier": true,
+            "freetier": false,
             "featured": true,
             "features": [
                 "Automatic database configuration",
                 "Database number: 20",
                 "Maintenance updates: 12 months",
                 "Premium support: 12 months",
+                "SLA guarantees: 99.95%",
                 "Support coverage: 8x5",
                 "Support channels: Community Forum, Email"
             ],
@@ -80,14 +81,22 @@ layout: "pricing"
                     { "text": "Database number: 40", "price": 10000 },
                     { "text": "Database number: 50", "price": 15000 }
                 ],
+                "SLA guarantees: 99.95%": [
+                    { "text": "SLA guarantees: 99.95%", "price": 0 },
+                    { "text": "SLA guarantees: 99.99%", "price": 8000 }
+                ],
                 "Support coverage: 8x5": [
                     { "text": "Support coverage: 8x5", "price": 0 },
                     { "text": "Support coverage: 24x7", "price": 12000 }
+                ],
+                "Support channels: Community Forum, Email": [
+                    { "text": "Support channels: Community Forum, Email", "price": 0 },
+                    { "text": "Support channels: Community Forum, Email, dedicated Slack", "price": 10000 }
                 ]
             },
             "button": {
-                "text": "Coming Soon / Join Beta",
-                "url": "/beta-invitation/"
+                "text": "Order",
+                "url": "/order/"
             }
         }
     ]
@@ -99,11 +108,6 @@ layout: "pricing"
     "title": "Common Questions",
     "description": "Find answers to frequently asked questions about our pricing plans and features.",
     "questions": [
-        {
-            "disabled": true,
-            "question": "Do you offer a free trial or a freemium plan?",
-            "answer": "The Business Edition offers a free trial so you can experience our key features before committing to a plan. The Personal Edition is our freemium option, which is always free to use."
-        },
         {
             "question": "Do you offer custom plans?",
             "answer": "Yes. For specific requirements beyond our standard plans, please contact us to discuss a custom solution."
@@ -117,33 +121,25 @@ layout: "pricing"
             "answer": "All subscriptions are for a one-year term."
         },
         {
-            "disabled": true,
-            "question": "What is premium support for HariKube?",
-            "answer": "Premium support varies by plan and includes dedicated support channels, a dedicated engineer, and tiered response times based on severity."
-        },
-        {
-            "disabled": true,
             "question": "What payment methods do you offer?",
             "answer": "We offer payment via bank transfer based on an issued invoice."
         },
         {
-            "disabled": true,
             "question": "How can I upgrade/downgrade/cancel my plan?",
             "answer": "You can upgrade at any time by paying the difference in price. Downgrades and cancellations are not permitted during the subscription term."
-        },
-        {
-            "disabled": true,
-            "question": "Can I get a refund?",
-            "answer": "We do not offer refunds. We encourage you to use the free trial with our Business Edition or the perpetually free Personal Edition to ensure the service meets your needs before purchasing a paid plan."
         },
         {
             "question": "Can I get a discount for a non-profit or educational organization?",
             "answer": "The Personal Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Business Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
         },
         {
-            "disabled": true,
             "question": "What is the SLA for HariKube?",
             "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 99.95% SLA for Business editions and you can opt-in to 99.99% SLA per instance."
+        },
+        {
+            "disabled": true,
+            "question": "What is premium support for HariKube?",
+            "answer": "Premium support varies by plan and includes dedicated support channels, a dedicated engineer, and tiered response times based on severity."
         },
         {
             "question": "What means Maintenance updates?",
@@ -151,7 +147,7 @@ layout: "pricing"
         },
         {
             "question": "What is the difference between Manual and Automatic Configuration?",
-            "answer": "With Manual Configuration (Personal Edition), you need to manually edit a configuration file and restart the middleware to apply any changes. Automatic Configuration (all paid editions) allows for dynamic changes to take effect immediately without needing to restart the middleware."
+            "answer": "With Manual Configuration (Personal Edition), you need to manually edit the global topology file. Automatic Configuration (all paid editions) allows you to append separated topology configs next to the services and the system will generate the global config."
         },
         {
             "disabled": true,

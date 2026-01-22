@@ -135,7 +135,7 @@ This is more than technical elegance - it’s a blueprint for the next generatio
 
 ---
 
-**Ready to run your application in production? Learn how to prepare your Kubernetes to use HariKube as underlaying storage.** [[→]](/blog/start-kubernetes-prepared-for-huge-data-handling/)
+**Ready to run your application in production? Learn how to prepare your Kubernetes to use HariKube as underlaying storage.** [[→]](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality)
 
 ---
 

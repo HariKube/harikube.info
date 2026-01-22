@@ -7,7 +7,7 @@ The SQLite Mapper provides a lightweight, embedded solution for storing revision
 
 - `REVISION_MAPPER=sqlite`: Type of metdata store
 - `REVISION_MAPPER_SQLITE_O2G_PATHS`: Comma separated list of paths to the original-to-generated revision database directories. Default `./db`
-- `REVISION_MAPPER_SQLITE_G2O_PATHS`: Comma separated list of paths to the generated-to-original tdatabase directories. Default `./db`
+- `REVISION_MAPPER_SQLITE_G2O_PATHS`: Comma separated list of paths to the generated-to-original revision database directories. Default `./db`
 - `REVISION_MAPPER_SQLITE_LEASE_PATH`: Path to the lease database directory. Default `./db`
 - `REVISION_MAPPER_SQLITE_SYNCHRONOUS`: Write mode of the database [`OFF`, `NORMAL`]. Default `OFF`
 - `REVISION_MAPPER_SQLITE_CONN_LIFETIME`: Connection life time in seconds. Default 60

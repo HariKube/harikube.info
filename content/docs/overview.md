@@ -50,6 +50,10 @@ It uses a middleware to handle routing and storage logic, improving scalability,
         {
             "title": "Developer Simplicity",
             "file": "docs/details/developer-simplicity"
+        },
+        {
+            "title": "No vendor locking",
+            "file": "docs/details/no-vendor-locking"
         }
     ]
 }
@@ -76,7 +80,6 @@ HariKube supports multiple backends, each with different capabilities regarding 
 | Database | Storage-Side Filtering | Data isolation | Decreased latency | Increased throughput | Large Dataset Support | Auto GC |
 |-|-|-|-|-|-|-|
 | <a href="https://etcd.io/" target="_blank">**ETCD**</a> | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| <a href="https://nats.io/" target="_blank">**NATS**</a> | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | <a href="https://www.mysql.com/" target="_blank">**MySQL**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | <a href="https://mariadb.org/" target="_blank">**MariaDB**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | <a href="https://www.pingcap.com/" target="_blank">**TiDB**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -93,7 +96,7 @@ HariKube supports multiple backends, each with different capabilities regarding 
 - Per-namespace database isolation
 - Regional workload distribution
 - Offloading CRDs to scalable and high capacity databases
-- Simplifying stateless microservice infrastructure
+- Simplifying stateful microservice infrastructure
 
 
 ## 🧠 How HariKube Works

@@ -450,7 +450,7 @@ Kubernetes is a powerful platform, but its native API has limitations for comple
 
 ---
 
-**Ready to run your application in production? Learn how to prepare your Kubernetes to use HariKube as underlaying storage.** [[→]](/blog/start-kubernetes-prepared-for-huge-data-handling/)
+**Ready to run your application in production? Learn how to prepare your Kubernetes to use HariKube as underlaying storage.** [[→]](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality)
 
 ---
 

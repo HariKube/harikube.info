@@ -114,7 +114,7 @@
                     {{ end }}
                 </ul>
                 
-                <a href="{{ $plan.button.url }}" class="text-center w-full px-5 py-3 rounded-lg {{ if $plan.featured }}bg-white text-primary-600 hover:bg-gray-100{{ else }}bg-primary-600 text-white hover:bg-primary-700{{ end }} font-medium transition duration-300">
+                <a href="{{ $plan.button.url }}" id="order-{{ $index }}" class="order-btn text-center w-full px-5 py-3 rounded-lg {{ if $plan.featured }}bg-white text-primary-600 hover:bg-gray-100{{ else }}bg-primary-600 text-white hover:bg-primary-700{{ end }} font-medium transition duration-300">
                     {{ $plan.button.text }}
                 </a>
             </div>
@@ -122,3 +122,24 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+    orderBtns = document.getElementsByClassName("order-btn");
+    for (var i = 1; i < orderBtns.length; i++) {
+        orderBtns[i].addEventListener("click", function(e) {
+            plan = parseInt(e.srcElement.id.replace("order-", ""), 10);
+
+            order = {
+                name: plans[plan]["name"],
+                price: document.getElementById("price-" + plan).innerHTML,
+                features: plans[plan]["features"]
+            };
+
+            for (f in order["features"]) {
+                order["features"][f] = document.getElementById("addon-text-" + plan + "-" + f).innerHTML
+            }
+            
+            e.srcElement.href = plans[plan]["button"]["url"] + "#" + btoa(JSON.stringify(order));
+        });
+    }
+</script>

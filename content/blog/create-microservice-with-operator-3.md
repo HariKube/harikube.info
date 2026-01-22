@@ -48,7 +48,7 @@ server's logic. There are plenty of other options like:
 
 ## 🪢 Prepare Server Manifests
 
-By creating an [APIService](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#apiservicespec-v1-apiregistration-k8s-io) object, you tell Kubernetes to route specific API requests to your own, purpose-built API server. This server can be designed to do anything, from collecting metrics (like the Metrics Server) to providing full-text search capabilities on your data. Because the data is stored and managed by your external service, you have complete control over how it is queried, filtered, and presented. This approach offers a seamless user experience, as the custom APIs are accessed with the same tools and authentication methods as the core Kubernetes APIs, but they are powered by a solution optimized for the task.
+By creating an [APIService](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#apiservicespec-v1-apiregistration-k8s-io) object, you tell Kubernetes to route specific API requests to your own, purpose-built API server. This server can be designed to do anything, from collecting metrics (like the Metrics Server) to providing full-text search capabilities on your data. Because the data is stored and managed by your external service, you have complete control over how it is queried, filtered, and presented. This approach offers a seamless user experience, as the custom APIs are accessed with the same tools and authentication methods as the core Kubernetes APIs, but they are powered by a solution optimized for the task.
 
 In the first step create an `APIService` manifest at `config/manager/task-apiservice.yaml`.
 

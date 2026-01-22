@@ -15,14 +15,16 @@ This model provides clear separation between services and the underlying infrast
 
 Start by bringing your favorite Kubernetes deployment.
 
+> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+
 Next step is authenticating your local registry client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
 
 {{< code bash >}}kubectl create namespace harikube
-kubectl create secret docker-registry harikube-registry-secret \
+kubectl create secret generic -n harikube harikube-license --from-file=${PWD}/license
+kubectl create secret docker-registry -n harikube harikube-registry-secret \
 --docker-server=registry.harikube.info \
 --docker-username=<oci-user> \
---docker-password='<my$secure@password>' \
---namespace=harikube
+--docker-password='<my$secure@password>'
 {{< /code >}}
 
 Store your previously created topology config, or create configs on the fly with our [automation](/docs/automation/) tool.
@@ -57,14 +59,14 @@ The last step depends on your personal taste!
 
 > Find the detailed configuration guide on the [documentation](https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml).
 
-{{< code yaml "vcluster-config-workload.yaml" >}}controlPlane:
+{{< code yaml "vcluster-config-custom.yaml" >}}controlPlane:
   distro:
     k8s:
       enabled: true
       image:
         registry: quay.io
         repository: harikube/kubernetes
-        # tag: v1.34.1
+        # tag: v1.35.0
       imagePullPolicy: IfNotPresent
       apiServer:
         enabled: true
@@ -131,7 +133,7 @@ sync:
 
 To create your virtual cluster and automatically configure your local environment for access, execute the following command:
 
-{{< code bash >}}vcluster create vcluster-config-workload -n vcluster-config-workload -f vcluster-config-workload.yaml
+{{< code bash >}}vcluster create vcluster-config-custom -n vcluster-config-custom -f vcluster-config-custom.yaml
 {{< /code >}}
 
 ---

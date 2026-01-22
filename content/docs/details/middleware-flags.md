@@ -3,7 +3,7 @@ title: "Configuration Options"
 layout: "simple"
 ---
 
- - `--listen-address`: Listen address of service. Default: `unix://harikube.sock`
+ - `--listen-address`: Listen address of service. Default: `unix://kine.sock`
  - `--endpoint`: Defines the default fallback database used to store any data not explicitly routed by the topology configuration
  - `--ca-file`: Path to the Certificate Authority (CA) file used to establish trust for the default database connection
  - `--cert-file`: Path to the client certificate file used to authenticate with the default database during TLS handshake
@@ -31,13 +31,18 @@ layout: "simple"
  - `--debug`: Enable debug logging
 
 Environment variables:
- - `TOPOLOGY_CONFIG`: File path for the main topology configuration, which is continuously scanned for modifications, supported formats are:
+ - `LICENSE_KEY_FILE`: File path for the license file
+ - `TOPOLOGY_CONFIG`: File path for the topology configuration, which is continuously scanned for modifications, supported formats are:
   - `file://<file-path>`
   - `http(s)://<file-url>` - Polling interval is 1 minute
   - `secret://<namespace>/<name>` - Ensure this secret is stored at main database, and strongly suggested to add finalizer to prevent deletion.  Files are consumed in name order
     - `TOPOLOGY_CONFIG_TLS_DIR`: Directory path for storing TLS files provided by topology secret, Default `./db/tls`
  - `LIST_MAX_ITEMS`: Max items for list operations. Default 1000
- - `ENABLE_GARBAGE_COLLECTION`: Enable garbage-collection, if Kubernetes garbage-collection is disabled
- - `DISABLE_STORAGE_LEVEL_FILTERING`: Disable storage level filtering
+ - `DISABLE_STORAGE_LEVEL_FILTERING`: Disable storage level filtering of the main database, Default: `false`
  - `ENABLE_TELEMETRY_PUSH`: Enables pushing usage telemetry to HariKube central monitoring site `https://monitoring.harikube.info`
  - `CUSTOM_RESOURCE_DEFINITION_METADATA_FILE`: Locatin to store Custom Resource Definition metadata. Defaut: `./db/crds.json`
+ - `DISABLE_GARBAGE_COLLECTION`: Disable storage level garbage-collection. Objects stored at SQL databases and labeled with `skip-controller-manager-metadata-caching=true` are managed. Default `false`
+ - `GARBAGE_COLLECTION_DELETE_LOG_DIR`: Directory path for storing delete logs of storage side GC, Default `./db/delete_log`
+ - `GARBAGE_COLLECTION_DELETE_LOG_EXIT_ON_ERROR`: What to do when delete log write fails. Setting to `false` should result orphan resources. Default `true`
+
+> ⚠️ Garbage-collection only happens within a single middleware unit. If your system has multiple instances (hyerarchical topology), you must make sure that the relational data managed on the same specific instance. Otherwise, the records on other instances become orphan.

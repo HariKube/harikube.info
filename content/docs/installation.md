@@ -104,6 +104,7 @@ HariKube includes an internal metadata store that maintains mapping information 
 
 - `REVISION_MAPPER_CACHE_EVICTION`: Eviction policy [LFU, LRU, MRU, FIFO]. Default FIFO
 - `REVISION_MAPPER_CACHE_CAPACITY`: Capacity of the in-memory cache. Default `10000`
+- `REVISION_MAPPER_FAILED_DIR`: Directory path for storing non persistent revision maps, Default `./db/failed_mapper_revisions`
 
 {{< details >}}
 {
@@ -122,7 +123,7 @@ HariKube includes an internal metadata store that maintains mapping information 
 
 ## 🔌 Middleware Configuration
 
-> ⚠️ HariKube images aren’t public yet. If you’d like to try them, request a free trial version on the [Open Beta invitation](/beta-invitation/) page.
+> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
 
 The middleware is designed to operate seamlessly in both containerized and traditional environments. It can be executed within a Kubernetes cluster (e.g., as a Pod or Deployment) or deployed external to the cluster. All operational configuration files and parameters are standardized and require no modification based on the deployment location.
 
@@ -164,8 +165,8 @@ Supported versions are:
 
 | Major version | Patch versions | Architecures |
 |-|-|-|
-| v1.33 | v1.33.0, v1.33.1, v1.33.2, v1.33.3, v1.33.4, v1.33.5 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
-| v1.34 | v1.34.0, v1.34.1 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
+| v1.34 | v1.34.0, v1.34.1, v1.34.2 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
+| v1.35 | v1.35.0 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
 
 {{< details >}}
 {

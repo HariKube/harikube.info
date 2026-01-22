@@ -1,20 +1,26 @@
 ---
-title: "Get Started"
+title: "Order"
 layout: "simple"
-description: "Unlock Scalable, Compliant Kubernetes Infrastructure."
+description: "Order Scalable, Compliant Kubernetes Infrastructure."
 ---
 
 {{< columns >}}
 
-## 🧩 Get Started with HariKube
+## 🧩 Order Your HariKube Infrastructure
 
-Unlock Scalable, Compliant Kubernetes Infrastructure
+Deploy Scalable, Compliant Kubernetes Environments
 
-HariKube helps organizations extend Kubernetes with intelligent data routing, resource-aware database placement, and high-performance scaling. To better understand your needs and provide tailored guidance, please complete the short form below. Whether you're exploring proof-of-concept, evaluating for production, or seeking integration support, we're here to help.
+Ready to implement HariKube? Our platform helps organizations extend Kubernetes with intelligent data routing and resource-aware database placement. Please complete the order form below to initiate your setup. Whether you are ready for a production-grade deployment, providing these details ensures we can prepare the right environment for your specific technical requirements.
 
-## 📬 What Happens Next
+## 📬 What Happens After You Order
 
-Submit your request through the contact form, and our team will get back to you with relevant resources, technical insights, or options for scheduling a discovery call. Alternatively, for immediate assistance or other inquiries, please email us at info@inspirnation.eu.
+Once you submit your order form, our team will review your requirements and respond via email within one business day. Here is what to expect in your inbox:
+
+ - **Order Confirmation & Invoice**: A detailed summary of your configuration and a formal PDF invoice for your records.
+ - **Next Steps**: Clear instructions on technical prerequisites and access provisioning.
+ - **Onboarding Guide**: Relevant resources to help your team get started immediately.
+
+For immediate assistance with your order or custom billing inquiries, please reach out to us directly at info@inspirnation.eu.
 
 |||
 
@@ -63,7 +69,7 @@ Submit your request through the contact form, and our team will get back to you 
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
   <!-- Org & redirect -->
   <input type="hidden" name="oid" value="00Dd10000091AMj">
-  <input type="hidden" name="retURL" value="https://harikube.info/get-started/#thanks">
+  <input type="hidden" name="retURL" value="https://harikube.info/order/#thanks">
 
   <!-- Required fields -->
   <label for="first_name">First Name *</label>
@@ -101,15 +107,15 @@ Submit your request through the contact form, and our team will get back to you 
 
   <!-- Submit -->
   <div class="btn-wrap">
-    <input type="submit" value="Subscribe!">
+    <input type="submit" value="Order">
   </div>
 </form>
 </div>
 
 <a id="thanks"></a>
 <div id="sign-up-thanks" style="display: none;">
-<pre>Thanks for your interest in HariKube!</pre>
-<strong>📰 We'll be in touch shortly with more information and resources to help you unlock scalable, compliant Kubernetes infrastructure.</strong>
+<pre>✅ Order Request Received</pre>
+<strong>✨ We have successfully received your order details. Our team is currently reviewing your configuration to ensure a seamless setup.</strong>
 </div>
 
 <style type="text/css">
@@ -124,6 +130,9 @@ Submit your request through the contact form, and our team will get back to you 
   if (window.location.hash == "#thanks") {
     document.getElementById("sign-up-form").style.display = "none";
     document.getElementById("sign-up-thanks").style.display = "";
+  } else if (window.location.hash != "") {
+    order = atob(window.location.hash.replace("#", ""));
+    document.getElementById("description").innerHTML = "\n---\n" + order;
   }
 </script>
 
