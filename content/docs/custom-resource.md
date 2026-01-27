@@ -94,6 +94,7 @@ HariKube supports storage-side filtering by persisting resource field selectors 
 When you update a Custom Resource definition, the required action depends on whether the storage version or the selector logic has changed:
 
 | Scenario | Impact | Action Required |
+|-|-|-|
 | **New CR version** (Storage version unchanged) | Metadata change only | **Nothing** |
 | **New Storage version** (Selectors unchanged) | Schema version bump only | **Nothing** |
 | **New Storage version + New Selectors** | Selectors are now out of sync | **Migration Needed** |

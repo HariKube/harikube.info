@@ -85,7 +85,7 @@ When these layers come together:
 > 🔥 **Kubernetes + HariKube + Serverless + Operators + Aggregation API = Cloud-Native PaaS**
 
 | Functional need                             | Pattern  | Layer           | Typical languages                                              |
-| ------------------------------------------- | -------- | --------------- | -------------------------------------------------------------- |
+|-|-|-|-|
 | Simple event-driven logic                   | Function | Serverless      | Go, Python, Node.js/TypeScript, Java, C#/.NET, Ruby, PHP, Rust |
 | Stateful, multi-resource event driven logic | Operator | Controller      | Go, Python, Java, Node.js/TypeScript, Rust, C#/.NET           |
 | Classic API, querying, integration          | REST     | Aggregation API | Go, Python, Node.js/TypeScript, Java, .NET, Rust, Ruby, PHP |
