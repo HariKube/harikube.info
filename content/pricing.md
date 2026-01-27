@@ -55,8 +55,8 @@ layout: "pricing"
                 "Support channels: Community Forum"
             ],
             "button": {
-                "text": "Order",
-                "url": "/order/"
+                "text": "Get Yours",
+                "url": "/get-yours/"
             }
         },
         {
@@ -81,10 +81,6 @@ layout: "pricing"
                     { "text": "Database number: 40", "price": 10000 },
                     { "text": "Database number: 50", "price": 15000 }
                 ],
-                "SLA guarantees: 99.95%": [
-                    { "text": "SLA guarantees: 99.95%", "price": 0 },
-                    { "text": "SLA guarantees: 99.99%", "price": 8000 }
-                ],
                 "Support coverage: 8x5": [
                     { "text": "Support coverage: 8x5", "price": 0 },
                     { "text": "Support coverage: 24x7", "price": 12000 }
@@ -95,8 +91,8 @@ layout: "pricing"
                 ]
             },
             "button": {
-                "text": "Order",
-                "url": "/order/"
+                "text": "Contact Us",
+                "url": "/contact-us/"
             }
         }
     ]
@@ -133,6 +129,7 @@ layout: "pricing"
             "answer": "The Personal Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Business Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
         },
         {
+            "disabled": true,
             "question": "What is the SLA for HariKube?",
             "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 99.95% SLA for Business editions and you can opt-in to 99.99% SLA per instance."
         },

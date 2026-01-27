@@ -1,26 +1,14 @@
 ---
-title: "Order"
+title: "Contact Us"
 layout: "simple"
-description: "Order Scalable, Compliant Kubernetes Infrastructure."
+description: "Schedule a Technical Discovery Session."
 ---
 
 {{< columns >}}
 
-## 🧩 Order Your HariKube Infrastructure
+## 🔎 Schedule a Technical Discovery Session
 
-Deploy Scalable, Compliant Kubernetes Environments
-
-Ready to implement HariKube? Our platform helps organizations extend Kubernetes with intelligent data routing and resource-aware database placement. Please complete the order form below to initiate your setup. Whether you are ready for a production-grade deployment, providing these details ensures we can prepare the right environment for your specific technical requirements.
-
-## 📬 What Happens After You Order
-
-Once you submit your order form, our team will review your requirements and respond via email within one business day. Here is what to expect in your inbox:
-
- - **Order Confirmation & Invoice**: A detailed summary of your configuration and a formal PDF invoice for your records.
- - **Next Steps**: Clear instructions on technical prerequisites and access provisioning.
- - **Onboarding Guide**: Relevant resources to help your team get started immediately.
-
-For immediate assistance with your order or custom billing inquiries, please reach out to us directly at info@inspirnation.eu.
+Before making a purchase, we invite you to book a call with our CTO for a conversation **to determine the best solution for your needs**. This is not a sales pitch, it’s a chance to walk through your use case, challenges, and expectations, and to figure out together what you actually need. You’ll get direct insight into how HariKube fits into your architecture, what configuration makes sense, and what to plan for next, so you can move forward with confidence and clarity. **We’ll get back to you within 24 hours to schedule the call.**
 
 |||
 
@@ -69,7 +57,7 @@ For immediate assistance with your order or custom billing inquiries, please rea
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
   <!-- Org & redirect -->
   <input type="hidden" name="oid" value="00Dd10000091AMj">
-  <input type="hidden" name="retURL" value="https://harikube.info/order/#thanks">
+  <input type="hidden" name="retURL" value="https://harikube.info/contact-us/#thanks">
 
   <!-- Required fields -->
   <label for="first_name">First Name *</label>
@@ -98,24 +86,24 @@ For immediate assistance with your order or custom billing inquiries, please rea
   </div>
 
   <!-- Single marketing preference -->
-  <div class="consent">
+  <!--div class="consent">
     <label>
       <input type="checkbox" name="00Nd1000006amIn" value="true">
       Keep me in the loop about new features and updates.
     </label>
-  </div>
+  </div-->
 
   <!-- Submit -->
   <div class="btn-wrap">
-    <input type="submit" value="Order">
+    <input type="submit" value="Contact Us">
   </div>
 </form>
 </div>
 
 <a id="thanks"></a>
 <div id="sign-up-thanks" style="display: none;">
-<pre>✅ Order Request Received</pre>
-<strong>✨ We have successfully received your order details. Our team is currently reviewing your configuration to ensure a seamless setup.</strong>
+<pre>✅ Discussion Request Received</pre>
+<strong>✨ We have successfully received your personal details. Our team is currently reviewing your configuration to ensure a seamless setup.</strong>
 </div>
 
 <style type="text/css">
