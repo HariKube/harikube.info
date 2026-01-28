@@ -35,6 +35,11 @@ validate: gen
 		-v $(PWD)/public/license/index.html:/public/pages/terms-conditions-mail.html \
 		wjdp/htmltest /public --skip-external
 	
+	@docker run --rm \
+		-v $(PWD)/public:/public \
+		--entrypoint=kubeconform \
+		stagex/kubeconform:0.6.4 -summary -ignore-missing-schemas -insecure-skip-tls-verify /public/manifests
+
 	@for img in $$(find public \( -name *.html -o -name *.yaml \) -exec grep -oE "(registry.harikube.info|quay.io)/harikube/([a-zA-Z0-9\:\.\-]+)" {} \; | sort -n | uniq) ; do \
 		docker pull "$$img" && docker rmi "$$img" || exit 1 ; \
 	done

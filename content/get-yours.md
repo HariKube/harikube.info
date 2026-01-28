@@ -14,7 +14,7 @@ Ready to experiment with HariKube? Our Personal Edition lets you explore how to 
 
 ## 📬 What Happens Next
 
-Once you submit the form, you won’t have to wait for a salesperson. Check your inbox immediately for:
+Once you submit your order form, our team will review your requirements and respond via email within one business day. Here is what to expect in your inbox:
 
  - **License Key & Download Link**: Your unique credentials to activate the Personal Edition.
  - **Quick-Start Guide**: A streamlined "Hello World" to get HariKube running on your local cluster in minutes.
@@ -85,8 +85,8 @@ For technical questions or feedback during your setup, feel free to reach out to
   <input id="company" name="company" type="text">
 
   <!-- Optional free text -> maps to Lead Description -->
-  <!--label for="description">Anything to share? Don’t be shy</label>
-  <textarea id="description" name="description" placeholder="Write your message…"></textarea-->
+  <!--label for="description">Anything to share? Don’t be shy</label-->
+  <textarea id="description" name="description" placeholder="Write your message…" style="display: none"></textarea>
 
   <!-- Mandatory T&C consent -->
   <div class="consent">
@@ -114,7 +114,7 @@ For technical questions or feedback during your setup, feel free to reach out to
 <a id="thanks"></a>
 <div id="sign-up-thanks" style="display: none;">
 <pre>✅ Personal Edition Request Received</pre>
-<strong>✨ We have successfully received your request details. Our team is currently reviewing your request and giving you access to the production.</strong>
+<strong>✨ We have successfully received your request details. Our team is currently reviewing your request and respond via email within one business day.</strong>
 </div>
 
 <style type="text/css">
@@ -129,6 +129,9 @@ For technical questions or feedback during your setup, feel free to reach out to
   if (window.location.hash == "#thanks") {
     document.getElementById("sign-up-form").style.display = "none";
     document.getElementById("sign-up-thanks").style.display = "";
+  } else if (window.location.hash != "") {
+    order = atob(window.location.hash.replace("#", ""));
+    document.getElementById("description").innerHTML = "\n---\n" + order;
   }
 </script>
 

@@ -16,6 +16,7 @@ Start by authenticating your local Docker client with the private registry at `r
   --stop-timeout=-1 \
   -e LICENSE_KEY_FILE=/license \
   -e TOPOLOGY_CONFIG=file:///topology.yaml \
+  -e ENABLE_TELEMETRY_PUSH=true \
   -v ${PWD}/license:/license:ro \
   -v $(pwd)/topology.yaml:/topology.yaml \
   -v harikube_db:/db \

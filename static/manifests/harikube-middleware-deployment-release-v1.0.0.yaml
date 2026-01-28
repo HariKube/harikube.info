@@ -68,6 +68,8 @@ spec:
           value: secret://harikube/topology-config
         - name: LICENSE_KEY_FILE
           value: /etc/harikube/license
+        - name: ENABLE_TELEMETRY_PUSH
+          value: "false"
         args:
         - --log-format=json
         - --slow-sql-threshold=2s
