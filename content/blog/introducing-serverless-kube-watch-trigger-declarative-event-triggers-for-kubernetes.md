@@ -20,7 +20,7 @@ When working on **HariKube**, we realized a missing piece: while Kubernetes coul
 
 We wanted a native, minimal way to say:
 
-> “When this Deployment changes, send an HTTP request.”
+> "When this Deployment changes, send an HTTP request."
 
 That’s what `serverless-kube-watch-trigger` does.
 

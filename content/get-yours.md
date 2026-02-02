@@ -92,7 +92,7 @@ For technical questions or feedback during your setup, feel free to reach out to
   <div class="consent">
     <label>
       <input type="checkbox" name="00Nd1000006am97" value="true" required>
-      I accept the <a href="/terms-conditions/" target="_blank" rel="noopener">T&amp;C</a> and <a href="/eula/" target="_blank" rel="noopener">EULA</a>
+      I accept the <a href="/terms-conditions/" target="_blank" rel="noopener">T&amp;C</a> and <a href="/eula/#personal" target="_blank" rel="noopener">EULA</a>
     </label>
   </div>
 
@@ -131,7 +131,7 @@ For technical questions or feedback during your setup, feel free to reach out to
     document.getElementById("sign-up-thanks").style.display = "";
   } else if (window.location.hash != "") {
     order = atob(window.location.hash.replace("#", ""));
-    document.getElementById("description").innerHTML = "\n---\n" + order;
+    document.getElementById("description").innerHTML = order;
   }
 </script>
 

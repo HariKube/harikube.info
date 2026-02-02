@@ -70,7 +70,6 @@ layout: "pricing"
                 "Database number: 20",
                 "Maintenance updates: 12 months",
                 "Premium support: 12 months",
-                "SLA guarantees: 99.95%",
                 "Support coverage: 8x5",
                 "Support channels: Community Forum, Email"
             ],
@@ -129,9 +128,8 @@ layout: "pricing"
             "answer": "The Personal Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Business Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
         },
         {
-            "disabled": true,
             "question": "What is the SLA for HariKube?",
-            "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 99.95% SLA for Business editions and you can opt-in to 99.99% SLA per instance."
+            "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 98.5%% SLA for Business editions. High Availability is coming soon!"
         },
         {
             "disabled": true,

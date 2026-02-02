@@ -65,6 +65,7 @@ Whether you are scaling a global enterprise or building the next disruptive star
  - [Learn more about Unified Service Model](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/)
  - [Dirty your hand and jump into the middle](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality)
  - Explore features: [Developer experience](/features/developer-experience/), [Performance](/features/performance/), [Infrastructure flexibility](/features/flexible-stack/), [Data isolation](/features/data-isolation/)
+ - [Download the whitepaper](/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/)
  - [Discover future plans](/docs/future-plans/)
 
 **The bottleneck is broken. The taxes are repealed. It’s time to ship.**

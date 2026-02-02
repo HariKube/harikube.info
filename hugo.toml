@@ -112,11 +112,11 @@ canonifyURLs = true
   # Global CTA Configuration (optional)
   [params.cta]
     enable = true
-    title = "Ready to Get Started?"
-    description = "We're getting close to launch, and we want you to be one of the first to experience Cloud-Native microservice development in scale."
+    title = "Read the Technical Whitepaper!"
+    description = "Beyond the Benchmarks: If 50% of your engineering effort is currently spent on platform integration rather than business logic, your infrastructure is a bottleneck. In our technical whitepaper, we share the research behind the Unified Service Model and demonstrate how HariKube eliminates the integration overhead that stalls enterprise growth."
     [params.cta.primary_button]
-      text = "Get Started"
-      url = "/get-started/"
+      text = "Download"
+      url = "/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/"
 
   # Social Media Links (optional)
   [params.social]
