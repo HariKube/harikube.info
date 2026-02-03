@@ -12,6 +12,13 @@ Experience the Power of Intelligent Kubernetes Routing - For Free
 
 Ready to experiment with HariKube? Our Personal Edition lets you explore how to extend Kubernetes with intelligent data routing and resource-aware backends on your own terms. Simply complete the request form below to get your license key and start building.
 
+#### Personal Edition:
+
+ - 🆓 Free Forever
+ - 🔧 Manual database configuration
+ - 📈 Maximum database number: 10
+
+
 ## 📬 What Happens Next
 
 Once you submit your request, our team will respond via email within one business day. Here is what to expect in your inbox:

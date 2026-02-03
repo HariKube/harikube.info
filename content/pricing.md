@@ -67,7 +67,7 @@ layout: "pricing"
             "displayPrice": false,
             "description": "Ideal for startups and small businesses looking to get up and running quickly.",
             "freetier": false,
-            "featured": true,
+            "featured": false,
             "features": [
                 "Automatic database configuration",
                 "Database number: 20",
