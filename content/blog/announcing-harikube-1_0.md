@@ -18,7 +18,7 @@ Today, we are announcing a tax-free future. **HariKube 1.0 is officially here**.
 
 Standard Kubernetes relies on etcd - a marvelous piece of tech that, unfortunately, wasn't built for the sheer volume of data modern enterprises throw at it. When you scale, etcd slows. When etcd slows, your entire platform crawls.
 
-HariKube breaks this cycle. By introducing a database-agnostic middleware, we’ve decoupled the Kubernetes API from its legacy storage. You can now power your cluster with multiple databases - including for example PostgreSQL, MySQL, TiDB, YugabyteDB, CockroachDB. 
+HariKube breaks this cycle. By introducing a database-agnostic middleware, we’ve decoupled the Kubernetes API from its legacy storage. You can now power your cluster with multiple backends - including PostgreSQL, MySQL, TiDB, YugabyteDB, CockroachDB, and HariKube itself (matrix of multi-dimensional databases).
 
 The result? **10x to 50x more operations per second**. Your control plane finally has the horsepower to match your ambitions, and finaly it became the **Single-Source-of-Truth** not just for your infrastructure, but your custom services as well.
 
@@ -32,11 +32,11 @@ Platform engineering shouldn't feel like a second job for your developers. The "
 
 ## 🎯 Who is HariKube For?
 
-We didn’t build HariKube for everyone. We built it for the outliers—those who have pushed Kubernetes to its breaking point and felt it push back. If you recognize your own struggles in the scenarios below, HariKube was built specifically for you.
+We didn’t build HariKube for everyone. We built it for the outliers - those who have pushed Kubernetes to its breaking point and felt it push back. If you recognize your own struggles in the scenarios below, HariKube was built specifically for you.
 
  - **The Scaling Enterprise**: You’ve hit the "etcd wall." Your clusters are bloated with CRDs, API latency is spiking, and your growth is hitting a ceiling. You need the horizontal scale of distributed SQL to keep your business moving at the speed of your ambitions.
  - **The Platform Architect**: You’re tired of the "abstraction tax." You want to deliver a seamless, Heroku-like developer experience without stripping away the raw power of the Kubernetes ecosystem or inventing proprietary DSLs that your team has to unlearn later.
- - **The Visionary Dreamer**: You aren't planning for the next sprint; you’re architecting for the next decade. You need a foundation that transcends the limitations of legacy orchestration—a system that adapts to your imagination rather than forcing your vision into a pre-defined box.
+ - **The Visionary Dreamer**: You aren't planning for the next sprint; you’re architecting for the next decade. You need a foundation that transcends the limitations of legacy orchestration - a system that adapts to your imagination rather than forcing your vision into a pre-defined box.
  - **The Future-Proof Architect**: You’ve seen "next-gen" tools come and go. You’re done reinventing the wheel every two years. You demand industrial-grade, standards-based tooling that doesn't just patch today’s bottleneck but evolves alongside the industry.
  - **The Sovereign Strategist**: You’ve been burned by "black box" ecosystems and proprietary traps before. You refuse to let your infrastructure become a golden cage. You need a platform that is totally transparent - one that runs on any Kubernetes and uses standard cloud-native services. With HariKube, you keep your autonomy; your services remain portable, your stack remains standard, and your exit strategy is built-in by design.
  - **The Velocity-Focused Delivery Manager**: You know that "shifting left" shouldn't feel like slamming on the brakes. You’re here to eliminate the "Kubernetes Tax," transforming your infrastructure from a complex hurdle into a high-speed lane that lets your team ship with total confidence.
@@ -53,7 +53,15 @@ By decoupling the storage layer and abstracting the complexity, we aren't just m
 
 While HariKube 1.0 represents the pinnacle of our enterprise-grade platform, we haven’t forgotten our roots. We are incredibly proud to have shared the core fundamentals of this architecture through our [open-source edition](/blog/build-your-kubernetes-platform-as-a-service-today/).
 
-For teams just starting their journey or those who want to "taste" what Kubernetes-as-a-Platform feels like, our open-source projects offer the same unified concept. While this community version is limited to a single database backend, it provides the perfect entry point for explorers who want to experiment with the Unified Service Model and validate the performance gains of using HariKube-backed Kubernetes on a smaller scale.
+For teams just starting their journey or those who want to "taste" what Kubernetes-as-a-Platform feels like, our open-source projects offer the same unified concept. While this community version is limited to a single database backend (PostgreSQL, MySQL, SQLite), it provides the perfect entry point for explorers who want to experiment with the Unified Service Model and validate the performance gains of using HariKube-backed Kubernetes on a smaller scale.
+
+#### Expanding the Ecosystem
+
+Our commitment to the community goes beyond just the core platform. We have released a suite of lightweight tools and frameworks designed to make platform integration seamless.
+
+ - The flagship among these is our [Serverless Kubernetes Watch Trigger Operator](https://github.com/HariKube/serverless-kube-watch-trigger). This lightweight tool transforms Kubernetes API server watch events into direct trigger sources for serverless functions and external systems. It allows you to declaratively define exactly when and how webhooks or functions should fire in response to resource changes - all without the need to modify the API server or manage heavy, complex eventing frameworks.
+ - We’ve open-sourced the [Kubernetes Aggregation Framework](https://github.com/HariKube/kubernetes-aggregator-framework) that simplifies extending the core Kubernetes API. Think of it as a gateway that lets you add any resource types to your cluster that behave exactly like native objects or Custom Resources, ensuring your bespoke tools feel like a natural part of the ecosystem.
+ - Last but certainly not least, we’ve shared a set of critical changes designed to achieve [storage-side filtering within Kubernetes](https://github.com/HariKube/kubernetes-patches). By pushing data filtering logic down to the storage layer, we significantly reduce the amount of unnecessary data transferred over the network, drastically improving performance for data-intensive applications.
 
 We believe the "tax-free" future should be accessible to everyone - from the lone developer to the global corporation.
 

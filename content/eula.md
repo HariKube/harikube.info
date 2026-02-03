@@ -20,10 +20,14 @@ layout: "simple"
 
 ## Business Edition
 
-<iframe id="business" src="/docs/8.5.4-a1-r1-eula-hk-trial-250618.pdf" style="width: 100%; height:768px;"></iframe>
+[Download](/docs/8.5.4-a2-r0-eula-hk-ga-251128.pdf)
+
+<iframe id="business" src="/docs/8.5.4-a2-r0-eula-hk-ga-251128.pdf" style="width: 100%; height:768px;"></iframe>
 
 ---
 
 ## Personal Edition
 
-<iframe id="personal" src="/docs/8.5.4-a1-r1-eula-hk-trial-250618.pdf" style="width: 100%; height:768px;"></iframe>
+[Download](/docs/8.5.4-a3-r0-eula-hk-personal-260202.pdf)
+
+<iframe id="personal" src="/docs/8.5.4-a3-r0-eula-hk-personal-260202.pdf" style="width: 100%; height:768px;"></iframe>

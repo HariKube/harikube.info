@@ -186,10 +186,14 @@ canonifyURLs = true
     url = "/terms-conditions/"
     weight = 1
   [[menu.footer_column_3]]
+    name = "Privacy Policy"
+    url = "/privacy-policy/"
+    weight = 2
+  [[menu.footer_column_3]]
     name = "End User License Agreement"
     url = "/eula/"
-    weight = 2
+    weight = 3
   [[menu.footer_column_3]]
     name = "Service Level Agreement"
     url = "/sla/"
-    weight = 2
+    weight = 4

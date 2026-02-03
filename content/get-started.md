@@ -114,8 +114,9 @@ Submit your request through the contact form, and our team will get back to you 
 
 <style type="text/css">
 #sign-up-thanks pre {
-    background-color: green;
+    background-color: lightgreen;
     text-align: center;
+    color: black;
     font-size: 24px;
 }
 </style>

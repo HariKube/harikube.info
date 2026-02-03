@@ -57,6 +57,7 @@ Kubernetes design tradeoffs.
 | Non-Transactional | No support for ACID transactions |
 | Relational Logic | Complex joins or relations between data entities are not supported |
 | Limited Data Filtering | No advanced query engine included within Kubernetes |
+| Limited number of CRDs | Kubernetes Discovery API reaches it's limit proximately around at 500 |
 
 You can try operator based microservice development today. We Open-Sourced modified Kubernetes and Kine versions with the support of storage-side filtering. For more information please follow the blogpost here: [Build Your Kubernetes Platform-as-a-Service Today](/blog/build-your-kubernetes-platform-as-a-service-today/).
 
@@ -115,7 +116,7 @@ kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/rele
 
 The moment to stop talking about the future and start building it is now. Assuming you've completed the prerequisite step and have your beta access credentials, executing the fundamental transformation of your Kubernetes cluster requires just a few straightforward commands. By running the following sequence, you will introduce the core HariKube components, implementing a separated Kubernetes API via [vCluster](https://www.vcluster.com) in the background to ensure genuine architectural separation between infrastructure management and service data, and immediately upgrade your Kubernetes environment to a highly scalable, platform-ready PaaS foundation. Get ready to witness the convergence of power and simplicity:
 
-> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
 
 {{< code bash >}}kubectl create namespace harikube
 kubectl create secret generic -n harikube harikube-license --from-file=${PWD}/license

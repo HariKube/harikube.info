@@ -123,7 +123,7 @@ HariKube includes an internal metadata store that maintains mapping information 
 
 ## 🔌 Middleware Configuration
 
-> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
 
 The middleware is designed to operate seamlessly in both containerized and traditional environments. It can be executed within a Kubernetes cluster (e.g., as a Pod or Deployment) or deployed external to the cluster. All operational configuration files and parameters are standardized and require no modification based on the deployment location.
 
@@ -141,6 +141,14 @@ The middleware is designed to operate seamlessly in both containerized and tradi
     ]
 }
 {{< /details >}}
+
+## 📈 Database Configuration
+
+The HariKube removes the "Single Connection" constraint, introducing native multi-database sharding. This allows you to orchestrate an unlimited fleet of independent databases through a single entry point. By using industry-standard layering, you can scale each individual database in your matrix to handle massive workloads.
+
+ - **Database Partitioning** (Inside the Shard): Before adding more servers, optimize the one you have. HariKube is designed to work perfectly with native SQL partitioning. Create your schema and partitions manually. When HariKube pushes a query down to the DB, the SQL engine only scans the relevant partition. You get the speed of a sharded system within the simplicity of a single database connection.
+ - **Upgrading to a Distributed Database** (The "Drop-In" Scale): The most powerful way to scale the database is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.
+ - **Introducing a Smart Load Balancer** (Read/Write Splitting): To maximize throughput, you can place a State-Aware Proxy (like ProxySQL, MaxScale, Pgpool-II, or Pgcat) between HariKube and your database cluster. The Load Balancer identifies "Write" operations and routes them to the Database Leader/Primary. The Load Balancer identifies "Read" operations (GET, LIST) and distributes them across multiple Read Replicas. This offloads heavy "Watch" and "List" traffic from your primary database, ensuring that write operations remain lightning-fast and uncontended.
 
 ## 🚀 Setup and start Kubernetes
 

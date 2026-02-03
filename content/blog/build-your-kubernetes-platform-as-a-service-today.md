@@ -145,6 +145,7 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 - **ETCD Avoidance**: State is routed to the SQL backend via Kine.
 - **Storage-Side Filtering**: All data queries are optimized for performance.
+- **Storage-Side Garbage-Collection**: Optionally you can push garbage-collection to the storage side.
 - **Isolation**: The control plane is separated into its own namespace via vCluster.
 
 To execute this, simply run the following command:
@@ -225,6 +226,16 @@ example3   green   M
 {{< /output >}}
 
 > We strongly recommend to read the [Custom Resources](/docs/custom-resource/) section of our documentation, because you could find more detailed information about serving huge amount of custom resources efficiently.
+
+## 📈 Scaling the Open Source Edition
+
+If you are running the Open Source version of HariKube, you are restricted to one logical database connection. However, "one database" does not mean "one bottleneck." By using industry-standard layering, you can scale your control plane to handle massive workloads.
+
+ - **Database Partitioning** (Inside the Shard): Before adding more servers, optimize the one you have. HariKube is designed to work perfectly with native SQL partitioning. Create your schema and partitions manually. When HariKube pushes a query down to the DB, the SQL engine only scans the relevant partition. You get the speed of a sharded system within the simplicity of a single database connection.
+ - **Upgrading to a Distributed Database** (The "Drop-In" Scale): The most powerful way to scale the Open Source edition is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.
+ - **Introducing a Smart Load Balancer** (Read/Write Splitting): To maximize throughput, you can place a State-Aware Proxy (like ProxySQL, MaxScale, Pgpool-II, or Pgcat) between HariKube and your database cluster. The Load Balancer identifies "Write" operations and routes them to the Database Leader/Primary. The Load Balancer identifies "Read" operations (GET, LIST) and distributes them across multiple Read Replicas. This offloads heavy "Watch" and "List" traffic from your primary database, ensuring that write operations remain lightning-fast and uncontended.
+
+If you have implemented partitioning, moved to a distributed backend, and introduced smart load balancing, but your growth is still outpacing your infrastructure, you have reached the summit of single-cluster scaling. At this stage, it is time to [call us](/contact-us/) for the HariKube Business Edition. You will gain the ability to repeat these same proven strategies across a multi-database matrix, unlocking true horizontal infinity for your control plane.
 
 ## 🧠 Final Thoughts
 

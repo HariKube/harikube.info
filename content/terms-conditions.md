@@ -18,4 +18,6 @@ layout: "simple"
 }
 </script>
 
-<iframe src="/docs/terms-and-conditions.pdf" style="width: 100%; height:768px;"></iframe>
+[Download](/docs/8.5.4-a4-r0-terms-and-conditions-newsletter.pdf)
+
+<iframe src="/docs/8.5.4-a4-r0-terms-and-conditions-newsletter.pdf" style="width: 100%; height:768px;"></iframe>

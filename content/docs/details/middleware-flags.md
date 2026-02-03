@@ -39,7 +39,7 @@ Environment variables:
     - `TOPOLOGY_CONFIG_TLS_DIR`: Directory path for storing TLS files provided by topology secret, Default `./db/tls`
  - `LIST_MAX_ITEMS`: Max items for list operations. Default 1000
  - `DISABLE_STORAGE_LEVEL_FILTERING`: Disable storage level filtering of the main database, Default: `false`
- - `ENABLE_TELEMETRY_PUSH`: Enables pushing usage telemetry to HariKube central monitoring site `https://monitoring.harikube.info`
+ - `ENABLE_TELEMETRY_PUSH`: Enables pushing anonym usage telemetry to HariKube central monitoring site `https://monitoring.harikube.info`
  - `CUSTOM_RESOURCE_DEFINITION_METADATA_FILE`: Locatin to store Custom Resource Definition metadata. Defaut: `./db/crds.json`
  - `DISABLE_GARBAGE_COLLECTION`: Disable storage level garbage-collection. Objects stored at SQL databases and labeled with `skip-controller-manager-metadata-caching=true` are managed. Default `false`
  - `GARBAGE_COLLECTION_DELETE_LOG_DIR`: Directory path for storing delete logs of storage side GC, Default `./db/delete_log`

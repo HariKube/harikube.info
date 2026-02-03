@@ -92,7 +92,7 @@ For technical questions or feedback during your setup, feel free to reach out to
   <div class="consent">
     <label>
       <input type="checkbox" name="00Nd1000006am97" value="true" required>
-      I accept the <a href="/terms-conditions/" target="_blank" rel="noopener">T&amp;C</a> and <a href="/eula/#personal" target="_blank" rel="noopener">EULA</a>
+      I accept the <a href="/eula/#personal" target="_blank" rel="noopener">EULA</a>
     </label>
   </div>
 
@@ -119,8 +119,9 @@ For technical questions or feedback during your setup, feel free to reach out to
 
 <style type="text/css">
 #sign-up-thanks pre {
-    background-color: green;
+    background-color: lightgreen;
     text-align: center;
+    color: black;
     font-size: 24px;
 }
 </style>

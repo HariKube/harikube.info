@@ -113,4 +113,14 @@ Using 6 databases resulted in a **3× improvement in both throughput and latency
 
  - The single-database setup also produced a ~3.9% error rate, while the 8-database HariKube configuration completed the test with zero errors near 3.5x faster, highlighting its superior reliability under load.
 
+## 📈 Still not impressed?
+
+If a 200 μs average response time and 0 errors across 160,000 requests are still not enough for your specific use case, it's time to go deeper. HariKube doesn't just scale out; it allows you to optimize every individual "cell" in your data matrix to reach the physical limits of your hardware.
+
+Here is how to push the performance ceiling even higher:
+
+ - **Database Partitioning** (Inside the Shard): Before adding more servers, optimize the one you have. HariKube is designed to work perfectly with native SQL partitioning. Create your schema and partitions manually. When HariKube pushes a query down to the DB, the SQL engine only scans the relevant partition. You get the speed of a sharded system within the simplicity of a single database connection.
+ - **Upgrading to a Distributed Database** (The "Drop-In" Scale): The most powerful way to scale the database is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.
+ - **Introducing a Smart Load Balancer** (Read/Write Splitting): To maximize throughput, you can place a State-Aware Proxy (like ProxySQL, MaxScale, Pgpool-II, or Pgcat) between HariKube and your database cluster. The Load Balancer identifies "Write" operations and routes them to the Database Leader/Primary. The Load Balancer identifies "Read" operations (GET, LIST) and distributes them across multiple Read Replicas. This offloads heavy "Watch" and "List" traffic from your primary database, ensuring that write operations remain lightning-fast and uncontended.
+
  #### [Infrastructure Flexibility -->](/features/flexible-stack/)

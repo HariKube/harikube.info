@@ -36,6 +36,7 @@ Before discussing the solution, let’s highlight the limitations of custom reso
 | Non-Transactional | No support for ACID transactions |
 | Relational Logic | Complex joins or relations between data entities are not supported |
 | Limited Data Filtering | No advanced query engine included within Kubernetes |
+| Limited number of CRDs | Kubernetes Discovery API reaches it's limit proximately around at 500 |
 
 > 💡 Don't worry, the Kubernetes API aggregation layer can help overcome the limitations of the core API server by allowing you to extend the API with custom APIs that are served by a separate backend, or extension API server. This setup enables you to implement specific logic and capabilities that aren't available in the core API.
 
@@ -110,7 +111,7 @@ Next, create a data routing configuration file called `topology.yaml`.
 
 After preparing the environment, start the middleware.
 
-> ⚠️ A valid license is required to proceed. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
 
 Start by authenticating your local Docker client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
 

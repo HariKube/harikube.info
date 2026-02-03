@@ -18,4 +18,6 @@ layout: "simple"
 }
 </script>
 
-<iframe src="/docs/8.2.1-a1-r0a-sla.pdf" style="width: 100%; height:768px;"></iframe>
+[Download](/docs/8.2.1-a1-r0c-sla.pdf)
+
+<iframe src="/docs/8.2.1-a1-r0c-sla.pdf" style="width: 100%; height:768px;"></iframe>
