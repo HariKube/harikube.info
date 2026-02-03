@@ -115,7 +115,7 @@ Using 6 databases resulted in a **3× improvement in both throughput and latency
 
 ## 📈 Still not impressed?
 
-If a 200 μs average response time and 0 errors across 160,000 requests are still not enough for your specific use case, it's time to go deeper. HariKube doesn't just scale out; it allows you to optimize every individual "cell" in your data matrix to reach the physical limits of your hardware.
+If a 200 μs average response time and 0 errors on 3,600 threads are still not enough for your specific use case, it's time to go deeper. HariKube doesn't just scale out; it allows you to optimize every individual "cell" in your data matrix to reach the physical limits of your hardware.
 
 Here is how to push the performance ceiling even higher:
 

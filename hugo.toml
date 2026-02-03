@@ -66,8 +66,8 @@ canonifyURLs = true
     # Header Buttons (optional)
     [params.header.buttons]
       [params.header.buttons.getStarted]
-        text = "Get Started"
-        url = "/get-started/"
+        text = "Get Yours"
+        url = "/get-yours/"
 
   # Blog configuration
   [params.blog]

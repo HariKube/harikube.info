@@ -1,0 +1,78 @@
+  .hk-form {
+      max-width: 420px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      font-family: system-ui, sans-serif;
+  }
+
+  .hk-form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #1e293b;
+  }
+
+  .hk-form input[type="text"],
+  .hk-form input[type="email"],
+  .hk-form textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+  }
+
+  .hk-form textarea {
+      min-height: 120px;
+      resize: vertical;
+  }
+
+  .hk-form input[type="checkbox"] {
+      margin-right: 0.5rem;
+  }
+
+  .hk-form .consent {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-bottom: 0.8rem;
+  }
+
+  .hk-form a {
+      color: #425AD6;
+      text-decoration: underline;
+  }
+
+  .hk-form .btn-wrap {
+      text-align: center;
+      margin-top: 1.2rem;
+  }
+
+  .hk-form input[type="submit"] {
+      background: #425AD6;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+  }
+
+  .hk-form input[type="submit"]:hover {
+      background: #3341a3;
+      transform: translateY(-2px);
+  }
+
+  #hk-form-thanks pre {
+      background-color: lightgreen;
+      text-align: center;
+      color: black;
+      font-size: 24px;
+  }

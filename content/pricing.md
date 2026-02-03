@@ -31,6 +31,7 @@ layout: "pricing"
         {
             "name": "Open-Source Edition",
             "price": "0",
+            "displayPrice": true,
             "description": "Perfect for standalone projects and environments where one database is sufficient.",
             "features": [
                 "Database number: 1",
@@ -46,6 +47,7 @@ layout: "pricing"
         {
             "name": "Personal Edition",
             "price": "0",
+            "displayPrice": true,
             "description": "The perfect starting point for personal projects and prototypes.",
             "features": [
                 "Manual database configuration",
@@ -61,7 +63,8 @@ layout: "pricing"
         },
         {
             "name": "Business Edition",
-            "price": "19900",
+            "price": "19000",
+            "displayPrice": false,
             "description": "Ideal for startups and small businesses looking to get up and running quickly.",
             "freetier": false,
             "featured": true,
@@ -78,7 +81,8 @@ layout: "pricing"
                     { "text": "Database number: 20", "price": 0 },
                     { "text": "Database number: 30", "price": 5000 },
                     { "text": "Database number: 40", "price": 10000 },
-                    { "text": "Database number: 50", "price": 15000 }
+                    { "text": "Database number: 50", "price": 15000 },
+                    { "text": "Database number: 100", "price": 30000 }
                 ],
                 "Support coverage: 8x5": [
                     { "text": "Support coverage: 8x5", "price": 0 },
