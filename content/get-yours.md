@@ -6,11 +6,11 @@ description: "Get Your HariKube Edition."
 
 {{< columns >}}
 
-## 🚀 Get Your HariKube Edition
+## 🚀 Get Your HariKube Personal Edition
 
 Experience the Power of Intelligent Kubernetes Routing - For Free
 
-Ready to experiment with HariKube? Our Edition lets you explore how to extend Kubernetes with intelligent data routing and resource-aware backends on your own terms. Simply complete the request form below to get your license key and start building.
+Ready to experiment with HariKube? Our Personal Edition lets you explore how to extend Kubernetes with intelligent data routing and resource-aware backends on your own terms. Simply complete the request form below to get your license key and start building.
 
 ## 📬 What Happens Next
 
