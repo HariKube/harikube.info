@@ -19,8 +19,16 @@ For technical questions or feedback during your setup, feel free to reach out to
 
 |||
 
-<div id="sign-up-form">
+<div id="hk-form-thanks" style="display: none;">
+<pre>📆  Please book your meeting below</pre>
 
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/andras-szanto-inspirnation/harikube?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+</div>
+
+<div id="sign-up-form">
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
   <input type="hidden" name="oid" value="00Dd10000091AMj">
   <input type="hidden" name="retURL" value="/contact-us/#thanks">
@@ -53,17 +61,6 @@ For technical questions or feedback during your setup, feel free to reach out to
     <input type="submit" value="Book Consultation">
   </div>
 </form>
-</div>
-
-<a id="thanks"></a>
-<div id="hk-form-thanks" style="display: none;">
-<pre>📆  Please book your meeting below</pre>
-
-<!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/andras-szanto-inspirnation/harikube?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
-
 </div>
 
 {{< /columns >}}

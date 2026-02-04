@@ -18,8 +18,12 @@ Submit your request through the contact form, and our team will get back to you 
 
 |||
 
-<div id="sign-up-form">
+<div id="hk-form-thanks" style="display: none;">
+<pre>Thanks for your interest in HariKube!</pre>
+<strong>📰 We'll be in touch shortly with more information and resources to help you unlock scalable, compliant Kubernetes infrastructure.</strong>
+</div>
 
+<div id="sign-up-form">
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
   <input type="hidden" name="oid" value="00Dd10000091AMj">
   <input type="hidden" name="retURL" value="/get-started/#thanks">
@@ -55,12 +59,6 @@ Submit your request through the contact form, and our team will get back to you 
     <input type="submit" value="Subscribe!">
   </div>
 </form>
-</div>
-
-<a id="thanks"></a>
-<div id="hk-form-thanks" style="display: none;">
-<pre>Thanks for your interest in HariKube!</pre>
-<strong>📰 We'll be in touch shortly with more information and resources to help you unlock scalable, compliant Kubernetes infrastructure.</strong>
 </div>
 
 {{< /columns >}}

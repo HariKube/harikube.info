@@ -35,8 +35,12 @@ For technical questions or feedback during your setup, feel free to reach out to
 
 |||
 
-<div id="sign-up-form">
+<div id="hk-form-thanks" style="display: none;">
+<pre>✅ Starter Edition Request Received</pre>
+<strong>✨ We have successfully received your request details. Our team is currently reviewing your request and respond via email within one business day.</strong>
+</div>
 
+<div id="sign-up-form">
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
   <input type="hidden" name="oid" value="00Dd10000091AMj">
   <input type="hidden" name="retURL" value="/get-starter-edition/#thanks">
@@ -69,12 +73,6 @@ For technical questions or feedback during your setup, feel free to reach out to
     <input type="submit" value="Get Starter Edition">
   </div>
 </form>
-</div>
-
-<a id="thanks"></a>
-<div id="hk-form-thanks" style="display: none;">
-<pre>✅ Starter Edition Request Received</pre>
-<strong>✨ We have successfully received your request details. Our team is currently reviewing your request and respond via email within one business day.</strong>
 </div>
 
 {{< /columns >}}
