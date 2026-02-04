@@ -26,4 +26,4 @@ The result?
 
 A powerful abstraction layer for platform engineers that enables secure scaling, flexible infrastructure evolution, and seamless integration with diverse storage systems-without developer disruption or infrastructure sprawl.
 
-#### [<-- Performance](/features/performance/) | [Data Isolation -->](/features/data-isolation/)
+#### [<-- Consystency](/features/consystency/) | [Data Isolation -->](/features/data-isolation/)

@@ -99,4 +99,4 @@ Typical REST/API languages: Go, Python, Node.js/TypeScript, Java, C#/.NET, Rust,
 
 By unifying Serverless Functions, Operators, and Custom REST APIs into a single platform powered by the HariKube dynamic data layer, you overcome ETCD limits and transform Kubernetes into a full, scalable, and language-agnostic Hybrid PaaS.
 
- #### [<-- Data Isolation](/features/data-isolation/)
+ #### [Performance -->](/features/performance/)

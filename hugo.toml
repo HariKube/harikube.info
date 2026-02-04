@@ -142,6 +142,7 @@ canonifyURLs = true
       submenu = [
         { name = "Developer Experience", url = "/features/developer-experience/" },
         { name = "Performance", url = "/features/performance/" },
+        { name = "Consystency", url = "/features/consystency/" },
         { name = "Infrastructure Flexibility", url = "/features/flexible-stack/" },
         { name = "Data Isolation", url = "/features/data-isolation/" }
         

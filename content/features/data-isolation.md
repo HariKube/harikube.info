@@ -32,4 +32,4 @@ Why Fine-Grained Isolation Matters
 
 HariKube brings these capabilities to Kubernetes with zero disruption to existing workflows. Developers continue using native APIs, while platform teams gain the fine-grained control they need to run secure, compliant, and scalable systems.
 
-#### [<-- Infrastructure Flexibility](/features/flexible-stack/) | [Developer Experience -->](/features/developer-experience/)
+#### [<-- Infrastructure Flexibility](/features/flexible-stack/)
