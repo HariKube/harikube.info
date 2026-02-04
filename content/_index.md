@@ -49,7 +49,7 @@ testimonials:
     headline="When Kubernetes taps out, business slows down!"
     sub_headline="HariKube keeps it moving. HariKube elevates Kubernetes into a Cloud-Native Platform-as-a-Service with dynamic multi-database routing - by removing ETCD bottlenecks - enabling 10-50× more operations per second even under peak load, and allows your services to become first-class citizens in Kubernetes instead of running their own infrastructure on top of it."
     primary_button_text="Get Yours"
-    primary_button_url="/get-yours/"
+    primary_button_url="/editions/"
     secondary_button_text="Learn More"
     secondary_button_url="/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/"
     hero_image="/images/harikube_introduction.png"

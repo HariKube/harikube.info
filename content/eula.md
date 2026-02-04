@@ -18,7 +18,7 @@ layout: "simple"
 }
 </script>
 
-## Business Edition
+## Enterprise Edition
 
 [Download](/docs/8.5.4-a2-r0-eula-hk-ga-251128.pdf)
 
@@ -26,8 +26,8 @@ layout: "simple"
 
 ---
 
-## Personal Edition
+## Starter Edition
 
-[Download](/docs/8.5.4-a3-r0-eula-hk-personal-260202.pdf)
+[Download](/docs/8.5.4-a3-r0-eula-hk-starter-260202.pdf)
 
-<iframe id="personal" src="/docs/8.5.4-a3-r0-eula-hk-personal-260202.pdf" style="width: 100%; height:768px;"></iframe>
+<iframe id="starter" src="/docs/8.5.4-a3-r0-eula-hk-starter-260202.pdf" style="width: 100%; height:768px;"></iframe>

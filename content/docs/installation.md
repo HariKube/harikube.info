@@ -123,7 +123,7 @@ HariKube includes an internal metadata store that maintains mapping information 
 
 ## 🔌 Middleware Configuration
 
-> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
 The middleware is designed to operate seamlessly in both containerized and traditional environments. It can be executed within a Kubernetes cluster (e.g., as a Pod or Deployment) or deployed external to the cluster. All operational configuration files and parameters are standardized and require no modification based on the deployment location.
 

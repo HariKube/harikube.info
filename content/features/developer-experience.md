@@ -15,8 +15,6 @@ features:
     description: "By design, it remains vendor lock-free, ensuring you maintain complete sovereignty over your stack and can migrate across providers with ease. Furthermore, it streamlines the engineering workflow by requiring no 3rd-party libraries for development, allowing for a cleaner and more secure codebase."
 ---
 
-{{< ld-docs >}}
-
 Kubernetes has become the backbone of modern cloud-native development, offering a consistent and declarative way to manage infrastructure and application lifecycles. But as platforms evolve and microservices scale, infrastructure complexity often seeps into the developer workflow-slowing teams down and introducing friction.
 
 While Kubernetes has enabled a powerful cloud-native development workflow, it remains fundamentally limited when it comes to handling data-intensive applications. This is because the underlying data store-ETCD-is optimized for configuration and state management, not high-throughput or large-scale operational data. As a result, cloud-native workflows are often confined to infrastructure automation, while application-level data handling must rely on external systems, breaking the end-to-end cloud-native paradigm.
@@ -38,8 +36,6 @@ Why It Matters
  - **Unifying different service designs** - For years, Kubernetes has been the foundation of modern cloud infrastructure. But while it excels at scheduling, scaling, and managing workloads, its application development experience has been fragmented.
 
 HariKube empowers platform teams to handle scale, compliance, and infrastructure complexity-while developers stay focused on writing and deploying great software.
-
-:
 
  - Serverless functions live in Knative or OpenFaaS.
  - Operators are built with Kubebuilder or Kopf for infrastructure related developments.

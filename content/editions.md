@@ -1,6 +1,6 @@
 ---
-title: "Pricing"
-description: "Choose the perfect plan for your needs"
+title: "Editions"
+description: "Scaled solution for any use case"
 layout: "pricing"
 ---
 
@@ -25,7 +25,7 @@ layout: "pricing"
 
 {{< pricing-table-2 >}}
 {
-    "title": "Pricing and packaging for any use case",
+    "title": "Scaled solution for any use case",
     "description": "Because every company needs to innovate to win. And the Kubernetes platform is your base of innovation.",
     "plans": [
         {
@@ -45,10 +45,11 @@ layout: "pricing"
             }
         },
         {
-            "name": "Personal Edition",
+            "name": "Starter Edition",
             "price": "0",
             "displayPrice": true,
-            "description": "The perfect starting point for personal projects and prototypes.",
+            "featured": true,
+            "description": "The perfect starting point for small projects and prototypes.",
             "features": [
                 "Manual database configuration",
                 "Database number: 10",
@@ -57,12 +58,12 @@ layout: "pricing"
                 "Support channels: Community Forum"
             ],
             "button": {
-                "text": "Get Yours",
-                "url": "/get-yours/"
+                "text": "Download",
+                "url": "/get-starter-edition/"
             }
         },
         {
-            "name": "Business Edition",
+            "name": "Enterprise Edition",
             "price": "19000",
             "displayPrice": false,
             "description": "Ideal for startups and small businesses looking to get up and running quickly.",
@@ -70,28 +71,13 @@ layout: "pricing"
             "featured": false,
             "features": [
                 "Automatic database configuration",
-                "Database number: 20",
-                "Maintenance updates: 12 months",
-                "Premium support: 12 months",
-                "Support coverage: 8x5",
-                "Support channels: Community Forum, Email"
+                "Database number: no uper limit",
+                "Community support: No limits",
+                "Support & advisory",
+                "Support channels: Community Forum, Email, dedicated Slack",
+                "Maintenance updates: 12 months"
             ],
             "addons": {
-                "Database number: 20": [
-                    { "text": "Database number: 20", "price": 0 },
-                    { "text": "Database number: 30", "price": 5000 },
-                    { "text": "Database number: 40", "price": 10000 },
-                    { "text": "Database number: 50", "price": 15000 },
-                    { "text": "Database number: 100", "price": 30000 }
-                ],
-                "Support coverage: 8x5": [
-                    { "text": "Support coverage: 8x5", "price": 0 },
-                    { "text": "Support coverage: 24x7", "price": 12000 }
-                ],
-                "Support channels: Community Forum, Email": [
-                    { "text": "Support channels: Community Forum, Email", "price": 0 },
-                    { "text": "Support channels: Community Forum, Email, dedicated Slack", "price": 10000 }
-                ]
             },
             "button": {
                 "text": "Contact Us",
@@ -108,32 +94,37 @@ layout: "pricing"
     "description": "Find answers to frequently asked questions about our pricing plans and features.",
     "questions": [
         {
+            "question": "What is the difference between Manual and Automatic Configuration?",
+            "answer": "With Manual Configuration (Starter Edition), you need to manually edit the global topology file. Automatic Configuration (all paid editions) allows you to append separated topology configs next to the services and the system will generate the global config."
+        },
+        {
+            "disabled": true,
             "question": "Do you offer custom plans?",
             "answer": "Yes. For specific requirements beyond our standard plans, please contact us to discuss a custom solution."
         },
         {
+            "disabled": true,
             "question": "Are there any setup fees or hidden costs?",
             "answer": "No. All prices are transparent and there are no additional setup fees."
         },
         {
+            "disabled": true,
             "question": "How long are subscription terms?",
             "answer": "All subscriptions are for a one-year term."
         },
         {
+            "disabled": true,
             "question": "What payment methods do you offer?",
             "answer": "We offer payment via bank transfer based on an issued invoice."
         },
         {
+            "disabled": true,
             "question": "How can I upgrade/downgrade/cancel my plan?",
             "answer": "You can upgrade at any time by paying the difference in price. Downgrades and cancellations are not permitted during the subscription term."
         },
         {
-            "question": "Can I get a discount for a non-profit or educational organization?",
-            "answer": "The Personal Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Business Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
-        },
-        {
             "question": "What is the SLA for HariKube?",
-            "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 98.5%% SLA for Business editions. High Availability is coming soon!"
+            "answer": "Our SLA (Service Level Agreement) varies by plan. We offer a 98.5%% SLA for Enterprise Editions. High Availability is coming soon!"
         },
         {
             "disabled": true,
@@ -143,10 +134,6 @@ layout: "pricing"
         {
             "question": "What means Maintenance updates?",
             "answer": "Receive free security patches and bug fixes for the current major version."
-        },
-        {
-            "question": "What is the difference between Manual and Automatic Configuration?",
-            "answer": "With Manual Configuration (Personal Edition), you need to manually edit the global topology file. Automatic Configuration (all paid editions) allows you to append separated topology configs next to the services and the system will generate the global config."
         },
         {
             "disabled": true,
@@ -159,12 +146,12 @@ layout: "pricing"
             "answer": "These features provide built-in system monitoring, log collection, and automated alerts. This allows you to proactively track performance, gather data, and receive instant notifications for any potential issues."
         },
         {
-            "question": "Are Training and Workshops available for extre fees?",
-            "answer": "Yes. Training and workshops are available as professional services for an additional fee."
+            "question": "Are Training and Workshops available?",
+            "answer": "Yes. Training and workshops are available as professional services."
         },
         {
-            "question": "Are Professional Services available for extre fees?",
-            "answer": "Yes. Professional Services are available as an add-on to our Business Editions for an additional fee."
+            "question": "Are Professional Services available?",
+            "answer": "Yes. Professional Services are available if you are unsing Enterprise Edition."
         },
         {
             "question": "Does HariKube have a Partner Services Program?",
@@ -173,6 +160,10 @@ layout: "pricing"
         {
             "question": "Does HariKube have Engineering Services?",
             "answer": "Yes, we offer Engineering Services. Please contact us to discuss your specific needs."
+        },
+        {
+            "question": "Do you have a special offer for non-profit or educational organizations?",
+            "answer": "The Starter Edition is free for all users, including non-profits and educational organizations. We can also consider offering the Enterprise Edition for a discount on a case-by-case basis. Please contact our sales team to apply."
         }
     ]
 }

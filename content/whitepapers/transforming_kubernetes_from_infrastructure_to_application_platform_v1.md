@@ -6,6 +6,8 @@ description: "Kubernetes won the orchestration war. Application development is s
 
 <div id="download-form">
 
+{{< columns >}}
+
 ## Kubernetes won the orchestration war. Application development is still losing.
 
 Kubernetes is everywhere - yet most "cloud-native" teams still spend ~50% of engineering time on infrastructure glue: APIs, databases, messaging, RBAC, and internal platform abstractions that every team rebuilds differently.
@@ -25,6 +27,8 @@ Read our whitepaper to understand:
 #### No vendor lock-in.
 
 ### Just Kubernetes - used as an application platform, with HariKube.
+
+|||
 
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dd10000091AMj" method="POST">
 
@@ -60,6 +64,9 @@ Read our whitepaper to understand:
   </div>
 
 </form>
+
+{{< /columns >}}
+
 </div>
 
 <div id="download-view" style="display: none;">

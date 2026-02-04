@@ -14,9 +14,9 @@
             {{ range $index, $plan := $data.plans }}
             <div class="relative flex flex-col p-6 {{ if $plan.featured }}bg-primary-600 text-white{{ else }}bg-white{{ end }} rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
                 {{ if $plan.featured }}
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 110px;">
+                <!--div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 110px;">
                     <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">Most Popular</span>
-                </div>
+                </div-->
                 {{ end }}
                 {{ if $plan.freetier }}
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 185px;">
@@ -54,8 +54,8 @@
                         </svg>
                         <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="{{ if not $plan.featured }}text-gray-600{{ end }}" style="max-width: 75%;">{{ $feature }}</span>
                         {{ if index $plan.addons . }}
-                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="/pricing/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
-                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="/pricing/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>
+                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="/editions/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
+                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="/editions/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>
                         {{ end }}
                     </li>
                     {{ end }}

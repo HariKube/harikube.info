@@ -67,7 +67,7 @@ canonifyURLs = true
     [params.header.buttons]
       [params.header.buttons.getStarted]
         text = "Get Yours"
-        url = "/get-yours/"
+        url = "/editions/"
 
   # Blog configuration
   [params.blog]
@@ -129,27 +129,23 @@ canonifyURLs = true
   [[menu.main]]
     name = "Blog"
     url = "/blog/"
-    weight = 1
-  [[menu.main]]
-    name = "Pricing"
-    url = "/pricing/"
-    weight = 2
+    weight = 4
   [[menu.main]]
     name = "Features"
-    weight = 3
+    weight = 1
     [menu.main.params]
       has_submenu = true
       submenu = [
         { name = "Developer Experience", url = "/features/developer-experience/" },
         { name = "Performance", url = "/features/performance/" },
-        { name = "Consystency", url = "/features/consystency/" },
+        { name = "Consistency", url = "/features/consistency/" },
         { name = "Infrastructure Flexibility", url = "/features/flexible-stack/" },
         { name = "Data Isolation", url = "/features/data-isolation/" }
         
       ]
   [[menu.main]]
     name = "Docs"
-    weight = 4
+    weight = 2
     [menu.main.params]
       has_submenu = true
       submenu = [
@@ -160,17 +156,12 @@ canonifyURLs = true
         { name = "Monitoring", url = "/docs/monitoring/" },
         { name = "Future Plans", url = "/docs/future-plans/" }
       ]
-  [[menu.main]]
-    name = "FAQ"
-    url = "/faq/"
-    weight = 5
 
   # Footer Column 1 Menu
-  # [[menu.footer_column_1]]
-    # name = "Careers"
-    # url = "/careers/"
-    # weight = 1
-
+  [[menu.footer_column_1]]
+    name = "FAQ"
+    url = "/faq/"
+    weight = 1
   # Footer Column 2 Menu
   [[menu.footer_column_2]]
     name = "About Us"

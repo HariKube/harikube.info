@@ -40,7 +40,7 @@ Once installation has finished, create your database instances themselves. Pleas
 
 Next step is configuring and deploying HariKube Operator. The operator is a standard Kubernetes operator, so if you are familiar with operators, you are good to go.
 
-> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-operator-{{ .Site.Params.operatorVersion }}.yaml
 {{< /code >}}

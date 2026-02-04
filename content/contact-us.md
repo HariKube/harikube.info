@@ -1,7 +1,7 @@
 ---
 title: "Contact Us"
 layout: "simple"
-description: "Schedule a Technical Discovery Session."
+description: "Unlock Scalable, Compliant Kubernetes Infrastructure."
 ---
 
 {{< columns >}}
@@ -10,6 +10,12 @@ description: "Schedule a Technical Discovery Session."
 
 HariKube helps organizations extend Kubernetes with intelligent data routing, resource-aware database placement, and high-performance scaling. Whether you’re exploring proof-of-concept, evaluating for production, or seeking integration support, we’re here to help.
 Let us better understand your needs and provide tailored guidance. Submit the contact form for a free consultation.
+
+## 📬 What Happens Next
+
+Once you submit your request, our team will respond via email within one business day. We’ll reach out to gather a bit more context regarding your specific use case so we can make our upcoming meeting as productive as possible.
+
+For technical questions or feedback during your setup, feel free to reach out to us at support@inspirnation.eu.
 
 |||
 

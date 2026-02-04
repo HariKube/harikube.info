@@ -5,7 +5,7 @@ layout: "simple"
 
 Kubernetes is compatible with `HariKube` by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.
 
-> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
 Start by authenticating your local Docker client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
 

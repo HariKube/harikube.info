@@ -1,29 +1,34 @@
 ---
-title: "Get Yours"
+title: "Get Starter Edition"
 layout: "simple"
 description: "Get Your HariKube Edition."
 ---
 
 {{< columns >}}
 
-## 🚀 Get Your HariKube Personal Edition
+## 🚀 Get Your HariKube Starter Edition
 
 Experience the Power of Intelligent Kubernetes Routing - For Free
 
-Ready to experiment with HariKube? Our Personal Edition lets you explore how to extend Kubernetes with intelligent data routing and resource-aware backends on your own terms. Simply complete the request form below to get your license key and start building.
+Ready to experiment with HariKube? Our Starter Edition lets you explore how to extend Kubernetes with intelligent data routing and resource-aware backends on your own terms. Simply complete the request form below to get your license key and start building.
 
-#### Personal Edition:
+#### Starter Edition:
 
  - 🆓 Free Forever
  - 🔧 Manual database configuration
  - 📈 Maximum database number: 10
 
+#### Need More Scaleability or Premium Support?
+
+If your infrastructure requirements go beyond the basics, HariKube Enterprise is built to handle mission-critical workloads at any volume.
+
+[Contact Our Enterprise Team](/contact-us/)
 
 ## 📬 What Happens Next
 
 Once you submit your request, our team will respond via email within one business day. Here is what to expect in your inbox:
 
- - **License Key & Download Link**: Your unique credentials to activate the Personal Edition.
+ - **License Key & Download Link**: Your unique credentials to activate the Starter Edition.
  - **Quick-Start Guide**: A streamlined "Hello World" to get HariKube running on your local cluster in minutes.
 
 For technical questions or feedback during your setup, feel free to reach out to us at support@inspirnation.eu.
@@ -34,7 +39,7 @@ For technical questions or feedback during your setup, feel free to reach out to
 
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
   <input type="hidden" name="oid" value="00Dd10000091AMj">
-  <input type="hidden" name="retURL" value="/get-yours/#thanks">
+  <input type="hidden" name="retURL" value="/get-starter-edition/#thanks">
   <input  id="00NP500000M2JMr" maxlength="200" name="00NP500000M2JMr" size="20" type="hidden" value="PERSONAL_EDITION" required/>
 
   <label for="first_name">First Name *</label>
@@ -49,7 +54,7 @@ For technical questions or feedback during your setup, feel free to reach out to
   <div class="consent">
     <label>
       <input  id="00Nd1000006aept" name="00Nd1000006aept" type="checkbox" value="1" required />
-      I accept the <a href="/eula/#personal" target="_blank" rel="noopener">EULA</a>
+      I accept the <a href="/eula/#starter" target="_blank" rel="noopener">EULA</a>
     </label>
   </div>
 
@@ -61,14 +66,14 @@ For technical questions or feedback during your setup, feel free to reach out to
   </div>
 
   <div class="btn-wrap">
-    <input type="submit" value="Get Personal Edition">
+    <input type="submit" value="Get Starter Edition">
   </div>
 </form>
 </div>
 
 <a id="thanks"></a>
 <div id="hk-form-thanks" style="display: none;">
-<pre>✅ Personal Edition Request Received</pre>
+<pre>✅ Starter Edition Request Received</pre>
 <strong>✨ We have successfully received your request details. Our team is currently reviewing your request and respond via email within one business day.</strong>
 </div>
 

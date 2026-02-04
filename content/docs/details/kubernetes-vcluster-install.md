@@ -15,7 +15,7 @@ This model provides clear separation between services and the underlying infrast
 
 Start by bringing your favorite Kubernetes deployment.
 
-> ⚠️ A valid license is required to proceed - at least free Personal Edition. We invite you to explore our various licensing tiers on our [Pricing](/pricing/) page.
+> ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
 Next step is authenticating your local registry client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
 
