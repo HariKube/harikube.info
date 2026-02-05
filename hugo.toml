@@ -40,6 +40,7 @@ canonifyURLs = true
   description = "HariKube is a Kubernetes-native platform that enhances scalability, performance, and developer experience by distributing data to multiple databases."
   author = "Richárd Kovács"
   logo = "/images/harikube-logo.png"      # Path to your logo
+  image = "/images/harikube-logo.png"
   # Google Analytics ID (e.g., "G-XXXXXXXXXX")
   googleAnalytics = "G-YVQCSK996Q"  # Only enabled in production
   chimpStatic = "ce88ef7143c9148f30f7cda5f/10ef28bb04b6ce918a13dc417"  # Only enabled in production
@@ -141,7 +142,6 @@ canonifyURLs = true
         { name = "Consistency", url = "/features/consistency/" },
         { name = "Infrastructure Flexibility", url = "/features/flexible-stack/" },
         { name = "Data Isolation", url = "/features/data-isolation/" }
-        
       ]
   [[menu.main]]
     name = "Docs"
