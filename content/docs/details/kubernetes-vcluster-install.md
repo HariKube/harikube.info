@@ -156,8 +156,4 @@ metadata:
 type: kubernetes.io/service-account-token
 {{< /code >}}
 
-On the host cluster you can fetch the connection details.
-
-{{< code bash >}}TOKEN=$(kubectl get secret -n harikube remote-your-service-account-name-x-default-x-harikube -o jsonpath='{.data.token}' | base64 -d)
-CA_CERT=$(kubectl get secret -n harikube remote-your-service-account-name-x-default-x-harikube -o jsonpath='{.data.ca\.crt}' | base64 -d)
-{{< /code >}}
+Now you can mount the secret to your workload to talk with the virtual cluster.
