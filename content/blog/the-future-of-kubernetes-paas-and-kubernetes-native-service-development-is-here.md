@@ -161,8 +161,6 @@ kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.
 kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.0.yaml
 {{< /code >}}
 
-> 🔓 For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
-
 > 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.0.yaml` instead of the API only manifest.
 
 Wait for system is up and running.
@@ -212,7 +210,9 @@ First you have to connect to the virtual Kubernetes API. PLease install [vCluste
 {{< code bash >}}vcluster connect harikube
 {{< /code >}}
 
-> vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
+> 🔓 vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
+
+> 🔓 For service access from host, the vCluster setup keeps things simple: Create your ServiceAccount, create a secret annotated with `kubernetes.io/service-account.name`, and vCluster will sync the secret to the host cluster.
 
 Crucially, this Kubernetes environment serves **only as your control plane and data source**, containing no application Pods; it is purpose-built to serve your APIs.
 

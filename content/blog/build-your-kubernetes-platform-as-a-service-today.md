@@ -153,8 +153,6 @@ To execute this, simply run the following command:
 {{< code bash >}}kubectl apply -f https://github.com/HariKube/kine/releases/download/release-v0.14.6/vcluster-kine-sqlite-release-v0.14.6.yaml
 {{< /code >}}
 
-> 🔓 For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
-
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
 
 {{< code bash >}}kubectl wait -n kine --for=jsonpath='{.status.readyReplicas}'=1 statefulset/kine --timeout=5m
@@ -165,7 +163,9 @@ You are now connected to a highly performant, isolated control plane that is no 
 
 Once connected, vCluster changes your current local `KUBECONFIG` file to point directly to the virtual control plane. This is seamless for developers and means all subsequent kubectl commands will interact with your new, scalable instance. When you are finished working on the virtual cluster, you can easily swap back to your host cluster by running the command `vcluster disconnect`.
 
-> vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
+> 🔓 vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
+
+> 🔓 For service access from host, the vCluster setup keeps things simple: Create your ServiceAccount, create a secret annotated with `kubernetes.io/service-account.name`, and vCluster will sync the secret to the host cluster.
 
 Now, create your first custom resource. Apply the definition file:
 

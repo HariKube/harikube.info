@@ -32,8 +32,6 @@ Store your previously created topology config, or create configs on the fly with
 {{< code bash >}}kubectl create secret generic --namespace harikube topology-config --from-file=$(pwd)/topology.yaml
 {{< /code >}}
 
-The last step depends on your personal taste!
-
 ### Create an API only deployment
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-{{ .Site.Params.middlewareVersion }}.yaml
@@ -41,8 +39,6 @@ The last step depends on your personal taste!
 
 {{< code bash >}}vcluster connect harikube
 {{< /code >}}
-
-> 🔓 For access control, the vCluster setup keeps things simple: It is only configured to copy your `ServiceAccount` resources to the underlying (host) cluster. This means you should create all of your RBAC (Role-Based Access Control) policies (like `Roles` and `RoleBindings`) directly on your virtual cluster. Your deployed workloads on the host can then use the synchronized `ServiceAccount` on the host cluster, ensuring they have the correct permissions.
 
 ### Create deployment with workload capabilities
 
@@ -138,9 +134,30 @@ To create your virtual cluster and automatically configure your local environmen
 
 ---
 
-## Immediate Access
+The last step depends on your personal taste!
 
-vCluster simplifies the operational workflow by automatically updating your local environment.
+## Admin Access
+
+> 🔓 vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
 
  - KUBECONFIG Update: Upon successful creation or connection of the virtual cluster, vCluster automatically updates your local $KUBECONFIG file to include a new context pointing directly to the virtual cluster's API server.
  - Ready for Use: This means you are immediately ready to interact with the new virtual cluster. You can verify connectivity and begin deployment using standard Kubernetes tools.
+
+## Service Access From Host
+
+> 🔓 For service access from host, the vCluster setup keeps things simple: Create your ServiceAccount, generate a secret with the command below, and vCluster will sync the secret to the host cluster.
+
+{{< code yaml >}}apiVersion: v1
+kind: Secret
+metadata:
+  name: remote-your-service-account-name
+  annotations:
+    kubernetes.io/service-account.name: "your-service-account-name"
+type: kubernetes.io/service-account-token
+{{< /code >}}
+
+On the host cluster you can fetch the connection details.
+
+{{< code bash >}}TOKEN=$(kubectl get secret -n harikube remote-your-service-account-name-x-default-x-harikube -o jsonpath='{.data.token}' | base64 -d)
+CA_CERT=$(kubectl get secret -n harikube remote-your-service-account-name-x-default-x-harikube -o jsonpath='{.data.ca\.crt}' | base64 -d)
+{{< /code >}}
