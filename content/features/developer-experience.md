@@ -21,6 +21,39 @@ While Kubernetes has enabled a powerful cloud-native development workflow, it re
 
 HariKube addresses this by decoupling infrastructure concerns from application development. It operates transparently within your Kubernetes cluster, letting developers work entirely within standard Kubernetes APIs while it routes and stores custom resource data in multiple databases behind the scenes.
 
+{{< features-section 
+    title="Legacy vs. Unified Service Model"
+>}}
+
+{{< feature
+    title="The Container Boundary"
+    description=""
+    badge="Legacy Service Model"
+    badgeColor="#db2777"
+    image="/images/features/kubernetes-arch-legacy.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are silos on top of Kubernetes,Bring Your Own Foundations"
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="First Class Citizens"
+    description=""
+    badge="Unified Service Model"
+    badgeColor="#16a34a"
+    image="/images/features/kubernetes-arch-platform.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are part of Kubernetes,Rely on Cloud-Native Foundations"
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
+> Research consistently demonstrates that software engineers spend approximately 50% of
+their time on “glue code” and infrastructure integration rather than core business logic. Forget replication of boilerplate in each project, rely on Kubernetes built-in features instead.
+
 Why It Matters
 
  - **No local setup needed** – Developers don't need to run heavy database instances or mock ETCD clusters locally. Since HariKube is designed for production environments and integrates with stock Kubernetes APIs, development can remain fast, lightweight, and focused.

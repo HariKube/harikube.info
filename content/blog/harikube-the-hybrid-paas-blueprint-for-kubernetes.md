@@ -34,6 +34,38 @@ HariKube replaces ETCD with a flexible middleware that routes different resource
 
 > 🧠 Kubernetes stops being just a control plane store and becomes a **distributed, extensible data platform**.
 
+{{< features-section 
+    title="Creating 60,000 records across 3,600 threads"
+>}}
+
+{{< feature
+    title="Total execution time: 1m6s"
+    description=""
+    badge="Single MySQL instance"
+    badgeColor="#db2777"
+    image="/images/features/result_600_10000_1731680855.json_http_req_duration_chart.png"
+    buttonText=""
+    buttonLink=""
+    features="Average response time: ~620 μs"
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="Total execution time: 23s"
+    description=""
+    badge="6 MySQL instances"
+    badgeColor="#16a34a"
+    image="/images/features/result_600_10000_1731680688.json_http_req_duration_chart.png"
+    buttonText=""
+    buttonLink=""
+    features="Average response time: ~200 μs"
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
+> When using a single database, average response times were around 3× higher, with frequent latency spikes pushing maximum durations beyond 3500 μs. The overall execution took over 1 minute, and the system showed signs of bottlenecks and load accumulation.
+
 ---
 
 ## ⚡ Serverless - Nanoservice Layer
@@ -132,6 +164,39 @@ This is more than technical elegance - it’s a blueprint for the next generatio
 👉 Developers using Go, Python, Node.js, Java, .NET, Rust, Ruby, PHP, or even C++ - all on the same platform.
 
 🚀 **HariKube transforms Kubernetes into a full hybrid PaaS** - flexible, language-agnostic, and built for the future.
+
+{{< features-section 
+    title="Legacy vs. Unified Service Model"
+>}}
+
+{{< feature
+    title="The Container Boundary"
+    description=""
+    badge="Legacy Service Model"
+    badgeColor="#db2777"
+    image="/images/features/kubernetes-arch-legacy.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are silos on top of Kubernetes,Bring Your Own Foundations"
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="First Class Citizens"
+    description=""
+    badge="Unified Service Model"
+    badgeColor="#16a34a"
+    image="/images/features/kubernetes-arch-platform.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are part of Kubernetes,Rely on Cloud-Native Foundations"
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
+> Research consistently demonstrates that software engineers spend approximately 50% of
+their time on “glue code” and infrastructure integration rather than core business logic. Forget replication of boilerplate in each project, rely on Kubernetes built-in features instead.
 
 ---
 

@@ -22,9 +22,78 @@ HariKube breaks this cycle. By introducing a database-agnostic middleware, we’
 
 The result? **10x to 50x more operations per second**. Your control plane finally has the horsepower to match your ambitions, and finaly it became the **Single-Source-of-Truth** not just for your infrastructure, but your custom services as well.
 
+{{< features-section 
+    title="Creating 60,000 records across 3,600 threads"
+>}}
+
+{{< feature
+    title="Total execution time: 1m6s"
+    description=""
+    badge="Single MySQL instance"
+    badgeColor="#db2777"
+    image="/images/features/result_600_10000_1731680855.json_http_req_duration_chart.png"
+    buttonText=""
+    buttonLink=""
+    features="Average response time: ~620 μs"
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="Total execution time: 23s"
+    description=""
+    badge="6 MySQL instances"
+    badgeColor="#16a34a"
+    image="/images/features/result_600_10000_1731680688.json_http_req_duration_chart.png"
+    buttonText=""
+    buttonLink=""
+    features="Average response time: ~200 μs"
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
+> When using a single database, average response times were around 3× higher, with frequent latency spikes pushing maximum durations beyond 3500 μs. The overall execution took over 1 minute, and the system showed signs of bottlenecks and load accumulation.
+
+---
+
 ## 🏗️ Repealing the "Development Tax"
 
 Platform engineering shouldn't feel like a second job for your developers. The "Development Tax" is the hours lost to boilerplate and infrastructure debugging. Kubernetes based on HariKube acts as a true **Platform-as-a-Service** (PaaS), abstracting the complexity so your team can get back to writing features. HariKube offers a **Language-Agnostic Unified Service Model** design pattern, where services - serverless functions, operators, traditional REST APIs - become **First-Class Citizens** in the cluster by using **standard Cloud-Native** tools only.
+
+{{< features-section 
+    title="Legacy vs. Unified Service Model"
+>}}
+
+{{< feature
+    title="The Container Boundary"
+    description=""
+    badge="Legacy Service Model"
+    badgeColor="#db2777"
+    image="/images/features/kubernetes-arch-legacy.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are silos on top of Kubernetes,Bring Your Own Foundations"
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="First Class Citizens"
+    description=""
+    badge="Unified Service Model"
+    badgeColor="#16a34a"
+    image="/images/features/kubernetes-arch-platform.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are part of Kubernetes,Rely on Cloud-Native Foundations"
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
+> Research consistently demonstrates that software engineers spend approximately 50% of
+their time on “glue code” and infrastructure integration rather than core business logic. Forget replication of boilerplate in each project, rely on Kubernetes built-in features instead.
+
+---
 
 # 🏁 Achieve Both: Performance and Rapid Development
 

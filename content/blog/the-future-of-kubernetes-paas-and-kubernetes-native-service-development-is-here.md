@@ -26,6 +26,39 @@ The result is a streamlined, resilient platform that offers not just scale, but 
 
 With HariKube, Kubernetes is no longer just a platform; it becomes the **single source of truth** for your entire Cloud-Native ecosystem. This fundamental shift means you eliminate the need for complex, layered infrastructure tools. Why? Because when everything-from microservices and operators to ephemeral serverless functions-communicates only through the extended Kubernetes API, Kubernetes itself manages all policy, messages, networking, state, and role-based-access-control. This unified control plane eliminates the friction and complexity of maintaining external service discovery, configuration layers, service inter-communications, external databases, and other networking tools. In this new paradigm, the architecture is so cohesive and Kubernetes-native that we have to introduce a new abstraction: **The Service Mesh is Dead**. Its core functionalities (like traffic routing, security, access control, and observability) are now handled directly by the high-performance, API-centric platform that HariKube has enabled.
 
+{{< features-section 
+    title="Legacy vs. Unified Service Model"
+>}}
+
+{{< feature
+    title="The Container Boundary"
+    description=""
+    badge="Legacy Service Model"
+    badgeColor="#db2777"
+    image="/images/features/kubernetes-arch-legacy.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are silos on top of Kubernetes,Bring Your Own Foundations"
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="First Class Citizens"
+    description=""
+    badge="Unified Service Model"
+    badgeColor="#16a34a"
+    image="/images/features/kubernetes-arch-platform.png"
+    buttonText=""
+    buttonLink=""
+    features="Applications are part of Kubernetes,Rely on Cloud-Native Foundations"
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
+> Research consistently demonstrates that software engineers spend approximately 50% of
+their time on “glue code” and infrastructure integration rather than core business logic. Forget replication of boilerplate in each project, rely on Kubernetes built-in features instead.
+
 ### Serverless - Nanoservice Layer
 
 With a lightweight watch connector, every Custom Resource Definition (CRD) or core resource change can trigger a function running on OpenFaaS or Knative. The function layer provides **event-driven business logic** without requiring operators, custom APIs, or external event buses.
