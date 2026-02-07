@@ -47,7 +47,7 @@ testimonials:
 
 {{< hero 
     headline="Kubernetes, Beyond the Bottleneck"
-    sub_headline="HariKube is a Kubernetes <b>hyper-scaler</b> that transforms your cluster into a zero-effort <b>Platform-as-a-Service</b>. By leveraging a <b>unified service model</b>, we remove technical bottlenecks to let your services run as <b>first-class citizens</b>.<br><br>📈 10-50x more throughput<br>📉 30% less boilerplate<br>♾️ Full Cloud-Native experience by design"
+    sub_headline="HariKube is a Kubernetes <b>hyper-scaler</b> that turns your cluster into a zero-effort <b>Platform-as-a-Service</b>. By leveraging a <b>unified service model</b>, we remove technical bottlenecks to let your services run as <b>native Kube citizens</b>.<br><br>📈 10-50x more throughput<br>📉 30% less boilerplate<br>♾️ Full Cloud-Native experience by design"
     primary_button_text="Get Yours"
     primary_button_url="/editions/"
     secondary_button_text="Learn More"

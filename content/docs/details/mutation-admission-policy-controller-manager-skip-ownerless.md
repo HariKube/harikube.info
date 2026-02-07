@@ -32,7 +32,7 @@ spec:
               JSONPatch{
                 op: "add",
                 path: "/metadata/labels/skip-controller-manager-metadata-caching",
-                value: "true"
+                value: ""
               }
             ]
           : [
@@ -44,7 +44,7 @@ spec:
               JSONPatch{
                 op: "add",
                 path: "/metadata/labels/skip-controller-manager-metadata-caching",
-                value: "true"
+                value: ""
               }
             ]
 ---

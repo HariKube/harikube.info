@@ -18,7 +18,7 @@ nextLink: "/docs/automation/"
 {{< /code >}}
 
 By default, the Kubernetes Controller Manager caches every resource to support background operations such as garbage collection and internal indexing.
-To reduce memory usage and improve performance in high-volume environments, you can label specific resources with `skip-controller-manager-metadata-caching=true` to exclude them from being cached. That means Kubernetes can't clean-up resources by `ownerReference`. Select a database which automatic GC is supported, or you have to do garbage collection on your own.
+To reduce memory usage and improve performance in high-volume environments, you can label specific resources with `skip-controller-manager-metadata-caching` to exclude them from being cached. That means Kubernetes can't clean-up resources by `ownerReference`. Select a database which automatic GC is supported, or you have to do garbage collection on your own.
 
 ### 💡 Ensure Label with Mutation Admission Webhook
 

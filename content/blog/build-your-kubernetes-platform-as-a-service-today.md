@@ -42,7 +42,7 @@ Kine is an existing etcd-shim (a compatibility layer) that translates the Kubern
 
 Our Modifications:
  - The HariKube version of Kine contains crucial enhancements that implement storage-side filtering logic. When the Kubernetes API server issues a request that typically requires client-side filtering (like a label selector), our modified Kine translates that request into an optimized SQL WHERE clause. This offloads the filtering work to the efficient SQL database, drastically cutting down on the amount of data transferred and processed by the API server, directly solving the client-side filtering performance bottleneck.
- - The other feature is storage-side garbage collection. Add a label `skip-controller-manager-metadata-caching=true` to any of your resources to enable storage-side GC. You can automate the label creation with Mutation Admission Policy.
+ - The other feature is storage-side garbage collection. Add a label `skip-controller-manager-metadata-caching` to any of your resources to enable storage-side GC. You can automate the label creation with Mutation Admission Policy.
 
 {{< code yaml "skip-controller-manager-metadata-caching.yaml" >}}apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingAdmissionPolicy
@@ -71,7 +71,7 @@ spec:
               JSONPatch{
                 op: "add",
                 path: "/metadata/labels/skip-controller-manager-metadata-caching",
-                value: "true"
+                value: ""
               }
             ]
           : [
@@ -83,7 +83,7 @@ spec:
               JSONPatch{
                 op: "add",
                 path: "/metadata/labels/skip-controller-manager-metadata-caching",
-                value: "true"
+                value: ""
               }
             ]
 ---
@@ -107,7 +107,7 @@ While Kine handles the data access layer, to fully leverage the performance gain
 
 The Changes:
  - These modifications enhance the way the API server constructs requests to its storage layer (our modified Kine). Specifically, they ensure that the server-side filters (like the label selectors and field selectors) are correctly passed down and translated by Kine into the SQL query, rather than being handled as an afterthought in memory.
- - Controller Manager skips caching resources labeled with `skip-controller-manager-metadata-caching=true` to avoid filling memory with resources garbage collected by the storage.
+ - Controller Manager skips caching resources labeled with `skip-controller-manager-metadata-caching` to avoid filling memory with resources garbage collected by the storage.
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
