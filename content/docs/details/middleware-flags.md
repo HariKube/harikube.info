@@ -37,7 +37,7 @@ Environment variables:
   - `http(s)://<file-url>` - Polling interval is 1 minute
   - `secret://<namespace>/<name>` - Ensure this secret is stored at main database, and strongly suggested to add finalizer to prevent deletion.  Files are consumed in name order
     - `TOPOLOGY_CONFIG_TLS_DIR`: Directory path for storing TLS files provided by topology secret, Default `./db/tls`
- - `LIST_MAX_ITEMS`: Max items for list operations. Default 1000
+ - `LIST_MAX_ITEMS`: Max items for list operations. Default 10000
  - `DISABLE_STORAGE_LEVEL_FILTERING`: Disable storage level filtering of the main database, Default: `false`
  - `ENABLE_TELEMETRY_PUSH`: Enables pushing anonym usage telemetry to HariKube central monitoring site `https://monitoring.harikube.info`
  - `CUSTOM_RESOURCE_DEFINITION_METADATA_FILE`: Locatin to store Custom Resource Definition metadata. Defaut: `./db/crds.json`
