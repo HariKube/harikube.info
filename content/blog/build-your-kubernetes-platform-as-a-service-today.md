@@ -150,7 +150,7 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 To execute this, simply run the following command:
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/kine/releases/download/release-v0.14.6/vcluster-kine-sqlite-release-v0.14.6.yaml
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/kine/releases/download/release-v0.14.11/vcluster-kine-sqlite-release-v0.14.11.yaml
 {{< /code >}}
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
