@@ -22,6 +22,6 @@ The BBolt Mapper provides a lightweight, embedded solution for storing revision 
     image="/images/docs/bbolt_gcp_compute_10_5000_1745320783.json_http_req_duration_chart.png"
     buttonText=""
     buttonLink=""
-    features="Average response time: ~10 μs, Maximum response time: ~75 μs"
+    features="Average response time: ~10 ms, Maximum response time: ~75 ms"
     imagePosition="left"
 >}}

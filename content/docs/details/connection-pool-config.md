@@ -9,7 +9,7 @@ layout: "simple"
   namespace:
     namespace: kube-system
   connectionPool:
-    maxIdle: 5
+    maxIdle: 50
     maxOpen: 90
     maxLifeTime: 5m
     maxIdleLifeTime: 5m

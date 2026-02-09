@@ -44,7 +44,7 @@ spec:
           value: secret://harikube/topology-config
         args:
         - --listen-address=0.0.0.0:2379
-        - --datastore-max-idle-connections=5
+        - --datastore-max-idle-connections=50
         - --datastore-max-open-connections=90
         - --datastore-connection-max-lifetime=5m
         - --datastore-connection-max-idle-lifetime=5m

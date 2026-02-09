@@ -23,6 +23,6 @@ The SQLite Mapper provides a lightweight, embedded solution for storing revision
     image="/images/docs/sqlite_gcp_compute_10_5000_1745242441.json_http_req_duration_chart.png"
     buttonText=""
     buttonLink=""
-    features="Average response time: ~11 μs, Maximum response time: ~59 μs"
+    features="Average response time: ~11 ms, Maximum response time: ~59 ms"
     imagePosition="left"
 >}}
