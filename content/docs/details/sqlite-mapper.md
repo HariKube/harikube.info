@@ -11,7 +11,7 @@ The SQLite Mapper provides a lightweight, embedded solution for storing revision
 - `REVISION_MAPPER_SQLITE_LEASE_PATH`: Path to the lease database directory. Default `./db`
 - `REVISION_MAPPER_SQLITE_SYNCHRONOUS`: Write mode of the database [`OFF`, `NORMAL`]. Default `OFF`
 - `REVISION_MAPPER_SQLITE_CONN_LIFETIME`: Connection life time in seconds. Default 60
-- `REVISION_MAPPER_SQLITE_CONCURRENT_WRITES`: Size of write ahead queue. Default `50`
+- `REVISION_MAPPER_SQLITE_CONCURRENT_WRITES`: Number of concurrent connections to the database. Default `50`
 
 > Changing of database directories doesn't supported at the moment.
 
