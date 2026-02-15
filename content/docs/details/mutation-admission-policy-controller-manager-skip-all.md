@@ -1,9 +1,7 @@
 ---
-title: "Ensure skip-controller-manager-metadata-caching Label on Everything - vCluster"
+title: "Ensure skip-controller-manager-metadata-caching Label on Everything except built-ins"
 layout: "simple"
 ---
-
-> ‼️ This `MutatingAdmissionPolicy` disables all Controller Manager features to the resources. Be sure storage-side garbage collection is supported by all the selected databases, and the feature is enabled on the middleware.
 
 {{< code yaml "skip-controller-manager-metadata-caching.yaml" >}}apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingAdmissionPolicy
@@ -17,6 +15,13 @@ spec:
       operations:  ["CREATE"]
       resources:   ["*"]
   matchConditions:
+    - name: exclude-builtin-resources
+      expression: >
+          !(request.resource.group in ['', 'apps', 'batch', 'storage.k8s.io', 'coordination.k8s.io', 
+            'autoscaling', 'policy', 'rbac.authorization.k8s.io', 'networking.k8s.io', 
+            'certificates.k8s.io', 'admissionregistration.k8s.io', 'apiextensions.k8s.io',
+            'scheduling.k8s.io', 'node.k8s.io', 'discovery.k8s.io', 'flowcontrol.apiserver.k8s.io',
+            'events.k8s.io', 'authentication.k8s.io', 'authorization.k8s.io'])
     - name: label-does-not-exist
       expression: >
           !has(object.metadata.labels) ||

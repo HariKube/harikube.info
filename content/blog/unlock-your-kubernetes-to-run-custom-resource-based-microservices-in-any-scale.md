@@ -157,6 +157,9 @@ Start the cluster with:
 {{< code bash >}}kind create cluster --name harikube-cluster --config kind-config.yaml
 {{< /code >}}
 
+{{< code bash >}}kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+{{< /code >}}
+
 You can validate that HariKube has distributed your data according to the topology configuration:
 
 {{< code bash >}}# Default database for other objects

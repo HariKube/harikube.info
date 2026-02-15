@@ -42,7 +42,7 @@ Kine is an existing etcd-shim (a compatibility layer) that translates the Kubern
 
 Our Modifications:
  - The HariKube version of Kine contains crucial enhancements that implement storage-side filtering logic. When the Kubernetes API server issues a request that typically requires client-side filtering (like a label selector), our modified Kine translates that request into an optimized SQL WHERE clause. This offloads the filtering work to the efficient SQL database, drastically cutting down on the amount of data transferred and processed by the API server, directly solving the client-side filtering performance bottleneck.
- - The other feature is storage-side garbage collection. Kubernetes API server and Controller Manager can operate without GC.
+ - The other feature is storage-side garbage-collection. Kubernetes API server and Controller Manager can operate without GC.
 
 2. Modified [Kubernetes Control Plane](https://github.com/HariKube/kubernetes-patches)
 
@@ -50,11 +50,11 @@ While Kine handles the data access layer, to fully leverage the performance gain
 
 The Changes:
  - These modifications enhance the way the API server constructs requests to its storage layer (our modified Kine). Specifically, they ensure that the server-side filters (like the label selectors and field selectors) are correctly passed down and translated by Kine into the SQL query, rather than being handled as an afterthought in memory.
- - Controller Manager skips caching resources labeled with `skip-controller-manager-metadata-caching` to avoid filling memory with resources garbage collected by the storage.
+ - Controller Manager skips caching resources labeled with `skip-controller-manager-metadata-caching` to avoid filling memory with unnecessary resources.
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
-3. [vCluster](https://github.com/HariKube/harikube/blob/release-v0.14.11/hack/vcluster/api-config.yaml Integration (Isolation and Scalability)
+3. [vCluster](https://github.com/HariKube/harikube/blob/release-v0.14.11/hack/vcluster/api-config.yaml) Integration (Isolation and Scalability)
 
 While it is entirely possible to run a standalone instance of this setup, for real-world production use, we **strongly suggest** utilizing the **vCluster** version of the toolset.
 
@@ -72,16 +72,12 @@ By using this open-source toolset, developers can immediately start building mor
 
 Here are some benchmark results on Ultra 7 165H 18 Core 4G, single VM ran everything including the k6 benchmark itself. 120 vus, each vu created a custom resource (6 different type) and read it back via label selector:
 
-- Vanilla Kubernetes with 3 node ETCD cluster:
+- Vanilla Kubernetes with ETCD cluster:
 
 ```
-checks_total.......: 51236 24.976013/s
 checks_succeeded...: 100.00% 51236 out of 51236
 checks_failed......: 0.00% 0 out of 51236
-
-HTTP
 http_req_duration..............: avg=799.54ms min=3.87ms med=82.39ms max=4.17s p(90)=2.47s p(95)=2.82s
-  { expected_response:true }...: avg=799.54ms min=3.87ms med=82.39ms max=4.17s p(90)=2.47s p(95)=2.82s
 http_req_failed................: 0.00% 0 out of 51236
 http_reqs......................: 51236 24.976013/s
 
@@ -93,27 +89,23 @@ OOM Killed, thanks API server
 - HariKube OSS with Postgres:
 
 ```
-checks_total.......: 101772  28.188433/s
 checks_succeeded...: 100.00% 101772 out of 101772
 checks_failed......: 0.00%   0 out of 101772
-
-HTTP
-http_req_duration..............: avg=708.33ms min=6.4ms    med=300.67ms max=6.2s  p(90)=1.99s p(95)=2.48s
-  { expected_response:true }...: avg=708.33ms min=6.4ms    med=300.67ms max=6.2s  p(90)=1.99s p(95)=2.48s
+http_req_duration..............: avg=708.33ms min=6.4ms med=300.67ms max=6.2s p(90)=1.99s p(95)=2.48s
 http_req_failed................: 0.00%  0 out of 101772
 http_reqs......................: 101772 28.188433/s
 ```
 
 | Metric | HariKube OSS | Vanilla K8s |
 | - | - | - |
-|Throughput | 28 req/s ✅ | 25 req/s ❌ |
-|Success Rate | 100% ✅| 100% (OOM) ❌ |
-|Latency average | 708ms ✅ | 799ms ❌  |
-|Latency p95 | 2480ms ✅ | 2820ms ❌ |
-|Latency p90 | 1990ms ✅ | 2470ms ❌ |
-|Test Duration | 60m ✅ | ~34m (OOM) ❌ |
-|Stability | Completed ✅  | KILLED ❌ |
-|Objects Handled | 50k ✅ | ~26k (OOM) ❌  |
+| Throughput | 28 req/s ✅ | 25 req/s ❌ |
+| Success Rate | 100% ✅| 100% (OOM) ❌ |
+| Latency average | 708ms ✅ | 799ms ❌ |
+| Latency p95 | 2480ms ✅ | 2820ms ❌ |
+| Latency p90 | 1990ms ✅ | 2470ms ❌ |
+| Test Duration | 60m ✅ | ~34m (OOM) ❌ |
+| Stability | Completed ✅ | KILLED ❌ |
+| Objects Handled | 50k ✅ | ~26k (OOM) ❌ |
 
 ## ⚙️ Step 1: Bring Your Cluster
 
@@ -135,7 +127,7 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 - **ETCD Avoidance**: State is routed to the SQL backend via Kine.
 - **Storage-Side Filtering**: All data queries are optimized for performance.
-- **Storage-Side Garbage-Collection**: Optionally you can push garbage-collection to the storage side.
+- **Storage-Side Garbage-Collection**: Garbage-collection happens on storage side.
 - **Isolation**: The control plane is separated into its own namespace via vCluster.
 
 To execute this, simply run the following command:

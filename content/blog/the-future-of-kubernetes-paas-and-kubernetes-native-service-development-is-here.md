@@ -214,6 +214,9 @@ First you have to connect to the virtual Kubernetes API. PLease install [vCluste
 
 > 🔓 For service access from host, the vCluster setup keeps things simple: Create your ServiceAccount, create a secret annotated with `kubernetes.io/service-account.name`, and vCluster will sync the secret to the host cluster.
 
+{{< code bash >}}kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+{{< /code >}}
+
 Crucially, this Kubernetes environment serves **only as your control plane and data source**, containing no application Pods; it is purpose-built to serve your APIs.
 
 {{< code bash >}}kubectl get pod -A

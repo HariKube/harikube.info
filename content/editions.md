@@ -52,7 +52,7 @@ layout: "pricing"
             "description": "The perfect starting point for small projects and prototypes.",
             "features": [
                 "Manual database configuration",
-                "Database number: 10",
+                "Database number: 5",
                 "Community support: No limits",
                 "Support coverage: Self-service",
                 "Support channels: Community Forum"

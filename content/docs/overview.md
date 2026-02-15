@@ -80,7 +80,6 @@ HariKube supports multiple backends, each with different capabilities regarding 
 
 | Database | Storage-Side Filtering | Data isolation | Decreased latency | Increased throughput | Large Dataset Support | Auto GC |
 |-|-|-|-|-|-|-|
-| <a href="https://etcd.io/" target="_blank">**ETCD**</a> | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | <a href="https://www.mysql.com/" target="_blank">**MySQL**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | <a href="https://mariadb.org/" target="_blank">**MariaDB**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | <a href="https://www.pingcap.com/" target="_blank">**TiDB**</a> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
