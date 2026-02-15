@@ -36,70 +36,13 @@ To democratize the advancements needed to overcome the limitations of ETCD and c
 
 This toolset consists of two key components:
 
-1. [Modified Kine](https://github.com/HariKube/kine) (Kine is not etcd)
+1. [Modified Kine](https://github.com/HariKube/harikube) (Kine is not etcd)
 
 Kine is an existing etcd-shim (a compatibility layer) that translates the Kubernetes API server's native ETCD API calls into standard SQL queries for backends like SQLite, Postgres, or MySQL. It allows Kubernetes to use these databases instead of ETCD.
 
 Our Modifications:
  - The HariKube version of Kine contains crucial enhancements that implement storage-side filtering logic. When the Kubernetes API server issues a request that typically requires client-side filtering (like a label selector), our modified Kine translates that request into an optimized SQL WHERE clause. This offloads the filtering work to the efficient SQL database, drastically cutting down on the amount of data transferred and processed by the API server, directly solving the client-side filtering performance bottleneck.
- - The other feature is storage-side garbage collection. Add a label `skip-controller-manager-metadata-caching` to any of your resources to enable storage-side GC. You can automate the label creation with Mutation Admission Policy.
-
-{{< code yaml "skip-controller-manager-metadata-caching.yaml" >}}apiVersion: admissionregistration.k8s.io/v1beta1
-kind: MutatingAdmissionPolicy
-metadata:
-  name: "skip-controller-manager-metadata-caching"
-spec:
-  matchConstraints:
-    resourceRules:
-    - apiGroups:   ["stable.example.com"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE"]
-      resources:   ["shirts"]
-  matchConditions:
-    - name: label-does-not-exist
-      expression: >
-          !has(object.metadata.labels) ||
-          !('skip-controller-manager-metadata-caching' in object.metadata.labels)
-  failurePolicy: Fail
-  reinvocationPolicy: IfNeeded
-  mutations:
-    - patchType: JSONPatch
-      jsonPatch:
-        expression: >
-          has(object.metadata.labels)
-          ? [
-              JSONPatch{
-                op: "add",
-                path: "/metadata/labels/skip-controller-manager-metadata-caching",
-                value: ""
-              }
-            ]
-          : [
-              JSONPatch{
-                op: "add",
-                path: "/metadata/labels",
-                value: {}
-              },
-              JSONPatch{
-                op: "add",
-                path: "/metadata/labels/skip-controller-manager-metadata-caching",
-                value: ""
-              }
-            ]
----
-apiVersion: admissionregistration.k8s.io/v1beta1
-kind: MutatingAdmissionPolicyBinding
-metadata:
-  name: "skip-controller-manager-metadata-caching"
-spec:
-  policyName: "skip-controller-manager-metadata-caching"
-  matchResources:
-    resourceRules:
-    - apiGroups:   ["stable.example.com"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE"]
-      resources:   ["shirts"]
-{{< /code >}}
+ - The other feature is storage-side garbage collection. Kubernetes API server and Controller Manager can operate without GC.
 
 2. Modified [Kubernetes Control Plane](https://github.com/HariKube/kubernetes-patches)
 
@@ -111,7 +54,7 @@ The Changes:
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
-3. [vCluster](https://github.com/HariKube/kine/blob/master/hack/vcluster/api-config.yaml) Integration (Isolation and Scalability)
+3. [vCluster](https://github.com/HariKube/harikube/blob/release-v0.14.11/hack/vcluster/api-config.yaml Integration (Isolation and Scalability)
 
 While it is entirely possible to run a standalone instance of this setup, for real-world production use, we **strongly suggest** utilizing the **vCluster** version of the toolset.
 
@@ -124,6 +67,53 @@ The Benefit: Deploying our modified control plane and Kine setup inside a vClust
 - **Individual Scalability**: Each virtual cluster gets its own Kubernetes API server and isolated Kine/SQL backend, meaning its scalability and performance are independent of all other clusters and the host clusters, making it the ideal pattern for deploying multiple scalable services.
 
 By using this open-source toolset, developers can immediately start building more data-intensive microservices and operators without worrying about the looming scalability wall of a standard ETCD deployment.
+
+### The numbers are talking for themselves
+
+Here are some benchmark results on Ultra 7 165H 18 Core 4G, single VM ran everything including the k6 benchmark itself. 120 vus, each vu created a custom resource (6 different type) and read it back via label selector:
+
+- Vanilla Kubernetes with 3 node ETCD cluster:
+
+```
+checks_total.......: 51236 24.976013/s
+checks_succeeded...: 100.00% 51236 out of 51236
+checks_failed......: 0.00% 0 out of 51236
+
+HTTP
+http_req_duration..............: avg=799.54ms min=3.87ms med=82.39ms max=4.17s p(90)=2.47s p(95)=2.82s
+  { expected_response:true }...: avg=799.54ms min=3.87ms med=82.39ms max=4.17s p(90)=2.47s p(95)=2.82s
+http_req_failed................: 0.00% 0 out of 51236
+http_reqs......................: 51236 24.976013/s
+
+time="2026-02-14T19:07:26Z" level=error msg="test run was aborted because k6 received a 'interrupt' signal" make: *** [Makefile:589: k6s-start] Error 105
+
+OOM Killed, thanks API server
+```
+
+- HariKube OSS with Postgres:
+
+```
+checks_total.......: 101772  28.188433/s
+checks_succeeded...: 100.00% 101772 out of 101772
+checks_failed......: 0.00%   0 out of 101772
+
+HTTP
+http_req_duration..............: avg=708.33ms min=6.4ms    med=300.67ms max=6.2s  p(90)=1.99s p(95)=2.48s
+  { expected_response:true }...: avg=708.33ms min=6.4ms    med=300.67ms max=6.2s  p(90)=1.99s p(95)=2.48s
+http_req_failed................: 0.00%  0 out of 101772
+http_reqs......................: 101772 28.188433/s
+```
+
+| Metric | HariKube OSS | Vanilla K8s |
+| - | - | - |
+|Throughput | 28 req/s ✅ | 25 req/s ❌ |
+|Success Rate | 100% ✅| 100% (OOM) ❌ |
+|Latency average | 708ms ✅ | 799ms ❌  |
+|Latency p95 | 2480ms ✅ | 2820ms ❌ |
+|Latency p90 | 1990ms ✅ | 2470ms ❌ |
+|Test Duration | 60m ✅ | ~34m (OOM) ❌ |
+|Stability | Completed ✅  | KILLED ❌ |
+|Objects Handled | 50k ✅ | ~26k (OOM) ❌  |
 
 ## ⚙️ Step 1: Bring Your Cluster
 
@@ -150,13 +140,16 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 To execute this, simply run the following command:
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/kine/releases/download/release-v0.14.11/vcluster-kine-sqlite-release-v0.14.11.yaml
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.14.11/vcluster-harikube-sqlite-release-v0.14.11.yaml
 {{< /code >}}
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
 
-{{< code bash >}}kubectl wait -n kine --for=jsonpath='{.status.readyReplicas}'=1 statefulset/kine --timeout=5m
-vcluster connect kine
+{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
+vcluster connect harikube
+{{< /code >}}
+
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.14.11/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 You are now connected to a highly performant, isolated control plane that is no longer limited by ETCD or client-side filtering. Congratulations on taking the first step towards truly scalable cloud-native development!
@@ -247,9 +240,9 @@ This open-source release is a testament to our mission: to redefine the cloud-na
 
 Your feedback is invaluable in helping us improve this operator. If you encounter any issues, have a suggestion for a new feature, or simply want to share your experience, we want to hear from you!
 
-- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/HariKube/kine/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version).
-- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/HariKube/kine/issues) and use the `enhancement` label. Describe the use case and how the new feature would benefit the community.
-- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/HariKube/kine/discussions).
+- Report Bugs: If you find a bug, please open a [GitHub Issue](https://github.com/HariKube/harikube/issues). Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version).
+- Request a Feature: If you have an idea for a new feature, open a [GitHub Issue](https://github.com/HariKube/harikube/issues) and use the `enhancement` label. Describe the use case and how the new feature would benefit the community.
+- Ask a Question: For general questions or discussions, please use the [GitHub Discussions](https://github.com/HariKube/harikube/discussions).
 
 ---
 

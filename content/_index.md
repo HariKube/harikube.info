@@ -94,6 +94,11 @@ testimonials:
 }
 {{< /details >}}
 
+{{< benchmark 
+    title="We Put Everything on a Single Machine"
+    description="Vanilla Kubernetes VS. HariKube 6xPostgreSQL"
+>}}
+
 {{< features-section 
     title="🪄 Achieve Both: Performance and Rapid Development"
     description="HariKube is not a choice between a faster developer experience and technical performance - it delivers comprehensive benefits by addressing both core limitations of standard Kubernetes."

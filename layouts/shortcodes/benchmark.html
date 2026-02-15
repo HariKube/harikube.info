@@ -1,0 +1,79 @@
+{{ $background_color := .Get "background-color" }}
+<section class="section{{ if not $background_color }} bg-gray-50{{ end }}" {{ if $background_color }}style="background-color:{{ $background_color }};"{{ end }}>
+    <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ .Get "title" }}</h2>
+            <p class="text-xl text-gray-600">{{ .Get "description" }}</p>
+        </div>
+<h3></h3>
+        <div class="testimonials-container">
+            <pre>
+                <b style="color: red">
+                    Vanilla system reached Halt and Catch 🔥. Kubernetes API server has been 💀 OOM Killed!
+                </b>
+                <div class="prose">
+                    <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>HariKube</th>
+                            <th>Vanilla K8s</th>
+                            <th>Gain</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Throughput</td>
+                            <td>119 req/s ✅</td>
+                            <td>25 req/s ❌</td>
+                            <td>4.8×</td>
+                        </tr>
+                        <tr>
+                            <td>Success Rate</td>
+                            <td>100% ✅</td>
+                            <td>OOM 💀</td>
+                            <td>♾️</td>
+                        </tr>
+                        <tr>
+                            <td>Latency average</td>
+                            <td>167ms ✅</td>
+                            <td>799ms ❌</td>
+                            <td>4.8×</td>
+                        </tr>
+                        <tr>
+                            <td>Latency p90</td>
+                            <td>398ms ✅</td>
+                            <td>2470ms ❌</td>
+                            <td>6.2×</td>
+                        </tr>
+                        <tr>
+                            <td>Latency p95</td>
+                            <td>543ms ✅</td>
+                            <td>2820ms ❌</td>
+                            <td>5.2×</td>
+                        </tr>
+                        <tr>
+                            <td>Test Duration</td>
+                            <td>60m ✅</td>
+                            <td>~34m ❌</td>
+                            <td>~2x</td>
+                        </tr>
+                        <tr>
+                            <td>Stability</td>
+                            <td>Completed ✅</td>
+                            <td>OOM 💀</td>
+                            <td>♾️</td>
+                        </tr>
+                        <tr>
+                            <td>Objects Handled</td>
+                            <td>200k+ ✅</td>
+                            <td>~26k ❌</td>
+                            <td>8×</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </pre>
+        </div>
+    </div>
+</section>

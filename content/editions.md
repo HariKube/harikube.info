@@ -41,7 +41,7 @@ layout: "pricing"
             ],
             "button": {
                 "text": "Download",
-                "url": "https://github.com/HariKube/kine/releases/tag/release-v0.14.11"
+                "url": "https://github.com/HariKube/harikube/releases/tag/release-v0.14.11"
             }
         },
         {
