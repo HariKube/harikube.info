@@ -35,23 +35,15 @@ Store your previously created topology config, or create configs on the fly with
 ### Create an API only deployment
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-{{ .Site.Params.middlewareVersion }}.yaml
-{{< /code >}}
-
-{{< code bash >}}vcluster connect harikube
-{{< /code >}}
-
-{{< code bash >}}kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+vcluster connect harikube
+kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 ### Create deployment with workload capabilities
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-workload-{{ .Site.Params.middlewareVersion }}.yaml
-{{< /code >}}
-
-{{< code bash >}}vcluster connect harikube
-{{< /code >}}
-
-{{< code bash >}}kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+vcluster connect harikube
+kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 ### Create your custom virtual cluster configuration
@@ -136,12 +128,8 @@ sync:
 To create your virtual cluster and automatically configure your local environment for access, execute the following command:
 
 {{< code bash >}}vcluster create vcluster-config-custom -n vcluster-config-custom -f vcluster-config-custom.yaml
-{{< /code >}}
-
-{{< code bash >}}vcluster connect harikube
-{{< /code >}}
-
-{{< code bash >}}kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+vcluster connect harikube
+kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 ---
