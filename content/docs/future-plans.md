@@ -23,7 +23,6 @@ Optimize performance across all critical system layers:
  - Watchers: Improve event-driven data synchronization and reduce latency.
  - Metadata Storage: Introduce optimized metadata storage mechanisms to improve system performance and responsiveness.
  - Table Partitions: Enable partitioning and sharding strategies to accelerate large-scale data operations.
- - Garbage Collection: Shift Kubernetes garbage collection logic to the database layer to enable more efficient cleanup of orphaned or expired resources, reduce API server load, and improve overall system performance.
 
 #### 3. Database Support Expansion
 

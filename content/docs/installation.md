@@ -162,12 +162,11 @@ HariKube requires specific Kubernetes configuration to enable custom resource ro
 | ✅ | Feature Gate | `WatchList=true` | Enables watch list support |
 | ✅ | Feature Gate | `WatchListClient=true` | Enables watch list client feature |
 | ✅ | API Server Flag | `--encryption-provider-config=""` | Encryption not supported |
+| ✅ | API Server Flag | `--storage-media-type=application/json` | Only JSON storage type is supported |
 | ✅ | API Server Flag | `--etcd-servers=http(s)://middleware.service:2379` | Sets the middleware as the ETCD backend |
-| ➖ | API Server Flag | `--watch-cache=false` | Disables watch cache (recommended for large data) |
+| ✅ | API Server Flag | `--watch-cache=false` | Disables watch cache |
 | ➖ | API Server Flag | `--max-mutating-requests-inflight=400` | Increases concurrency for mutating requests |
 | ➖ | API Server Flag | `--max-requests-inflight=800` | Increases concurrency for all requests |
-| ➖ | API Server Flag | `--enable-garbage-collector=false` | On case all databases use automatic GC |
-| ➖ | Controller Manager Flag | `--enable-garbage-collector=false` | On case all databases use automatic GC |
 
 Supported versions are:
 

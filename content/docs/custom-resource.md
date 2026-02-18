@@ -17,7 +17,7 @@ nextLink: "/docs/automation/"
 {{< code bash >}}kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/customresourcedefinition/shirt-resource-definition.yaml
 {{< /code >}}
 
-By default, the Kubernetes Controller Manager caches every resource to support background operations such as garbage collection and internal indexing.
+By default, the Kubernetes Controller Manager caches every resource to support background operations, which might you don't need for custom resources.
 To reduce memory usage and improve performance in high-volume environments, you can label specific resources with `skip-controller-manager-metadata-caching` to exclude them from being cached.
 
 ### 💡 Ensure Label with Mutation Admission Webhook

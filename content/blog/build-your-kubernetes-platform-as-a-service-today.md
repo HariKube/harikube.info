@@ -42,7 +42,6 @@ Kine is an existing etcd-shim (a compatibility layer) that translates the Kubern
 
 Our Modifications:
  - The HariKube version of Kine contains crucial enhancements that implement storage-side filtering logic. When the Kubernetes API server issues a request that typically requires client-side filtering (like a label selector), our modified Kine translates that request into an optimized SQL WHERE clause. This offloads the filtering work to the efficient SQL database, drastically cutting down on the amount of data transferred and processed by the API server, directly solving the client-side filtering performance bottleneck.
- - The other feature is storage-side garbage-collection. Kubernetes API server and Controller Manager can operate without GC.
 
 2. Modified [Kubernetes Control Plane](https://github.com/HariKube/kubernetes-patches)
 
@@ -98,6 +97,7 @@ http_reqs......................: 101772 28.188433/s
 
 | Metric | HariKube OSS | Vanilla K8s |
 | - | - | - |
+| Objects Handled | 50k ✅ | ~26k (OOM) ❌ |
 | Throughput | 28 req/s ✅ | 25 req/s ❌ |
 | Success Rate | 100% ✅| 100% (OOM) ❌ |
 | Latency average | 708ms ✅ | 799ms ❌ |
@@ -105,7 +105,6 @@ http_reqs......................: 101772 28.188433/s
 | Latency p90 | 1990ms ✅ | 2470ms ❌ |
 | Test Duration | 60m ✅ | ~34m (OOM) ❌ |
 | Stability | Completed ✅ | KILLED ❌ |
-| Objects Handled | 50k ✅ | ~26k (OOM) ❌ |
 
 ## ⚙️ Step 1: Bring Your Cluster
 
@@ -127,7 +126,6 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 - **ETCD Avoidance**: State is routed to the SQL backend via Kine.
 - **Storage-Side Filtering**: All data queries are optimized for performance.
-- **Storage-Side Garbage-Collection**: Garbage-collection happens on storage side.
 - **Isolation**: The control plane is separated into its own namespace via vCluster.
 
 To execute this, simply run the following command:

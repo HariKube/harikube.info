@@ -24,6 +24,7 @@ The result? **10x to 50x more operations per second**. Your control plane finall
 
 | Metric | HariKube 6xPostgres | Vanilla K8s | Gain |
 | - | - | - | - |
+| Objects Handled | 200k+ ✅ | ~26k ❌ | 8× |
 | Throughput | 119 req/s ✅ | 25 req/s ❌ | 4.8× |
 | Success Rate | 100% ✅  | OOM 💀 | ♾️ |
 | Latency average | 167ms ✅ | 799ms ❌  | 4.8× |
@@ -31,7 +32,6 @@ The result? **10x to 50x more operations per second**. Your control plane finall
 | Latency p90 | 398ms ✅ | 2470ms ❌ | 6.2× |
 | Test Duration | 60m ✅ | ~34m ❌ | ~2x |
 | Stability | Completed ✅ | OOM 💀 | ♾️ |
-| Objects Handled | 200k+ ✅ | ~26k ❌  | 8× |
 
 > While HariKube's performance is crucial, maintaining a low overall error rate is equally important to ensure reliability and user trust. Vanilla K8s reached Halt and Catch 🔥. Kubernetes API server has been 💀 OOM Killed on the same setup.
 
