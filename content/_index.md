@@ -60,15 +60,14 @@ testimonials:
 
 <div id="modal-video" class="modal">
   <div class="modal-content">
-    <video
-        id="hero-video"
-        controls
-        disablePictureInPicture
-        preload="metadata"
-        poster="/images/harikube_introduction.png"
-        data-setup='{}'>
-        <source src="/videos/harikube_introduction.mp4" type="video/mp4" />
-    </video>
+    <iframe id="video-player"
+      width="100%" height="100%"
+      src="https://www.youtube.com/embed/1ujkJpyypn4?rel=0&enablejsapi=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
   </div>
 </div>
 
