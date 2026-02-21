@@ -172,7 +172,6 @@ Supported versions are:
 
 | Major version | Patch versions | Architecures |
 |-|-|-|
-| v1.34 | v1.34.0, v1.34.1, v1.34.2 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
 | v1.35 | v1.35.0 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
 
 {{< details >}}

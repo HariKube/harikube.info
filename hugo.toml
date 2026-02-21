@@ -47,13 +47,13 @@ canonifyURLs = true
 
   middlewareImage = "middleware"
   middlewareVersion = "release-v1.0.0"
-  supportedMiddlewareVersions = "beta-v1.0.0-17,beta-v1.0.0-18,beta-v1.0.0-19,beta-v1.0.0-20,release-v1.0.0"
+  supportedMiddlewareVersions = "release-v1.0.0"
   operatorImage = "operator"
   operatorVersion = "release-v1.0.0"
-  supportedOperatorVersions = "beta-v1.0.0-2,beta-v1.0.0-3,release-v1.0.0"
+  supportedOperatorVersions = "release-v1.0.0"
   kubernetesImages = "kube-apiserver,kube-controller-manager,kubernetes"
   kubernetesVersion = "v1.35.0"
-  supportedKubernetesVersions = "v1.34.0,v1.34.1,v1.34.2,v1.35.0"
+  supportedKubernetesVersions = "v1.35.0"
 
   # Header Configuration
   [params.header]
