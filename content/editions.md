@@ -32,10 +32,13 @@ layout: "pricing"
             "name": "Open-Source Edition",
             "price": "0",
             "displayPrice": true,
+            "subscription": false,
             "description": "Perfect for standalone projects and environments where one database is sufficient.",
             "features": [
                 "Database number: 1",
-                "Community support: No limits",
+                "PostgreSQL, MySQL, SQLite",
+                "Storage Side Filtering",
+                "Monitoring: Basic",
                 "Support coverage: Self-service",
                 "Support channels: Community Forum"
             ],
@@ -48,12 +51,15 @@ layout: "pricing"
             "name": "Starter Edition",
             "price": "0",
             "displayPrice": true,
-            "featured": true,
+            "subscription": false,
             "description": "The perfect starting point for small projects and prototypes.",
             "features": [
                 "Manual database configuration",
-                "Database number: 5",
-                "Community support: No limits",
+                "Database number: 6",
+                "Metadata shards: 1",
+                "PostgreSQL, MySQL, SQLite",
+                "Storage Side Filtering",
+                "Monitoring: Basic",
                 "Support coverage: Self-service",
                 "Support channels: Community Forum"
             ],
@@ -63,19 +69,68 @@ layout: "pricing"
             }
         },
         {
+            "name": "Pro Edition",
+            "price": "5000",
+            "displayPrice": true,
+            "subscription": true,
+            "description": "Advanced tools and enhanced performance for professionals who need more power and flexibility.",
+            "features": [
+                "Automatic database configuration",
+                "Database number: no upper limit",
+                "Metadata shards: 4",
+                "PostgreSQL, MySQL, SQLite",
+                "Storage Side Filtering",
+                "Monitoring: Basic",
+                "Support channels: Community Forum, Email",
+                "Maintenance updates: 12 months"
+            ],
+            "button": {
+                "text": "Contact Us",
+                "url": "/contact-us/"
+            }
+        },
+        {
             "name": "Enterprise Edition",
             "price": "19000",
             "displayPrice": false,
-            "description": "Ideal for startups and small businesses looking to get up and running quickly.",
+            "description": "Comprehensive solutions and premium support designed for large-scale organizational needs.",
             "freetier": false,
-            "featured": false,
+            "subscription": true,
             "features": [
                 "Automatic database configuration",
-                "Database number: no uper limit",
-                "Community support: No limits",
+                "Database number: no upper limit",
+                "Metadata shards: no upper limit",
+                "PostgreSQL, YugabyteDB, CockroachDB, MySQL, TiDB, SQLite",
+                "Storage Side Filtering",
+                "Monitoring: Advanced",
                 "Support & advisory",
                 "Support channels: Community Forum, Email, dedicated Slack",
                 "Maintenance updates: 12 months"
+            ],
+            "addons": {
+            },
+            "button": {
+                "text": "Contact Us",
+                "url": "/contact-us/"
+            }
+        },
+        {
+            "name": "Perpetual Edition",
+            "price": "19000",
+            "displayPrice": false,
+            "description": "This tier offers full infrastructure ownership backed by our dedicated operational expertise.",
+            "freetier": false,
+            "subscription": false,
+            "features": [
+                "Automatic database configuration",
+                "Database number: no upper limit",
+                "Metadata shards: no upper limit",
+                "PostgreSQL, YugabyteDB, CockroachDB, MySQL, TiDB, SQLite",
+                "Storage Side Filtering",
+                "Monitoring: Advanced",
+                "Support & advisory",
+                "Support channels: Community Forum, Email, dedicated Slack",
+                "Maintenance updates: 32 months"
             ],
             "addons": {
             },
@@ -96,6 +151,10 @@ layout: "pricing"
         {
             "question": "What is the difference between Manual and Automatic Configuration?",
             "answer": "With Manual Configuration (Starter Edition), you need to manually edit the global topology file. Automatic Configuration (all paid editions) allows you to append separated topology configs next to the services and the system will generate the global config."
+        },
+        {
+            "question": "What Metadata shards means?",
+            "answer": "HariKube keeps track of every revision’s metadata. The shard count determines how many different storage units that data is spread across."
         },
         {
             "disabled": true,
@@ -142,7 +201,7 @@ layout: "pricing"
         },
         {
             "disabled": true,
-            "question": "What is Advanced Monitoring and Alerting and Notifications?",
+            "question": "What is Advanced Monitoring, Alerting and Notifications?",
             "answer": "These features provide built-in system monitoring, log collection, and automated alerts. This allows you to proactively track performance, gather data, and receive instant notifications for any potential issues."
         },
         {

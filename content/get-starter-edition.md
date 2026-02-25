@@ -8,15 +8,20 @@ description: "Get Your HariKube Edition."
 
 ## 🚀 Get Your HariKube Starter Edition
 
-Experience the Power of Intelligent Kubernetes Routing - For Free
+Before you start using HariKube, please take a moment to understand our commitment.
 
-Ready to experiment with HariKube? Our Starter Edition lets you explore how to extend Kubernetes with intelligent data routing and resource-aware backends on your own terms. Simply complete the request form below to get your license key and start building.
+### The Product is the Vision, The Tool is HariKube
+
+We exist to unlock Kubernetes native application development. We remove the state bottlenecks that hold clusters back, including etcd bound limits, so teams can ship new services as CRDs and focus on product, not plumbing.
+We are not here to sell another infrastructure tool. We are here to champion a simpler model for cloud native architecture: declare intent through the Kubernetes API, let the platform handle state and scale, and keep your engineering effort where it belongs, on delivering value.
+
+**HariKube is our gift to the community**: it is the engine that makes this practical. It strips away legacy state management constraints with a database agnostic data layer, so you can stop managing infrastructure and start orchestrating innovation.
 
 #### Starter Edition:
 
  - 🆓 Free Forever
  - 🔧 Manual database configuration
- - 📈 Maximum database number: 10
+ - 📈 Maximum database number: 6
 
 #### Need More Scaleability or Premium Support?
 
@@ -24,20 +29,20 @@ If your infrastructure requirements go beyond the basics, HariKube Enterprise is
 
 [Contact Our Enterprise Team](/contact-us/)
 
+|||
+
+<div id="hk-form-thanks" style="display: none;">
+<pre>✅ Starter Edition Request Received</pre>
+
 ## 📬 What Happens Next
 
-Once you submit your request, our team will respond via email within one business day. Here is what to expect in your inbox:
+Our team will respond via email within one business day. Here is what to expect in your inbox:
 
  - **License Key & Download Link**: Your unique credentials to activate the Starter Edition.
  - **Quick-Start Guide**: A streamlined "Hello World" to get HariKube running on your local cluster in minutes.
 
 For technical questions or feedback during your setup, feel free to reach out to us at support@inspirnation.eu.
 
-|||
-
-<div id="hk-form-thanks" style="display: none;">
-<pre>✅ Starter Edition Request Received</pre>
-<strong>✨ We have successfully received your request details. Our team is currently reviewing your request and respond via email within one business day.</strong>
 </div>
 
 <div id="sign-up-form">

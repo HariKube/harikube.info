@@ -17,12 +17,15 @@ description: "Learn about our mission, leadership team, and the investors backin
 
 {{< section-container class="bg-gradient-to-b from-blue-50 via-blue-50 to-white pt-20 pb-32" >}}
     <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Building the Future of PaaS</h1>
-        <p class="text-xl text-gray-600 mb-16">We're on a mission to revolutionize how businesses operate in the digital age</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">The Product is the Vision, The Tool is HariKube</h1>
+        <p class="text-xl text-gray-600 mb-16">"It always seems impossible until it's done" - Nelson Mandela</p>
         <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-8">
-            <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
+            <h2 class="text-3xl font-bold mb-4"></h2>
             <p class="text-xl text-gray-600">
-                We're dedicated to empowering businesses with innovative PaaS solutions that drive growth and efficiency. Our platform combines cutting-edge technology with intuitive design to solve complex business challenges.
+                We exist to unlock Kubernetes native application development. We remove the state bottlenecks that hold clusters back, including etcd bound limits, so teams can ship new services as CRDs and focus on product, not plumbing.
+                We are not here to sell another infrastructure tool. We are here to champion a simpler model for cloud native architecture: declare intent through the Kubernetes API, let the platform handle state and scale, and keep your engineering effort where it belongs, on delivering value.
+                <br />
+                <b>HariKube is our gift to the community</b>: it is the engine that makes this practical. It strips away legacy state management constraints with a database agnostic data layer, so you can stop managing infrastructure and start orchestrating innovation.
             </p>
         </div>
     </div>

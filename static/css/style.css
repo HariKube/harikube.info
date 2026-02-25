@@ -4060,6 +4060,16 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
 }
 
+.bg-primary-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(119 143 230 / var(--tw-bg-opacity, 1));
+}
+
+.bg-primary-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 199 243 / var(--tw-bg-opacity, 1));
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }

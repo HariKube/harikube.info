@@ -12,15 +12,15 @@ Unlock Scalable, Compliant Kubernetes Infrastructure
 
 HariKube helps organizations extend Kubernetes with intelligent data routing, resource-aware database placement, and high-performance scaling. To better understand your needs and provide tailored guidance, please complete the short form below. Whether you're exploring proof-of-concept, evaluating for production, or seeking integration support, we're here to help.
 
-## 📬 What Happens Next
-
-Submit your request through the contact form, and our team will get back to you with relevant resources, technical insights, or options for scheduling a discovery call. Alternatively, for immediate assistance or other inquiries, please email us at support@inspirnation.eu.
-
 |||
 
 <div id="hk-form-thanks" style="display: none;">
 <pre>Thanks for your interest in HariKube!</pre>
-<strong>📰 We'll be in touch shortly with more information and resources to help you unlock scalable, compliant Kubernetes infrastructure.</strong>
+
+## 📬 What Happens Next
+
+Our team will get back to you with relevant resources, technical insights, or options for scheduling a discovery call. Alternatively, for immediate assistance or other inquiries, please email us at support@inspirnation.eu.
+
 </div>
 
 <div id="sign-up-form">

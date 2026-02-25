@@ -18,7 +18,7 @@ layout: "simple"
 }
 </script>
 
-## Enterprise Edition
+## Business Editions
 
 [Download](/docs/8.5.4-a2-r0-eula-hk-ga-251128.pdf)
 
