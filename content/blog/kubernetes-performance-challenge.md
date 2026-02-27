@@ -10,7 +10,7 @@ featured_image: "/images/blog/kubernetes-performance-challenge.png"
 
 {{< toc >}}
 
-# The Kubernetes Performance Challenge, Join to the contest!
+## The Kubernetes Performance Challenge, Join to the contest!
 
 We were interested in how far we can go with Kubernetes. While it can scale up applications to the space (beyond the clouds 😜), Kubernetes itself fails to scale gracefully. Or maybe not?
 
@@ -24,7 +24,7 @@ Participants are invited to execute standardized performance tests against the K
 
 > Participation is free and requires no purchase.
 
-# 🏆 The Grand Prize
+## 🏆 The Grand Prize
 
 The ultimate reward for pushing the boundaries of cloud engineering.
 
@@ -48,13 +48,7 @@ Don't be discouraged if you missed the first ten or couldn't beat our score. At 
  - Starts at 2026.02.25. 18:00 GMT
  - Ends at 2026.05.25. 22:00 GMT
 
-### Score calculation
-
-`floor(checks_total / (http_req_duration.med*0.2 + http_req_duration.p90*0.3 + http_req_duration.p95*0.5) * pow(1 - checks_failed / checks_total, 7))`
-
-> http_req_duration counted in ms
-
-### 📜 Rules and Constraints
+## 📜 Rules and Constraints
 
 To ensure valid and comparable results, all participants must adhere to the following constraints:
 
@@ -71,6 +65,12 @@ To ensure valid and comparable results, all participants must adhere to the foll
  - By submitting a PR, you consent to the public display of your GitHub username on the leaderboard. Personal information for prizes will be handled temporary and will not be shared with third parties.
  - Legal Disclaimer: This is a skill-based challenge. Participation is free. By submitting your results, you acknowledge that the final validation of any score is subject to the Technical Discussion Protocol to ensure compliance with the rules.
    
+### Score calculation
+
+`floor(checks_total / (http_req_duration.med*0.2 + http_req_duration.p90*0.3 + http_req_duration.p95*0.5) * pow(1 - checks_failed / checks_total, 7))`
+
+> http_req_duration counted in ms
+
 ### 🛠️ Getting Started
 
  - **Deployment**: Bring your own Kubernetes.
@@ -89,5 +89,7 @@ To ensure valid and comparable results, all participants must adhere to the foll
  - Define concurrency on your own taste
  - Each iteration creates 6 different type of custom resources in parallel
  - Each iteration reads beck the created custom resources via label selector in parallel
+
+## 🔀 Join to the Contest
 
 > For more details please visit the [GitHub](https://github.com/HariKube/kubernetes-performance-challenge/blob/main/README.md) page where contest is running.
