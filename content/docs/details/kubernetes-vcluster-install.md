@@ -27,7 +27,7 @@ kubectl create secret docker-registry -n harikube harikube-registry-secret \
 --docker-password='<my$secure@password>'
 {{< /code >}}
 
-Store your previously created topology config, or create configs on the fly with our [automation](/docs/automation/) tool.
+Store your previously created topology config, or create configs on the fly with our [automation](/docs/automation/) tool. You can edit the secret any time, the middleware will apply the changes.
 
 {{< code bash >}}kubectl create secret generic --namespace harikube topology-config --from-file=$(pwd)/topology.yaml
 {{< /code >}}
@@ -36,14 +36,12 @@ Store your previously created topology config, or create configs on the fly with
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-{{ .Site.Params.middlewareVersion }}.yaml
 vcluster connect harikube
-kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 ### Create deployment with workload capabilities
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-workload-{{ .Site.Params.middlewareVersion }}.yaml
 vcluster connect harikube
-kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 ### Create your custom virtual cluster configuration
@@ -129,7 +127,6 @@ To create your virtual cluster and automatically configure your local environmen
 
 {{< code bash >}}vcluster create vcluster-config-custom -n vcluster-config-custom -f vcluster-config-custom.yaml
 vcluster connect harikube
-kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 ---

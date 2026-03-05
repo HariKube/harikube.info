@@ -127,7 +127,7 @@ Start by authenticating your local Docker client with the private registry at `r
   -v ${PWD}/license:/license:ro \
   -v $(pwd)/topology.yaml:/topology.yaml \
   -v harikube_db:/db \
-  registry.harikube.info/harikube/middleware:release-v1.0.1 \
+  registry.harikube.info/harikube/middleware:release-v1.0.2 \
   --listen-address=0.0.0.0:2369 --endpoint='multi://sqlite:///db/main.db?_journal=WAL&cache=shared'
 {{< /code >}}
 
