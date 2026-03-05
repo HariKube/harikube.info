@@ -24,6 +24,8 @@ Participants are invited to execute standardized performance tests against the K
 
 > Participation is free and requires no purchase.
 
+[Check out Current Leaderboard](https://github.com/HariKube/kubernetes-performance-challenge/blob/main/README.md#-current-leaderboard)
+
 ## 🏆 The Grand Prize
 
 The ultimate reward for pushing the boundaries of cloud engineering.

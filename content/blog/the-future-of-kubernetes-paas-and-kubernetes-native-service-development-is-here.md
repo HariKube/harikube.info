@@ -157,11 +157,11 @@ kubectl create secret docker-registry -n harikube harikube-registry-secret \
 --docker-server=registry.harikube.info \
 --docker-username=<oci-user> \
 --docker-password='<my$secure@password>'
-kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.0.yaml
-kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.0.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.1.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.1.yaml
 {{< /code >}}
 
-> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.0.yaml` instead of the API only manifest.
+> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.1.yaml` instead of the API only manifest.
 
 Wait for system is up and running.
 
