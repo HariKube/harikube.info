@@ -5,6 +5,30 @@ layout: "simple"
 
 Kubernetes is compatible with `HariKube` by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.
 
+## 🚀 Setup and start Kubernetes
+
+### Kubernetes Configuration
+
+HariKube requires specific Kubernetes configuration to enable custom resource routing and external data store integration.
+
+| Mandatory | Category | Option | Description |
+|-|-|-|-|
+| ✅ | Feature Gate | `CustomResourceFieldSelectors=true` | Enables CR field selectors |
+| ✅ | Feature Gate | `WatchList=true` | Enables watch list support |
+| ✅ | Feature Gate | `WatchListClient=true` | Enables watch list client feature |
+| ✅ | API Server Flag | `--encryption-provider-config=""` | Encryption not supported |
+| ✅ | API Server Flag | `--storage-media-type=application/json` | Only JSON storage type is supported |
+| ✅ | API Server Flag | `--etcd-servers=http(s)://middleware.service:2379` | Sets the middleware as the ETCD backend |
+| ✅ | API Server Flag | `--watch-cache=false` | Disables watch cache |
+| ➖ | API Server Flag | `--max-mutating-requests-inflight=400` | Increases concurrency for mutating requests |
+| ➖ | API Server Flag | `--max-requests-inflight=800` | Increases concurrency for all requests |
+
+Supported versions are:
+
+| Major version | Patch versions | Architecures |
+|-|-|-|
+| v1.35 | v1.35.0 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
+
 > ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
 Start by authenticating your local Docker client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.

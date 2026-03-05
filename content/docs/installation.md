@@ -150,30 +150,6 @@ The HariKube removes the "Single Connection" constraint, introducing native mult
  - **Upgrading to a Distributed Database** (The "Drop-In" Scale): The most powerful way to scale the database is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.
  - **Introducing a Smart Load Balancer** (Read/Write Splitting): To maximize throughput, you can place a State-Aware Proxy (like ProxySQL, MaxScale, Pgpool-II, or Pgcat) between HariKube and your database cluster. The Load Balancer identifies "Write" operations and routes them to the Database Leader/Primary. The Load Balancer identifies "Read" operations (GET, LIST) and distributes them across multiple Read Replicas. This offloads heavy "Watch" and "List" traffic from your primary database, ensuring that write operations remain lightning-fast and uncontended.
 
-## 🚀 Setup and start Kubernetes
-
-### Kubernetes Configuration
-
-HariKube requires specific Kubernetes configuration to enable custom resource routing and external data store integration.
-
-| Mandatory | Category | Option | Description |
-|-|-|-|-|
-| ✅ | Feature Gate | `CustomResourceFieldSelectors=true` | Enables CR field selectors |
-| ✅ | Feature Gate | `WatchList=true` | Enables watch list support |
-| ✅ | Feature Gate | `WatchListClient=true` | Enables watch list client feature |
-| ✅ | API Server Flag | `--encryption-provider-config=""` | Encryption not supported |
-| ✅ | API Server Flag | `--storage-media-type=application/json` | Only JSON storage type is supported |
-| ✅ | API Server Flag | `--etcd-servers=http(s)://middleware.service:2379` | Sets the middleware as the ETCD backend |
-| ✅ | API Server Flag | `--watch-cache=false` | Disables watch cache |
-| ➖ | API Server Flag | `--max-mutating-requests-inflight=400` | Increases concurrency for mutating requests |
-| ➖ | API Server Flag | `--max-requests-inflight=800` | Increases concurrency for all requests |
-
-Supported versions are:
-
-| Major version | Patch versions | Architecures |
-|-|-|-|
-| v1.35 | v1.35.0 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
-
 {{< details >}}
 {
     "title": "Installation Options",
