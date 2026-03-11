@@ -99,7 +99,6 @@ Re-deploy the application.
 make docker-build
 ../bin/kind load docker-image $IMG
 make deploy
-kubectl delete pod -n my-project-system -l control-plane=controller-manager
 {{< /code >}}
 
 {{< code bash >}}kubectl create --raw /apis/search.task.example.example.com/v1/clustertasks/foo -f clustertask.yaml
@@ -334,7 +333,6 @@ Re-deploy the application.
 {{< code bash >}}make docker-build
 ../bin/kind load docker-image $IMG
 make deploy
-kubectl delete pod -n my-project-system -l control-plane=controller-manager
 {{< /code >}}
 
 Create your `Task` object.

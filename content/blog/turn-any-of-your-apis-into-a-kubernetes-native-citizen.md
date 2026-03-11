@@ -43,7 +43,7 @@ kind: APIService
 metadata:
   name: v1.custom-api.example.com # This has a stict format
   annotations:
-    cert-manager.io/inject-ca-from: v1-custom-api-service/defaultyour service
+    cert-manager.io/inject-ca-from: v1-custom-api-service/default # your service
 spec:
   group: custom-api.example.com
   version: v1
@@ -64,10 +64,10 @@ spec:
   secretName: v1-custom-api-service-tls
   issuerRef:
     name: v1-custom-api-service-ca
-  commonName: v1-custom-api-service/default.svc
+  commonName: v1-custom-api-service.default.svc
   dnsNames:
-  - v1-custom-api-service/default.svc
-  - v1-custom-api-service/default.svc.cluster.local
+  - v1-custom-api-service.default.svc
+  - v1-custom-api-service.default.svc.cluster.local
 ---
 apiVersion: v1
 kind: Service

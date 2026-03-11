@@ -50,9 +50,9 @@ server's logic. There are plenty of other options like:
 
 By creating an [APIService](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#apiservicespec-v1-apiregistration-k8s-io) object, you tell Kubernetes to route specific API requests to your own, purpose-built API server. This server can be designed to do anything, from collecting metrics (like the Metrics Server) to providing full-text search capabilities on your data. Because the data is stored and managed by your external service, you have complete control over how it is queried, filtered, and presented. This approach offers a seamless user experience, as the custom APIs are accessed with the same tools and authentication methods as the core Kubernetes APIs, but they are powered by a solution optimized for the task.
 
-In the first step create an `APIService` manifest at `config/manager/task-apiservice.yaml`.
+In the first step create an `APIService` manifest at `config/manager/task_apiservice.yaml`.
 
-{{< code yaml "task-apiservice.yaml" >}}apiVersion: apiregistration.k8s.io/v1
+{{< code yaml "task_apiservice.yaml" >}}apiVersion: apiregistration.k8s.io/v1
 kind: APIService
 metadata:
   name: v1.search.task.example.example.com
@@ -70,9 +70,9 @@ spec:
   caBundle: ""
 {{< /code >}}
 
-Next create the `Service` related manifests at `config/manager/task-search-service.yaml`.
+Next create the `Service` related manifests at `config/manager/task_search_service.yaml`.
 
-{{< code yaml "task-search-service.yaml" >}}apiVersion: cert-manager.io/v1
+{{< code yaml "task_search_service.yaml" >}}apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: v1-search-task-ca
@@ -98,7 +98,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/name: my-project
+    app.kubernetes.io/name: task-service
     app.kubernetes.io/managed-by: kustomize
   name: v1-search-task
   namespace: system
@@ -109,13 +109,13 @@ spec:
       targetPort: 7443
   selector:
     control-plane: controller-manager
-    app.kubernetes.io/name: my-project
+    app.kubernetes.io/name: task-service
 {{< /code >}}
 
 Then add these two manifests to the `resources` section in the `config/manager/kustomization.yaml` file.
 
-{{< code yaml "kustomization.yaml" >}}- task-search-service.yaml
-- task-apiservice.yaml
+{{< code yaml "kustomization.yaml" >}}- task_search_service.yaml
+- task_apiservice.yaml
 {{< /code >}}
 
 Create the `Deployment` patch file at `config/default/manager_apiservice_patch.yaml`.
@@ -181,77 +181,77 @@ Add the following lines in `config/default/kustomization.yaml` file to the `patc
 
 Add the lines below to the `replacements` section in `config/default/kustomization.yaml`.
 
-{{< code yaml "kustomization.yaml" >}}- source:
-    kind: Certificate
-    group: cert-manager.io
-    version: v1
-    name: v1-search-task-cert
-    fieldPath: .metadata.namespace
-  targets:
-    - select:
-        kind: APIService
-        group: apiregistration.k8s.io
-        version: v1
-        name: v1.search.task.example.example.com
-      fieldPaths:
-        - .metadata.annotations.[cert-manager.io/inject-ca-from]
-      options:
-        delimiter: /
-        index: 0
-- source:
-    kind: Certificate
-    group: cert-manager.io
-    version: v1
-    name: v1-search-task-cert
-    fieldPath: .metadata.name
-  targets:
-    - select:
-        kind: APIService
-        group: apiregistration.k8s.io
-        version: v1
-        name: v1.search.task.example.example.com
-      fieldPaths:
-        - .metadata.annotations.[cert-manager.io/inject-ca-from]
-      options:
-        delimiter: /
-        index: 1
+{{< code yaml "kustomization.yaml" >}} - source:
+     kind: Certificate
+     group: cert-manager.io
+     version: v1
+     name: v1-search-task-cert
+     fieldPath: .metadata.namespace
+   targets:
+     - select:
+         kind: APIService
+         group: apiregistration.k8s.io
+         version: v1
+         name: v1.search.task.example.example.com
+       fieldPaths:
+         - .metadata.annotations.[cert-manager.io/inject-ca-from]
+       options:
+         delimiter: /
+         index: 0
+ - source:
+     kind: Certificate
+     group: cert-manager.io
+     version: v1
+     name: v1-search-task-cert
+     fieldPath: .metadata.name
+   targets:
+     - select:
+         kind: APIService
+         group: apiregistration.k8s.io
+         version: v1
+         name: v1.search.task.example.example.com
+       fieldPaths:
+         - .metadata.annotations.[cert-manager.io/inject-ca-from]
+       options:
+         delimiter: /
+         index: 1
 
-- source:
-    kind: Service
-    version: v1
-    name: v1-search-task
-    fieldPath: .metadata.name
-  targets:
-    - select:
-        kind: Certificate
-        group: cert-manager.io
-        version: v1
-        name: v1-search-task-cert
-      fieldPaths:
-        - .spec.dnsNames.0
-        - .spec.dnsNames.1
-      options:
-        delimiter: '.'
-        index: 0
-        create: true
-- source:
-    kind: Service
-    version: v1
-    name: v1-search-task
-    fieldPath: .metadata.namespace
-  targets:
-    - select:
-        kind: Certificate
-        group: cert-manager.io
-        version: v1
-        name: v1-search-task-cert
-      fieldPaths:
-        - .spec.dnsNames.0
-        - .spec.dnsNames.1
-      options:
-        delimiter: '.'
-        index: 1
-        create: true
+ - source:
+     kind: Service
+     version: v1
+     name: v1-search-task
+     fieldPath: .metadata.name
+   targets:
+     - select:
+         kind: Certificate
+         group: cert-manager.io
+         version: v1
+         name: v1-search-task-cert
+       fieldPaths:
+         - .spec.dnsNames.0
+         - .spec.dnsNames.1
+       options:
+         delimiter: '.'
+         index: 0
+         create: true
+ - source:
+     kind: Service
+     version: v1
+     name: v1-search-task
+     fieldPath: .metadata.namespace
+   targets:
+     - select:
+         kind: Certificate
+         group: cert-manager.io
+         version: v1
+         name: v1-search-task-cert
+       fieldPaths:
+         - .spec.dnsNames.0
+         - .spec.dnsNames.1
+       options:
+         delimiter: '.'
+         index: 1
+         create: true
 {{< /code >}}
 
 ## 🧑‍🏭 Implement Aggregation Server
@@ -449,7 +449,6 @@ Re-deploy the application.
 make docker-build
 ../bin/kind load docker-image $IMG
 make deploy
-kubectl delete pod -n my-project-system -l control-plane=controller-manager
 {{< /code >}}
 
 Create your `Task` object.

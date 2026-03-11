@@ -93,7 +93,7 @@ You can develop operators in various programming languages, but some have more m
 In this example you would use [Kubebuilder](https://github.com/kubernetes-sigs/kubebuilder) for development and [Kind](https://kind.sigs.k8s.io/) for testing. First of all please download dependencies.
 
 {{< code bash >}}mkdir -p bin
-curl -L https://github.com/kubernetes-sigs/kubebuilder/releases/download/v4.6.0/kubebuilder_linux_amd64 -o ./bin/kubebuilder
+curl -L https://github.com/kubernetes-sigs/kubebuilder/releases/download/v4.10.1/kubebuilder_linux_amd64 -o ./bin/kubebuilder
 chmod +x ./bin/kubebuilder
 curl -Lo ./bin/kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
 chmod +x ./bin/kind
@@ -101,9 +101,9 @@ chmod +x ./bin/kind
 
 In the next step you would initialize your operator.
 
-{{< code bash >}}mkdir my-project
-cd my-project
-../bin/kubebuilder init --domain example.com --repo example.com/my-project
+{{< code bash >}}mkdir task-service
+cd task-service
+../bin/kubebuilder init --domain example.com --repo example.com/task-service
 {{< /code >}}
 
 The project structure looks like:

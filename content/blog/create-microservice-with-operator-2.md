@@ -37,7 +37,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	examplev1 "example.com/my-project/api/v1"
+	examplev1 "example.com/task-service/api/v1"
 )
 
 // TaskReconciler reconciles a Task object
@@ -131,7 +131,6 @@ In the next step you have to make the image available on Kubernetes cluster.
 And finally deploy the application to the cluster.
 
 {{< code bash >}}make deploy
-kubectl delete pod -n my-project-system -l control-plane=controller-manager
 {{< /code >}}
 
 Create your `Task`, update it and finally delete the resource.
@@ -256,128 +255,11 @@ First you have to deploy `cert-manager` to enable automatic certificate generati
 {{< code bash >}}kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
 {{< /code >}}
 
-Ucomment the following lines in `config/crd/kustomization.yaml` file.
-
-{{< code yaml "kustomization.yaml" >}}configurations:
-- kustomizeconfig.yaml
-{{< /code >}}
-
-Ucomment the following lines in `config/default/kustomization.yaml` file.
-
-{{< code yaml "kustomization.yaml" >}}- ../certmanager
-{{< /code >}}
-
-{{< code yaml "kustomization.yaml" >}}replacements:
-{{< /code >}}
-
-{{< code yaml "kustomization.yaml" >}}- source: # Uncomment the following block if you have any webhook
-    kind: Service
-    version: v1
-    name: webhook-service
-    fieldPath: .metadata.name # Name of the service
-  targets:
-    - select:
-        kind: Certificate
-        group: cert-manager.io
-        version: v1
-        name: serving-cert
-      fieldPaths:
-        - .spec.dnsNames.0
-        - .spec.dnsNames.1
-      options:
-        delimiter: '.'
-        index: 0
-        create: true
-- source:
-    kind: Service
-    version: v1
-    name: webhook-service
-    fieldPath: .metadata.namespace # Namespace of the service
-  targets:
-    - select:
-        kind: Certificate
-        group: cert-manager.io
-        version: v1
-        name: serving-cert
-      fieldPaths:
-        - .spec.dnsNames.0
-        - .spec.dnsNames.1
-      options:
-        delimiter: '.'
-        index: 1
-        create: true
-{{< /code >}}
-
-{{< code yaml "kustomization.yaml" >}}- source: # Uncomment the following block if you have a ValidatingWebhook (--programmatic-validation)
-    kind: Certificate
-    group: cert-manager.io
-    version: v1
-    name: serving-cert # This name should match the one in certificate.yaml
-    fieldPath: .metadata.namespace # Namespace of the certificate CR
-  targets:
-    - select:
-        kind: ValidatingWebhookConfiguration
-      fieldPaths:
-        - .metadata.annotations.[cert-manager.io/inject-ca-from]
-      options:
-        delimiter: '/'
-        index: 0
-        create: true
-- source:
-    kind: Certificate
-    group: cert-manager.io
-    version: v1
-    name: serving-cert
-    fieldPath: .metadata.name
-  targets:
-    - select:
-        kind: ValidatingWebhookConfiguration
-      fieldPaths:
-        - .metadata.annotations.[cert-manager.io/inject-ca-from]
-      options:
-        delimiter: '/'
-        index: 1
-        create: true
-{{< /code >}}
-
-{{< code yaml "kustomization.yaml" >}}- source: # Uncomment the following block if you have a DefaultingWebhook (--defaulting )
-    kind: Certificate
-    group: cert-manager.io
-    version: v1
-    name: serving-cert
-    fieldPath: .metadata.namespace # Namespace of the certificate CR
-  targets:
-    - select:
-        kind: MutatingWebhookConfiguration
-      fieldPaths:
-        - .metadata.annotations.[cert-manager.io/inject-ca-from]
-      options:
-        delimiter: '/'
-        index: 0
-        create: true
-- source:
-    kind: Certificate
-    group: cert-manager.io
-    version: v1
-    name: serving-cert
-    fieldPath: .metadata.name
-  targets:
-    - select:
-        kind: MutatingWebhookConfiguration
-      fieldPaths:
-        - .metadata.annotations.[cert-manager.io/inject-ca-from]
-      options:
-        delimiter: '/'
-        index: 1
-        create: true
-{{< /code >}}
-
 Re-deploy the application.
 
 {{< code bash >}}make docker-build
 ../bin/kind load docker-image $IMG
 make deploy
-kubectl delete pod -n my-project-system -l control-plane=controller-manager
 {{< /code >}}
 
 Create your `Task` without metadata.
