@@ -53,7 +53,7 @@ The Changes:
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
-3. [vCluster](https://github.com/HariKube/harikube/blob/release-v0.14.11/hack/vcluster/api-config.yaml) Integration (Isolation and Scalability)
+3. [vCluster](https://github.com/HariKube/harikube/blob/release-v0.14.14/hack/vcluster/api-config.yaml) Integration (Isolation and Scalability)
 
 While it is entirely possible to run a standalone instance of this setup, for real-world production use, we **strongly suggest** utilizing the **vCluster** version of the toolset.
 
@@ -130,7 +130,7 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 To execute this, simply run the following command:
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.14.11/vcluster-harikube-sqlite-release-v0.14.11.yaml
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.14.14/vcluster-harikube-sqlite-release-v0.14.14.yaml
 {{< /code >}}
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
@@ -147,7 +147,7 @@ Once connected, vCluster changes your current local `KUBECONFIG` file to point d
 
 > 🔓 For service access from host, the vCluster setup keeps things simple: Create your ServiceAccount, create a secret annotated with `kubernetes.io/service-account.name`, and vCluster will sync the secret to the host cluster.
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.14.11/skip-controller-manager-metadata-caching.yaml
+{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.14.14/skip-controller-manager-metadata-caching.yaml
 {{< /code >}}
 
 Now, create your first custom resource. Apply the definition file:
