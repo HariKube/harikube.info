@@ -78,7 +78,7 @@ While Kubernetes provides powerful APIs for managing the state of applications, 
 | Limited Data Filtering | No advanced query engine included within Kubernetes |
 | Limited number of CRDs | Kubernetes Discovery API reaches it's limit proximately around at 500 |
 
-> 💡 Don't worry, the Kubernetes API aggregation layer can help overcome the limitations of the core API server by allowing you to extend the API with custom APIs that are served by a separate backend, or extension API server. This setup enables you to implement specific logic and capabilities that aren't available in the core API.
+> 💡 Don't worry, the Kubernetes API aggregation layer can help overcome the limitations of the core API server by allowing you to extend the API with custom APIs that are served by a separate backend, or extension API server. This setup enables you to implement specific logic and capabilities that aren't available in the core API. We started to maintain a project to deal with the limitations: [api-extension](https://github.com/HariKube/api-extension).
 
 ## 🃏 Turn Kubernetes into a Real Platform-as-a-Service
 
