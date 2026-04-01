@@ -88,11 +88,21 @@ The result: **429,180 requests completed successfully vs. 51,236 before the cras
 
 #### Understanding p(95) Latency
 
-The p(95) latency means that 95% of all requests completed faster than this value, and only the slowest 5% took longer. It is one of the most honest measures of real-world user experience, because averages can hide outliers while p(95) captures what your worst typical request actually looks like. In the vanilla Kubernetes ETCD benchmark, the p(95) latency was 2.82 seconds, meaning 1 in 20 requests kept the client waiting for nearly 3 seconds. This is a threshold that would be noticeable and painful in any interactive or automated system. HariKube brought that number down to 543ms, a 5.2x improvement. In practice, this means that even your slowest requests under heavy load are now well under a second. That is not just a performance win, it is the difference between a cluster that feels responsive under pressure and one that feels like it is about to fall over. **The 543ms demonstrates that HariKube was handling requests in a stable, controlled manner throughout the entire run, with significant headroom remaining before approaching any system limit**.
+The p(95) latency means that 95% of all requests completed faster than this value, and only the slowest 5% took longer. It is one of the most honest measures of real-world user experience, because averages can hide outliers while p(95) captures what your worst typical request actually looks like. In the vanilla Kubernetes ETCD benchmark, the p(95) latency was 2.82 seconds, meaning 1 in 20 requests kept the client waiting for nearly 3 seconds. This is a threshold that would be noticeable and painful in any interactive or automated system. HariKube brought that number down to 543ms, a 5.2x improvement.
+
+In practice, this means that even your slowest requests under heavy load are now well under a second. That is not just a performance win, it is the difference between a cluster that feels responsive under pressure and one that feels like it is about to fall over. **The 543ms demonstrates that HariKube was handling requests in a stable, controlled manner throughout the entire run, with significant headroom remaining before approaching any system limit**.
 
 ## 🤹 The Correctness Test
 
 Performance without correctness is worthless. So how does HariKube hold up against the Kubernetes API conformance test suite?
+
+Our set of Kubernetes features flags are:
+ - AllAlpha=false
+ - WatchList=true, WatchListClient=true
+ - OrderedNamespaceDeletion=true
+ - VolumeAttributesClass=true
+ - CustomResourceFieldSelectors=true
+ - MutatingAdmissionPolicy=true`
 
 ### 🛃 Test Scope
 
@@ -122,7 +132,7 @@ The skips fall into five categories:
 
  1. Tests that are flaky on vanilla ETCD too. Any test excluded here was excluded because it flaps on the vanilla ETCD baseline in our CI. Using flaky tests as a correctness signal produces noise, not insight. We only count stable tests.
     - Flaky, capture the life of a ResourceClaim, should rollback without unnecessary restarts, should grab all metrics from, compacted away
- 1. Features off by default. Some tests requires feature gate to be enabled. Our set of features are: `AllAlpha=false,WatchList=true,WatchListClient=true,OrderedNamespaceDeletion=true,VolumeAttributesClass=true,CustomResourceFieldSelectors=true,MutatingAdmissionPolicy=true`, all other disabled features are skipped.
+ 1. Features off by default. Some tests requires feature gate to be enabled.
     - ClusterTrustBundle, SchedulerAsyncPreemption, BoundServiceAccountTokenVolume, StorageVersionAPI, CoordinatedLeaderElection
  1. Tests require multi node cluster. Our CI environment spins up a single node Kubernetes instance. The reason for this is we are developing a storage solution under Kubernetes, so running multiple nodes for each changes generates unnecessary costs.
     - [Aa]uto[Ss]cal
