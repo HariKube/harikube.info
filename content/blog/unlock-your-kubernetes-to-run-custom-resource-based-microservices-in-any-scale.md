@@ -226,4 +226,4 @@ docker run -it --rm -v harikube_db:/data alpine/sqlite /data/shirts.db "select n
 
 That’s it! Imagine your own data topology and enhance your Kubernetes experience. **Enjoy lower latency, higher throughput, data isolation, virtually unlimited storage, and simplified development.** HariKube supports both flat and hierarchical topologies, allowing you to organize your databases like leaves on a tree.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

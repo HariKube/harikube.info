@@ -1,5 +1,5 @@
 ---
-title: "Kuernetes Performance Challenge"
+title: "Kubernetes Performance Challenge"
 date: 2026-02-27
 author: "Richard Kovacs"
 description: "Join to the contest! Be the best!"
@@ -90,7 +90,7 @@ To ensure valid and comparable results, all participants must adhere to the foll
  - The test execution is 1 hour
  - Define concurrency on your own taste
  - Each iteration creates 6 different type of custom resources in parallel
- - Each iteration reads beck the created custom resources via label selector in parallel
+ - Each iteration reads back the created custom resources via label selector in parallel
 
 ## 🔀 Join to the Contest
 

@@ -454,4 +454,4 @@ Kubernetes is a powerful platform, but its native API has limitations for comple
 
 That's the takeaway! By using the **Kubernetes API Aggregation Layer**, you gain the power to define and serve **fully custom APIs and composite resources** like CombinedTask directly through kubectl. This is how you extend Kubernetes to handle complex data relationships and domain-specific logic, decoupling your presentation from your core data storage.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

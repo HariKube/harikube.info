@@ -486,4 +486,4 @@ While Kubernetes excels at orchestration, its native data filtering is limited. 
 
 That's the approach! By using the Kubernetes API Aggregation Layer **you can unlock custom capabilities like advanced data filtering and full-text search, seamlessly integrating them into your cluster's API**. This pattern allows you to leverage specialized tools to solve problems that Kubernetes isn't natively designed for.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

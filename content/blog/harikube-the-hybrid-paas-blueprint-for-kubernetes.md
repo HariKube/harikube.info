@@ -187,4 +187,4 @@ their time on “glue code” and infrastructure integration rather than core bu
 
 That's the core message! By unifying **Serverless Functions, Operators, and Custom REST APIs** into a single platform powered by the **HariKube dynamic data layer**, you overcome ETCD limits and transform Kubernetes into a **full, scalable, and language-agnostic Hybrid PaaS**.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

@@ -238,4 +238,4 @@ Your feedback is invaluable in helping us improve this operator. If you encounte
 
 That’s it! You've successfully deployed a **fully isolated, performance-optimized, and scalable** virtual Kubernetes control plane. It's now ready to host your most demanding applications, operators, and event-driven functions, free from the constraints of ETCD limits and client-side filtering.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

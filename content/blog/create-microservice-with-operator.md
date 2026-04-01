@@ -243,4 +243,4 @@ The Operator pattern turns Kubernetes into a powerful platform, but its reliance
 
 That's the foundation! The **Operator pattern** empowers you to extend Kubernetes with **Custom Resources** and build complex, domain-specific applications. By understanding the **declarative desired state** model and leveraging Custom Resources-while being aware of the **ETCD scaling limitations**-you're ready to create sophisticated, cloud-native services.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

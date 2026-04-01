@@ -92,4 +92,4 @@ As we navigate the platform trends of 2026, the question is how you want to mana
 
 That’s it! If you’re ready to embrace the mental shift and explore the hyperscale, unified service model that HariKube offers, follow the link here to [The Future of Kubernetes PaaS and Kubernetes-native Service Development is Here](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/). By turning Kubernetes into your primary logic and data engine, you can finally stop managing infrastructure and start delivering pure business value.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

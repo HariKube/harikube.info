@@ -137,4 +137,4 @@ Whether you are scaling a global enterprise or building the next disruptive star
 
 That’s it! The bottleneck is gone and the taxes are repealed. If you're ready to make the mental shift to a hyperscale, unified service model, [contact with us](/contact-us/). 
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

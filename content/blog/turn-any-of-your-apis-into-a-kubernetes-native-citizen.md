@@ -338,4 +338,4 @@ Your feedback is invaluable in helping us improve this framework. If you encount
 
 That’s it! You've seen how the kubernetes-aggregator-framework **completely removes the friction** from extending your Kubernetes control plane. It's time to stop treating your APIs as external services and start integrating them as **first-class Kubernetes resources**.
 
-Thank you for reading, and feel free to share your thoughts.
+Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).
