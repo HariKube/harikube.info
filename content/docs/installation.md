@@ -72,6 +72,9 @@ Routing configurations are evaluated in order from top to bottom, and the first 
 - **SQLite** endpoint for specific custom resources:
   Routes all resources of type `shirts` in the group `stable.example.com` to a lightweight embedded SQLite database.
 
+
+    > `kind` is optional, leave it empty if you want to route the entire group to teh database.
+
 - Rest of the objects are stored in the default database.
 
 {{< details >}}
