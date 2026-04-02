@@ -168,9 +168,13 @@ canonifyURLs = true
     url = "/company/"
     weight = 1
   [[menu.footer_column_2]]
+    name = "Legal"
+    url = "/legal/"
+    weight = 2
+  [[menu.footer_column_2]]
     name = "Careers"
     url = "/careers/"
-    weight = 2
+    weight = 3
 
   # Footer Column 3 Menu
   [[menu.footer_column_3]]
