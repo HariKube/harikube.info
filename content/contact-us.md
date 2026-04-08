@@ -15,7 +15,7 @@ Let us better understand your needs and provide tailored guidance. Submit the co
 
 Once you submit your request, our team will respond via email within one business day. We’ll reach out to gather a bit more context regarding your specific use case so we can make our upcoming meeting as productive as possible.
 
-For technical questions or feedback during your setup, feel free to reach out to us at support@harikube.info.
+For technical questions or feedback during your setup, feel free to reach out to us at support@inspirnation.eu.
 
 |||
 

@@ -41,7 +41,7 @@ Our team will respond via email within one business day. Here is what to expect 
  - **License Key & Download Link**: Your unique credentials to activate the Starter Edition.
  - **Quick-Start Guide**: A streamlined "Hello World" to get HariKube running on your local cluster in minutes.
 
-For technical questions or feedback during your setup, feel free to reach out to us at support@harikube.info.
+For technical questions or feedback during your setup, feel free to reach out to us at support@inspirnation.eu.
 
 </div>
 
