@@ -52,8 +52,8 @@ canonifyURLs = true
   operatorVersion = "release-v1.0.1"
   supportedOperatorVersions = "release-v1.0.0,release-v1.0.1"
   kubernetesImages = "kube-apiserver,kube-controller-manager,kubernetes"
-  kubernetesVersion = "v1.35.0"
-  supportedKubernetesVersions = "v1.35.0"
+  kubernetesVersion = "v1.35.3"
+  supportedKubernetesVersions = "v1.35.0,v1.35.1,v1.35.2,v1.35.3"
 
   # Header Configuration
   [params.header]

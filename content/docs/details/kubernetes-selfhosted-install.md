@@ -27,7 +27,7 @@ Supported versions are:
 
 | Major version | Patch versions | Architecures |
 |-|-|-|
-| v1.35 | v1.35.0 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
+| v1.35 | .0, .1, .2, .3 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
 
 > ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
@@ -53,10 +53,37 @@ Start by authenticating your local Docker client with the private registry at `r
 
 For users requiring a completely isolated and dedicated Kubernetes cluster, HariKube supports the deployment of standalone Kubernetes environments.
 
-To facilitate this, we provide pre-built multi architecture images that are optimized and ready for configuration via `Kubeadm` or any other orchestration tools.
+To facilitate this, we provide pre-built multi architecture images that are optimized and ready for configuration via [Kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/) or any other orchestration tools.
 
 {{< code bash >}}docker pull quay.io/harikube/kube-apiserver:{{ .Site.Params.kubernetesVersion }}
 docker pull quay.io/harikube/kube-controller-manager:{{ .Site.Params.kubernetesVersion }}
+{{< /code >}}
+
+#### Kubeadm config
+
+Set your InitConfiguration to look for patches in a local directory (e.g., patches/):
+
+{{< code yaml >}}apiVersion: kubeadm.k8s.io/v1beta4
+kind: InitConfiguration
+patches:
+  directory: patches
+{{< /code >}}
+
+Inside the `patches` directory, create a file to override the default images for the API Server and Controller Manager:
+
+{{< code yaml >}}apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: kube-apiserver
+      image: quay.io/harikube/kube-apiserver:{{ .Site.Params.kubernetesVersion }}
+---
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: kube-controller-manager
+      image: quay.io/harikube/kube-controller-manager:{{ .Site.Params.kubernetesVersion }}
 {{< /code >}}
 
 ### Comipiling Kubernetes From Source Code (optional)
