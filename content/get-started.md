@@ -19,7 +19,7 @@ HariKube helps organizations extend Kubernetes with intelligent data routing, re
 
 ## 📬 What Happens Next
 
-Our team will get back to you with relevant resources, technical insights, or options for scheduling a discovery call. Alternatively, for immediate assistance or other inquiries, please email us at support@inspirnation.eu.
+Our team will get back to you with relevant resources, technical insights, or options for scheduling a discovery call. Alternatively, for immediate assistance or other inquiries, please email us at support@harikube.info.
 
 </div>
 

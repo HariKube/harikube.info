@@ -49,4 +49,4 @@ As a Senior Golang + Kubernetes Engineer, you will:
 
 Send your resume, a brief cover letter, and a link to your GitHub or personal portfolio. Highlight any projects or contributions that showcase your expertise in Golang and Kubernetes.
 
-[Apply Now](mailto:info@inspirnation.eu)
+[Apply Now](mailto:info@harikube.info)
