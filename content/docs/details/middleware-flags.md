@@ -40,5 +40,5 @@ Environment variables:
  - `LIST_MAX_ITEMS`: Max items for list operations. Default 10000
  - `ENABLE_TELEMETRY_PUSH`: Enables pushing anonym usage telemetry to HariKube central monitoring site `https://monitoring.harikube.info`
  - `CUSTOM_RESOURCE_DEFINITION_METADATA_FILE`: Locatin to store Custom Resource Definition metadata. Defaut: `./db/crds.json`
- - `GARBAGE_COLLECTION__DIR`: Directory path for storing garbage-collection logs of storage side GC, Default `./db/garbage-collector`
+ - `GARBAGE_COLLECTION_DIR`: Directory path for storing garbage-collection logs of storage side GC, Default `./db/garbage-collector`
  - `GARBAGE_COLLECTION_EXIT_ON_ERROR`: What to do when delete log write fails. Setting to `false` should result orphan resources. Default `true`
