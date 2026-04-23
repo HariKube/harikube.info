@@ -16,6 +16,7 @@ HariKube requires specific Kubernetes configuration to enable custom resource ro
 | ✅ | Feature Gate | `CustomResourceFieldSelectors=true` | Enables CR field selectors |
 | ✅ | Feature Gate | `WatchList=true` | Enables watch list support |
 | ✅ | Feature Gate | `WatchListClient=true` | Enables watch list client feature |
+| ✅ | Feature Gate | `MutatingAdmissionPolicy=true` | Enables mutation admission policy feature |
 | ✅ | API Server Flag | `--encryption-provider-config=""` | Encryption not supported |
 | ✅ | API Server Flag | `--storage-media-type=application/json` | Only JSON storage type is supported |
 | ✅ | API Server Flag | `--etcd-servers=http(s)://middleware.service:2379` | Sets the middleware as the ETCD backend |

@@ -157,7 +157,7 @@ kubectl create secret docker-registry -n harikube harikube-registry-secret \
 --docker-server=registry.harikube.info \
 --docker-username=<oci-user> \
 --docker-password='<my$secure@password>'
-kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.1.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.2.yaml
 kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.3.yaml
 {{< /code >}}
 
