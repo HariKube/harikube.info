@@ -48,27 +48,6 @@ layout: "pricing"
             }
         },
         {
-            "name": "Starter Edition",
-            "price": "0",
-            "displayPrice": true,
-            "subscription": false,
-            "description": "The perfect starting point for small projects and prototypes.",
-            "features": [
-                "Manual database configuration",
-                "Database number: 6",
-                "Metadata shards: 1",
-                "PostgreSQL, MySQL, SQLite",
-                "Storage Side Filtering",
-                "Monitoring: Basic",
-                "Support coverage: Self-service",
-                "Support channels: Community Forum"
-            ],
-            "button": {
-                "text": "Download",
-                "url": "/get-starter-edition/"
-            }
-        },
-        {
             "name": "Pro Edition",
             "price": "5000",
             "displayPrice": true,

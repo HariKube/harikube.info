@@ -24,10 +24,3 @@ layout: "simple"
 
 <iframe id="business" src="/docs/8.5.4-a2-r0-eula-hk-ga-251128.pdf" style="width: 100%; height:768px;"></iframe>
 
----
-
-## Starter Edition
-
-[Download](/docs/8.5.4-a3-r0-eula-hk-starter-260202.pdf)
-
-<iframe id="starter" src="/docs/8.5.4-a3-r0-eula-hk-starter-260202.pdf" style="width: 100%; height:768px;"></iframe>
