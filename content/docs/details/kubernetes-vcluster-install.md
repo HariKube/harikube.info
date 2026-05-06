@@ -35,13 +35,13 @@ Store your previously created topology config, or create configs on the fly with
 ### Create an API only deployment
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-{{ .Site.Params.middlewareVersion }}.yaml
-vcluster connect harikube
+vcluster connect harikube-vcluster
 {{< /code >}}
 
 ### Create deployment with workload capabilities
 
 {{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-workload-{{ .Site.Params.middlewareVersion }}.yaml
-vcluster connect harikube
+vcluster connect harikube-vcluster
 {{< /code >}}
 
 ### Create your custom virtual cluster configuration
@@ -58,15 +58,19 @@ vcluster connect harikube
       image:
         registry: quay.io
         repository: harikube/kubernetes
-        # tag: v1.35.0
+        tag: v1.35.0
       imagePullPolicy: IfNotPresent
       apiServer:
         enabled: true
         extraArgs:
         - --feature-gates=WatchList=true,WatchListClient=true,VolumeAttributesClass=true,MutatingAdmissionPolicy=true
         - --watch-cache=false
-        - --etcd-servers=http://harikube-middleware-svc.harikube:2379
+        - --etcd-servers=https://harikube-middleware-svc.harikube:2379
+        - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
+        - --etcd-certfile=/etc/kubernetes/pki/etcd/tls.crt
+        - --etcd-keyfile=/etc/kubernetes/pki/etcd/tls.key
         - --runtime-config=admissionregistration.k8s.io/v1beta1=true
+        - --storage-media-type=application/json
         - --max-requests-inflight=900
         - --max-mutating-requests-inflight=300
       controllerManager:
@@ -85,6 +89,22 @@ vcluster connect harikube
   statefulSet:
     highAvailability:
       replicas: 1
+    persistence:
+      addVolumes:
+      - name: etcd-certs
+        secret:
+          secretName: harikube-middleware-crt
+          items:
+          - key: ca.crt
+            path: ca.crt
+          - key: tls.crt
+            path: tls.crt
+          - key: tls.key
+            path: tls.key
+      addVolumeMounts:
+        - name: etcd-certs
+          mountPath: /etc/kubernetes/pki/etcd
+          readOnly: true
 sync:
   toHost:
     pods:
@@ -97,15 +117,13 @@ sync:
       enabled: true
     endpoints:
       enabled: true
-    persistentVolumeClaims:
-      enabled: true
     ingresses:
       enabled: true
     networkPolicies:
       enabled: true
     persistentVolumes:
       enabled: true
-    volumeSnapshots:
+    persistentVolumeClaims:
       enabled: true
     storageClasses:
       enabled: true
@@ -116,17 +134,25 @@ sync:
     priorityClasses:
       enabled: true
   fromHost:
+    nodes:
+      enabled: true
     secrets:
       enabled: true
       mappings:
         byName:
           "harikube/topology-config": "harikube/topology-config"
+          "harikube/harikube-middleware-crt": "harikube/harikube-middleware-crt"
+networking:
+  replicateServices:
+    fromHost:
+      - from: harikube/harikube-middleware-svc
+        to: harikube/harikube-middleware-svc
 {{< /code >}}
 
 To create your virtual cluster and automatically configure your local environment for access, execute the following command:
 
 {{< code bash >}}vcluster create vcluster-config-custom -n vcluster-config-custom -f vcluster-config-custom.yaml
-vcluster connect harikube
+vcluster connect harikube-vcluster
 {{< /code >}}
 
 ---

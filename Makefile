@@ -7,7 +7,7 @@ shell:
   		-v $(PWD):/src \
   		-v $(HOME)/hugo_cache:/tmp/hugo_cache \
 		-p 38080:38080 \
-  		hugomods/hugo:node-git \
+  		hugomods/hugo:debian-node-git-0.151.1 \
   		/bin/sh
 
 run:
@@ -17,7 +17,7 @@ run:
   		-v $(PWD):/src \
   		-v $(HOME)/hugo_cache:/tmp/hugo_cache \
 		-p 38080:38080 \
-  		hugomods/hugo:node-git \
+  		hugomods/hugo:debian-node-git-0.151.1 \
   		sh -c "npm install && npm run start"
 
 gen:
@@ -26,7 +26,7 @@ gen:
 		-w /src \
   		-v $(PWD):/src \
 		-e HUGO_ENV=$(HUGO_ENV) \
-  		hugomods/hugo:node-git \
+  		hugomods/hugo:debian-node-git-0.151.1 \
   		npm run build
 
 validate: gen
@@ -40,7 +40,7 @@ validate: gen
 		--entrypoint=kubeconform \
 		stagex/kubeconform:0.6.4 -summary -ignore-missing-schemas -insecure-skip-tls-verify /public/manifests
 
-	@for img in $$(find public \( -name *.html -o -name *.yaml \) -exec grep -oE "(registry.harikube.info|quay.io)/harikube/([a-zA-Z0-9\:\.\-]+)" {} \; | sort -n | uniq) ; do \
+	@for img in $$(find public \( -name *.html -o -name *.yaml \) -exec grep -oE "(registry.harikube.info|quay.io)/harikube/([a-zA-Z0-9\:\.\-]+)" {} \; | grep -v "harikube-helm-charts" | sort -n | uniq) ; do \
 		docker pull "$$img" && docker rmi "$$img" || exit 1 ; \
 	done
 

@@ -1,0 +1,951 @@
+---
+# Source: harikube-helm-charts/templates/middleware-network-policy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-middleware-netpol
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          harikube.info/middleware: enabled
+    ports:
+    - port: 2379
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app: harikube-middleware
+  policyTypes:
+  - Ingress
+---
+# Source: harikube-helm-charts/templates/operator-network-policy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-netpol
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          webhook: enabled
+    ports:
+    - port: 9443
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app: harikube-operator
+  policyTypes:
+  - Ingress
+---
+# Source: harikube-helm-charts/templates/operator-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-sa
+---
+# Source: harikube-helm-charts/templates/middleware-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-middleware-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+# Source: harikube-helm-charts/templates/operator-crd.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: topologyconfigs.harikube.info
+spec:
+  group: harikube.info
+  names:
+    kind: TopologyConfig
+    listKind: TopologyConfigList
+    plural: topologyconfigs
+    singular: topologyconfig
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.deployStatus
+      name: DeployStatus
+      type: string
+    - jsonPath: .spec.targetSecret
+      name: TargetSecret
+      type: string
+    name: v1
+    schema:
+      openAPIV3Schema:
+        description: TopologyConfig is the Schema for the topologyconfigs API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: TopologyConfigSpec defines the desired state of TopologyConfig.
+            properties:
+              backends:
+                description: Backends represents the group of topology configs.
+                items:
+                  properties:
+                    backendTLS:
+                      description: BackendTLS defines TLS configuration for connection.
+                      properties:
+                        caFile:
+                          description: CAFile is the CA file for the secure connection.
+                          type: string
+                        certFile:
+                          description: CertFile is the certificate file for the secure
+                            connection.
+                          type: string
+                        keyFile:
+                          description: KeyFile is the key file for the secure connection.
+                          type: string
+                        skipVerify:
+                          description: SkipVerify skips TLS verification
+                          type: boolean
+                      type: object
+                    compactBatchSize:
+                      description: CompactBatchSize is the number of records to delete
+                        in each batch during compaction.
+                      format: int64
+                      maximum: 10000
+                      minimum: 10
+                      type: integer
+                    compactInterval:
+                      description: CompactInterval is the interval to run compaction.
+                      format: duration
+                      type: string
+                    compactIntervalJitter:
+                      description: CompactIntervalJitter is the jitter to add to the
+                        compaction interval.
+                      maximum: 1000
+                      minimum: 0
+                      type: integer
+                    compactMinRetain:
+                      description: CompactMinRetain is the minimum number of revisions
+                        to retain during compaction.
+                      format: int64
+                      maximum: 10000
+                      minimum: 10
+                      type: integer
+                    compactTimeout:
+                      description: CompactTimeout is the timeout for the compaction
+                        operation.
+                      format: duration
+                      type: string
+                    connectionPool:
+                      description: ConnectionPool defines connection pool configuration
+                        for connection.
+                      properties:
+                        maxIdle:
+                          minimum: 0
+                          type: integer
+                        maxIdleLifeTime:
+                          format: duration
+                          type: string
+                        maxLifeTime:
+                          format: duration
+                          type: string
+                        maxOpen:
+                          minimum: 0
+                          type: integer
+                      type: object
+                    customresource:
+                      description: CustomResource defines custom resource based routing.
+                      properties:
+                        group:
+                          description: Group is the API group to match.
+                          type: string
+                        kind:
+                          description: Kind is the API kind to match.
+                          type: string
+                      type: object
+                    disableStorageLevelFiltering:
+                      description: DisableStorageLevelFiltering disables storage level
+                        filtering for this backend.
+                      type: boolean
+                    endpoint:
+                      description: Endpoint is database specific connection string.
+                      type: string
+                    name:
+                      description: Name is the global unique name of the config.
+                      type: string
+                    namespace:
+                      description: Namespace defines namespace routing.
+                      properties:
+                        kinds:
+                          description: Kinds is list of kind to match.
+                          items:
+                            type: string
+                          type: array
+                        namespace:
+                          description: Namespace is the name of namespace to match.
+                          type: string
+                      type: object
+                    prefix:
+                      description: Prefix defines prefix based routing.
+                      properties:
+                        prefix:
+                          description: Prefix is the ETCD key prefix to match.
+                          type: string
+                      type: object
+                    regexp:
+                      description: RegExp defines regexp based routing.
+                      properties:
+                        key:
+                          description: Key is the regexp to match if individual operation
+                            needs different match.
+                          type: string
+                        prefix:
+                          description: Prefix is the regexp to match.
+                          type: string
+                      type: object
+                  required:
+                  - endpoint
+                  - name
+                  type: object
+                minItems: 1
+                type: array
+              targetSecret:
+                default: harikube/topology-config
+                description: TargetSecret defines the namespaced name of the generated
+                  topology config.
+                type: string
+            required:
+            - backends
+            - targetSecret
+            type: object
+          status:
+            description: TopologyConfigStatus defines the observed state of TopologyConfig.
+            properties:
+              deployOrder:
+                description: DeployOrder defines the order of config.
+                format: int64
+                type: integer
+              deployStatus:
+                default: Pending
+                description: DeployStatus defines the in cluster state of config.
+                type: string
+              deployStatusReason:
+                description: DeployStatus stores the reason of DeployStatus.
+                type: string
+            type: object
+        type: object
+    selectableFields:
+    - jsonPath: .spec.targetSecret
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs/status
+  verbs:
+  - get
+  - patch
+  - update
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-metrics-auth-role
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-topologyconfig-admin-role
+rules:
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs
+  verbs:
+  - '*'
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs/status
+  verbs:
+  - get
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-topologyconfig-editor-role
+rules:
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs/status
+  verbs:
+  - get
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-topologyconfig-viewer-role
+rules:
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - harikube.info
+  resources:
+  - topologyconfigs/status
+  verbs:
+  - get
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: harikube-operator-manager-role
+subjects:
+- kind: ServiceAccount
+  name: harikube-operator-sa
+  namespace: default
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-metrics-auth-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: harikube-operator-metrics-auth-role
+subjects:
+- kind: ServiceAccount
+  name: harikube-operator-sa
+  namespace: default
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-leader-election-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+# Source: harikube-helm-charts/templates/operator-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-leader-election-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: harikube-operator-leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: harikube-operator-sa
+  namespace: default
+---
+# Source: harikube-helm-charts/templates/middleware-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-middleware-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 2379
+    targetPort: 2379
+    protocol: TCP
+    name: api-port
+  selector:
+    app: harikube-middleware
+---
+# Source: harikube-helm-charts/templates/operator-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 443
+    targetPort: 9443
+    protocol: TCP
+    name: webhook
+  selector:
+    app: harikube-operator
+---
+# Source: harikube-helm-charts/templates/middleware-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-middleware-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harikube-middleware
+  template:
+    metadata:
+      labels:
+        app: harikube
+        helm.sh/chart: harikube-helm-charts-1.0.4
+        app.kubernetes.io/version: "1.0.4"
+        app.kubernetes.io/managed-by: Helm
+        app: harikube-middleware
+    spec:
+      terminationGracePeriodSeconds: 30
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
+                - amd64
+                - s390x
+                - ppc64le
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
+      securityContext:
+        fsGroup: 65532
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 65532
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      imagePullSecrets:
+      - name: harikube-registry-secret
+      containers:
+      - name: middleware
+        image: "registry.harikube.info/harikube/middleware:release-v1.0.4"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TOPOLOGY_CONFIG
+          value: secret://harikube/topology-config
+        - name: LICENSE_KEY_FILE
+          value: /etc/harikube/license
+        - name: ENABLE_TELEMETRY_PUSH
+          value: "false"
+        args:
+        - --log-format=json
+        - --listen-address=0.0.0.0:2379
+        - --metrics-bind-address=:8080
+        - --server-ca-file=/etc/harikube-middleware-crt/ca.crt
+        - --server-cert-file=/etc/harikube-middleware-crt/tls.crt
+        - --server-key-file=/etc/harikube-middleware-crt/tls.key
+        - --slow-sql-threshold=2s
+        - --datastore-max-idle-connections=50
+        - --datastore-max-open-connections=90
+        - --datastore-connection-max-lifetime=5m
+        - --datastore-connection-max-idle-lifetime=5m
+        - --endpoint=multi://sqlite:///db/main.db?_journal=WAL&cache=shared
+        ports:
+        - containerPort: 2379
+          name: api-port
+        - containerPort: 8080
+          name: metrics
+        volumeMounts:
+        - mountPath: /etc/harikube
+          name: license
+          readOnly: true
+        - mountPath: /etc/harikube-middleware-crt
+          name: harikube-middleware-crt
+          readOnly: true
+        - mountPath: /db
+          name: harikube-middleware-pvc
+        - mountPath: /tmp
+          name: tmp
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /metrics
+            port: 8080
+            scheme: HTTPS
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /metrics
+            port: 8080
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsGroup: 65532
+          runAsNonRoot: true
+          runAsUser: 65532
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+      volumes:
+      - name: license
+        secret:
+          secretName: harikube-license
+      - name: harikube-middleware-crt
+        secret:
+          secretName: harikube-middleware-crt
+      - name: harikube-middleware-pvc
+        persistentVolumeClaim:
+          claimName: harikube-middleware-pvc
+      - emptyDir: {}
+        name: tmp
+---
+# Source: harikube-helm-charts/templates/operator-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harikube-operator
+  template:
+    metadata:
+      labels:
+        app: harikube
+        helm.sh/chart: harikube-helm-charts-1.0.4
+        app.kubernetes.io/version: "1.0.4"
+        app.kubernetes.io/managed-by: Helm
+        app: harikube-operator
+    spec:
+      terminationGracePeriodSeconds: 10
+      serviceAccountName: harikube-operator-sa
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
+                - amd64
+                - s390x
+                - ppc64le
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
+      securityContext:
+        fsGroup: 65532
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 65532
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      imagePullSecrets:
+      - name: harikube-registry-secret
+      containers:
+      - name: manager
+        image: "registry.harikube.info/harikube/operator:release-v1.0.2"
+        imagePullPolicy: IfNotPresent
+        args:
+        - --metrics-bind-address=:8443
+        - --leader-elect
+        - --health-probe-bind-address=:8081
+        - --metrics-secure
+        - --webhook-cert-path=/etc/harikube-operator-crt
+        command:
+        - /manager
+        ports:
+        - containerPort: 9443
+          name: webhook
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp
+        - mountPath: /etc/harikube-operator-crt
+          name: harikube-operator-crt
+          readOnly: true
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 8081
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /readyz
+            port: 8081
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsGroup: 65532
+          runAsNonRoot: true
+          runAsUser: 65532
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+      volumes:
+      - emptyDir: {}
+        name: tmp
+      - name: harikube-operator-crt
+        secret:
+          secretName: harikube-operator-crt
+---
+# Source: harikube-helm-charts/templates/middleware-cert.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-middleware-crt
+spec:
+  dnsNames:
+  - harikube-middleware-svc.default
+  - harikube-middleware-svc.default.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: harikube-middleware-issuer
+  secretName: harikube-middleware-crt
+---
+# Source: harikube-helm-charts/templates/operator-cert.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-crt
+spec:
+  dnsNames:
+  - harikube-operator-svc.default.svc
+  - harikube-operator-svc.default.svc.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: harikube-operator-issuer
+  secretName: harikube-operator-crt
+---
+# Source: harikube-helm-charts/templates/middleware-cert.yaml
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-middleware-issuer
+spec:
+  selfSigned: {}
+---
+# Source: harikube-helm-charts/templates/operator-cert.yaml
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  name: harikube-operator-issuer
+spec:
+  selfSigned: {}
+---
+# Source: harikube-helm-charts/templates/operator-webhook.yaml
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  labels:
+    app: harikube
+    helm.sh/chart: harikube-helm-charts-1.0.4
+    app.kubernetes.io/version: "1.0.4"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    cert-manager.io/inject-ca-from: harikube/harikube-operator-crt
+  name: harikube-operator-validating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: harikube-operator-svc
+      namespace: default
+      path: /validate-harikube-info-v1-topologyconfig
+  failurePolicy: Fail
+  name: vtopologyconfig-v1.kb.io
+  rules:
+  - apiGroups:
+    - harikube.info
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - topologyconfigs
+  sideEffects: None

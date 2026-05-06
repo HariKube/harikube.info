@@ -28,7 +28,7 @@ Supported versions are:
 
 | Major version | Patch versions | Architecures |
 |-|-|-|
-| v1.35 | .0, .1, .2, .3 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
+| v1.35 | .0, .1, .2, .3, .4 | linux\amd64, linux\arm64, linux\ppc64le, linux\s390x |
 
 > ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 

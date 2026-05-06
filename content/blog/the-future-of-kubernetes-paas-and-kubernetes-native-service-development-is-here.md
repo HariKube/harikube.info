@@ -4,7 +4,7 @@ date: 2025-10-27
 author: "Richard Kovacs"
 description: "HariKube turns Kubernetes into a true PaaS and services first class citizens."
 categories: ["Infrastructure", "Microservice"]
-tags: ["kubernetes", "devops", "scalability", "infrastructure", "development", "microservice", "serverless"]
+tags: ["kubernetes", "devops", "scalability", "infrastructure", "development", "microservice", "serverless", "agentic ai"]
 featured_image: "/images/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here.png"
 ---
 
@@ -14,7 +14,7 @@ We at **HariKube** strongly believe in the transformative power of cutting-edge 
 
 ## ✨ The Future of Kubernetes and Service Development
 
-This vision leads us to a fundamental shift: **Imagine Kubernetes itself evolving beyond an orchestrator and becoming the definitive platform**. We're talking about a single control plane for managing not just containers, but also serving serverless functions, operator based microservices, and all your custom APIs. This is achievable now. By combining HariKube’s innovative dynamic data layer, automated serverless function triggers, intelligent operator loops, and a smart utilization of the Kubernetes Aggregation API, we are ushering in a world where Kubernetes is the singular, intelligent operating system for your entire Cloud-Native estate.
+This vision leads us to a fundamental shift: **Imagine Kubernetes itself evolving beyond an orchestrator and becoming the definitive platform**. We're talking about a single control plane for managing not just containers, but also serving serverless functions, agentic AIs, operator based microservices, and all your custom APIs. This is achievable now. By combining HariKube’s innovative dynamic data layer, automated serverless function triggers, intelligent operator loops, and a smart utilization of the Kubernetes Aggregation API, we are ushering in a world where Kubernetes is the singular, intelligent operating system for your entire Cloud-Native estate.
 
 The **dynamic data layer** is a critical component designed to address the inherent scalability limitations of Kubernetes' native data store, ETCD. Instead of relying solely on the single, clustered ETCD instance for all cluster state, this dynamic data layer effectively replaces ETCD by allowing you to define a user-defined **database agnostic** topology (flat or hierarchical), chosing any number of the [supported databases](/docs/overview/#-supported-databases) (7 total including MySQL, PgSQL, etc.).
 
@@ -72,6 +72,14 @@ With a lightweight watch connector, every Custom Resource Definition (CRD) or co
 > In practice, any language that runs in a container and speaks HTTP works.
 
 This seamless integration also extends directly into the event ecosystem. We've developed a groundbreaking tool that transforms Kubernetes events into serverless function triggers. This capability allows your business logic to react instantly and efficiently to any change within the cluster's state-from Pod failure, Custom Resource CRUD operations to ConfigMap updates-without complex external polling or sidecar injection. If you're interested in understanding the precise mechanisms behind this real-time, event-driven architecture, and how HariKube uses it to further simplify your control loop logic, please visit this page: [Declarative Event Triggers for Kubernetes](/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/).
+
+### Agentic AI - Microservice Layer
+
+ - Developers only need a CRD and an agent.
+ - Kubernetes acts as the event source and memory.
+ - The agent focuses on logic, data management handled by the platform.
+
+**Agent languages:** Python, TypeScript, Rust, Mojo, Pel.
 
 ### Operators - Microservice Layer
 
@@ -158,10 +166,10 @@ kubectl create secret docker-registry -n harikube harikube-registry-secret \
 --docker-username=<oci-user> \
 --docker-password='<my$secure@password>'
 kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.2.yaml
-kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.3.yaml
+kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.4.yaml
 {{< /code >}}
 
-> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.3.yaml` instead of the API only manifest.
+> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.4.yaml` instead of the API only manifest.
 
 Wait for system is up and running.
 
@@ -207,7 +215,7 @@ Now that the HariKube PaaS foundation is successfully laid, let's see how our un
 
 First you have to connect to the virtual Kubernetes API. PLease install [vCluster](https://www.vcluster.com/docs/platform/install/quick-start-guide#download-and-install-vcluster-cli), and execute the following command.
 
-{{< code bash >}}vcluster connect harikube
+{{< code bash >}}vcluster connect harikube-vcluster
 {{< /code >}}
 
 > 🔓 vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.

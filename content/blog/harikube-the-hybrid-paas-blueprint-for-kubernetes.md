@@ -4,7 +4,7 @@ date: 2025-10-06
 author: "Richard Kovacs"
 description: "HariKube unifies different service designs into a scalable hybrid architecture."
 categories: ["Microservice"]
-tags: ["kubernetes", "serverless", "custom resource", "scalability", "microservice"]
+tags: ["kubernetes", "serverless", "agentic ai", "custom resource", "scalability", "microservice"]
 featured_image: "/images/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes.png"
 ---
 
@@ -21,6 +21,7 @@ This blog post explores how HariKube unifies these layers into a single hybrid a
 For years, Kubernetes has been the foundation of modern cloud infrastructure. But while it excels at scheduling, scaling, and managing workloads, its **application development experience has been fragmented**:
 
 - Serverless functions live in Knative or OpenFaaS.
+- Agentic AI workloads can use Kubernetes to read and write data.
 - Operators are built with Kubebuilder or Kopf for infrastructure related developments.
 - REST APIs are bolted on via Ingress and separate application stacks.
 
@@ -64,6 +65,16 @@ With a lightweight watch connector, every Custom Resource Definition (CRD) or co
 > In practice, any language that runs in a container and speaks HTTP works.
 
 **We are happy to announce our open source tool to trigger serverless functions based on Kubernetes events. For more info please follow the blogpost.** [[→]](/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/)
+
+---
+
+## 🧠 Agentic AI - Microservice Layer
+
+ - Developers only need a CRD and an agent.
+ - Kubernetes acts as the event source and memory.
+ - The agent focuses on logic, data management handled by the platform.
+
+**Agent languages:** Python, TypeScript, Rust, Mojo, Pel.
 
 ---
 
@@ -185,6 +196,6 @@ their time on “glue code” and infrastructure integration rather than core bu
 
 ---
 
-That's the core message! By unifying **Serverless Functions, Operators, and Custom REST APIs** into a single platform powered by the **HariKube dynamic data layer**, you overcome ETCD limits and transform Kubernetes into a **full, scalable, and language-agnostic Hybrid PaaS**.
+That's the core message! By unifying **Serverless Functions, Agentic AIs, Operators, and Custom REST APIs** into a single platform powered by the **HariKube dynamic data layer**, you overcome ETCD limits and transform Kubernetes into a **full, scalable, and language-agnostic Hybrid PaaS**.
 
 Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

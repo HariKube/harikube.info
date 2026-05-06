@@ -46,14 +46,14 @@ canonifyURLs = true
   chimpStatic = "ce88ef7143c9148f30f7cda5f/10ef28bb04b6ce918a13dc417"  # Only enabled in production
 
   middlewareImage = "middleware"
-  middlewareVersion = "release-v1.0.3"
-  supportedMiddlewareVersions = "release-v1.0.0,release-v1.0.1,release-v1.0.2,release-v1.0.3"
+  middlewareVersion = "release-v1.0.4"
+  supportedMiddlewareVersions = "release-v1.0.0,release-v1.0.1,release-v1.0.2,release-v1.0.3,release-v1.0.4"
   operatorImage = "operator"
   operatorVersion = "release-v1.0.2"
   supportedOperatorVersions = "release-v1.0.0,release-v1.0.1,release-v1.0.2"
   kubernetesImages = "kube-apiserver,kube-controller-manager,kubernetes"
-  kubernetesVersion = "v1.35.3"
-  supportedKubernetesVersions = "v1.35.0,v1.35.1,v1.35.2,v1.35.3"
+  kubernetesVersion = "v1.35.4"
+  supportedKubernetesVersions = "v1.35.0,v1.35.1,v1.35.2,v1.35.3,v1.35.4"
 
   # Header Configuration
   [params.header]

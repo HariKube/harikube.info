@@ -71,6 +71,7 @@ Why It Matters
 HariKube empowers platform teams to handle scale, compliance, and infrastructure complexity-while developers stay focused on writing and deploying great software.
 
  - Serverless functions live in Knative or OpenFaaS.
+ - Agentic AI workloads can use Kubernetes to read and write data.
  - Operators are built with Kubebuilder or Kopf for infrastructure related developments.
  - REST APIs are bolted on via Ingress and separate application stacks.
 
@@ -87,6 +88,14 @@ With a lightweight [watch connector](https://github.com/HariKube/serverless-kube
 Function languages: Go, Python, Node.js/TypeScript, Java, C#/.NET, Ruby, PHP, Rust.
 
  > In practice, any language that runs in a container and speaks HTTP works.
+
+## Agentic AI - Microservice Layer
+
+ - Developers only need a CRD and an agent.
+ - Kubernetes acts as the event source and memory.
+ - The agent focuses on logic, data management handled by the platform.
+
+Agent languages: Python, TypeScript, Rust, Mojo, Pel.
 
 ## Operators - Microservice Layer
 
@@ -126,6 +135,6 @@ Typical REST/API languages: Go, Python, Node.js/TypeScript, Java, C#/.NET, Rust,
 
 ---
 
-By unifying Serverless Functions, Operators, and Custom REST APIs into a single platform powered by the HariKube dynamic data layer, you overcome ETCD limits and transform Kubernetes into a full, scalable, and language-agnostic Hybrid PaaS.
+By unifying Serverless Functions, Agentic AIs, Operators, and Custom REST APIs into a single platform powered by the HariKube dynamic data layer, you overcome ETCD limits and transform Kubernetes into a full, scalable, and language-agnostic Hybrid PaaS.
 
  #### [Performance -->](/features/performance/)

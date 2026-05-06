@@ -157,9 +157,13 @@ The HariKube removes the "Single Connection" constraint, introducing native mult
 {
     "title": "Installation Options",
     "details": [
-        {
-            "title": "HariKube with vCluster - recommended",
+                {
+            "title": "HariKube with vCluster - Basic",
             "file": "docs/details/kubernetes-vcluster-install"
+        },
+        {
+            "title": "HariKube with vCluster - Helm",
+            "file": "docs/details/kubernetes-helm-install"
         },
         {
             "title": "HariKube on Self-Hosted Kubernetes",

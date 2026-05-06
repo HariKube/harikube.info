@@ -4,7 +4,7 @@ date: 2026-02-02
 author: "Richard Kovacs"
 description: "Let's transform your cluster into a high-performance, PaaS built for developer speed."
 categories: ["Microservice", "Infrastructure"]
-tags: ["kubernetes", "scalability", "infrastructure", "microservice"]
+tags: ["kubernetes", "scalability", "infrastructure", "microservice", "agentic ai"]
 featured_image: "/images/blog/announcing-harikube-1_0.png"
 ---
 
@@ -39,7 +39,7 @@ The result? **10x to 50x more operations per second**. Your control plane finall
 
 ## 🏗️ Repealing the "Development Tax"
 
-Platform engineering shouldn't feel like a second job for your developers. The "Development Tax" is the hours lost to boilerplate and infrastructure debugging. Kubernetes based on HariKube acts as a true **Platform-as-a-Service** (PaaS), abstracting the complexity so your team can get back to writing features. HariKube offers a **Language-Agnostic Unified Service Model** design pattern, where services - serverless functions, operators, traditional REST APIs - become **First-Class Citizens** in the cluster by using **standard Cloud-Native** tools only.
+Platform engineering shouldn't feel like a second job for your developers. The "Development Tax" is the hours lost to boilerplate and infrastructure debugging. Kubernetes based on HariKube acts as a true **Platform-as-a-Service** (PaaS), abstracting the complexity so your team can get back to writing features. HariKube offers a **Language-Agnostic Unified Service Model** design pattern, where services - serverless functions, agentic AIs, operators, traditional REST APIs - become **First-Class Citizens** in the cluster by using **standard Cloud-Native** tools only.
 
 {{< features-section 
     title="Legacy vs. Unified Service Model"

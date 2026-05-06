@@ -11,6 +11,7 @@ layout: "simple"
  - `--skip-verify`: Controls whether the TLS client performs server certificate verification
  - `--log-format`: Log format to use. Options are 'plain' or 'json'. Default 'plain'
  - `--metrics-bind-address`: The address the metric endpoint binds to. Default `:8080`, set 0 to disable metrics serving
+ - `--server-ca-file`: Path to the TLS CA certificate used by the middleware to secure incoming client connections
  - `--server-cert-file`: Path to the TLS certificate used by the middleware to secure incoming client connections
  - `--server-key-file`: Path to the private key used by the middleware to establish secure TLS communication with etcd-compatible clients
  - `--datastore-max-idle-connections`: Maximum number of idle connections retained by default datastore. If value = 0, the system default will be used. If value < 0, idle connections will not be reused
