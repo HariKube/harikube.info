@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-middleware-netpol
+  namespace: harikube
 spec:
   ingress:
   - from:
@@ -34,6 +35,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-netpol
+  namespace: harikube
 spec:
   ingress:
   - from:
@@ -59,6 +61,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-sa
+  namespace: harikube
 ---
 # Source: harikube-helm-charts/templates/middleware-pvc.yaml
 apiVersion: v1
@@ -70,6 +73,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-middleware-pvc
+  namespace: harikube
 spec:
   accessModes:
   - ReadWriteOnce
@@ -504,6 +508,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-leader-election-role
+  namespace: harikube
 rules:
 - apiGroups:
   - ""
@@ -547,6 +552,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-leader-election-rolebinding
+  namespace: harikube
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -566,6 +572,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-middleware-svc
+  namespace: harikube
 spec:
   type: ClusterIP
   ports:
@@ -586,6 +593,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-svc
+  namespace: harikube
 spec:
   type: ClusterIP
   ports:
@@ -606,6 +614,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-middleware-deploy
+  namespace: harikube
 spec:
   replicas: 1
   selector:
@@ -745,6 +754,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-deploy
+  namespace: harikube
 spec:
   replicas: 1
   selector:
@@ -861,6 +871,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-middleware-crt
+  namespace: harikube
 spec:
   dnsNames:
   - harikube-middleware-svc.harikube
@@ -880,6 +891,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-crt
+  namespace: harikube
 spec:
   dnsNames:
   - harikube-operator-svc.harikube.svc
@@ -899,6 +911,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-middleware-issuer
+  namespace: harikube
 spec:
   selfSigned: {}
 ---
@@ -912,6 +925,7 @@ metadata:
     app.kubernetes.io/version: "1.0.4"
     app.kubernetes.io/managed-by: Helm
   name: harikube-operator-issuer
+  namespace: harikube
 spec:
   selfSigned: {}
 ---
