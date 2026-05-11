@@ -58,7 +58,7 @@ vcluster connect harikube-vcluster
       image:
         registry: quay.io
         repository: harikube/kubernetes
-        tag: v1.35.0
+        tag: v1.35.4
       imagePullPolicy: IfNotPresent
       apiServer:
         enabled: true
