@@ -473,7 +473,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: harikube-operator-sa
-  namespace: default
+  namespace: harikube
 ---
 # Source: harikube-helm-charts/templates/operator-rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -492,7 +492,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: harikube-operator-sa
-  namespace: default
+  namespace: harikube
 ---
 # Source: harikube-helm-charts/templates/operator-rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -554,7 +554,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: harikube-operator-sa
-  namespace: default
+  namespace: harikube
 ---
 # Source: harikube-helm-charts/templates/middleware-service.yaml
 apiVersion: v1
@@ -863,8 +863,8 @@ metadata:
   name: harikube-middleware-crt
 spec:
   dnsNames:
-  - harikube-middleware-svc.default
-  - harikube-middleware-svc.default.cluster.local
+  - harikube-middleware-svc.harikube
+  - harikube-middleware-svc.harikube.cluster.local
   issuerRef:
     kind: Issuer
     name: harikube-middleware-issuer
@@ -882,8 +882,8 @@ metadata:
   name: harikube-operator-crt
 spec:
   dnsNames:
-  - harikube-operator-svc.default.svc
-  - harikube-operator-svc.default.svc.cluster.local
+  - harikube-operator-svc.harikube.svc
+  - harikube-operator-svc.harikube.svc.cluster.local
   issuerRef:
     kind: Issuer
     name: harikube-operator-issuer
@@ -933,7 +933,7 @@ webhooks:
   clientConfig:
     service:
       name: harikube-operator-svc
-      namespace: default
+      namespace: harikube
       path: /validate-harikube-info-v1-topologyconfig
   failurePolicy: Fail
   name: vtopologyconfig-v1.kb.io
