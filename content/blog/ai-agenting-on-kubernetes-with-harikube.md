@@ -78,13 +78,11 @@ Traditional Kubernetes can support this, but at scale the control plane can beco
 
 HariKube is valuable here because it helps Kubernetes operate more efficiently under exactly this kind of pressure.
 
-> 💡 AI agents do not just create many short-lived workloads — in regulated environments they often need to run in sandboxed containers as well, which increases security overhead. HariKube helps absorb that operational load more efficiently.
+> 💡 AI agents do not just create many short-lived workloads - in regulated environments they often need to run in sandboxed containers as well, which increases security overhead. HariKube helps absorb that operational load more efficiently.
 
 ---
 
 ### As a Platform-as-a-Service, it enables agent-to-agent orchestration
-
-This is one of the strongest messages for an AI-focused presentation.
 
 If HariKube is used not only to run pods, but also as an **API-driven platform**, then:
 
@@ -101,7 +99,7 @@ Why this matters for AI:
  - orchestration becomes more standardized
  - scaling and recovery can be handled more naturally by the platform
 
-> 💡 With HariKube, AI agents do not just run on the platform — they can collaborate through the platform.
+> 💡 With HariKube, AI agents do not just run on the platform - they can collaborate through the platform.
 
 #### What does “replacing database calls with Kubernetes API calls” mean?
 
@@ -131,6 +129,6 @@ Benefits:
 
 ---
 
-That’s it! If you’re ready to move beyond traditional Kubernetes scaling limits and build an AI-ready platform with lower multi-cluster overhead, HariKube offers a new operating model. In standalone mode, it helps you run more workloads efficiently in a single environment. As a platform, it enables secure, event-driven, agent-to-agent orchestration through Kubernetes-native APIs — making it easier to scale AI use cases with stronger control, observability, and business efficiency.
+That’s it! If you’re ready to move beyond traditional Kubernetes scaling limits and build an AI-ready platform with lower multi-cluster overhead, HariKube offers a new operating model. In standalone mode, it helps you run more workloads efficiently in a single environment. As a platform, it enables secure, event-driven, agent-to-agent orchestration through Kubernetes-native APIs - making it easier to scale AI use cases with stronger control, observability, and business efficiency.
 
 Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).
