@@ -29,7 +29,6 @@ The existing public documentation shows where those limits sit. Red Hat caps rec
 
 None of these are configuration problems. They are structural limits in the storage layer itself. At AI training scale, you hit them inside a single job.
 
----
 
 ## What Amazon Built to Get Past the etcd Bottleneck
 
@@ -45,7 +44,6 @@ The outcome for Anthropic: write API calls completing within 15ms improved from 
 
 That is not a marginal improvement. It is the difference between an architecture that fails under AI workloads and one rebuilt to handle them.
 
----
 
 ## The Gap: This etcd Replacement Lives Only Inside AWS
 
@@ -80,7 +78,7 @@ HariKube replaces etcd as the Kubernetes storage layer with a **distributed, dat
 
 The benchmark results show what happens when you remove the etcd constraint:
 
-| Metric | HariKube | Vanilla Kubernetes | Gain |
+| Metric | HariKube (6 DB) | Vanilla Kubernetes | Gain |
 |---|---|---|---|
 | Throughput | 119 req/s | 25 req/s | 4.8x |
 | Success Rate | 100% | KILLED (OOM) | not comparable |
@@ -91,9 +89,7 @@ The benchmark results show what happens when you remove the etcd constraint:
 
 > For benchmark details see [HariKube vs Vanilla Kubernetes](/blog/harikube-vs-vanilla-kubernetes/).
 
-These are the same failure modes Amazon solved inside EKS. The difference is that HariKube makes the solution available to **every Kubernetes distribution**: GKE users, AKS clusters, OpenShift deployments, Rancher environments, and on-premises infrastructure that will never move to EKS.
-
----
+These are the same failure modes Amazon solved inside EKS. The difference is that HariKube operates at the Kubernetes API storage interface: if it speaks the Kubernetes API, it works.
 
 Amazon's announcement is confirmation that the problem is real, that it matters at the scale AI demands, and that solving it requires a full architectural rebuild. What they built works. It is also available to exactly one cloud vendor's customers, on that vendor's hardware, under an invite-only programme.
 
