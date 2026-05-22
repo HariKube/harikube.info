@@ -141,6 +141,8 @@ featureGates:
   "CustomResourceFieldSelectors": true
   "WatchList": true
   "WatchListClient": true
+  "MutatingAdmissionPolicy": true
+  "VolumeAttributesClass": true
 nodes:
 - role: control-plane
   image: kindest/node:v1.35.0
@@ -150,6 +152,9 @@ nodes:
     apiServer:
         extraArgs:
           etcd-servers: "http://172.17.0.1:2369"
+          watch-cache: "false"
+          runtime-config: "admissionregistration.k8s.io/v1alpha1=true,admissionregistration.k8s.io/v1beta1=true"
+          storage-media-type: "application/json"
 {{< /code >}}
 
 Start the cluster with:
