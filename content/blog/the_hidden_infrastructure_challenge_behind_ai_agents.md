@@ -5,7 +5,7 @@ author: "Andras Szanto"
 description: "AI agents are shifting the infrastructure conversation beyond GPUs. As AI systems become more autonomous, Kubernetes control-plane scalability and coordination may become just as important as compute."
 categories: ["AI"]
 tags: ["kubernetes", "AI"]
-featured_image: "/images/blog/beyond-the-cluster-rethinking-your-kubernetes-platform-strategy.png"
+featured_image: "/images/blog/the_hidden_infrastructure_challenge_behind_ai_agents_harikube.png"
 ---
 
 The AI infrastructure conversation is dominated by compute.
@@ -193,10 +193,10 @@ The next decade may be defined by how effectively we coordinate everything that 
 
 Curious how HariKube approaches state management at Kubernetes scale?
 
-- [Download the HariKube White Paper](/whitepaper)
+- [Download the HariKube White Paper](/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/)
 - [Read: The Future of Kubernetes PaaS and Kubernetes-Native Service Development Is Here](/blog/the-future-of-kubernetes-paas)
 - [Read: Serverless Kube Watch Trigger](/blog/serverless-kube-watch-trigger)
-- [Explore HariKube Architecture](/architecture)
+- [Explore HariKube](/docs/overview/)
 
 ---
 
