@@ -194,8 +194,7 @@ The next decade may be defined by how effectively we coordinate everything that 
 Curious how HariKube approaches state management at Kubernetes scale?
 
 - [Download the HariKube White Paper](/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/)
-- [Read: The Future of Kubernetes PaaS and Kubernetes-Native Service Development Is Here](/blog/the-future-of-kubernetes-paas)
-- [Read: Serverless Kube Watch Trigger](/blog/serverless-kube-watch-trigger)
+- [Read: The Future of Kubernetes PaaS and Kubernetes-Native Service Development Is Here](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/)
 - [Explore HariKube](/docs/overview/)
 
 ---

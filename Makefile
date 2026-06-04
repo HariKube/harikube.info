@@ -12,7 +12,7 @@ shell:
 
 run:
 	@docker rm -f harikube-hugo-run
-	@docker run --name harikube-hugo-run --rm \
+	@docker run --name harikube-hugo-run --rm -it \
 		-w /src \
   		-v $(PWD):/src \
   		-v $(HOME)/hugo_cache:/tmp/hugo_cache \
