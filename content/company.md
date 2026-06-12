@@ -50,12 +50,6 @@ description: "Learn about our mission, leadership team, and the investors backin
                 email="ricsi.kovacs@inspirnation.eu"
             >}}
             {{< team-member 
-                name="Anett Kádár"
-                title="Chief Revenue Officer"
-                image="/images/company/anett.png"
-                linkedin="https://www.linkedin.com/in/anettguth/"
-            >}}
-            {{< team-member 
                 name="Lutz Grochowski"
                 title="Administrative Support"
                 image="/images/company/lutz.jpg"
