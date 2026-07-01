@@ -145,31 +145,28 @@ Frankly, we're too excited to keep this under wraps any longer! The theoretical 
 
 The true power of HariKube's architectural breakthrough is its complete **infrastructure agnosticism**. It doesn't matter if you're running on a hyper-scale **Managed Kubernetes** offering like GKE, EKS, or AKS; on a tightly controlled **Self-Hosted** cluster in your private data center; or on a lightweight **Kind** cluster on a developer's laptop. HariKube supports it all, because it is **totally transparent to Kubernetes itself**. This freedom of choice ensures that you can execute your architecture strategy-from local development to global, federated deployments-without ever sacrificing the enhanced scalability or unified service design that defines the future.
 
-To successfully deploy the full HariKube platform, your existing Kubernetes cluster must first have the essential prerequisites of Cert Manager for certificate lifecycle management and Prometheus for metrics and observability.
-
-If they are missing, install them with the commands below.
-
-{{< code bash >}}kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
-kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
-{{< /code >}}
-
 ### The New PaaS Starts Here: HariKube Installation
 
 The moment to stop talking about the future and start building it is now. Assuming you've completed the prerequisite step and have your beta access credentials, executing the fundamental transformation of your Kubernetes cluster requires just a few straightforward commands. By running the following sequence, you will introduce the core HariKube components, implementing a separated Kubernetes API via [vCluster](https://www.vcluster.com) in the background to ensure genuine architectural separation between infrastructure management and service data, and immediately upgrade your Kubernetes environment to a highly scalable, platform-ready PaaS foundation. Get ready to witness the convergence of power and simplicity:
 
+> 💡 Prerequisite: The target cluster must have cert-manager pre-installed.
+
 > ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
-{{< code bash >}}kubectl create namespace harikube
-kubectl create secret generic -n harikube harikube-license --from-file=${PWD}/license
-kubectl create secret docker-registry -n harikube harikube-registry-secret \
---docker-server=registry.harikube.info \
---docker-username=<oci-user> \
---docker-password='<my$secure@password>'
-kubectl apply -f https://harikube.info/manifests/harikube-operator-release-v1.0.2.yaml
-kubectl apply -f https://harikube.info/manifests/harikube-middleware-vcluster-api-release-v1.0.4.yaml
+{{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
+  --version 0.14.5 \
+  --dependency-update \
+  --create-namespace \
+  --namespace harikube \
+  --set enterprise.key="<license>" \
+  --set enterprise.user=<oci-user> \
+  --set enterprise.password="<secure@password>" \
+  --set operator.create=true \
+  --set apiServer.create=true \
+  --set controllerManager.create=true
 {{< /code >}}
 
-> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v1.0.4.yaml` instead of the API only manifest.
+> 💡 If you want to run your services inside the visrtual cluster instead of the host, you can do it simply by using `https://harikube.info/manifests/harikube-middleware-vcluster-workload-release-v0.14.5.yaml` instead of the API only manifest.
 
 Wait for system is up and running.
 

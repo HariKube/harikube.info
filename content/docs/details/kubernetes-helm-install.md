@@ -15,61 +15,31 @@ This model provides clear separation between services and the underlying infrast
 
 Start by bringing your favorite Kubernetes deployment.
 
-Deploy dependencies:
+### Install HariKube
 
-{{< code bash >}}kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
-{{< /code >}}
+> 💡 Prerequisite: The target cluster must have cert-manager pre-installed.
 
 > ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
-Next step is authenticating your local registry client with the private registry at `registry.harikube.info`. This step is essential for pulling images from the registry.
-
-{{< code bash >}}kubectl create namespace harikube
-kubectl label namespace harikube harikube.info/middleware=enabled --overwrite
-kubectl create secret generic -n harikube harikube-license --from-file=${PWD}/license
-kubectl create secret docker-registry -n harikube harikube-registry-secret \
---docker-server=registry.harikube.info \
---docker-username=<oci-user> \
---docker-password='<my$secure@password>'
-{{< /code >}}
-
-Store your previously created topology config, or create configs on the fly with our [automation](/docs/automation/) tool. You can edit the secret any time, the middleware will apply the changes.
-
-{{< code bash >}}kubectl create secret generic --namespace harikube topology-config --from-file=$(pwd)/topology.yaml
-{{< /code >}}
-
-### Install HariKube
-
-> Please find configuration options in the Helm Chart repo: https://github.com/HariKube/harikube-helm-charts/blob/release-v1.0.4/harikube/values.yaml
-
-{{< code bash >}}helm install harikube oci://quay.io/harikube/harikube-helm-charts \
-  --version {{ replace .Site.Params.middlewareVersion "release-v" "" }} \
-  --debug \
+{{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
+  --version 0.14.5 \
+  --dependency-update \
+  --create-namespace \
   --namespace harikube \
-  --set middleware.monitoring.create=false \
-  --set operator.monitoring.create=false
+  --set enterprise.key="<license>" \
+  --set enterprise.user=<oci-user> \
+  --set enterprise.password="<secure@password>" \
+  --set operator.create=true \
+  --set apiServer.create=true \
+  --set controllerManager.create=true
 {{< /code >}}
 
-### Create an API only deployment
+> For more details please follow the [release docs](https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.14.5). Please find configuration options in the [Helm Chart](https://github.com/HariKube/harikube-helm-charts/blob/release-v0.14.5/harikube/values.yaml) repo.
 
-> Please find configuration options in the Helm Chart repo: https://github.com/HariKube/harikube-helm-charts/blob/release-v1.0.4/harikube/vcluster/api-config.yaml
+Once the virtual cluster is running, you can Store your previously created topology config, or create configs on the fly with our [automation](/docs/automation/) tool. You can edit the secret any time, the middleware will apply the changes:
 
-{{< code bash >}}helm install harikube-vcluster https://charts.loft.sh/charts/vcluster-0.32.1.tgz \
-  --debug \
-  --namespace harikube \
-  --values harikube/vcluster/api-config.yaml
-vcluster connect harikube-vcluster
-{{< /code >}}
-
-### Create deployment with workload capabilities
-
-> Please find configuration options in the Helm Chart repo: https://github.com/HariKube/harikube-helm-charts/blob/release-v1.0.4/harikube/vcluster/workload-config.yaml
-
-{{< code bash >}}helm install harikube-vcluster https://charts.loft.sh/charts/vcluster-0.32.1.tgz \
-  --debug \
-  --namespace harikube \
-  --values harikube/vcluster/workload-config.yaml
-vcluster connect harikube-vcluster
+{{< code bash >}}kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
+kubectl create secret generic --namespace harikube topology-config --from-file=$(pwd)/topology.yaml
 {{< /code >}}
 
 ---

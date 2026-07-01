@@ -53,7 +53,7 @@ The Changes:
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
-3. [vCluster](https://github.com/HariKube/harikube/blob/release-v0.15.0/hack/vcluster/api-config.yaml) Integration (Isolation and Scalability)
+3. [vCluster](https://github.com/HariKube/harikube-helm-charts/blob/release-v0.15.0/harikube/values.yaml#L518) Integration (Isolation and Scalability)
 
 While it is entirely possible to run a standalone instance of this setup, for real-world production use, we **strongly suggest** utilizing the **vCluster** version of the toolset.
 
@@ -130,7 +130,13 @@ This deployment instantly gives you a new, isolated control plane that benefits 
 
 To execute this, simply run the following command:
 
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.15.0/vcluster-harikube-sqlite-release-v0.15.0.yaml
+> 💡 Prerequisite: The target cluster must have cert-manager pre-installed.
+
+{{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
+  --version 0.15.0 \
+  --dependency-update \
+  --create-namespace \
+  --namespace harikube
 {{< /code >}}
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:
@@ -146,9 +152,6 @@ Once connected, vCluster changes your current local `KUBECONFIG` file to point d
 > 🔓 vCluster simplifies the operational workflow by automatically updating your local environment. For more details how to disable this behaviour, or how to get config by service account for example please wisit the official docs` [Access and expose vCluster](https://www.vcluster.com/docs/vcluster/manage/accessing-vcluster) section.
 
 > 🔓 For service access from host, the vCluster setup keeps things simple: Create your ServiceAccount, create a secret annotated with `kubernetes.io/service-account.name`, and vCluster will sync the secret to the host cluster.
-
-{{< code bash >}}kubectl apply -f https://github.com/HariKube/harikube/releases/download/release-v0.15.0/skip-controller-manager-metadata-caching.yaml
-{{< /code >}}
 
 Now, create your first custom resource. Apply the definition file:
 
