@@ -53,7 +53,7 @@ The Changes:
 
 The Result: This coupling of the modified Kine and the modified Kubernetes Control Plane provides a transparent, drop-in replacement for the standard ETCD setup, enabling a huge leap in scalability and query performance for clusters that choose to adopt a SQL backend.
 
-3. [vCluster](https://github.com/HariKube/harikube-helm-charts/blob/release-v0.15.0/harikube/values.yaml#L518) Integration (Isolation and Scalability)
+3. [vCluster](https://github.com/HariKube/harikube-helm-charts/blob/release-v0.16.3/harikube/values.yaml#L518) Integration (Isolation and Scalability)
 
 While it is entirely possible to run a standalone instance of this setup, for real-world production use, we **strongly suggest** utilizing the **vCluster** version of the toolset.
 
@@ -133,7 +133,7 @@ To execute this, simply run the following command:
 > 💡 Prerequisite: The target cluster must have cert-manager pre-installed.
 
 {{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
-  --version 0.15.0 \
+  --version 0.16.3 \
   --dependency-update \
   --create-namespace \
   --namespace harikube

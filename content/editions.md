@@ -44,7 +44,7 @@ layout: "pricing"
             ],
             "button": {
                 "text": "Download",
-                "url": "https://github.com/HariKube/harikube/releases/tag/release-v0.15.0"
+                "url": "https://github.com/HariKube/harikube/releases/tag/release-v0.16.3"
             }
         },
         {

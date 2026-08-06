@@ -29,6 +29,12 @@ gen:
   		hugomods/hugo:debian-node-git-0.151.1 \
   		npm run build
 
+genCharts:
+	@for version in 0.14.5 0.15.0 0.16.3 ; do \
+		(cd static/harikube-helm-charts ; helm pull oci://quay.io/harikube/harikube --version $$version) \
+	done
+	(cd static/harikube-helm-charts ; helm repo index . --url https://harikube.com/harikube-helm-charts/)
+
 validate: gen
 	@docker run --rm \
 		-v $(PWD)/public:/public \
