@@ -26,12 +26,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: snickerbockers/submodules-init@v4
-    - name: Login to registry
-      uses: docker/login-action@v3
-      with:
-        registry: ${{ vars.REGISTRY }}
-        username: ${{ vars.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
     - name: Validate site
       run: make validate
       env:
@@ -44,14 +38,24 @@ jobs:
     - name: Extract branch
       id: extract_branch
       run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-    # - name: Set up Docker Buildx
-    #   uses: docker/setup-buildx-action@v3
-    # - name: Build and push
-    #   uses: docker/build-push-action@v6
-    #   with:
-    #     context: .
-    #     push: true
-    #     tags: ${{ vars.REGISTRY }}/${{ vars.REGISTRY_USER }}/harikube.info:${{ steps.extract_branch.outputs.branch }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        repository: harikube/harikube.github.io.git
+        ref: main
+        path: harikube.github.io.git
+        token: ${{ secrets.GIT_TOKEN }}
+        github-server-url: https://github.com
+        persist-credentials: true
+    - name: Release to github.io
+      run: |
+        rsync -az --delete --exclude .git --exclude .gitignore ./public/ ./harikube.github.io.git/
+        cd harikube.github.io.git ; \
+          git config user.email "devnull@harikube.info" && \
+          git config user.name "harikube.info bot" && \
+          git add -A && \
+          git commit -m"Updating site to ${{ steps.extract_branch.outputs.branch }}" && \
+          git push
     - name: Create release
       if: ${{ !startsWith(github.ref, 'refs/heads/dev-') }}
       uses: mhmxs/milestone-release-action@main
