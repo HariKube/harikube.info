@@ -65,6 +65,6 @@ jobs:
             # HariKube Website
             
             ## Release Notes
-        draft: true
+        draft: false
         prerelease: ${{ startsWith(github.ref, 'refs/heads/rc-') || startsWith(github.ref, 'refs/heads/beta-') || startsWith(github.ref, 'refs/heads/alpha-') }}
         files: README.md,LICENSE,public.tar.gz
