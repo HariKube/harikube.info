@@ -49,7 +49,7 @@ jobs:
         persist-credentials: true
     - name: Release to github.io
       run: |
-        rsync -az --delete --exclude .git --exclude .gitignore ./public/ ./harikube.github.io.git/
+        rsync -az --delete --exclude CNAME --exclude .git --exclude .gitignore ./public/ ./harikube.github.io.git/
         cd harikube.github.io.git ; \
           git config user.email "devnull@harikube.info" && \
           git config user.name "harikube.info bot" && \
