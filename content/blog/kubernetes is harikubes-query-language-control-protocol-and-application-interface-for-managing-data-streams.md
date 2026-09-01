@@ -78,6 +78,8 @@ Please tell us what you think, or what idea we inspired, share with us in the [C
 
 <pre>Going further join to the development of HariKube!</pre>
 
+> ✅ HariKube isn't a Kubernetes-inspired API or a custom control plane that happens to look like Kubernetes. It is designed to preserve Kubernetes API semantics and has passed the Kubernetes conformance test suite.
+
 ## 👷 What it looks like in action
 
 Well, the Kafka connectors are on the way, but you can try HariKube today by deploying our [Open-Core Edition](https://github.com/HariKube/harikube/releases/tag/release-v0.16.3) (limited to one database) or selecting an [Enterprise Edition](/editions/).
