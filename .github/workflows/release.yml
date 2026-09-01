@@ -30,11 +30,6 @@ jobs:
       run: make validate
       env:
         HUGO_ENV: ${{ startsWith(github.ref, 'refs/heads/release-') && 'production' || 'staging' }}
-    - uses: thedoctor0/zip-release@0.7.5
-      with:
-        type: 'tar'
-        filename: 'public.tar.gz'
-        path: ./public
     - name: Extract branch
       id: extract_branch
       run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
@@ -67,4 +62,4 @@ jobs:
             ## Release Notes
         draft: false
         prerelease: ${{ startsWith(github.ref, 'refs/heads/rc-') || startsWith(github.ref, 'refs/heads/beta-') || startsWith(github.ref, 'refs/heads/alpha-') }}
-        files: README.md,LICENSE,public.tar.gz
+        files: README.md,LICENSE
