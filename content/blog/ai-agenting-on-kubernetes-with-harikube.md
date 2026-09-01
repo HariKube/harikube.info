@@ -8,6 +8,8 @@ tags: ["kubernetes", "agentic ai", "microservice", "infrastructure"]
 featured_image: "/images/blog/ai-agenting-on-kubernetes-with-harikube.png"
 ---
 
+{{< toc >}}
+
 HariKube helps us run **more AI workloads** on the same Kubernetes infrastructure, which can **reduce the need for expensive multi-cluster** expansion. It also provides a **platform model** where AI agents can interact through Kubernetes APIs and events instead of relying only on traditional database-driven coordination. This **makes AI platforms more scalable, more observable, and more efficient** to operate.
 
 ## What is the benefit of HariKube?
