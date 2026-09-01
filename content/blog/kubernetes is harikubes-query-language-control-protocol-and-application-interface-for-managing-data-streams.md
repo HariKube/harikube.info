@@ -68,15 +68,15 @@ I have already covered most of this. The center of the architecture is your data
 
 This is just a joke, but every good joke has a kernel of truth. Without going into too much detail, if you think about it: your communication isn't low-level anymore. Services don't (can, but don't necessarily have to) talk directly to each other; **they update the state of the application over already-managed TLS.** If your Git is fast enough, you can even version-control your webshop orders. A pod in cluster A doesn't need to reach a pod in cluster B. If you can share your API, they are part of your ecosystem.
 
+> 🫶 Of course synchronous Service-to-Service communication still needs the extra care of meshes.
+
+So **Service Mesh is not dead - you just need less of it.** That is the beauty of this architecture: it gives you all the tools to manage hierarchical documents at scale with guaranteed Kubernetes API compatibility, while giving you the freedom to use what you want for problems that don't fit the native way, without losing Cloud-Native advantages.
+
 ### What else you can imagine?
 
 Please tell us what you think, or what idea we inspired, share with us in the [Community Forum](https://github.com/HariKube/harikube/discussions).
 
 <pre>Going further join to the development of HariKube!</pre>
-
-> 🫶 Of course synchronous Service-to-Service communication still needs the extra care of meshes.
-
-So **Service Mesh is not dead - you just need less of it.** That is the beauty of this architecture: it gives you all the tools to manage hierarchical documents at scale with guaranteed Kubernetes API compatibility, while giving you the freedom to use what you want for problems that don't fit the native way, without losing Cloud-Native advantages.
 
 ## 👷 What it looks like in action
 
