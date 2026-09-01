@@ -10,7 +10,7 @@ featured_image: "/images/blog/kubernetes is harikubes-query-language-control-pro
 
 {{< toc >}}
 
-Building production-grade microservices has meant wrestling with legacy anti-patterns, dealing with tightly coupled databases, managing complex service meshes, and **burning 20 to 40 percent of our development cycles purely on repetitive infrastructure boilerplate**. We have all felt the steep learning curves and the constant headache of trying to faithfully reproduce production environments locally. For too long...
+Building production-grade microservices has meant wrestling with legacy anti-patterns, dealing with tightly coupled databases, managing complex service meshes, and **burning 20 to 40 percent of our development cycles purely on repetitive infrastructure boilerplate**. We have all felt the steep learning curves and the constant headache of trying to faithfully reproduce production environments locally. We **all had scary nigths scaling Control-Plane** or watching memory filling up with unused resources **for too long...**
 
 Today, we are turning the page. **HariKube is stepping forward as a true Cloud-Native hyper-scaler and Platform-as-a-Service** designed to transform your services into first-class Cloud-Native citizens and ready to run huge amounts of AI workloads. In this deep dive, we are pulling back the curtain on our upcoming major feature set:
 
@@ -70,7 +70,9 @@ This is just a joke, but every good joke has a kernel of truth. Without going in
 
 ### What else you can imagine?
 
-Please tell us what you think, or what idea we inspired: [Community Forum](https://github.com/HariKube/harikube/discussions)
+Please tell us what you think, or what idea we inspired, share with us in the [Community Forum](https://github.com/HariKube/harikube/discussions).
+
+<pre>Going further join to the development of HariKube!</pre>
 
 > 🫶 Of course synchronous Service-to-Service communication still needs the extra care of meshes.
 
