@@ -32,9 +32,9 @@ Today, we are turning the page. **HariKube is stepping forward as a true Cloud-N
 
 > We are running a [competition](https://github.com/HariKube/kubernetes-performance-challenge/blob/main/README.md) to find out where the limits of Kubernetes are. Join the elite group of Kubernetes hyper-scalers.
 
-## 📎 How it looks on paper
+## 📎 How it looks on paper?
 
-Whether you are orchestrating CRDs, streamlining microservice workflows, or hosting millions of AI agents and secure sandboxes, this release fundamentally changes what is possible on Kubernetes. Time to break down the architecture that makes it all happen (I ❤️‍🔥 diagrams, click for big view).
+Whether you are orchestrating CRDs, streamlining microservice workflows, or hosting large amount of AI agents and secure sandboxes, this release fundamentally changes what is possible on Kubernetes. Time to break down the architecture that makes it all happen (I ❤️‍🔥 diagrams, click for big view).
 
 <a href="/images/harikube-architecture-overview.png" target="_blank"><img src="/images/harikube-architecture-overview.png" alt="Harikube Architecture Overview" /></a>
 
@@ -44,7 +44,7 @@ Whether you are orchestrating CRDs, streamlining microservice workflows, or host
 
 **Kafka acts as an alternative message delivery system on top of Kubernetes' built-in event bus**, which updates the same state Kubernetes serves to your business logic. The options are unlimited; each service can select the best path to receive or send status updates. Just to give one example: watchers waiting for "ready" status should use a Kafka stream to let you run heavier business logic based on the API server. The same service can send write intensive data to another Kafka topic with battle-tested delivery guarantees. After finishing the job, it can trigger a serverless function to send an email by creating a custom resource via the API.
 
-## 🧠 What is HariKube
+## 🧠 What is HariKube?
 
 It's hard to tell - not because we don't know how it works, or because we introduced something that didn't exist before. But **fixing the scalability of Kubernetes fundamentally changed everything**, and like peeling an onion, we found new options week by week. HariKube depends on well-known, widely adopted tools; we just connected the right dots to unlock the full potential of the system.
 
@@ -56,7 +56,7 @@ It's hard to tell - not because we don't know how it works, or because we introd
 
 By making the API server scalable, **next-gen services can rely on built-in API server functions like API routing, data streaming, RBAC, auditing, schema validation/migration**, etc. They can focus purely on business logic. **Time-to-Market shrinks**, developers have less cognitive load, and you can achieve True Separation of Concerns where devs and ops are doing what they like and are good at.
 
-### Home for Millions of AI Agents and Sandboxes
+### Home for Large Amount Of of AI Agents and Sandboxes
 
 Now you have everything you need to **run large amounts of AI workloads** (plus sandboxing and federation agents with their own sandboxes), and your workloads no longer run in silos. **They are Cloud-Native citizens:** they can trigger actions or share data with other citizens, regardless of whether they are serverless functions, operators, Aggregation APIs, other agents consuming a Kafka stream, or watching the Kubernetes API. You have one living entity.
 
@@ -72,15 +72,13 @@ This is just a joke, but every good joke has a kernel of truth. Without going in
 
 So **Service Mesh is not dead - you just need less of it.** That is the beauty of this architecture: it gives you all the tools to manage hierarchical documents at scale with guaranteed Kubernetes API compatibility, while giving you the freedom to use what you want for problems that don't fit the native way, without losing Cloud-Native advantages.
 
-### What else you can imagine?
 
-Please tell us what you think, or what idea we inspired, share with us in the [Community Forum](https://github.com/HariKube/harikube/discussions).
 
-<pre>Going further join to the development of HariKube!</pre>
+## 🧭 HariKube is a Petabyte-scale, Time-travel State-machine with a Kubernetes Interface and Kafka streaming
 
 > ✅ HariKube isn't a Kubernetes-inspired API or a custom control plane that happens to look like Kubernetes. It is designed to preserve Kubernetes API semantics and has passed the Kubernetes conformance test suite.
 
-## 👷 What it looks like in action
+## 👷 How it looks like in action?
 
 Well, the Kafka connectors are on the way, but you can try HariKube today by deploying our [Open-Core Edition](https://github.com/HariKube/harikube/releases/tag/release-v0.16.3) (limited to one database) or selecting an [Enterprise Edition](/editions/).
 
@@ -128,4 +126,8 @@ The boundary between transactional processing (OLTP) and event streaming dissolv
 
 That’s it! The future of Cloud-Native data streaming and hyper-scale AI workloads is here, and it runs right on top of the Kubernetes APIs you already know. Test out HariKube, take on our [performance challenge](https://github.com/HariKube/kubernetes-performance-challenge/blob/main/README.md), and help us shape the next evolution of HariKube.
 
-Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).
+### What else you can imagine?
+
+Please tell us what you think, or what idea we inspired, share with us in the [Community Forum](https://github.com/HariKube/harikube/discussions).
+
+<pre>Going further join to the development of HariKube!</pre>
