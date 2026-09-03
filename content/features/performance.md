@@ -60,7 +60,7 @@ HariKube implements a multi-database architecture that offloads non-critical and
 {{< feature
     title="Total execution time: 1m18s"
     description=""
-    badge="6 MySQL instances"
+    badge="4 MySQL instances"
     badgeColor="#16a34a"
     image="/images/features/gcp_compute_40_20000_1744027050.json_http_req_duration_chart.png"
     buttonText=""
@@ -91,7 +91,7 @@ HariKube implements a multi-database architecture that offloads non-critical and
 {{< feature
     title="Total execution time: 23s"
     description=""
-    badge="6 MySQL instances"
+    badge="4 MySQL instances"
     badgeColor="#16a34a"
     image="/images/features/gcp_compute_600_10000_1731680688.json_http_req_duration_chart.png"
     buttonText=""
@@ -104,13 +104,13 @@ HariKube implements a multi-database architecture that offloads non-critical and
 
 </div>
 
-Using 6 databases resulted in a **3× improvement in both throughput and latency**, demonstrating strong scalability and reduced per-request overhead.
+Using 4 databases resulted in a **3× improvement in both throughput and latency**, demonstrating strong scalability and reduced per-request overhead.
 
  - When using a single database, average response times were around 3× higher, with frequent latency spikes pushing maximum durations beyond 3500 ms. The overall execution took over 1 minute, and the system showed signs of bottlenecks and load accumulation.
 
- - In contrast, the 6-database setup showed a much smoother performance profile: average latencies dropped by a factor of 3, and peak response times were consistently lower, rarely exceeding 1600 ms. The total execution time dropped to 23 seconds, showing a near 3× improvement in both throughput.
+ - In contrast, the 4-database setup showed a much smoother performance profile: average latencies dropped by a factor of 3, and peak response times were consistently lower, rarely exceeding 1600 ms. The total execution time dropped to 23 seconds, showing a near 3× improvement in both throughput.
 
- - The single-database setup also produced a ~3.9% error rate, while the 6-database HariKube configuration completed the test with zero errors near 3.5x faster, highlighting its superior reliability under load. The HariKube setup utilization was still low, but these were the numbers where the single database setup didn't halt and catch 🔥.
+ - The single-database setup also produced a ~3.9% error rate, while the 4-database HariKube configuration completed the test with zero errors near 3.5x faster, highlighting its superior reliability under load. The HariKube setup utilization was still low, but these were the numbers where the single database setup didn't halt and catch 🔥.
 
 ## 📈 Still not impressed?
 
