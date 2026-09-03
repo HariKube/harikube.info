@@ -1,5 +1,5 @@
 ---
-title: "Is ETCD Limiting Your Kubernetes Scaling?"
+title: "Business Benefits"
 layout: "simple"
 ---
 

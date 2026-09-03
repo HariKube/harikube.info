@@ -96,7 +96,7 @@ testimonials:
             "file": "details/arhitecture"
         },
         {
-            "title": "👨‍💼 I'm interested in the business values",
+            "title": "👨‍💼 I'm interested in the business benefits",
             "file": "details/business_values"
         }
     ]
