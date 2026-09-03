@@ -5,10 +5,14 @@ author: "Richard Kovacs"
 description: "I am genuinely thrilled to share the next major architectural evolution of HariKube"
 categories: ["AI", "Microservice", "Infrastructure", "DataStreaming"]
 tags: ["kubernetes", "agentic ai", "microservice", "infrastructure", "data streaming"]
-featured_image: "/images/blog/kubernetes is harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams.png"
+featured_image: "/images/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams.png"
 ---
 
 {{< toc >}}
+
+**If you are more interested in business impact, follow the link.** [[→]](/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/)
+
+---
 
 Building production-grade microservices has meant wrestling with legacy anti-patterns, dealing with tightly coupled databases, managing complex service meshes, and **burning 20 to 40 percent of our development cycles purely on repetitive infrastructure boilerplate**. We have all felt the steep learning curves and the constant headache of trying to faithfully reproduce production environments locally. We **all had scary nigths scaling Control-Plane** or watching memory filling up with unused resources **for too long...**
 
@@ -130,3 +134,7 @@ That’s it! The future of Cloud-Native data streaming and hyper-scale AI worklo
 Please tell us what you think, or what idea we inspired, share with us in the [Community Forum](https://github.com/HariKube/harikube/discussions).
 
 <pre>Going further join to the development of HariKube!</pre>
+
+---
+
+**If you are interested in business impact, follow the link.** [[→]](/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/)
