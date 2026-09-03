@@ -41,7 +41,7 @@ testimonials:
 
 {{< hero 
     headline="Your state is all that matters."
-    sub_headline="HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices.<br>Upgrade your applications and AI workloads to a <b>monolithic state model with nanoservices</b> <a href=\"/editions/\" style=\"color: #425ad6\">today</a>!<br><br>📈 10-50x more throughput<br>📉 30% less boilerplate<br>♾️ Full Cloud-Native experience"
+    sub_headline="HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices.<br>Upgrade your applications and AI workloads to a <b>monolithic state plus Cloud-Native services</b> model <a href=\"/editions/\" style=\"color: #425ad6\">today</a>!<br><br>📈 10-50x more throughput<br>📉 30% less boilerplate<br>♾️ Full Cloud-Native experience"
     primary_button_text="Get Yours"
     primary_button_url="/editions/"
     secondary_button_text="Learn More"
