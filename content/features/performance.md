@@ -23,15 +23,15 @@ At the heart of Kubernetes lies ETCD, a distributed key-value store that serves 
 
 As teams scale their Kubernetes environments or begin to use CRDs for large, dynamic workloads, ETCD becomes a performance bottleneck:
 
- - **ETCD under Kubernetes cannot scale horizontally** – Every ETCD replica stores the full dataset and participates in quorum-based consensus, making it difficult to scale with increasing data volume or high-throughput workloads. Adding more replicas increases fault tolerance, not capacity.
+ - **ETCD under Kubernetes cannot scale horizontally** - Every ETCD replica stores the full dataset and participates in quorum-based consensus, making it difficult to scale with increasing data volume or high-throughput workloads. Adding more replicas increases fault tolerance, not capacity.
 
- - **Limited capacity even with vertical scaling** – ETCD struggles to handle large volumes of high-throughput data, even when deployed on high-performance hardware. Its single read/write path and centralized data access model create a bottleneck under heavy load, limiting overall system scalability.
+ - **Limited capacity even with vertical scaling** - ETCD struggles to handle large volumes of high-throughput data, even when deployed on high-performance hardware. Its single read/write path and centralized data access model create a bottleneck under heavy load, limiting overall system scalability.
 
- - **Using ETCD to store non-core, high-volume workloads** – such as application state, dynamic configuration, or large custom resource datasets-can overwhelm its intended capacity. This not only slows down critical control plane operations like scheduling and service discovery but also increases the risk of cascading failures across the cluster when ETCD becomes unresponsive or resource-constrained.
+ - **Using ETCD to store non-core, high-volume workloads** - such as application state, dynamic configuration, or large custom resource datasets-can overwhelm its intended capacity. This not only slows down critical control plane operations like scheduling and service discovery but also increases the risk of cascading failures across the cluster when ETCD becomes unresponsive or resource-constrained.
 
- - **Complex and risky maintenance and recovery** – As ETCD usage expands beyond core Kubernetes data, backup and disaster recovery processes become more error-prone and time-consuming. Since ETCD remains a single point of failure for the control plane, any misstep in handling its growing data volume can lead to critical cluster and business service outages.
+ - **Complex and risky maintenance and recovery** - As ETCD usage expands beyond core Kubernetes data, backup and disaster recovery processes become more error-prone and time-consuming. Since ETCD remains a single point of failure for the control plane, any misstep in handling its growing data volume can lead to critical cluster and business service outages.
 
- - **In-memory storage and API-level filtering limit scalability** – Kubernetes stores all data in memory and performs filtering at the API server level, which becomes inefficient and resource-intensive for services managing large datasets. HariKube solves this by offloading data to relational databases, enabling efficient querying and filtering directly at the storage layer.
+ - **In-memory storage and API-level filtering limit scalability** - Kubernetes stores all data in memory and performs filtering at the API server level, which becomes inefficient and resource-intensive for services managing large datasets. HariKube solves this by offloading data to relational databases, enabling efficient querying and filtering directly at the storage layer.
 
 This is where HariKube introduces a transformative solution.
 Why HariKube?

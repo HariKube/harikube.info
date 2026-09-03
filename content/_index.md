@@ -1,16 +1,10 @@
 ---
 title: Home
 client_logos:
-  - name: "Customer 1"
-    logo: "/images/logos/customer-1.png"
-  - name: "Customer 2"
-    logo: "/images/logos/customer-2.png"
-  - name: "Customer 3"
-    logo: "/images/logos/customer-3.png"
-  - name: "Customer 4"
-    logo: "/images/logos/customer-4.png"
-  - name: "Customer 5"
-    logo: "/images/logos/customer-5.png"
+  - name: "Suse Rancher"
+    logo: "/images/logos/suse.png"
+  - name: "RedHat"
+    logo: "/images/logos/redhat.png"
 testimonials:
   - name: "John Smith"
     title: "CTO at TechStartup"
@@ -32,7 +26,7 @@ testimonials:
   "@type": "WebSite",
   "name": "HariKube",
   "url": "https://harikube.info",
-  "description": "With HariKube, it becomes your platform-as-a-service - scalable, fast, and vendor-agnostic - so you can build, deploy, and grow without worrying about database limits or infrastructure complexity.",
+  "description": "HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices.",
   "publisher": {
     "@type": "Organization",
     "name": "HariKube",
@@ -46,8 +40,8 @@ testimonials:
 </script>
 
 {{< hero 
-    headline="Kubernetes, Beyond the Bottleneck"
-    sub_headline="HariKube is a Kubernetes <b>hyper-scaler</b> that turns your cluster into a zero-effort <b>Platform-as-a-Service</b>. By leveraging a <b>unified service model</b>, we remove technical bottlenecks to let your services run as <b>native Kube citizens</b>.<br><br>📈 10-50x more throughput<br>📉 30% less boilerplate<br>♾️ Full Cloud-Native experience by design"
+    headline="Your state is all that matters."
+    sub_headline="HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices.<br>Upgrade your applications and AI workloads to a <b>monolithic state model with nanoservices</b> <a href=\"/editions/\" style=\"color: #425ad6\">today</a>!<br><br>📈 10-50x more throughput<br>📉 30% less boilerplate<br>♾️ Full Cloud-Native experience"
     primary_button_text="Get Yours"
     primary_button_url="/editions/"
     secondary_button_text="Learn More"
@@ -74,20 +68,16 @@ testimonials:
 <link rel="stylesheet" href="/css/video.css" />
 <script type="text/javascript" src="/js/video.js"></script>
 
-<!---
-{{< client-logos animate="true" >}}
---->
+<div style="text-align: center">
+{{< client-logos animate="false" title="✅ Fully Kubernetes conformance compatible, and certified at our partners" >}}
+</div>
 
 {{< details buttonColor="#425ad6" textColor="text-white" arrowColor="text-white" >}}
 {
     "details": [
         {
-            "title": "🐌 Is Infrastructure Code Slowing and Fragmenting Your Development?",
-            "file": "details/devexp"
-        },
-        {
-            "title": "📉 Is ETCD Limiting Your Kubernetes Scaling?",
-            "file": "details/scalingexp"
+            "title": "🏁 You are welcome to beat our numbers!",
+            "file": "details/kubernetes-performance-challenge"
         }
     ]
 }
@@ -98,9 +88,24 @@ testimonials:
     description="Vanilla Kubernetes VS. HariKube 6xPostgreSQL"
 >}}
 
+{{< details buttonColor="#425ad6" textColor="text-white" arrowColor="text-white" >}}
+{
+    "details": [
+        {
+            "title": "👩‍🔬 I'm interested in the architecture",
+            "file": "details/arhitecture"
+        },
+        {
+            "title": "👨‍💼 I'm interested in the business values",
+            "file": "details/business_values"
+        }
+    ]
+}
+{{< /details >}}
+
 {{< features-section 
     title="🪄 Achieve Both: Performance and Rapid Development"
-    description="HariKube is not a choice between a faster developer experience and technical performance - it delivers comprehensive benefits by addressing both core limitations of standard Kubernetes."
+    description="HariKube is not a choice between a faster developer experience and technical performance - it delivers comprehensive benefits by addressing core limitations of standard Kubernetes."
 >}}
 {{< /features-section >}}
 

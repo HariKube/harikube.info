@@ -50,7 +50,7 @@ It's hard to tell - not because we don't know how it works, or because we introd
 
 ### Kubernetes Hyper-scaler
 
-**By turning the API server stateless, you aren't limited to 3–5 instances of the API server.** You aren't faced with stale reads or long startup times. The control plane uses your resources to serve actual requests, it has `O(1)` memory model. You can run it standalone to achieve massive scaling of your services or AI agents. You can also run it in a vCluster to provide a high-scale API to your clients/applications.
+**By turning the API server stateless, you aren't limited to 3-5 instances of the API server.** You aren't faced with stale reads or long startup times. The control plane uses your resources to serve actual requests, it has `O(1)` memory model. You can run it standalone to achieve massive scaling of your services or AI agents. You can also run it in a vCluster to provide a high-scale API to your clients/applications.
 
 ### Cloud Native Platform-as-a-Service
 
@@ -73,8 +73,7 @@ This is just a joke, but every good joke has a kernel of truth. Without going in
 So **Service Mesh is not dead - you just need less of it.** That is the beauty of this architecture: it gives you all the tools to manage hierarchical documents at scale with guaranteed Kubernetes API compatibility, while giving you the freedom to use what you want for problems that don't fit the native way, without losing Cloud-Native advantages.
 
 
-
-## 🧭 HariKube is a Petabyte-scale, Time-travel State-machine with a Kubernetes Interface and Kafka streaming
+## 🧭 HariKube is a Petabyte-scale versioned State-machine with Kubernetes Interface and Kafka streaming
 
 > ✅ HariKube isn't a Kubernetes-inspired API or a custom control plane that happens to look like Kubernetes. It is designed to preserve Kubernetes API semantics and has passed the Kubernetes conformance test suite.
 

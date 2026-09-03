@@ -22,13 +22,13 @@ In today’s multi-tenant, cloud-native environments, maintaining strict data bo
 HariKube addresses this gap by introducing fine-grained, database-level data isolation, enabling organizations to achieve strong security postures while also simplifying operational complexity.
 Why Fine-Grained Isolation Matters
 
- - **Security and Least Privilege** – Isolating data per namespace or resource type ensures that sensitive workloads are never exposed to unintended access. Teams can enforce RBAC and network policies with confidence, knowing each unit of data resides in a self-contained backend.
+ - **Security and Least Privilege** - Isolating data per namespace or resource type ensures that sensitive workloads are never exposed to unintended access. Teams can enforce RBAC and network policies with confidence, knowing each unit of data resides in a self-contained backend.
 
- - **Scoped impact in case of breaches or maintenance** – With HariKube’s isolated database architecture, a data breach, misconfiguration, or maintenance event affects only the specific resource, namespace, or service involved-preventing widespread impact across the entire cluster.
+ - **Scoped impact in case of breaches or maintenance** - With HariKube’s isolated database architecture, a data breach, misconfiguration, or maintenance event affects only the specific resource, namespace, or service involved-preventing widespread impact across the entire cluster.
 
- - **Regulatory Compliance** – Whether it's GDPR, HIPAA, or SOC 2, HariKube makes it easier to meet data residency, access control, and auditability requirements by physically separating data for different tenants, environments, or application domains.
+ - **Regulatory Compliance** - Whether it's GDPR, HIPAA, or SOC 2, HariKube makes it easier to meet data residency, access control, and auditability requirements by physically separating data for different tenants, environments, or application domains.
 
- - **Simplified Auditing and Maintenance** – Managing backups, access policies, and upgrades becomes more manageable when each database maps clearly to a workload or tenant. There's no ambiguity in ownership or access rights.
+ - **Simplified Auditing and Maintenance** - Managing backups, access policies, and upgrades becomes more manageable when each database maps clearly to a workload or tenant. There's no ambiguity in ownership or access rights.
 
 HariKube brings these capabilities to Kubernetes with zero disruption to existing workflows. Developers continue using native APIs, while platform teams gain the fine-grained control they need to run secure, compliant, and scalable systems.
 

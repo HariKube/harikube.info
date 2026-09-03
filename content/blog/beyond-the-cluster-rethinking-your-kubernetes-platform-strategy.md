@@ -40,7 +40,7 @@ When teams hit the Day 2 wall, they typically look for one of three strategic es
 Many organizations start by trying to "hand-stitch" a platform using a mix of open-source scripts, massive Helm charts, and custom Glue-code.
 
  - The Pros: Complete control. You can build exactly what your unique business logic requires without any external opinionated constraints.
- - The Cons: It is an operational nightmare. You aren't just building an app; you are now maintaining a custom "distribution" of Kubernetes, with the need of supporting Hybrid Cloud. This requires a dedicated team of 5–10 engineers just to keep up with quarterly releases, security patches, and the "technical debt" of your own abstractions. Typically, it is challenging to run on developer's machine and developers need extra effort to learn how it works.
+ - The Cons: It is an operational nightmare. You aren't just building an app; you are now maintaining a custom "distribution" of Kubernetes, with the need of supporting Hybrid Cloud. This requires a dedicated team of 5-10 engineers just to keep up with quarterly releases, security patches, and the "technical debt" of your own abstractions. Typically, it is challenging to run on developer's machine and developers need extra effort to learn how it works.
 
 ### 2. 🎪 The "Off-the-Shelf" Path
 
@@ -83,7 +83,7 @@ As we navigate the platform trends of 2026, the question is how you want to mana
 
 | Strategy | Core Approach | Best For | Key Pros | Key Cons |
 |-|-|-|-|-|
-| **Build Your Own** | hand-crafted scripts, Helm, custom glue-code | 100% custom control | no opinionated constraints | fully custom; requires 5–10 dedicated engineers |
+| **Build Your Own** | hand-crafted scripts, Helm, custom glue-code | 100% custom control | no opinionated constraints | fully custom; requires 5-10 dedicated engineers |
 | **Application Runtime** | sidecar-based APIs | standard patterns across multiple languages | portable code | sidecar tax; requires managing external dependencies |
 | **Virtual Control Plane** | isolated APIs | multi-tenancy & isolation | transparent for developers | lack of storage-side filtering |
 | **Smart Middleware** | transparent data proxy | standard patterns across multiple languages, isolation | portable code, transparent for developers | commercial product for businesses |

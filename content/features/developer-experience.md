@@ -56,15 +56,15 @@ their time on “glue code” and infrastructure integration rather than core bu
 
 Why It Matters
 
- - **No local setup needed** – Developers don't need to run heavy database instances or mock ETCD clusters locally. Since HariKube is designed for production environments and integrates with stock Kubernetes APIs, development can remain fast, lightweight, and focused.
+ - **No local setup needed** - Developers don't need to run heavy database instances or mock ETCD clusters locally. Since HariKube is designed for production environments and integrates with stock Kubernetes APIs, development can remain fast, lightweight, and focused.
 
- - **Cloud-native by default** – With support for built-in Kubernetes features like RBAC, admission webhooks, and eventing, HariKube fits naturally into your existing toolchain-whether you're using Helm, ArgoCD, or GitOps workflows.
+ - **Cloud-native by default** - With support for built-in Kubernetes features like RBAC, admission webhooks, and eventing, HariKube fits naturally into your existing toolchain-whether you're using Helm, ArgoCD, or GitOps workflows.
 
- - **Environment parity** – Applications behave consistently across environments because there's no custom runtime logic or external SDK to introduce variability. If it works in dev, it works in prod.
+ - **Environment parity** - Applications behave consistently across environments because there's no custom runtime logic or external SDK to introduce variability. If it works in dev, it works in prod.
 
- - **Built for simplicity** – With fully documented APIs and plug-and-play integration, developers can rely on existing Kubernetes knowledge without the need to learn or manage another system.
+ - **Built for simplicity** - With fully documented APIs and plug-and-play integration, developers can rely on existing Kubernetes knowledge without the need to learn or manage another system.
 
- - **Transforms Kubernetes into a true Platform-as-a-Service (PaaS)** – HariKube abstracts data infrastructure complexity, allowing developer teams to focus solely on business logic. This streamlined workflow not only accelerates development but also reduces operational overhead and infrastructurerelated  development costs.
+ - **Transforms Kubernetes into a true Platform-as-a-Service (PaaS)** - HariKube abstracts data infrastructure complexity, allowing developer teams to focus solely on business logic. This streamlined workflow not only accelerates development but also reduces operational overhead and infrastructurerelated  development costs.
 
  - **Unifying different service designs** - For years, Kubernetes has been the foundation of modern cloud infrastructure. But while it excels at scheduling, scaling, and managing workloads, its application development experience has been fragmented.
 
