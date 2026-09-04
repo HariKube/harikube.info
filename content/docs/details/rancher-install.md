@@ -73,4 +73,6 @@ Start by bringing your favorite Kubernetes deployment.
 
 ### Helm install
 
+Please follow the Helm install seciotn of documentation.
+
 Please visit Helm install method in documentation.
