@@ -68,6 +68,37 @@ testimonials:
 <link rel="stylesheet" href="/css/video.css" />
 <script type="text/javascript" src="/js/video.js"></script>
 
+{{< features-section 
+    title="🧭 What HariKube Is?"
+    description="HariKube is a petabyte-scale, versioned state machine for any kind of data - using Kubernetes as its API and Kafka as its real-time event stream."
+>}}
+
+{{< feature
+    title="Imagine a Webshop on HariKube"
+    description="It acts as a single, central source of truth that tracks every single state change over time (versioning) across your entire system."
+    badge="What It Does"
+    badgeColor="#fab005"
+    image="/images/docs/legacy-model.png"
+    buttonText="Learn More"
+    buttonLink="/features/developer-experience/"
+    features="An order isn't scattered across five isolated databases.,It exists as a single versioned state object.,When a customer purchases an item updates the state.,Your CNCF-compliant service processes the transition (Created > Paid > Shipped), HariKube tracks the entire history and streams the updates in real time."
+    imagePosition="right"
+>}}
+
+{{< feature
+    title="The Big Picture"
+    description="Standard Kubernetes breaks when forced to handle massive business state because consensus and memory have hard ceilings. HariKube replaces etcd with heavy-duty database engines, turning Kubernetes into a massive, resilient and scalable state platform."
+    badge="Why It Matters"
+    badgeColor="#7d51ff"
+    image="/images/docs/harikube-model.png"
+    buttonText="Learn More"
+    buttonLink="/features/performance/"
+    features="You manage drastically fewer clusters because HariKube handles your scale in well-known databases.,It solves the trade-off between monoliths and microservices; Monolith simplicity or Microservice power.,By unifying your system into a single state engine; HariKube letting you ship new features in days instead of months."
+    imagePosition="left"
+>}}
+
+{{< /features-section >}}
+
 <div style="text-align: center">
 {{< client-logos animate="false" title="✅ Fully Kubernetes conformance compatible, and certified at our partners" >}}
 </div>
