@@ -102,7 +102,7 @@ An order isn't scattered across five isolated databases. It exists as a single v
 
 ## 👷 How it looks like in action
 
-Well, the Kafka connectors are on the way, but you can try HariKube today by deploying our [Open-Core Edition](https://github.com/HariKube/harikube/releases/tag/release-v0.16.3) (limited to one database) or selecting an [Enterprise Edition](/editions/).
+Well, the Kafka connectors are on the way, [dev build](https://github.com/HariKube/harikube/releases/tag/dev-v0.16.4-0) is available. Otherwise you can start using HariKube today by deploying our [Open-Core Edition](https://github.com/HariKube/harikube/releases/tag/release-v0.16.3) (limited to one database) or selecting an [Enterprise Edition](/editions/).
 
 **You are just one Helm install away of the now.**
 
