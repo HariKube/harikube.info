@@ -77,9 +77,9 @@ This is just a joke, but every good joke has a kernel of truth. Without going in
 So **Service Mesh is not dead - you just need less of it.** That is the beauty of this architecture: it gives you all the tools to manage hierarchical documents at scale with guaranteed Kubernetes API compatibility, while giving you the freedom to use what you want for problems that don't fit the native way, without losing Cloud-Native advantages.
 
 
-## 🧭 What HariKube's identity Is
+## 🧭 What Is HariKube's Identity
 
-**HariKube is a petabyte-scale, versioned state machine for any kind of data - using Kubernetes as its API and Kafka as its real-time event stream.**
+**HariKube is an open-core petabyte-scale, versioned state machine for any kind of data - using Kubernetes as its API and Kafka as its real-time event stream.**
 
 ### What It Does  
 
