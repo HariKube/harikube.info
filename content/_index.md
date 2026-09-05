@@ -70,7 +70,7 @@ testimonials:
 
 {{< features-section 
     title="🧭 What Is HariKube"
-    description="HariKube is a petabyte-scale, versioned state machine for any kind of data - using Kubernetes as its API and Kafka as its real-time event stream."
+    description="HariKube is an open-core petabyte-scale, versioned state machine for any kind of data - using Kubernetes as its API and Kafka as its real-time event stream."
 >}}
 
 {{< feature
