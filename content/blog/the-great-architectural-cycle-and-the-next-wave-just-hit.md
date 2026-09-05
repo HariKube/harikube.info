@@ -40,7 +40,7 @@ Instead of choosing between chaotic data fragmentation or an unscalable monolith
 
 ---
 
-## 🧭 What HariKube Is?
+## 🧭 What Is HariKube
 
 **HariKube is a petabyte-scale, versioned state machine for any kind of data - using Kubernetes as its API and Kafka as its real-time event stream.**
 
