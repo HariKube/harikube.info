@@ -134,9 +134,9 @@ To execute this, simply run the following command:
 
 {{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
   --version 0.16.3 \
-  --dependency-update \
   --create-namespace \
-  --namespace harikube
+  --namespace harikube \
+  --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
 {{< /code >}}
 
 Once the virtual cluster is running, you can connect to it directly using the vCluster CLI:

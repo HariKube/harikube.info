@@ -108,9 +108,9 @@ Well, the Kafka connectors are on the way, [dev build](https://github.com/HariKu
 
 {{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
   --version 0.16.3 \
-  --dependency-update \
   --create-namespace \
-  --namespace harikube
+  --namespace harikube \
+  --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
 kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
 {{< /code >}}
 
