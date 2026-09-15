@@ -40,7 +40,7 @@ backends:
   prefix:
     prefix: configmaps
 - name: deployments
-  endpoint: sqlite://./db/deployments.db?_journal=WAL&cache=shared
+  endpoint: sqlite://./db/deployments.db?_journal_mode=WAL&_busy_timeout=30000&_synchronous=NORMAL&_txlock=immediate&_stmt_cache_size=20&cache=shared
   prefix:
     prefix: deployments
 {{< /code >}}

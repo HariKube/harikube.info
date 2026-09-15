@@ -95,7 +95,7 @@ Next, create a data routing configuration file called `topology.yaml`.
   prefix:
     prefix: pods
 - name: shirts
-  endpoint: sqlite:///db/shirts.db?_journal=WAL&cache=shared
+  endpoint: sqlite:///db/shirts.db?_journal_mode=WAL&_busy_timeout=30000&_synchronous=NORMAL&_txlock=immediate&_stmt_cache_size=20&cache=shared
   customresource:
     group: stable.example.com
     kind: shirts
@@ -128,7 +128,7 @@ Start by authenticating your local Docker client with the private registry at `r
   -v $(pwd)/topology.yaml:/topology.yaml \
   -v harikube_db:/db \
   registry.harikube.info/harikube/middleware:release-v0.14.5 \
-  --listen-address=0.0.0.0:2369 --endpoint='multi://sqlite:///db/main.db?_journal=WAL&cache=shared'
+  --listen-address=0.0.0.0:2369 --endpoint='multi://sqlite:///db/main.db?_journal_mode=WAL&_busy_timeout=30000&_synchronous=NORMAL&_txlock=immediate&_stmt_cache_size=20&cache=shared'
 {{< /code >}}
 
 The final step is to start the Kubernetes cluster. As mentioned, HariKube is transparent to Kubernetes and works out of the box. However, supporting large datasets requires recompiling the Kubernetes API Server and Controller Manager. You can follow the guide [here](/docs/installation/#-setup-and-start-kubernetes), but for simplicity, this tutorial uses [Kind](https://kind.sigs.k8s.io) with vanilla Kubernetes.

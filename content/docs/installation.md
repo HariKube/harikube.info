@@ -42,7 +42,7 @@ Routing configurations are evaluated in order from top to bottom, and the first 
   prefix:
     prefix: pods
 - name: shirts
-  endpoint: sqlite://./db/shirts.db?_journal=WAL&cache=shared
+  endpoint: sqlite://./db/shirts.db?_journal_mode=WAL&_busy_timeout=30000&_synchronous=NORMAL&_txlock=immediate&_stmt_cache_size=20&cache=shared
   customresource:
     group: stable.example.com
     kind: shirts
