@@ -23,10 +23,12 @@ For technical questions or feedback during your setup, feel free to reach out to
 <pre>📆  Please book your meeting below</pre>
 
 <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/andras-szanto-inspirnation/harikube?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
-</div>
+<iframe 
+  src="https://calendar.app.google/PaNQwgyScob6YTHV6" 
+  style="border: 0; width: 100%; height: 900px;" 
+  frameborder="0" 
+  scrolling="no">
+</iframe>
 
 <div id="sign-up-form">
 <form class="hk-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" accept-charset="UTF-8">
