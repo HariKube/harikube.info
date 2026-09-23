@@ -170,7 +170,7 @@ The HariKube removes the "Single Connection" constraint, introducing native mult
             "file": "docs/details/rancher-install"
         },
         {
-            "title": "Stand-alone",
+            "title": "Kubeadm",
             "file": "docs/details/kubernetes-selfhosted-install"
         }
     ]
