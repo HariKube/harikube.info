@@ -33,7 +33,7 @@ Because HariKube originated as a high-performance, storage-side filtering fork o
 
 ## 🤠 Certified on SUSE Rancher & Available in Rancher App Store
 
-We are thrilled to announce that **HariKube is now officially certified on Rancher** and published directly in the **Rancher Application Marketplace**!
+We are thrilled to announce that **HariKube is now officially certified on Rancher** and [published](https://www.suse.com/pcsc/viewVersionPage?versionID=26857) directly in the **Rancher Application Marketplace**!
 
 You can now provision high-throughput, etcd-less control planes directly inside your Rancher-managed clusters or leverage **RKE2** to run HariKube natively.
 
@@ -71,7 +71,7 @@ Then start or upgrade your RKE2 cluster using standard tooling:
 
 ## 🔴 Certified on Red Hat OpenShift
 
-Enterprise alignment doesn't stop with Rancher. **HariKube is officially certified on Red Hat OpenShift** and will be available via the OpenShift Ecosystem Catalog soon.
+Enterprise alignment doesn't stop with Rancher. **HariKube is officially certified on Red Hat OpenShift** and it is available via the [OpenShift Ecosystem Catalog](https://catalog.redhat.com/en/software/container-stacks/detail/69d64e97378d1e3d6cf5cdd2).
 
 For enterprise platform teams running OpenShift across multi-region or hybrid-cloud infrastructures, HariKube provides a validated path to scale CRDs, custom controllers, and AI agent workloads without encountering etcd consensus bottlenecks or memory overhead.
 
