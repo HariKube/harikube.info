@@ -32,6 +32,7 @@ helm install harikube oci://quay.io/harikube/harikube \
   --set enterprise.key="<LICENSE_KEY>" \
   --set enterprise.user=<REGISTRY_USER> \
   --set enterprise.password="<REGISTRY_PASSWORD>" \
+  --set middleware.endPoint.url="multi://sqlite:///db/main.db?_journal_mode=WAL&_busy_timeout=30000&_synchronous=NORMAL&_txlock=immediate&_stmt_cache_size=20&cache=shared" \
   --set operator.create=true \
   --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
 kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deployment/harikube-operator-deploy --timeout=2m
@@ -62,6 +63,7 @@ helm install harikube oci://quay.io/harikube/harikube  \
   --set enterprise.password="<REGISTRY_PASSWORD>" \
   --set middleware.monitoring.create=true \
   --set middleware.networkPolicy.create=true \
+  --set middleware.endPoint.url="multi://sqlite:///db/main.db?_journal_mode=WAL&_busy_timeout=30000&_synchronous=NORMAL&_txlock=immediate&_stmt_cache_size=20&cache=shared" \
   --set operator.create=true \
   --set operator.monitoring.create=true \
   --set apiServer.create=true \
