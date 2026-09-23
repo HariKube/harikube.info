@@ -33,7 +33,7 @@ Because HariKube originated as a high-performance, storage-side filtering fork o
 
 ## 🤠 Certified on SUSE Rancher & Available in Rancher App Store
 
-We are thrilled to announce that **HariKube is now officially certified on Rancher** and [published](https://www.suse.com/pcsc/viewVersionPage?versionID=26857) directly in the **Rancher Application Marketplace**!
+We are thrilled to announce that HariKube is now officially [certified on Rancher](https://www.suse.com/pcsc/viewVersionPage?versionID=26857) and published directly in the **Rancher Application Marketplace**!
 
 You can now provision high-throughput, etcd-less control planes directly inside your Rancher-managed clusters or leverage **RKE2** to run HariKube natively.
 
