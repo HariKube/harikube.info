@@ -21,20 +21,62 @@ Start by bringing your favorite Kubernetes deployment.
 
 > ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
 
-{{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
-  --version 0.14.5 \
-  --dependency-update \
+#### Simple method
+
+{{< code bash >}}kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+
+helm install harikube oci://quay.io/harikube/harikube \
+  --version 0.16.3 \
   --create-namespace \
   --namespace harikube \
-  --set enterprise.key="<license>" \
-  --set enterprise.user=<oci-user> \
-  --set enterprise.password="<secure@password>" \
+  --set enterprise.key="<LICENSE_KEY>" \
+  --set enterprise.user=<REGISTRY_USER> \
+  --set enterprise.password="<REGISTRY_PASSWORD>" \
   --set operator.create=true \
-  --set apiServer.create=true \
-  --set controllerManager.create=true
+  --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
+kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deployment/harikube-operator-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deployment/harikube-middleware-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
 {{< /code >}}
 
-> For more details please follow the [release docs](https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.14.5). Please find configuration options in the [Helm Chart](https://github.com/HariKube/harikube-helm-charts/blob/release-v0.14.5/harikube/values.yaml) repo.
+#### Ready To Use Install
+
+> For more details please follow the [release docs](https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.16.3). Please find configuration options in the [Helm Chart](https://github.com/HariKube/harikube-helm-charts/blob/release-v0.16.3/harikube/values.yaml) repo.
+
+{{< code bash >}}kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
+kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
+kubectl wait -n cert-manager --for=jsonpath='{.status.readyReplicas}'=1 deployment/cert-manager-webhook --timeout=2m
+
+kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+
+kubectl create namespace harikube
+kubectl label namespace harikube harikube.info/harikube-middleware=enabled --overwrite
+kubectl label namespace harikube harikube.info/harikube-apiserver=enabled --overwrite
+kubectl label namespace harikube harikube.info/harikube-controllermanager=enabled --overwrite
+
+helm install harikube oci://quay.io/harikube/harikube  \
+  --version 0.16.3 \
+  --namespace harikube \
+  --set enterprise.key="<LICENSE_KEY>" \
+  --set enterprise.user=<REGISTRY_USER> \
+  --set enterprise.password="<REGISTRY_PASSWORD>" \
+  --set middleware.monitoring.create=true \
+  --set middleware.networkPolicy.create=true \
+  --set operator.create=true \
+  --set operator.monitoring.create=true \
+  --set apiServer.create=true \
+  --set apiServer.monitoring.create=true \
+  --set apiServer.networkPolicy.create=true \
+  --set controllerManager.create=true \
+  --set controllerManager.monitoring.create=true \
+  --set controllerManager.networkPolicy.create=true \
+  --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
+kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deployment/harikube-operator-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 deployment/harikube-middleware-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/harikube --timeout=5m
+{{< /code >}}
+
+#### Post Install
 
 Once the virtual cluster is running, you can Store your previously created topology config, or create configs on the fly with our [automation](/docs/automation/) tool. You can edit the secret any time, the middleware will apply the changes:
 

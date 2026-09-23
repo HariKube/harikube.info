@@ -12,5 +12,5 @@ layout: "simple"
     maxIdle: 50
     maxOpen: 90
     maxLifeTime: 5m
-    maxIdleLifeTime: 5m
+    maxIdleTime: 5m
 {{< /code >}}

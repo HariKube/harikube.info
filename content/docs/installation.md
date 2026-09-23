@@ -138,6 +138,10 @@ The middleware is designed to operate seamlessly in both containerized and tradi
             "file": "docs/details/middleware-flags"
         },
         {
+            "title": "Built-in Ratelimiter",
+            "file": "docs/details/ratelimiter"
+        },
+        {
             "title": "Help Us Improve by Enabling Telemetry",
             "file": "docs/details/telemetry"
         }
@@ -158,11 +162,15 @@ The HariKube removes the "Single Connection" constraint, introducing native mult
     "title": "Installation Options",
     "details": [
         {
-            "title": "HariKube with vCluster",
+            "title": "Helm",
             "file": "docs/details/kubernetes-helm-install"
         },
         {
-            "title": "HariKube on Self-Hosted Kubernetes",
+            "title": "Rancher",
+            "file": "docs/details/rancher-install"
+        },
+        {
+            "title": "Bare-metal",
             "file": "docs/details/kubernetes-selfhosted-install"
         }
     ]

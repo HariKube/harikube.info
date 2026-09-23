@@ -36,15 +36,6 @@ HariKube works alongside existing database operators (e.g., MySQL, PostgreSQL) t
 
 Once installation has finished, create your database instances themselves. Please follow the operator's manual, how to do it properly.
 
-## 🔌 Deploy HariKube Operator
-
-Next step is configuring and deploying HariKube Operator. The operator is a standard Kubernetes operator, so if you are familiar with operators, you are good to go.
-
-> ⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our [Editions](/editions/) page.
-
-{{< code bash >}}kubectl apply -f https://harikube.info/manifests/harikube-operator-{{ .Site.Params.operatorVersion }}.yaml
-{{< /code >}}
-
 ## 🗂️ Create your first routing configuration
 
 The operator provides a custom resource type for routing configurations called `topologyconfigs.harikube.info`. You can bundle `TopologyConfig` custom resource with your microservice manifests, the operator would fetch all the configs and merge them into a final config for the middleware. The global order of configs are based on the `TopologyConfig.Status.DeployOrder` field of resources. Each microservice can declare how its data should be partitioned, what database backend to use, and whether to reuse or isolate instances.

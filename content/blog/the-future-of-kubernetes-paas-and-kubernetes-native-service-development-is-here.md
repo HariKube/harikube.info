@@ -155,7 +155,6 @@ The moment to stop talking about the future and start building it is now. Assumi
 
 {{< code bash >}}helm install harikube oci://quay.io/harikube/harikube \
   --version 0.14.5 \
-  --dependency-update \
   --create-namespace \
   --namespace harikube \
   --set enterprise.key="<license>" \
