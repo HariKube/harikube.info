@@ -163,15 +163,15 @@ The HariKube removes the "Single Connection" constraint, introducing native mult
     "details": [
         {
             "title": "Helm",
-            "file": "docs/details/kubernetes-helm-install"
+            "file": "docs/details/install-helm"
         },
         {
             "title": "Rancher",
-            "file": "docs/details/rancher-install"
+            "file": "docs/details/install-rancher"
         },
         {
             "title": "Kubeadm",
-            "file": "docs/details/kubernetes-selfhosted-install"
+            "file": "docs/details/install-kubeadm"
         }
     ]
 }

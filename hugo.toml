@@ -45,15 +45,11 @@ canonifyURLs = true
   googleAnalytics = "G-YVQCSK996Q"  # Only enabled in production
   chimpStatic = "ce88ef7143c9148f30f7cda5f/10ef28bb04b6ce918a13dc417"  # Only enabled in production
 
-  middlewareImage = "middleware"
   middlewareVersion = "release-v0.16.3"
   supportedMiddlewareVersions = "release-v1.0.4,release-v0.14.5,release-v0.15.0,release-v0.16.3"
-  operatorImage = "operator"
   operatorVersion = "release-v1.0.2"
   supportedOperatorVersions = "release-v1.0.2"
-  kubernetesImages = "kube-apiserver,kube-controller-manager,kubernetes"
-  kubernetesVersion = "v1.36.0"
-  supportedKubernetesVersions = "v1.36.0"
+  kubernetesVersion = "v1.36.2"
 
   # Header Configuration
   [params.header]
