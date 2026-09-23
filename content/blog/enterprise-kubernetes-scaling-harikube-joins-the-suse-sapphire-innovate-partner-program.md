@@ -3,8 +3,8 @@ title: "Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate
 date: 2026-04-23
 author: "Andras Szanto"
 description: "HariKube joins the SUSE Sapphire Innovate Partner Program, helping enterprises solve Kubernetes scaling bottlenecks with higher throughput, predictable performance, and multi-tenant architecture."
-categories: ["Microservice", "Infrastructure"]
-tags: ["kubernetes", "partners"]
+categories: ["Ecosystem", "Performance"]
+tags: ["suse", "partner-program", "enterprise-kubernetes", "scalability", "multi-tenancy", "predictable-performance"]
 featured_image: "/images/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program.png"
 ---
 

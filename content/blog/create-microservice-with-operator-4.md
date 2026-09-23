@@ -3,8 +3,8 @@ title: "A Quick Dive into Kubernetes Operators - Custom APIs"
 date: 2025-09-05
 author: "Richard Kovacs"
 description: "This post provides a simple solution to implement fully custom APIs in Kubernetes. "
-categories: ["Microservice"]
-tags: ["kubernetes", "custom resource", "development"]
+categories: ["Tutorials", "Architecture"]
+tags: ["kubernetes", "custom-api", "api-aggregation", "operators", "extension-development", "domain-services"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
 prevTitle: "Part 3"
 prevLink: "/blog/create-microservice-with-operator-3/"

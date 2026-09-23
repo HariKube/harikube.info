@@ -3,8 +3,8 @@ title: "AI Agenting on Kubernetes with HariKube"
 date: 2026-05-15
 author: "Richard Kovacs"
 description: "HariKube helps make Kubernetes more scalable, more efficient, and better suited for AI workloads."
-categories: ["AI", "Microservice", "Infrastructure"]
-tags: ["kubernetes", "agentic ai", "microservice", "infrastructure"]
+categories: ["AI", "Platform Engineering"]
+tags: ["kubernetes", "ai-workloads", "ai-agents", "scalable-control-plane", "sharding", "cluster-efficiency"]
 featured_image: "/images/blog/ai-agenting-on-kubernetes-with-harikube.png"
 ---
 

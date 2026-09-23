@@ -3,8 +3,8 @@ title: "Unlock your Kubernetes to run custom resource based microservices in any
 date: 2025-05-24
 author: "Richard Kovacs"
 description: "Learn about how to distributes Kubernetes database load across multiple databases."
-categories: ["Infrastructure", "Microservice"]
-tags: ["kubernetes", "custom resource", "scalability", "infrastructure", "microservice"]
+categories: ["Platform Engineering", "Performance"]
+tags: ["kubernetes", "custom-resources", "operators", "sharding", "scalability", "etcd"]
 featured_image: "/images/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale.png"
 ---
 

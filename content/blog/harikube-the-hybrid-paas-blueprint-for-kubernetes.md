@@ -3,8 +3,8 @@ title: "We make Kubernetes work at enterprise scale - no more ETCD limits"
 date: 2025-10-06
 author: "Richard Kovacs"
 description: "HariKube unifies different service designs into a scalable hybrid architecture."
-categories: ["Microservice"]
-tags: ["kubernetes", "serverless", "agentic ai", "custom resource", "scalability", "microservice"]
+categories: ["Architecture", "Platform Engineering"]
+tags: ["kubernetes", "hybrid-paas", "serverless", "operators", "aggregation-api", "multi-runtime"]
 featured_image: "/images/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes.png"
 ---
 

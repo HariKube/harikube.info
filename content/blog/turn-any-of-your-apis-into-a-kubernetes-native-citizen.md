@@ -3,8 +3,8 @@ title: "Turn any of your APIs into a Kubernetes-native citizen"
 date: 2025-11-06
 author: "Richard Kovacs"
 description: "This Open-source tool helps you implementing Kubernetes Aggregation APIs."
-categories: ["Open-Source", "Microservice"]
-tags: ["kubernetes", "microservice", "development"]
+categories: ["Open Source", "Tutorials"]
+tags: ["kubernetes", "aggregation-api", "api-extension", "kubectl", "open-source", "framework"]
 featured_image: "/images/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen.png"
 ---
 

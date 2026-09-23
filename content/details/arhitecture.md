@@ -15,7 +15,7 @@ Traditional microservice architectures force applications to manage distributed 
 
 {{< features-section 
     title="The HariKube Solution: Monolithic State + Nanoservices 🥇"
-    description="HariKube unifies application state into a petabyte-scale, versioned state machine while decoupling business logic into lightweight nanoservices. Your AI models and application logic execute over a single, highly performant state plane with Kubernetes declarative controls and Kafka event streaming natively integrated—eliminating distributed state bugs and massive infrastructure boilerplate."
+    description="HariKube unifies application state into a petabyte-scale, versioned state machine while decoupling business logic into lightweight nanoservices. Your AI models and application logic execute over a single, highly performant state plane with Kubernetes declarative controls and Kafka event streaming natively integrated-eliminating distributed state bugs and massive infrastructure boilerplate."
 >}}
 
 {{< feature

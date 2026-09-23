@@ -3,8 +3,8 @@ title: "HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correc
 date: 2026-04-01
 author: "Richard Kovacs"
 description: "This post covers two things: how fast it is, and whether you can trust it."
-categories: ["Infrastructure"]
-tags: ["kubernetes", "scalability", "infrastructure"]
+categories: ["Performance", "Architecture"]
+tags: ["kubernetes", "benchmarks", "etcd", "sql-backend", "correctness", "control-plane"]
 featured_image: "/images/blog/harikube-vs-vanilla-kubernetes.png"
 ---
 

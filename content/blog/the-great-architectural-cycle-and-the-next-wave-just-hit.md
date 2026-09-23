@@ -3,8 +3,8 @@ title: "The Great Architectural Cycle; And the Next Wave Just Hit"
 date: 2026-09-03
 author: "Richard Kovacs"
 description: "Civilizations rebuild, collapse, and repeat"
-categories: ["AI", "Microservice", "Infrastructure", "DataStreaming"]
-tags: ["kubernetes", "agentic ai", "microservice", "infrastructure", "data streaming"]
+categories: ["Architecture", "Platform Engineering"]
+tags: ["software-architecture", "platform-engineering", "kubernetes", "developer-productivity", "service-model", "cloud-native"]
 featured_image: "/images/blog/the-great-architectural-cycle-and-the-next-wave-just-hit.jpg"
 ---
 

@@ -3,8 +3,8 @@ title: "HariKube v0.16.3: Certified on Rancher & OpenShift, K8s 1.36.2 Upgrade, 
 date: 2026-09-23
 author: "Richard Kovacs"
 description: "HariKube reaches major ecosystem milestones, here are the details"
-categories: ["Microservice", "Infrastructure"]
-tags: ["kubernetes", "scalability", "infrastructure"]
+categories: ["Product Updates", "Ecosystem"]
+tags: ["release-notes", "rancher", "openshift", "kubernetes-1-36", "rate-limiting", "scalable-control-plane"]
 featured_image: "/images/blog/harikube-v0_16_3-release.png"
 ---
 

@@ -3,8 +3,8 @@ title: "The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem"
 date: 2026-05-19
 author: "Andras Szanto"
 description: "AWS rebuilt its etcd storage layer to run 100K-node AI clusters. Here is what that means for everyone not on EKS, and why the etcd limit is now an AI problem."
-categories: ["AI", "Infrastructure"]
-tags: ["kubernetes", "etcd", "ai training", "infrastructure", "eks", "etcd replacement", "control plane"]
+categories: ["AI", "Performance"]
+tags: ["kubernetes", "etcd", "ai-training", "eks", "cluster-scale", "control-plane"]
 featured_image: "/images/blog/kubernetes-etcd-bottleneck-ai-training.png"
 ---
 

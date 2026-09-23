@@ -3,8 +3,8 @@ title: "A Quick Dive into Kubernetes Operators - Services+"
 date: 2025-08-28
 author: "Richard Kovacs"
 description: "This post provides a solution to unlocking data filtering in Kubernetes."
-categories: ["Microservice"]
-tags: ["kubernetes", "custom resource", "development"]
+categories: ["Tutorials", "Performance"]
+tags: ["kubernetes", "custom-api", "server-side-filtering", "operators", "data-access", "scalability"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
 prevTitle: "Part 2"
 prevLink: "/blog/create-microservice-with-operator-2/"

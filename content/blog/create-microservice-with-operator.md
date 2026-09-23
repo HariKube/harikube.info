@@ -3,8 +3,8 @@ title: "A Quick Dive into Kubernetes Operators - APIs"
 date: 2025-08-18
 author: "Richard Kovacs"
 description: "This post provides a comprehensive overview of Kubernetes API."
-categories: ["Microservice"]
-tags: ["kubernetes", "custom resource", "development"]
+categories: ["Tutorials", "Platform Engineering"]
+tags: ["kubernetes", "operators", "custom-resources", "controllers", "api-design", "microservices"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
 nextTitle: "Part 2"
 nextLink: "/blog/create-microservice-with-operator-2/"

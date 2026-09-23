@@ -3,8 +3,8 @@ title: "Kubernetes is HariKube's query language, control protocol, and applicati
 date: 2026-09-01
 author: "Richard Kovacs"
 description: "I am genuinely thrilled to share the next major architectural evolution of HariKube"
-categories: ["AI", "Microservice", "Infrastructure", "DataStreaming"]
-tags: ["kubernetes", "agentic ai", "microservice", "infrastructure", "data streaming"]
+categories: ["Architecture", "AI"]
+tags: ["kubernetes", "data-streaming", "control-plane", "ai-agents", "query-language", "cloud-native-platform"]
 featured_image: "/images/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams.png"
 ---
 
@@ -116,7 +116,7 @@ kubectl wait -n harikube --for=jsonpath='{.status.readyReplicas}'=1 statefulset/
 
 ## 🎯 Where this architecture shines
 
-- **Development Speed**: Engineering teams—from small startups to enterprise platforms - spend time building custom auth systems, REST endpoints, database schemas, and event queues. **HariKube provides built-in RBAC, OpenAPI validation, schema migrations, and event streaming out of the box** - letting a 3-person team launch features that typically require an enterprise platform crew.
+- **Development Speed**: Engineering teams-from small startups to enterprise platforms - spend time building custom auth systems, REST endpoints, database schemas, and event queues. **HariKube provides built-in RBAC, OpenAPI validation, schema migrations, and event streaming out of the box** - letting a 3-person team launch features that typically require an enterprise platform crew.
 - **Distributed AI Agent Swarms:** **Milliseconds-level state sync across thousands of isolated sandboxes** without flooding etcd or burning cycles on API pollers.
 - **Event-Sourced Microservices:** Stream high-throughput transactional events directly into your distributed database via Kafka, while maintaining native Kubernetes RBAC and CRD-based management.
 - **Edge & Multi-Region Control Planes:** Run lightweight, stateless Kubernetes endpoints near edge workloads without taking on full multi-cluster management overhead.

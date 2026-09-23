@@ -3,8 +3,8 @@ title: "The Hidden Infrastructure Challenge Behind AI Agents"
 date: 2026-06-03
 author: "Andras Szanto"
 description: "AI agents are shifting the infrastructure conversation beyond GPUs. As AI systems become more autonomous, Kubernetes control-plane scalability and coordination may become just as important as compute."
-categories: ["AI"]
-tags: ["kubernetes", "AI"]
+categories: ["AI", "Platform Engineering"]
+tags: ["ai-agents", "kubernetes", "control-plane", "coordination", "ai-infrastructure", "scalability"]
 featured_image: "/images/blog/the_hidden_infrastructure_challenge_behind_ai_agents_harikube.png"
 ---
 

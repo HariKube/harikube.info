@@ -3,8 +3,8 @@ title: "The Future of Kubernetes PaaS and Kubernetes-native Service Development 
 date: 2025-10-27
 author: "Richard Kovacs"
 description: "HariKube turns Kubernetes into a true PaaS and services first class citizens."
-categories: ["Infrastructure", "Microservice"]
-tags: ["kubernetes", "devops", "scalability", "infrastructure", "development", "microservice", "serverless", "agentic ai"]
+categories: ["Architecture", "Platform Engineering"]
+tags: ["kubernetes", "paas", "serverless", "ai-agents", "custom-apis", "dynamic-data-layer"]
 featured_image: "/images/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here.png"
 ---
 

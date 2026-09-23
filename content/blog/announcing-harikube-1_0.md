@@ -3,8 +3,8 @@ title: "Kubernetes Bottleneck is Broken, Development Taxes Are Repealed: Announc
 date: 2026-02-02
 author: "Richard Kovacs"
 description: "Let's transform your cluster into a high-performance, PaaS built for developer speed."
-categories: ["Microservice", "Infrastructure"]
-tags: ["kubernetes", "scalability", "infrastructure", "microservice", "agentic ai"]
+categories: ["Product Updates", "Platform Engineering"]
+tags: ["harikube-1-0", "kubernetes", "paas", "scalability", "etcd-alternative", "developer-productivity"]
 featured_image: "/images/blog/announcing-harikube-1_0.png"
 ---
 

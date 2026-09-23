@@ -3,8 +3,8 @@ title: "Kubernetes Performance Challenge"
 date: 2026-02-27
 author: "Richard Kovacs"
 description: "Join to the contest! Be the best!"
-categories: ["Open-Source", "Infrastructure"]
-tags: ["kubernetes", "scalability", "infrastructure"]
+categories: ["Community", "Performance"]
+tags: ["kubernetes", "benchmark", "contest", "scalability", "performance-testing", "community"]
 featured_image: "/images/blog/kubernetes-performance-challenge.png"
 ---
 

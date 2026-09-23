@@ -3,8 +3,8 @@ title: "A Quick Dive into Kubernetes Operators - Services"
 date: 2025-08-19
 author: "Richard Kovacs"
 description: "This post provides a comprehensive overview of Kubernetes operators."
-categories: ["Microservice"]
-tags: ["kubernetes", "custom resource", "development"]
+categories: ["Tutorials", "Platform Engineering"]
+tags: ["kubernetes", "operators", "controllers", "reconciliation", "services", "custom-resources"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
 prevTitle: "Part 1"
 prevLink: "/blog/create-microservice-with-operator/"

@@ -3,8 +3,8 @@ title: "Beyond the Cluster: Rethinking Your Kubernetes Platform Strategy"
 date: 2026-01-27
 author: "Richard Kovacs"
 description: "This post explores how to shift from cluster to platform increasing developer velocity."
-categories: ["Microservice"]
-tags: ["kubernetes", "microservice"]
+categories: ["Platform Engineering", "Architecture"]
+tags: ["kubernetes", "platform-strategy", "paas", "developer-velocity", "day-2-operations", "application-modernization"]
 featured_image: "/images/blog/beyond-the-cluster-rethinking-your-kubernetes-platform-strategy.png"
 ---
 
