@@ -73,14 +73,14 @@ patches:
 
 Inside the `patches` directory, create a file to override the default images for the API Server and Controller Manager:
 
-{{< code yaml >}}apiVersion: v1
+{{< code yaml kube-apiserver.yaml>}}apiVersion: v1
 kind: Pod
 spec:
   containers:
     - name: kube-apiserver
       image: quay.io/harikube/kube-apiserver:{{ .Site.Params.kubernetesVersion }}
----
-apiVersion: v1
+{{< /code >}}
+{{< code yaml kube-controller-manager.yaml>}}apiVersion: v1
 kind: Pod
 spec:
   containers:
