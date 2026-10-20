@@ -37,7 +37,7 @@ canonifyURLs = true
 
 # Theme Parameters
 [params]
-  description = "HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices."
+  description = "HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of distributed systems."
   author = "Richárd Kovács"
   logo = "/images/harikube-logo.png"      # Path to your logo
   image = "/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"
@@ -110,7 +110,7 @@ canonifyURLs = true
   [params.cta]
     enable = true
     title = "Read the Technical Whitepaper!"
-    description = "Beyond the Benchmarks: If 50% of your engineering effort is currently spent on platform integration rather than business logic, your infrastructure is a bottleneck. In our technical whitepaper, we share the research behind the Unified Service Model and demonstrate how HariKube eliminates the integration overhead that stalls enterprise growth."
+    description = "Beyond the Benchmarks: If 50% of your engineering effort is currently spent on platform integration rather than business logic, your infrastructure is a bottleneck. In our tech whitepaper, we look at the real cost of complexity and how to simplify the operating model."
     [params.cta.primary_button]
       text = "Download"
       url = "/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/"
@@ -127,6 +127,10 @@ canonifyURLs = true
     name = "Blog"
     url = "/blog/"
     weight = 4
+  [[menu.main]]
+    name = "Kubernetes Assessments"
+    url = "/kubernetes-assessments/"
+    weight = 3
   [[menu.main]]
     name = "Features"
     weight = 1
@@ -158,6 +162,7 @@ canonifyURLs = true
     name = "FAQ"
     url = "/faq/"
     weight = 1
+
   # Footer Column 2 Menu
   [[menu.footer_column_2]]
     name = "About Us"
