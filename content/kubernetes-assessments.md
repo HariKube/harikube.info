@@ -23,6 +23,22 @@ This assessment is designed for engineering leaders, platform teams, and organiz
 
 ||| 
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdT8q8XjJ569JCrsYMIkYYa_eY1rnvMdO4uObWtITLv29ivUQ/viewform?embedded=true" width="100%" height="2600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<div id="assessment-form-wrapper">
+  <iframe id="assessment-form" src="https://docs.google.com/forms/d/e/1FAIpQLSdT8q8XjJ569JCrsYMIkYYa_eY1rnvMdO4uObWtITLv29ivUQ/viewform?embedded=true" width="100%" height="2600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
 
 {{< /columns >}}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var formFrame = document.getElementById('assessment-form');
+    if (!formFrame) return;
+
+    formFrame.addEventListener('load', function () {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      if (window.parent && window.parent !== window) {
+        window.parent.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
