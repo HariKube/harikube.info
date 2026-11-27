@@ -1,14 +1,16 @@
 ---
-title: "A Quick Dive into Kubernetes Operators - APIs"
+title: "Kubernetes Operators: Custom Resources - Part 1"
 date: 2025-08-18
 author: "Richard Kovacs"
-description: "This post provides a comprehensive overview of Kubernetes API."
+description: "Learn Kubernetes API fundamentals, define custom resources with Kubebuilder, and prepare a task-service operator in the first tutorial of this series."
 categories: ["Tutorials", "Platform Engineering"]
 tags: ["kubernetes", "operators", "custom-resources", "controllers", "api-design", "microservices"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
 nextTitle: "Part 2"
 nextLink: "/blog/create-microservice-with-operator-2/"
 ---
+
+Start with the [Kubernetes operators and custom APIs learning path](/topics/kubernetes-operators/) to see the prerequisites and all four tutorials.
 
 {{< toc >}}
 

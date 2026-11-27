@@ -1,7 +1,7 @@
 # Basic Configuration
 baseURL = "/"
 languageCode = "en-us"
-title = "HariKube - Petabyte-scale, Versioned State-machine for next gen of applications"
+title = "HariKube"
 theme = "hugo-saasify-theme"
 
 # Required Features
@@ -11,6 +11,16 @@ enableEmoji = true
 enableGitInfo = true
 uglyURLs = false
 canonifyURLs = true
+
+# Lightweight local search; no hosted search service or extra dependencies.
+[outputFormats.Search]
+  mediaType = "application/json"
+  baseName = "search-index"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS", "Search"]
 
 # Required Module Configuration
 [module]
@@ -37,7 +47,7 @@ canonifyURLs = true
 
 # Theme Parameters
 [params]
-  description = "HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of distributed systems."
+  description = "Build Kubernetes-native applications with HariKube. Explore scalable state management, database routing, operator tutorials, and deployment guides."
   author = "Richárd Kovács"
   logo = "/images/harikube-logo.png"      # Path to your logo
   image = "/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"
@@ -141,7 +151,8 @@ canonifyURLs = true
         { name = "Performance", url = "/features/performance/" },
         { name = "Consistency", url = "/features/consistency/" },
         { name = "Infrastructure Flexibility", url = "/features/flexible-stack/" },
-        { name = "Data Isolation", url = "/features/data-isolation/" }
+        { name = "Data Isolation", url = "/features/data-isolation/" },
+        { name = "Event Streaming (Experimental)", url = "/features/event-streaming/" }
       ]
   [[menu.main]]
     name = "Docs"
@@ -149,11 +160,13 @@ canonifyURLs = true
     [menu.main.params]
       has_submenu = true
       submenu = [
+        { name = "Quick Start", url = "/docs/quick-start/" },
         { name = "Overview", url = "/docs/overview/" },
         { name = "Installation", url = "/docs/installation/" },
         { name = "Custom Resource", url = "/docs/custom-resource/" },
         { name = "Automation", url = "/docs/automation/" },
         { name = "Monitoring", url = "/docs/monitoring/" },
+        { name = "Guides", url = "/topics/" },
         { name = "Future Plans", url = "/docs/future-plans/" }
       ]
 

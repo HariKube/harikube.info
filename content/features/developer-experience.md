@@ -3,14 +3,14 @@ title: "Streamlined Cloud-Native Development"
 description: "HariKube simplifies the developer workflow by abstracting infrastructure complexity. Focus purely on data structures and business logic while the platform handles data routing and storage."
 layout: "feature"
 badge: "Development"
-badgeColor: "#f59e0b"
+badgeColor: "#4f46e5"
 features:
   - title: "No local infrastructure setup required"
     description: "Developers continue using stock Kubernetes APIs and workflows-HariKube operates transparently in the background and is only needed in the production environment. There’s no need to install or configure anything locally, keeping development environments lightweight and familiar."
   - title: "Native support for built-in Kubernetes features"
     description: "HariKube seamlessly extends Kubernetes without disrupting native functionality-supporting RBAC, events, admission webhooks, and other core features out of the box. This ensures full compatibility with existing tooling and policies while enhancing the platform’s data capabilities behind the scenes."
   - title: "Consistent behavior from development to production"
-    description: "HariKube preserves standard Kubernetes APIs and resource definitions, ensuring that applications behave identically across development, staging, and production. Since it operates transparently at the infrastructure level, no code changes or environment-specific logic are required."
+    description: "Reuse standard Kubernetes APIs and resource definitions across development, staging, and production. Validate backend-specific query behavior, consistency, and failure handling in an environment representative of your deployment."
   - title: "No vendor locking or 3rd party libraries"
     description: "By design, it remains vendor lock-free, ensuring you maintain complete sovereignty over your stack and can migrate across providers with ease. Furthermore, it streamlines the engineering workflow by requiring no 3rd-party libraries for development, allowing for a cleaner and more secure codebase."
 ---
@@ -19,7 +19,9 @@ Kubernetes has become the backbone of modern cloud-native development, offering 
 
 While Kubernetes has enabled a powerful cloud-native development workflow, it remains fundamentally limited when it comes to handling data-intensive applications. This is because the underlying data store-ETCD-is optimized for configuration and state management, not high-throughput or large-scale operational data. As a result, cloud-native workflows are often confined to infrastructure automation, while application-level data handling must rely on external systems, breaking the end-to-end cloud-native paradigm.
 
-HariKube addresses this by decoupling infrastructure concerns from application development. It operates transparently within your Kubernetes cluster, letting developers work entirely within standard Kubernetes APIs while it routes and stores custom resource data in multiple databases behind the scenes.
+HariKube separates resource access from database placement so teams can build a cloud-native application platform around Kubernetes APIs, RBAC, schemas, and watches. Controllers, functions, and AI agents can coordinate through shared resource state while platform teams manage routing and storage.
+
+Start with the [operators and custom APIs learning path](/topics/kubernetes-operators/). For event-driven business logic, see [resource changes triggering HTTP functions](/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/). The separate [Kafka streaming integration](/features/event-streaming/) is and has different delivery and recovery considerations.
 
 {{< features-section 
     title="Legacy vs. Unified Service Model"
@@ -29,7 +31,7 @@ HariKube addresses this by decoupling infrastructure concerns from application d
     title="The Container Boundary"
     description=""
     badge="Legacy Service Model"
-    badgeColor="#db2777"
+    badgeColor="#4f46e5"
     image="/images/features/kubernetes-arch-legacy.png"
     buttonText=""
     buttonLink=""
@@ -41,7 +43,7 @@ HariKube addresses this by decoupling infrastructure concerns from application d
     title="First Class Citizens"
     description=""
     badge="Unified Service Model"
-    badgeColor="#16a34a"
+    badgeColor="#4f46e5"
     image="/images/features/kubernetes-arch-platform.png"
     buttonText=""
     buttonLink=""
@@ -60,7 +62,7 @@ Why It Matters
 
  - **Cloud-native by default** - With support for built-in Kubernetes features like RBAC, admission webhooks, and eventing, HariKube fits naturally into your existing toolchain-whether you're using Helm, ArgoCD, or GitOps workflows.
 
- - **Environment parity** - Applications behave consistently across environments because there's no custom runtime logic or external SDK to introduce variability. If it works in dev, it works in prod.
+ - **Familiar APIs across environments** - Resource definitions and clients can be reused, but backend topology, replication, caches, and load can change behavior. Test representative production conditions before rollout.
 
  - **Built for simplicity** - With fully documented APIs and plug-and-play integration, developers can rely on existing Kubernetes knowledge without the need to learn or manage another system.
 

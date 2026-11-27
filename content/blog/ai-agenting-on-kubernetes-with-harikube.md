@@ -10,7 +10,7 @@ featured_image: "/images/blog/ai-agenting-on-kubernetes-with-harikube.png"
 
 {{< toc >}}
 
-HariKube helps us run **more AI workloads** on the same Kubernetes infrastructure, which can **reduce the need for expensive multi-cluster** expansion. It also provides a **platform model** where AI agents can interact through Kubernetes APIs and events instead of relying only on traditional database-driven coordination. This **makes AI platforms more scalable, more observable, and more efficient** to operate.
+HariKube lets AI agents, operators, and services coordinate through shared Kubernetes resource state and react to changes. Database routing can reduce etcd pressure for supported resource workloads, but control-plane improvements do not by themselves guarantee more model-serving capacity, a particular agent count, or lower inference latency. Start with the [AI infrastructure learning path](/topics/ai-infrastructure/) to evaluate the coordination pattern. For Kafka-based delivery, review the separate [streaming integration](/features/event-streaming/).
 
 ## What is the benefit of HariKube?
 
@@ -132,5 +132,9 @@ Benefits:
 ---
 
 That’s it! If you’re ready to move beyond traditional Kubernetes scaling limits and build an AI-ready platform with lower multi-cluster overhead, HariKube offers a new operating model. In standalone mode, it helps you run more workloads efficiently in a single environment. As a platform, it enables secure, event-driven, agent-to-agent orchestration through Kubernetes-native APIs - making it easier to scale AI use cases with stronger control, observability, and business efficiency.
+
+## Continue Exploring AI Infrastructure
+
+Follow the [AI infrastructure on Kubernetes learning path](/topics/ai-infrastructure/) for control-plane scaling and agent coordination resources. For deployment details and current limitations, read the [HariKube architecture overview](/docs/overview/).
 
 Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

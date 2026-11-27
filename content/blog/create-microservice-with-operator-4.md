@@ -1,8 +1,8 @@
 ---
-title: "A Quick Dive into Kubernetes Operators - Custom APIs"
+title: "Build Custom Kubernetes Aggregation APIs - Part 4"
 date: 2025-09-05
 author: "Richard Kovacs"
-description: "This post provides a simple solution to implement fully custom APIs in Kubernetes. "
+description: "Extend your operator with custom Kubernetes aggregation APIs, implementing handlers for namespaced and cluster-scoped resources and domain-specific logic."
 categories: ["Tutorials", "Architecture"]
 tags: ["kubernetes", "custom-api", "api-aggregation", "operators", "extension-development", "domain-services"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
@@ -12,7 +12,7 @@ prevLink: "/blog/create-microservice-with-operator-3/"
 
 ---
 
-**Before diving in, make sure you have finished part 3 of the series.** [[→]](/blog/create-microservice-with-operator-3/)
+**Before diving in, complete [Part 3: Full-text search with API aggregation](/blog/create-microservice-with-operator-3/).** See the [full operator learning path](/topics/kubernetes-operators/) for all four tutorials.
 
 ---
 

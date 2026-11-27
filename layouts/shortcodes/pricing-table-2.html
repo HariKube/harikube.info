@@ -1,5 +1,5 @@
 {{ $data := .Inner | unmarshal }}
-<section class="bg-white">
+<section class="hk-pricing">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         {{ with $data.title }}
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
@@ -10,34 +10,34 @@
         </div>
         {{ end }}
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             {{ range $index, $plan := $data.plans }}
-            <div class="relative flex flex-col p-6 {{ if $plan.subscription }}bg-primary-600 text-white{{ else }}bg-white{{ end }} rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
+            <div class="hk-plan {{ if $plan.highlight }}hk-plan-highlight{{ end }} relative flex flex-col p-6 rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
                 {{ if $plan.subscription }}
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 110px;">
-                    <span class="bg-primary-100 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">Subscription License</span>
+                    <span class="hk-plan-badge text-xs font-semibold px-4 py-1 rounded-full">Subscription License</span>
                 </div>
                 {{ else if $plan.freetier }}
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 185px;">
-                    <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">10% OFF for Beta Testers!</span>
+                    <span class="hk-plan-badge text-xs font-semibold px-4 py-1 rounded-full">10% OFF for Beta Testers!</span>
                 </div>
                 {{ else }}
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2" style="min-width: 110px;">
-                    <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-4 py-1 rounded-full">Perpetual License</span>
+                    <span class="hk-plan-badge text-xs font-semibold px-4 py-1 rounded-full">Perpetual License</span>
                 </div>
                 {{ end }}
                 
                 <div class="mb-4">
-                    <h3 class="text-2xl font-bold {{ if $plan.subscription }}text-white{{ else }}text-gray-900{{ end }}">{{ $plan.name }}</h3>
-                    <p class="mt-2 {{ if not $plan.subscription }}text-gray-500{{ end }}">{{ $plan.description }}</p>
+                    <h3 class="text-2xl font-bold">{{ $plan.name }}</h3>
+                    <p class="hk-plan-description mt-2">{{ $plan.description }}</p>
                 </div>
                 
                 <div class="mb-6">
                     <div class="flex items-baseline">
                         {{ if $plan.displayPrice }}
-                            <span class="text-4xl font-extrabold {{ if not $plan.subscription }}text-gray-900{{ end }}">€</span>
-                            <span id="price-{{ $index }}" class="text-5xl font-extrabold tracking-tight {{ if not $plan.subscription }}text-gray-900{{ end }}">{{ $plan.price }}</span>
-                            <span class="ml-1 {{ if not $plan.subscription }}text-gray-500{{ end }}">/year</span>
+                            <span class="hk-plan-price text-4xl font-extrabold">€</span>
+                            <span id="price-{{ $index }}" class="hk-plan-price text-5xl font-extrabold tracking-tight">{{ $plan.price }}</span>
+                            <span class="ml-1 text-gray-600">/year</span>
                         {{ end }}
                     </div>
                 </div>
@@ -49,20 +49,22 @@
 
                 <ul class="mb-8 space-y-4 flex-grow">
                     {{ range $featIndex, $feature := $plan.features }}
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 {{ if $plan.subscription }}text-white{{ else }}text-green-500{{ end }} mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <li class="hk-plan-feature">
+                        <svg class="w-5 h-5 text-green-700 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="{{ if not $plan.subscription }}text-gray-600{{ end }}" style="max-width: 75%;">{{ $feature }}</span>
+                        <span id="addon-text-{{ $index }}-{{ $featIndex }}" class="hk-plan-feature-text">{{ $feature }}</span>
                         {{ if index $plan.addons . }}
-                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" href="/editions/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed; position: absolute; right: 25px;">&nbsp;🔽</a>
-                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" href="/editions/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false" style="position: absolute; right: 5px;">&nbsp;🔼</a>
+                        <span class="hk-addon-actions">
+                            <a id="addon-rm-{{ $index }}-{{ $featIndex }}" class="hk-button hk-button-small hk-addon-control hk-button-outline" aria-label="Remove {{ $feature }}" href="/editions/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '-'); return false" style="opacity: 0.3; pointer-events: none; cursor: not-allowed;">−</a>
+                            <a id="addon-add-{{ $index }}-{{ $featIndex }}" class="hk-button hk-button-small hk-addon-control hk-button-outline" aria-label="Add {{ $feature }}" href="/editions/" onclick="addonManager('{{ $feature }}', {{ $index }}, {{ $featIndex }}, '+'); return false">+</a>
+                        </span>
                         {{ end }}
                     </li>
                     {{ end }}
                 </ul>
                 
-                <a href="{{ $plan.button.url }}" id="order-{{ $index }}" class="order-btn text-center w-full px-5 py-3 rounded-lg {{ if $plan.subscription }}bg-white text-primary-600 hover:bg-gray-100{{ else }}bg-primary-600 text-white hover:bg-primary-700{{ end }} font-medium transition duration-300">
+                <a href="{{ $plan.button.url }}" id="order-{{ $index }}" class="order-btn hk-button hk-button-block hk-button-primary">
                     {{ $plan.button.text }}
                 </a>
             </div>

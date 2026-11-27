@@ -1,4 +1,4 @@
-<footer class="bg-gray-50 py-12 border-t border-gray-200">
+<footer class="hk-site-footer py-12 border-t">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
             <!-- Logo and Social Media -->
@@ -101,16 +101,23 @@
     }
 </style>
 
-<!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="display:none; position: fixed; bottom: 0; width: 100%; background-color: #131a40; color: white; padding: 16px; text-align: center; font-size: 14px; z-index: 1000;">
-    <span>
-        We use cookies to enhance your experience. By continuing, you agree to our use of cookies. 
-        <a href="/terms-conditions/" style="color: #425ad6; text-decoration: underline;">Learn more</a>
-    </span>
-    <button onclick="acceptCookies()" style="margin-left: 12px; background-color: #425ad6; border: none; padding: 8px 16px; color: #ffffff; font-weight: bold; cursor: pointer; border-radius: 4px;">Accept</button>
-</div>
-<script type="text/javascript" src="/js/cookiebar.js"></script>
-
-{{ if and hugo.IsProduction }}
-<script type="text/javascript"> _linkedin_partner_id = "10814289"; window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []; window._linkedin_data_partner_ids.push(_linkedin_partner_id); </script><script type="text/javascript"> (function(l) { if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]} var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(window.lintrk); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=10814289&fmt=gif" /> </noscript>
-{{ end }}
+<button type="button" class="hk-cookie-settings" data-cookie-settings>Cookie preferences</button>
+<p class="hk-consent-status" id="cookie-status" role="status" aria-live="polite"></p>
+<noscript><p class="hk-consent-status">Optional analytics and marketing scripts stay disabled without JavaScript.</p></noscript>
+<aside id="cookie-banner" aria-labelledby="cookie-title" hidden>
+    <h2 id="cookie-title">Your privacy choices</h2>
+    <p>Allow analytics and marketing scripts? We keep these off unless you accept. You can change your choice using Cookie preferences. Embedded third-party content may use its own cookies. <a href="{{ "/privacy-policy/" | relURL }}">Privacy policy</a></p>
+    <div class="hk-cookie-actions">
+        <button type="button" class="hk-button hk-button-outline hk-button-small" data-cookie-reject>Reject optional</button>
+        <button type="button" class="hk-button hk-button-primary hk-button-small" data-cookie-accept>Accept optional</button>
+    </div>
+</aside>
+<template id="optional-tracking">
+    {{ partial "google-analytics" . }}
+    {{ partial "chimp-static" . }}
+    {{ if hugo.IsProduction }}
+    <script>window._linkedin_partner_id = "10814289"; window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []; window._linkedin_data_partner_ids.push(window._linkedin_partner_id);</script>
+    <script>(function(l) { if (!l) { window.lintrk = function(a,b) { window.lintrk.q.push([a,b]); }; window.lintrk.q = []; } var s = document.createElement('script'); s.async = true; s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js'; document.head.append(s); })(window.lintrk);</script>
+    {{ end }}
+</template>
+<script src="{{ "js/cookiebar.js" | relURL }}" defer></script>

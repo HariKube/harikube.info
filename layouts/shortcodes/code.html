@@ -14,7 +14,7 @@
             {{ end }}
         </div>
         <div class="flex space-x-2">
-            <button onclick="copyContentToClipboard('{{ md5 $code }}')" class="text-sm text-gray-200 font-mono">copy</button>
+            <button type="button" onclick="copyContentToClipboard('{{ md5 $code }}')" class="hk-button hk-button-inverse hk-button-small">Copy</button>
             <textarea id="code-{{ md5 $code }}" style="display: none;">{{ $evaluatedCode.Content }}</textarea>
         </div>
     </div>

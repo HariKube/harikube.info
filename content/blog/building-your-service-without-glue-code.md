@@ -10,7 +10,7 @@ featured_image: "/images/blog/building-your-service-without-glue-code.png"
 
 {{< toc >}}
 
-> 💡 New here? No worries. HariKube, in one sentence:;<br>HariKube is a petabyte-scale, versioned state machine with Kubernetes and Kafka interfaces.<br>For technical deep-dive, please follow the link: [[→]](/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/)
+> 💡 New here? HariKube gives applications shared, versioned resource state through Kubernetes APIs, with [Kafka integration](/features/event-streaming/) for asynchronous streams. Its four application patterns are Kubernetes scaling, application platforms, event-driven AI agents, and shared state with event streams. Read the [technical architecture article](/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/) and [current limitations](/docs/overview/) before evaluating the fit.
 
 ---
 

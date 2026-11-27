@@ -15,6 +15,12 @@
             {{ end }}
         {{ end }}
 
+        {{ with .Content }}
+            <div class="prose prose-lg max-w-none mb-12">
+                {{ . }}
+            </div>
+        {{ end }}
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {{ $paginator := .Paginate .Pages }}
             {{ range $paginator.Pages }}
@@ -24,10 +30,9 @@
 
         {{ $paginator := .Paginate .Pages }}
         {{ if gt $paginator.TotalPages 1 }}
-            <nav class="mt-12 flex justify-between items-center">
+            <nav aria-label="Pagination" class="mt-12 flex flex-wrap justify-center items-center gap-4">
                 {{ if $paginator.HasPrev }}
-                    <a href="{{ $paginator.Prev.URL }}" 
-                       class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200">
+                    <a href="{{ $paginator.Prev.URL }}" class="hk-button hk-button-outline">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
@@ -37,15 +42,15 @@
                     <div></div>
                 {{ end }}
 
-                <div class="flex space-x-2">
+                <div class="flex flex-wrap justify-center gap-2">
                     {{ range $paginator.Pagers }}
                         {{ if eq . $paginator }}
-                            <span class="px-4 py-2 bg-primary-600 text-white rounded-lg">
+                            <span aria-current="page" class="hk-button hk-button-primary hk-button-small hk-button-square">
                                 {{ .PageNumber }}
                             </span>
                         {{ else }}
                             <a href="{{ .URL }}" 
-                               class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200">
+                               class="hk-button hk-button-outline hk-button-small hk-button-square">
                                 {{ .PageNumber }}
                             </a>
                         {{ end }}
@@ -53,8 +58,7 @@
                 </div>
 
                 {{ if $paginator.HasNext }}
-                    <a href="{{ $paginator.Next.URL }}" 
-                       class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200">
+                    <a href="{{ $paginator.Next.URL }}" class="hk-button hk-button-outline">
                         Next
                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

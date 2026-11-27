@@ -1,8 +1,8 @@
 ---
-title: "A Quick Dive into Kubernetes Operators - Services"
+title: "Build a Kubernetes Operator Controller - Part 2"
 date: 2025-08-19
 author: "Richard Kovacs"
-description: "This post provides a comprehensive overview of Kubernetes operators."
+description: "Implement a Kubernetes operator controller with Kubebuilder, reconcile task resources, and emit events as you add business logic to your service."
 categories: ["Tutorials", "Platform Engineering"]
 tags: ["kubernetes", "operators", "controllers", "reconciliation", "services", "custom-resources"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
@@ -14,7 +14,7 @@ nextLink: "/blog/create-microservice-with-operator-3/"
 
 ---
 
-**Before diving in, make sure you have finished part 1 of the series.** [[→]](/blog/create-microservice-with-operator/)
+**Before diving in, complete [Part 1: Kubernetes custom resources](/blog/create-microservice-with-operator/).** See the [full operator learning path](/topics/kubernetes-operators/) for all four tutorials.
 
 ---
 
@@ -313,6 +313,6 @@ The controller handles the core business logic, reconciling the desired state, w
 
 ---
 
-Imagine your own data topology and enhance your Kubernetes experience. **Enjoy lower latency, higher throughput, data isolation, virtually unlimited storage, and simplified development.** HariKube supports both flat and hierarchical topologies, allowing you to organize your databases like leaves on a tree.
+Imagine your own data topology and enhance your Kubernetes experience. **Evaluate latency, throughput, data isolation, and storage capacity against your workload and chosen database topology.** HariKube supports both flat and hierarchical topologies, allowing you to organize your databases like leaves on a tree.
 
 Thank you for reading, and feel free to [share your thoughts](https://github.com/HariKube/harikube/discussions).

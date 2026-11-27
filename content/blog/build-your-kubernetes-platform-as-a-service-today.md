@@ -14,7 +14,7 @@ featured_image: "/images/blog/build-your-kubernetes-platform-as-a-service-today.
 
 The promise of **Kubernetes** was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of **ETCD** and a fragmented application development experience. The result? A fantastic container orchestrator, but a **broken Platform-as-a-Service (PaaS)**.
 
-We believe that the Kubernetes API should be the single, scalable, and language-agnostic foundation for every cloud-native workload-from event-driven nanoservices to complex stateful microservices and classic REST APIs. Read the full article [[→]](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/)
+We use Kubernetes APIs as foundations for cloud-native application platforms, with resource schemas, RBAC, watches, controllers, and custom APIs. Read the [architecture overview and limitations](/docs/overview/) and follow the [operators and custom APIs learning path](/topics/kubernetes-operators/) to evaluate where this model fits. For the broader platform story, read the [full article](/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/).
 
 ## 🛑 The Scalability Wall: ETCD Limits and Client-Side Filtering
 
@@ -24,7 +24,7 @@ The second, and often more insidious, scalability issue stems from how the Kuber
 
 > 🐌 Kubernetes API Server fetches all relevant resources from the database (ETCD), then filters them in memory (on the client side) before returning the final result.
 
-## 🚀 HariKube's Dynamic Data Fabric: Scaling to Infinity
+## 🚀 HariKube's Dynamic Data Fabric: Workload-Aware Scaling {#-harikubes-dynamic-data-fabric-scaling-to-infinity}
 
 HariKube introduces a **dynamic, database-agnostic data fabric** that completely reimagines how the Kubernetes API server interacts with its persistent store. This fabric unlocks Kubernetes’ true potential, providing the **enterprise-level scaling** needed to manage massive clusters and high-throughput microservices.
 

@@ -1,0 +1,30 @@
+{{ $page := .page }}
+{{ $id := .id }}
+<div class="hk-doc-search" data-doc-search data-index="{{ "/search-index.json" | relURL }}">
+  <label for="{{ $id }}-search">Search the knowledge base</label>
+  <input id="{{ $id }}-search" type="search" maxlength="200" placeholder="Try routing, operators, Kafka…" aria-describedby="{{ $id }}-status" autocomplete="off" disabled>
+  <p id="{{ $id }}-status" class="hk-search-status" role="status" aria-live="polite">Search requires JavaScript. Browse the links below without it.</p>
+  <ul class="hk-search-results" aria-label="Search results" hidden></ul>
+</div>
+<nav class="hk-doc-nav" aria-label="{{ if eq $id "desktop-docs" }}Documentation sidebar{{ else }}Mobile documentation{{ end }}">
+  <h2>Start here</h2>
+  <ul role="list">
+    {{ range slice "/docs/quick-start/" "/docs/overview/" "/docs/installation/" "/docs/custom-resource/" "/docs/automation/" "/docs/monitoring/" "/docs/future-plans/" }}
+      {{ with $page.Site.GetPage . }}
+      <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+  <h2>Learning paths</h2>
+  <ul role="list">
+    {{ range slice "/topics/kubernetes-scaling/" "/topics/kubernetes-operators/" "/topics/ai-infrastructure/" }}
+      {{ with $page.Site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+    {{ end }}
+  </ul>
+  <h2>Feature reference</h2>
+  <ul role="list">
+    {{ range where $page.Site.RegularPages "Section" "features" }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}{{ if eq .File.ContentBaseName "event-streaming" }} · Experimental{{ end }}</a></li>
+    {{ end }}
+  </ul>
+</nav>

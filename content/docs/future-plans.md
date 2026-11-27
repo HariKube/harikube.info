@@ -1,7 +1,7 @@
 ---
 title: "Future Plans"
 layout: "simple"
-description: "The current version of the software represents an MVP (Minimum Valuable Product), designed to validate the core concept and demonstrate the potential of the architecture in real-world scenarios. While it delivers the essential functionality and shows promising performance, there is still significant room for improvement across various areas-including automation, observability, performance, security, and advanced scaling features. This foundation provides a solid starting point for iterative enhancements based on user feedback and evolving use cases."
+description: "Explore HariKube's planned improvements in automation, observability, performance, security, and scaling, alongside current development priorities."
 prevTitle: "Monitoring"
 prevLink: "/docs/monitoring/"
 ---
@@ -9,6 +9,10 @@ prevLink: "/docs/monitoring/"
 {{< ld-docs >}}
 
 {{< toc >}}
+
+## Experimental Work: Kafka Event Streaming
+
+The Kafka connector design explores connecting shared resource state with asynchronous event streams. This is separate from the planned improvements below and should not be assumed available in every stable release. Read the [streaming architecture, status, and evaluation guidance](/features/event-streaming/) before depending on connector behavior.
 
 ## 🔧 Planned Improvements and Enhancements
 

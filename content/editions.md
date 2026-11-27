@@ -1,6 +1,7 @@
 ---
 title: "Editions"
-description: "Scaled solution for any use case"
+seo_title: "Editions and Licensing"
+description: "Compare HariKube editions, licensing, and support options to find the right fit for your Kubernetes applications and infrastructure."
 layout: "pricing"
 ---
 
@@ -48,9 +49,35 @@ layout: "pricing"
             }
         },
         {
+            "name": "Perpetual Edition",
+            "price": "19000",
+            "displayPrice": false,
+            "description": "This tier offers full infrastructure ownership backed by our dedicated operational expertise.",
+            "freetier": false,
+            "subscription": false,
+            "features": [
+                "Automatic database configuration",
+                "Database number: no upper limit",
+                "Metadata shards: no upper limit",
+                "PostgreSQL, YugabyteDB, CockroachDB, MySQL, TiDB, SQLite",
+                "Storage Side Filtering",
+                "Monitoring: Advanced",
+                "Support & advisory",
+                "Support channels: Community Forum, Email, dedicated Slack",
+                "Maintenance updates: 32 months"
+            ],
+            "addons": {
+            },
+            "button": {
+                "text": "Contact Us",
+                "url": "/contact-us/"
+            }
+        },
+        {
             "name": "Pro Edition",
+            "highlight": true,
             "price": "5000",
-            "displayPrice": true,
+            "displayPrice": false,
             "subscription": true,
             "description": "Advanced tools and enhanced performance for professionals who need more power and flexibility.",
             "features": [
@@ -85,31 +112,6 @@ layout: "pricing"
                 "Support & advisory",
                 "Support channels: Community Forum, Email, dedicated Slack",
                 "Maintenance updates: 12 months"
-            ],
-            "addons": {
-            },
-            "button": {
-                "text": "Contact Us",
-                "url": "/contact-us/"
-            }
-        },
-        {
-            "name": "Perpetual Edition",
-            "price": "19000",
-            "displayPrice": false,
-            "description": "This tier offers full infrastructure ownership backed by our dedicated operational expertise.",
-            "freetier": false,
-            "subscription": false,
-            "features": [
-                "Automatic database configuration",
-                "Database number: no upper limit",
-                "Metadata shards: no upper limit",
-                "PostgreSQL, YugabyteDB, CockroachDB, MySQL, TiDB, SQLite",
-                "Storage Side Filtering",
-                "Monitoring: Advanced",
-                "Support & advisory",
-                "Support channels: Community Forum, Email, dedicated Slack",
-                "Maintenance updates: 32 months"
             ],
             "addons": {
             },

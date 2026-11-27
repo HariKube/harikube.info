@@ -14,6 +14,8 @@ Today we’re releasing something small, simple, open-source, and surprisingly p
 
 No glue scripts. No extra brokers. No complex controllers. Just YAML.
 
+This is one building block for event-driven applications and AI agents coordinating through resource state. Follow the [operators and custom APIs guide](/topics/kubernetes-operators/) or [AI infrastructure guide](/topics/ai-infrastructure/) for related patterns. This HTTP watch-trigger project is separate from HariKube's [Kafka integration](/features/event-streaming/).
+
 ## ❓ Why We Built It
 
 When working on **HariKube**, we realized a missing piece: while Kubernetes could scale and orchestrate workloads, there was no *simple, built-in way* to react to events without writing Go code. Operators work great for stateful loops, but not every use case needs a controller.

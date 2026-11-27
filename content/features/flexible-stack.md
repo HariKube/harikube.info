@@ -3,7 +3,7 @@ title: "Flexible Kubernetes-Native Stack"
 description: "Designed to integrate deeply with Kubernetes while staying loosely coupled, HariKube empowers you to build and extend infrastructure on your terms."
 layout: "feature"
 badge: "Infrastructure Flexibility"
-badgeColor: "#7c3aed"
+badgeColor: "#4f46e5"
 features:
   - title: "Pluggable database backends"
     description: "HariKube supports a modular architecture that allows seamless integration with popular relational databases like MySQL and PostgreSQL. Teams can choose the backend that best fits each workload, and mix multiple database types within the same cluster to match performance, scalability, or compliance requirements."
@@ -21,6 +21,8 @@ Modern cloud-native platforms demand dynamic infrastructure, interoperable syste
 HariKube meets this challenge with a flexible, composable architecture that integrates cleanly into existing Kubernetes workflows and adapts to real-world production needs.
 
 HariKube introduces a declarative data routing layer that enables teams to scale workloads across dedicated databases, optimize performance by workload type, and isolate data by tenant, namespace, or resource-all while maintaining full compatibility with Kubernetes-native APIs.
+
+Shared state is a logical resource and API model, not a requirement to centralize all data in one database. Separate backends can serve different namespaces or resource types while applications use familiar Kubernetes operations. See [database topology automation](/docs/automation/) for configuration and rollout considerations.
 
 The result?
 

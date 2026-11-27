@@ -62,9 +62,9 @@ The key architectural difference is where filtering happens.
 
 In vanilla Kubernetes, the API server fetches raw data from ETCD and filters it in-memory. In HariKube, filtering is pushed down into the database layer - SQL is exceptionally good at this. This means:
 
- - The API server never needs to hold entire resource lists in memory
- - Memory consumption becomes O(1) rather than O(n) relative to cluster size
- - The watch cache can be disabled entirely
+ - Supported selectors can be evaluated in storage, reducing API-server filtering work
+ - Cache-related memory pressure can fall, but total memory still depends on concurrency, result sizes, clients, and configuration; this benchmark does not establish an O(1) memory guarantee
+ - The API-server watch cache can be disabled in an appropriate configuration; validate [read and watch behavior](/features/consistency/) for your workload
 
 On top of this, sharding by resource type means all 6 PostgreSQL databases serve requests in parallel. A flood of one resource writes doesn't starve other resource reads. Each resource domain gets its own I/O path, connection pool, and query planner.
 

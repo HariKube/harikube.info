@@ -1,7 +1,7 @@
 ---
 title: "Get Started"
 layout: "simple"
-description: "Unlock Scalable, Compliant Kubernetes Infrastructure."
+description: "Start evaluating HariKube for your Kubernetes applications. Share your use case with the team and explore installation and deployment options."
 ---
 
 {{< columns >}}

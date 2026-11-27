@@ -1,7 +1,7 @@
 ---
 title: "Automation"
 layout: "simple"
-description: "Configuring a dynamic database topology under Kubernetes is boring and painful. HariKube makes it easy by automating Kubernetes configuration. This documentation provides step-by-step guidance to help you leverage HariKube for seamless, scalable, and reliable database operations in your Kubernetes environment."
+description: "Configure HariKube database topology with its Kubernetes operator. Follow the setup steps and custom resource examples for automated database routing."
 prevTitle: "Custom Resource"
 prevLink: "/docs/custom-resource/"
 nextTitle: "Monitoring"
@@ -18,7 +18,7 @@ nextLink: "/docs/monitoring/"
 
 Start by installing HariKube and configuring its middleware in your Kubernetes cluster. This will enable the platform to route database requests to different databases, based on configuration.
 
-For installation instruction, please follow the [documentation](/docs/custom-resource/).
+For installation instructions, follow the [installation guide](/docs/installation/).
 
 > For `TOPOLOGY_CONFIG` environment variable, please use `secret://<namespace>/<name>` format, and ensure the secret is empty during the initial cluster start.
 
@@ -64,6 +64,6 @@ spec:
 
 >**!!! Custom resource reconciliation, topology config validation and secret update takes some time. Please make sure the `status.deployStatus` of the custom resource is `Active` before you create any resource affected by the policy. Error reason is stored at `status.deployStatusReason`. Creating resources before the policy has been applied will lead to "data loss" (more specifically they would stuck in the main database, and the middleware never fetch them again).**
 
-By automating these steps, HariKube transforms Kubernetes into a true Platform-as-a-Service solution, because HariKube provides full control of data isolation and distributes database requests based on the customer's needs.
+Topology automation is one building block of a cloud-native application platform: teams declare resource placement while platform operators manage database infrastructure. A shared Kubernetes API can span separate databases; shared state does not require one physical store. Follow the [operators and custom APIs learning path](/topics/kubernetes-operators/) to build application behavior around those resources.
 
 #### [<-- Custom Resource](/docs/custom-resource/) | [Monitoring -->](/docs/monitoring/)

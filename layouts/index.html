@@ -1,0 +1,126 @@
+{{ define "main" }}
+<div class="hk-home">
+  <section class="hk-hero" aria-labelledby="home-title">
+    <div class="hk-shell hk-hero-grid">
+      <div>
+        <p class="hk-eyebrow">{{ .Params.hero.eyebrow }}</p>
+        <h1 id="home-title">{{ .Params.hero.title }}</h1>
+        <p class="hk-lead">{{ .Params.hero.description }}</p>
+        <div class="hk-actions">
+          <a class="hk-button hk-button-primary" href="{{ .Params.hero.primary_url | relURL }}">{{ .Params.hero.primary_text }} <span aria-hidden="true">↗</span></a>
+          <a class="hk-button hk-button-outline" href="{{ .Params.hero.secondary_url | relURL }}">{{ .Params.hero.secondary_text }}</a>
+        </div>
+        <p class="hk-hero-note">{{ .Params.hero.note }}</p>
+        <a class="hk-text-link hk-video-link" href="{{ .Params.hero.video_url }}"><span aria-hidden="true">▷</span> {{ .Params.hero.video_text }} <span class="hk-link-meta">on YouTube</span></a>
+      </div>
+      <figure class="hk-architecture" aria-labelledby="architecture-title">
+        <div class="hk-diagram-top"><span class="hk-status-dot" aria-hidden="true"></span><span id="architecture-title">Shared state for applications and agents</span></div>
+        <ol class="hk-flow" role="list">
+          <li><span class="hk-flow-label">Applications · Services · AI agents</span><span class="hk-flow-detail">Build platforms and coordinate shared work</span></li>
+          <li><span class="hk-flow-label">Kubernetes API</span><span class="hk-flow-detail">The interface your team already knows</span></li>
+          <li class="hk-flow-highlight"><span class="hk-flow-label">HariKube</span><span class="hk-flow-detail">Route resources by configured policies</span></li>
+          <li><span class="hk-flow-label">Database backends</span><span class="hk-flow-detail">Resource-based sharding · supported SQL engines</span></li>
+          <li><span class="hk-flow-label">Kafka event streams</span><span class="hk-flow-detail">Follow changes real-time</span></li>
+        </ol>
+        <figcaption>Conceptual view, not an atomic data path. Streams have separate delivery and recovery behavior. <a href="{{ "/docs/overview/" | relURL }}">See the full architecture <span aria-hidden="true">↗</span></a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="hk-foundations">
+    <div class="hk-shell hk-foundations-grid">
+      <p><strong>Kubernetes workflows</strong><span>Custom resources, clients, and controllers</span></p>
+      <p><strong>Database choice</strong><span>Use supported SQL storage backends</span></p>
+      <p><strong>Workload-aware routing</strong><span>Place application data deliberately</span></p>
+    </div>
+  </div>
+
+  <section class="hk-section" aria-labelledby="use-cases-title">
+    <div class="hk-shell">
+      <div class="hk-section-heading">
+        <p class="hk-eyebrow">Start with your workload</p>
+        <h2 id="use-cases-title">What teams can build with HariKube</h2>
+        <p>Four application patterns built on scalable, shared state.</p>
+      </div>
+      <div class="hk-card-grid hk-use-cases">
+        {{ range .Params.use_cases }}
+        <article class="hk-card">
+          <span class="hk-card-number" aria-hidden="true">{{ .number }}</span>
+          <h3>{{ .title }}</h3>
+          {{ with .status }}<p class="hk-card-status">{{ . }}</p>{{ end }}
+          <p>{{ .description }}</p>
+          <a class="hk-text-link" href="{{ .url | relURL }}">{{ .link_text }} <span aria-hidden="true">→</span></a>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-section hk-evidence-section" aria-labelledby="evidence-title">
+    <div class="hk-shell hk-evidence">
+      <div>
+        <p class="hk-eyebrow">Evidence, not blanket promises</p>
+        <h2 id="evidence-title">See the setup.<br>Then test your own.</h2>
+        <p>Our published single-machine challenge compares vanilla Kubernetes with HariKube backed by six PostgreSQL instances.</p>
+        <p class="hk-evidence-note">These results describe one test configuration, not a guarantee for every deployment. Hardware, topology, workload, and failure behavior matter.</p>
+        <a class="hk-text-link" href="https://github.com/HariKube/kubernetes-performance-challenge">Review the benchmark and methodology <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hk-results">
+        <table>
+          <caption>Reported throughput and p95 request latency in the same challenge</caption>
+          <thead><tr><th scope="col">Configuration</th><th scope="col">Requests / sec</th><th scope="col">p95 latency</th></tr></thead>
+          <tbody><tr><th scope="row">HariKube + 6 PostgreSQL</th><td>119</td><td>543 <span class="hk-metric-unit">ms</span></td></tr><tr><th scope="row">Vanilla Kubernetes</th><td>25</td><td>2824 <span class="hk-metric-unit">ms</span></td></tr></tbody>
+        </table>
+        <p>p95 means 95% of observed requests finished at or below this latency. The vanilla configuration ran out of memory after about 34 minutes; HariKube completed 60 minutes. These are not two completed steady-state runs.</p>
+        <a class="hk-text-link" href="{{ "/blog/harikube-vs-vanilla-kubernetes/" | relURL }}">Read the reported results and test conditions <span aria-hidden="true">→</span></a>
+        <a class="hk-text-link" href="{{ "/features/performance/" | relURL }}">Explore more performance tests <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-section" aria-labelledby="evaluation-title">
+    <div class="hk-shell">
+      <div class="hk-section-heading">
+        <p class="hk-eyebrow">A practical path to evaluation</p>
+        <h2 id="evaluation-title">From architecture to your first workload.</h2>
+        <p>Understand the tradeoffs before measuring the gains.</p>
+      </div>
+      <ol class="hk-card-grid hk-steps" role="list">
+        {{ range $index, $step := .Params.evaluation_steps }}
+        <li class="hk-step">
+          <span class="hk-step-number" aria-hidden="true">{{ add $index 1 }}</span>
+          <h3>{{ .title }}</h3>
+          <p>{{ .description }}</p>
+          <a class="hk-text-link" href="{{ .url | relURL }}">{{ .link_text }} <span aria-hidden="true">→</span></a>
+        </li>
+        {{ end }}
+      </ol>
+      <aside class="hk-fit-note" aria-label="Evaluation considerations">
+        <strong>Know the boundaries.</strong> Review eventual consistency, transaction limitations, and query support in the <a href="{{ "/docs/overview/#-limitations" | relURL }}">architecture documentation</a>. See the <a href="{{ "/docs/future-plans/" | relURL }}">roadmap</a> for upcoming platform capabilities.
+      </aside>
+    </div>
+  </section>
+
+  <section class="hk-section hk-next-section" aria-labelledby="next-title">
+    <div class="hk-shell hk-next">
+      <div>
+        <p class="hk-eyebrow">Make it work for your platform</p>
+        <h2 id="next-title">Bring your workload.<br>Let’s find the right starting point.</h2>
+        <p>Share your use case with the team, or explore a Kubernetes assessment for a closer look at your platform’s scaling constraints.</p>
+        <div class="hk-actions">
+          <a class="hk-button hk-button-primary" href="{{ "/get-started/" | relURL }}">Discuss your evaluation <span aria-hidden="true">↗</span></a>
+          <a class="hk-button hk-button-outline" href="{{ "/kubernetes-assessments/" | relURL }}">Explore assessments</a>
+        </div>
+      </div>
+      <div class="hk-next-resources">
+        <h3>Keep exploring</h3>
+        <a href="{{ "/editions/" | relURL }}">Compare editions and licensing <span aria-hidden="true">→</span></a>
+        <a href="{{ "/topics/" | relURL }}">Find a technical guide <span aria-hidden="true">→</span></a>
+        <a href="{{ "/blog/" | relURL }}">Read engineering articles <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</div>
+{{ $schema := dict "@context" "https://schema.org" "@type" "WebSite" "name" .Site.Title "url" .Permalink "description" .Description }}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{ end }}

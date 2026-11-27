@@ -3,7 +3,7 @@
       margin: 2rem auto;
       padding: 2rem;
       background: #ffffff;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--hk-border, #dce3ed);
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       font-family: system-ui, sans-serif;
@@ -13,7 +13,7 @@
       display: block;
       font-weight: 600;
       margin-bottom: 0.4rem;
-      color: #1e293b;
+      color: var(--hk-navy, #1e1b4b);
   }
 
   .hk-form input[type="text"],
@@ -43,8 +43,24 @@
   }
 
   .hk-form a {
-      color: #425AD6;
+      color: var(--hk-indigo, #4f46e5);
       text-decoration: underline;
+  }
+
+  .hk-form a:hover {
+      color: var(--hk-indigo-hover, #4338ca);
+  }
+
+  .hk-form :is(input[type="text"], input[type="email"], textarea):focus {
+      border-color: var(--hk-indigo, #4f46e5);
+      --tw-ring-color: var(--hk-indigo, #4f46e5);
+      outline: 2px solid var(--hk-indigo, #4f46e5);
+      outline-offset: 2px;
+  }
+
+  .hk-form input[type="checkbox"] {
+      accent-color: var(--hk-indigo, #4f46e5);
+      color: var(--hk-indigo, #4f46e5);
   }
 
   .hk-form .btn-wrap {
@@ -52,23 +68,7 @@
       margin-top: 1.2rem;
   }
 
-  .hk-form input[type="submit"] {
-      background: #425AD6;
-      color: #fff;
-      border: none;
-      padding: 0.8rem 1.8rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 9999px;
-      cursor: pointer;
-      display: inline-block;
-      transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
-  }
-
-  .hk-form input[type="submit"]:hover {
-      background: #3341a3;
-      transform: translateY(-2px);
-  }
+  /* Submit actions use the shared assets/css/buttons.css styles. */
 
   #hk-form-thanks pre {
       background-color: lightgreen;

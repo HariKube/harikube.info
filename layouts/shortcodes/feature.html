@@ -2,7 +2,7 @@
 {{ $title := .Get "title" }}
 {{ $description := .Get "description" }}
 {{ $badge := .Get "badge" }}
-{{ $badgeColor := .Get "badgeColor" | default "#5573df" }}
+{{ $badgeColor := .Get "badgeColor" | default "#4f46e5" }}
 {{ $image := .Get "image" }}
 {{ $buttonText := .Get "buttonText" | default "Learn More" }}
 {{ $buttonLink := .Get "buttonLink" | default "#" }}
@@ -41,7 +41,7 @@
             {{ end }}
         </ul>
         {{ if ne $buttonLink "#" }}
-        <a href="{{ $buttonLink }}" class="btn-primary inline-block" style="color: white">{{ $buttonText }}</a>
+        <a href="{{ $buttonLink }}" class="hk-button hk-button-primary">{{ $buttonText }}</a>
         {{ end}}
     </div>
 

@@ -1,0 +1,38 @@
+{{ define "main" }}
+{{ if eq .Section "docs" }}
+<div class="hk-doc-shell">
+  <aside class="hk-doc-sidebar">{{ partial "docs-nav" (dict "page" . "id" "desktop-docs") }}</aside>
+  <div class="hk-doc-article">
+    <details class="hk-doc-mobile">
+      <summary>Browse docs &amp; search</summary>
+      {{ partial "docs-nav" (dict "page" . "id" "mobile-docs") }}
+    </details>
+    <article aria-labelledby="doc-title">
+      <h1 id="doc-title">{{ .Title }}</h1>
+      <div class="hk-doc-version">
+        {{ with .Params.applies_to }}<p><strong>Applies to:</strong> {{ . }}</p>{{ end }}
+        <p><strong>Site reference versions:</strong> middleware {{ .Site.Params.middlewareVersion }} · operator {{ .Site.Params.operatorVersion }}.</p>
+        <p>Examples may depend on your release and cluster setup. Reference versions are not a compatibility guarantee; check the installation notes before deploying.</p>
+      </div>
+      <div class="prose prose-lg !max-w-none">{{ .Content }}</div>
+      <footer class="hk-doc-footer">
+        <nav class="hk-doc-pagination" aria-label="Documentation sequence">
+          {{ with .Params.prevLink }}<a href="{{ . | relURL }}">← Previous: {{ $.Params.prevTitle }}</a>{{ end }}
+          {{ with .Params.nextLink }}<a href="{{ . | relURL }}">Next: {{ $.Params.nextTitle }} →</a>{{ end }}
+        </nav>
+        <div class="hk-doc-tools">
+          {{ with .File }}<a href="{{ printf "https://github.com/HariKube/harikube.info/edit/main/content/%s" .Path }}">Edit this page on GitHub</a>{{ end }}
+          <a href="{{ printf "https://github.com/HariKube/harikube.info/issues/new?title=%s&body=%s" (printf "Documentation feedback: %s" .Title | urlquery) (printf "Page: %s\n\nWhat could be clearer?\n" .Permalink | urlquery) }}">Suggest an improvement</a>
+          <a href="{{ "/contact-us/" | relURL }}">Ask the team</a>
+        </div>
+      </footer>
+    </article>
+  </div>
+</div>
+{{ else }}
+<div class="container mx-auto px-4 py-8 mb-12 flex-1">
+  <h1 class="text-4xl font-bold text-center mb-12">{{ .Title }}</h1>
+  <div class="prose prose-lg !max-w-none">{{ .Content }}</div>
+</div>
+{{ end }}
+{{ end }}

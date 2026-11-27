@@ -87,7 +87,7 @@ The benchmark results show what happens when you remove the etcd constraint:
 | Objects Handled | 215,000 | ~26,000 (crashed) | 8x |
 | Stability | Completed (60 min) | Crashed (~34 min) | not comparable |
 
-> For benchmark details see [HariKube vs Vanilla Kubernetes](/blog/harikube-vs-vanilla-kubernetes/).
+> For benchmark details see [HariKube vs Vanilla Kubernetes](/blog/harikube-vs-vanilla-kubernetes/). Follow the [Kubernetes scaling learning path](/topics/kubernetes-scaling/) for related documentation, or [assess your platform's scalability](/kubernetes-assessments/) for a personalized report.
 
 These are the same failure modes Amazon solved inside EKS. The difference is that HariKube operates at the Kubernetes API storage interface: if it speaks the Kubernetes API, it works.
 

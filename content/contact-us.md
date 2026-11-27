@@ -1,7 +1,7 @@
 ---
 title: "Contact Us"
 layout: "simple"
-description: "Unlock Scalable, Compliant Kubernetes Infrastructure."
+description: "Contact the HariKube team to discuss Kubernetes scaling, deployment requirements, licensing, and support for your applications."
 ---
 
 {{< columns >}}

@@ -3,6 +3,24 @@
 @tailwind utilities;
 
 @layer base {
+  /* Shared palette, sourced from Tailwind for utilities and standalone CSS. */
+  :root {
+    --hk-indigo: theme('colors.primary.600');
+    --hk-indigo-hover: theme('colors.primary.700');
+    --hk-focus: theme('colors.primary.500');
+    --hk-highlight-border: theme('colors.primary.300');
+    --hk-dark-surface: theme('colors.primary.900');
+    --hk-dark-border: #514885;
+    --hk-navy: theme('colors.gray.900');
+    --hk-text: theme('colors.gray.700');
+    --hk-muted: theme('colors.gray.600');
+    --hk-background: theme('colors.gray.50');
+    --hk-tint: theme('colors.primary.50');
+    --hk-border: theme('colors.gray.200');
+    --hk-on-dark: theme('colors.primary.100');
+    --hk-link-on-dark: theme('colors.primary.200');
+  }
+
   html {
     @apply scroll-smooth;
   }
@@ -71,6 +89,42 @@
   .feature-grid {
     @apply grid gap-8 md:grid-cols-2 lg:grid-cols-3;
   }
+
+  .hk-site-footer {
+    background: var(--hk-navy);
+    border-color: var(--hk-dark-border);
+  }
+  .hk-site-footer h3 { color: #fff; }
+  .hk-site-footer a, .hk-site-footer p { color: #cbd5e1; }
+  .hk-site-footer a:hover { color: var(--hk-link-on-dark); }
+  .hk-site-footer a:focus-visible { outline: 3px solid #a5b4fc; outline-offset: 4px; }
+  .hk-site-footer img { filter: brightness(0) invert(1); }
+  .hk-site-footer .border-t { border-color: var(--hk-dark-border); }
+
+  #cookie-banner { background-color: var(--hk-navy); color: #fff; }
+  #cookie-banner a { color: var(--hk-link-on-dark); text-decoration: underline; }
+  #cookie-banner a:hover { color: #fff; }
+
+  .hk-cta-panel {
+    background: linear-gradient(125deg, var(--hk-navy), var(--hk-dark-surface));
+  }
+  .hk-cta-panel p { color: var(--hk-on-dark); }
+
+  .hk-pricing { background: var(--hk-background); }
+  .hk-plan {
+    color: var(--hk-text);
+    background: #fff;
+    border: 1px solid var(--hk-border);
+  }
+  .hk-plan.hk-plan-highlight {
+    background: var(--hk-tint);
+    border-color: var(--hk-highlight-border);
+    box-shadow: 0 12px 30px -20px #4f46e566;
+  }
+  .hk-plan h3, .hk-plan-price { color: var(--hk-navy); }
+  .hk-plan-description, .hk-plan .hk-plan-feature-text { color: var(--hk-muted); }
+  .hk-plan-badge { background: var(--hk-tint); color: var(--hk-indigo); border: 1px solid #c7d2fe; }
+  .hk-plan-highlight .hk-plan-badge { background: var(--hk-indigo); color: #fff; border-color: var(--hk-indigo); }
 
   /* Blog and Syntax Highlighting Styles */
   .highlight {

@@ -1,8 +1,8 @@
 ---
-title: "A Quick Dive into Kubernetes Operators - Services+"
+title: "Kubernetes API Aggregation: Full-Text Search - Part 3"
 date: 2025-08-28
 author: "Richard Kovacs"
-description: "This post provides a solution to unlocking data filtering in Kubernetes."
+description: "Build a demonstration full-text search API with the Kubernetes aggregation layer, register an APIService, and query indexed custom resources."
 categories: ["Tutorials", "Performance"]
 tags: ["kubernetes", "custom-api", "server-side-filtering", "operators", "data-access", "scalability"]
 featured_image: "/images/blog/create-microservice-with-operator.png"
@@ -14,7 +14,7 @@ nextLink: "/blog/create-microservice-with-operator-4/"
 
 ---
 
-**Before diving in, make sure you have finished part 2 of the series.** [[→]](/blog/create-microservice-with-operator-2/)
+**Before diving in, complete [Part 2: Build an operator controller](/blog/create-microservice-with-operator-2/).** See the [full operator learning path](/topics/kubernetes-operators/) for all four tutorials.
 
 ---
 

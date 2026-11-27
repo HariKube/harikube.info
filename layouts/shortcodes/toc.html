@@ -1,3 +1,9 @@
+{{ if eq .Page.Section "docs" }}
+<details class="hk-doc-toc">
+    <summary>On this page</summary>
+    {{ .Page.TableOfContents }}
+</details>
+{{ else }}
 <style>
     html {
       scroll-padding-top: 100px;
@@ -14,3 +20,4 @@
     <ul><li><a href="{{ .Page.Params.nextLink }}">{{ .Page.Params.nextTitle }} --></a></li></ul>
     {{ end }}
 </div>
+{{ end }}

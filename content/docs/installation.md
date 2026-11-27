@@ -151,7 +151,7 @@ The middleware is designed to operate seamlessly in both containerized and tradi
 
 ## 📈 Database Configuration
 
-The HariKube removes the "Single Connection" constraint, introducing native multi-database sharding. This allows you to orchestrate an unlimited fleet of independent databases through a single entry point. By using industry-standard layering, you can scale each individual database in your matrix to handle massive workloads.
+HariKube introduces resource-based routing across multiple databases through one Kubernetes API entry point. Capacity depends on middleware, backend, and workload limits rather than an unlimited database fleet. Use the [scaling guide](/topics/kubernetes-scaling/) to plan representative tests and the [architecture overview](/docs/overview/) to compare application patterns and limitations.
 
  - **Database Partitioning** (Inside the Shard): Before adding more servers, optimize the one you have. HariKube is designed to work perfectly with native SQL partitioning. Create your schema and partitions manually. When HariKube pushes a query down to the DB, the SQL engine only scans the relevant partition. You get the speed of a sharded system within the simplicity of a single database connection.
  - **Upgrading to a Distributed Database** (The "Drop-In" Scale): The most powerful way to scale the database is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.

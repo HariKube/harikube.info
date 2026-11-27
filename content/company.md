@@ -1,7 +1,7 @@
 ---
 title: "About Our Company"
 layout: "company"
-description: "Learn about our mission, leadership team, and the investors backing our vision"
+description: "Meet the HariKube team and learn about the mission, leadership, and investors behind our Kubernetes-native application platform."
 ---
 
 <script type="application/ld+json">
@@ -11,7 +11,7 @@ description: "Learn about our mission, leadership team, and the investors backin
     "name": "HariKube",
     "url": "https://harikube.info/",
     "logo": "https://harikube.info/images/harikube-logo.png",
-    "description": "HariKube is a Kubernetes-native platform that enhances scalability, performance, and developer experience by distributing data to multiple databases.",
+    "description": "HariKube helps teams scale Kubernetes workloads, build application platforms, coordinate AI agents, and explore shared state with Kafka streams."
 }
 </script>
 
@@ -22,10 +22,10 @@ description: "Learn about our mission, leadership team, and the investors backin
         <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-bold mb-4"></h2>
             <p class="text-xl text-gray-600">
-                We exist to unlock Kubernetes native application development. We remove the state bottlenecks that hold clusters back, including etcd bound limits, so teams can ship new services as CRDs and focus on product, not plumbing.
-                We are not here to sell another infrastructure tool. We are here to champion a simpler model for cloud native architecture: declare intent through the Kubernetes API, let the platform handle state and scale, and keep your engineering effort where it belongs, on delivering value.
+                We exist to unlock Kubernetes-native application development. HariKube helps teams scale supported workloads beyond etcd, build cloud-native application platforms, and coordinate event-driven AI agents around shared resource state.
+                Our fourth application pattern connects shared state with asynchronous event streams through <a href="/features/event-streaming/">Kafka integration</a>. We distinguish that work from stable capabilities so teams can evaluate the right starting point.
                 <br />
-                <b>HariKube is our gift to the community</b>: it is the engine that makes this practical. It strips away legacy state management constraints with a database agnostic data layer, so you can stop managing infrastructure and start orchestrating innovation.
+                <b>HariKube is our gift to the community</b>: a database-agnostic data layer that lets teams retain familiar Kubernetes APIs while choosing where application resources live. Explore the <a href="/docs/overview/">architecture and limitations</a> and the <a href="/topics/">three technical learning paths</a> to understand the tradeoffs.
             </p>
         </div>
     </div>
@@ -67,6 +67,14 @@ description: "Learn about our mission, leadership team, and the investors backin
             {{< team-member 
                 name="Richárd Kovács"
                 image="/images/company/mhmxs.jpg"
+                linkedin="https://www.linkedin.com/in/mhmxs/"
+                email="ricsi.kovacs@inspirnation.eu"
+            >}}
+            {{< team-member 
+                name="András Szántó"
+                image="/images/company/andras.jpg"
+                linkedin="https://www.linkedin.com/in/andrasszanto/"
+                email="andras.szanto@inspirnation.eu"
             >}}
             {{< team-member 
                 name="Tobias Heinrichs"

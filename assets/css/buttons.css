@@ -1,0 +1,100 @@
+/* Shared action styles, based on the homepage. Legacy .btn classes are aliases
+   so theme-provided heroes and future shortcodes use the same design system. */
+:root {
+  --hk-button-blue: var(--hk-indigo, #4f46e5);
+  --hk-button-ink: var(--hk-navy, #1e1b4b);
+  --hk-button-radius: 9px;
+}
+body :is(.hk-button, .btn, .btn-primary, .btn-secondary, .btn-outline, :where(.hk-form input[type="submit"], form button[type="submit"])) {
+  --button-bg: var(--hk-button-blue);
+  --button-color: #fff;
+  --button-border: transparent;
+  --button-hover-bg: var(--hk-indigo-hover, #4338ca);
+  --button-hover-border: transparent;
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  max-width: 100%;
+  padding: 13px 20px;
+  border: 1px solid var(--button-border);
+  border-radius: var(--hk-button-radius);
+  background: var(--button-bg);
+  color: var(--button-color);
+  font-family: inherit;
+  font-size: .9rem;
+  font-weight: 600;
+  line-height: 1.65;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  box-shadow: none;
+  transform: none;
+  transition: background-color .15s, border-color .15s;
+}
+body :is(.hk-button-outline, .btn-outline) {
+  --button-bg: #fff;
+  --button-color: var(--hk-button-ink);
+  --button-border: #cbd4e2;
+  --button-hover-bg: #eef2ff;
+  --button-hover-border: #8394dd;
+}
+/* Light actions on dark CTA cards, plus a transparent secondary alternative. */
+body .hk-button-light {
+  --button-bg: #fff;
+  --button-color: var(--hk-button-blue);
+  --button-border: #cbd4e2;
+  --button-hover-bg: #eef2ff;
+  --button-hover-border: #8394dd;
+}
+body .hk-button-inverse {
+  --button-bg: transparent;
+  --button-color: #fff;
+  --button-border: #a5b4fc;
+  --button-hover-bg: var(--hk-dark-surface, #312e81);
+  --button-hover-border: #c7d2fe;
+}
+body :is(.hk-button, .btn, .btn-primary, .btn-secondary, .btn-outline, :where(.hk-form input[type="submit"], form button[type="submit"])):hover {
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-border);
+  color: var(--button-color);
+  text-decoration: none;
+  transform: none;
+}
+body :is(.hk-button, .btn, .btn-primary, .btn-secondary, .btn-outline, :where(.hk-form input[type="submit"], form button[type="submit"]), .hk-nav-control):focus-visible {
+  outline: 3px solid var(--hk-focus, #6366f1);
+  outline-offset: 4px;
+}
+/* Light rings stay visible against midnight-indigo CTA and code panels. */
+body :is(.hk-button-light, .hk-button-inverse):focus-visible {
+  outline-color: var(--hk-highlight-border, #a5b4fc);
+}
+body :is(.hk-button, .btn, .btn-primary, .btn-secondary, .btn-outline, :where(.hk-form input[type="submit"], form button[type="submit"])):is(:disabled, [aria-disabled="true"]) {
+  opacity: .5;
+  cursor: not-allowed;
+  background: var(--button-bg);
+  border-color: var(--button-border);
+  transform: none;
+  transition: none;
+}
+body .hk-button-small { min-height: 36px; padding: 6px 12px; font-size: .8rem; gap: 6px; }
+body .hk-button-block { width: 100%; }
+body .hk-button-square { min-width: 40px; padding-inline: 8px; }
+body .hk-disclosure { width: 100%; justify-content: space-between; text-align: left; }
+/* Disclosure panels clip overflowing content, so draw focus inside the button. */
+body .hk-disclosure:focus-visible { outline-offset: -4px; }
+body .hk-disclosure-panel { border-radius: var(--hk-button-radius); }
+body .hk-nav-control { border-radius: var(--hk-button-radius); }
+body .hk-cookie-accept { margin-left: 12px; }
+body .hk-addon-control { min-width: 36px; padding-inline: 6px; }
+body .hk-plan-feature { display: flex; align-items: center; gap: 8px; }
+body .hk-plan-feature > svg { flex-shrink: 0; }
+body .hk-plan-feature-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+body .hk-addon-actions { display: flex; flex-shrink: 0; gap: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  body :is(.hk-button, .btn, .btn-primary, .btn-secondary, .btn-outline, :where(.hk-form input[type="submit"], form button[type="submit"])) { transition: none; }
+}

@@ -1,10 +1,12 @@
 ---
 title: "Kubernetes Assessments"
 layout: "simple"
-description: "Get your free scalability score and personal report."
+description: "Assess your Kubernetes platform's scalability with a free score and personalized report to help identify performance and growth challenges."
 ---
 
 {{< columns >}}
+
+Before starting, explore our [Kubernetes scaling guide](/topics/kubernetes-scaling/) for benchmark methodology, common bottlenecks, and deployment documentation.
 
 ## See how your Kubernetes platform is performing
 

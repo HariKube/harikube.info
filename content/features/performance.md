@@ -1,9 +1,10 @@
 ---
 title: "High-Performance Data Management"
-description: "HariKube delivers exceptional performance through data distribution and optimized database routing. By offloading resource-intensive workloads from ETCD, it ensures consistent responsiveness and operational efficiency at scale."
+seo_title: "Kubernetes Performance and Scaling"
+description: "Explore HariKube performance benchmarks and database routing, and see how distributing Kubernetes storage workloads changes throughput and latency."
 layout: "feature"
 badge: "Performance"
-badgeColor: "#2563eb"
+badgeColor: "#4f46e5"
 features:
   - title: "Low-latency data access"
     description: "Applications can quickly retrieve and store data-even when the data is spread across multiple databases-thanks to optimized routing. Compared to a single overloaded database, this distributed approach reduces contention, balances load, and delivers faster, more reliable responses under scale."
@@ -31,7 +32,7 @@ As teams scale their Kubernetes environments or begin to use CRDs for large, dyn
 
  - **Complex and risky maintenance and recovery** - As ETCD usage expands beyond core Kubernetes data, backup and disaster recovery processes become more error-prone and time-consuming. Since ETCD remains a single point of failure for the control plane, any misstep in handling its growing data volume can lead to critical cluster and business service outages.
 
- - **In-memory storage and API-level filtering limit scalability** - Kubernetes stores all data in memory and performs filtering at the API server level, which becomes inefficient and resource-intensive for services managing large datasets. HariKube solves this by offloading data to relational databases, enabling efficient querying and filtering directly at the storage layer.
+ - **API-server caches and filtering consume memory** - Kubernetes persists resource state in etcd; API servers can also retain resource data in watch caches and perform selection work. For large resource workloads, HariKube's supported database backends can apply filtering at the storage layer, reducing API-layer data and cache pressure. Total memory still depends on concurrency, result sizes, and deployment configuration.
 
 This is where HariKube introduces a transformative solution.
 Why HariKube?
@@ -49,7 +50,7 @@ HariKube implements a multi-database architecture that offloads non-critical and
     title="Total execution time: 3m52s"
     description=""
     badge="Single MySQL instance"
-    badgeColor="#db2777"
+    badgeColor="#4f46e5"
     image="/images/features/gcp_compute_40_20000_1744026430.json_http_req_duration_chart.png"
     buttonText=""
     buttonLink=""
@@ -61,7 +62,7 @@ HariKube implements a multi-database architecture that offloads non-critical and
     title="Total execution time: 1m18s"
     description=""
     badge="4 MySQL instances"
-    badgeColor="#16a34a"
+    badgeColor="#4f46e5"
     image="/images/features/gcp_compute_40_20000_1744027050.json_http_req_duration_chart.png"
     buttonText=""
     buttonLink=""
@@ -80,7 +81,7 @@ HariKube implements a multi-database architecture that offloads non-critical and
     title="Total execution time: 1m6s"
     description=""
     badge="Single MySQL instance"
-    badgeColor="#db2777"
+    badgeColor="#4f46e5"
     image="/images/features/gcp_compute_600_10000_1731680855.json_http_req_duration_chart.png"
     buttonText=""
     buttonLink=""
@@ -92,7 +93,7 @@ HariKube implements a multi-database architecture that offloads non-critical and
     title="Total execution time: 23s"
     description=""
     badge="4 MySQL instances"
-    badgeColor="#16a34a"
+    badgeColor="#4f46e5"
     image="/images/features/gcp_compute_600_10000_1731680688.json_http_req_duration_chart.png"
     buttonText=""
     buttonLink=""
@@ -121,5 +122,11 @@ Here is how to push the performance ceiling even higher:
  - **Database Partitioning** (Inside the Shard): Before adding more servers, optimize the one you have. HariKube is designed to work perfectly with native SQL partitioning. Create your schema and partitions manually. When HariKube pushes a query down to the DB, the SQL engine only scans the relevant partition. You get the speed of a sharded system within the simplicity of a single database connection.
  - **Upgrading to a Distributed Database** (The "Drop-In" Scale): The most powerful way to scale the database is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.
  - **Introducing a Smart Load Balancer** (Read/Write Splitting): To maximize throughput, you can place a State-Aware Proxy (like ProxySQL, MaxScale, Pgpool-II, or Pgcat) between HariKube and your database cluster. The Load Balancer identifies "Write" operations and routes them to the Database Leader/Primary. The Load Balancer identifies "Read" operations (GET, LIST) and distributes them across multiple Read Replicas. This offloads heavy "Watch" and "List" traffic from your primary database, ensuring that write operations remain lightning-fast and uncontended.
+
+> Read/write splitting is a deployment option to validate, not a universal recommendation. Read replicas can introduce lag, and proxies must preserve the read and resource-version behavior your clients require. See [storage access and consistency](/features/consistency/) before choosing a routing policy.
+
+## Plan Your Kubernetes Scaling Evaluation
+
+Use the [Kubernetes scaling guide](/topics/kubernetes-scaling/) to compare benchmark results and understand control-plane bottlenecks. For a personalized next step, [assess your Kubernetes platform's scalability](/kubernetes-assessments/).
 
 #### [<-- Developer Experience](/features/developer-experience/) | [Consistency -->](/features/consistency/)

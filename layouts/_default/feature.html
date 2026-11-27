@@ -1,7 +1,7 @@
 {{ define "main" }}
-{{ $badgeColor := .Params.badgeColor | default "#5573df" }}
+{{ $badgeColor := .Params.badgeColor | default "#4f46e5" }}
 
-<article class="feature-page" style="--badge-color: {{ .Params.badgeColor }}">
+<article class="feature-page" style="--badge-color: {{ $badgeColor }}">
     <!-- Hero Section -->
     <div class="relative isolate overflow-hidden">
         <style>

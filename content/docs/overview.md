@@ -1,7 +1,10 @@
 ---
 title: "Overview"
 layout: "simple"
-description: "Explore HariKube’s mission, leadership, and the vision driving our Kubernetes-native platform."
+seo_title: "Architecture and Documentation Overview"
+description: "Understand HariKube's architecture, supported databases, deployment model, limitations, and Kubernetes-native application use cases."
+prevTitle: "Quick Start"
+prevLink: "/docs/quick-start/"
 nextTitle: "Installation"
 nextLink: "/docs/installation/"
 ---
@@ -90,27 +93,31 @@ HariKube supports multiple backends, each with different capabilities regarding 
 
 > ℹ️ Storage-side filtering means the database can apply selectors (`label`, `field`) before returning data-reducing memory usage and improving performance at scale.
 
-## 💼 Common Use Cases
+## 💼 What Teams Can Build {#-common-use-cases}
 
-- Multi-tenant Kubernetes platforms
-- Per-namespace database isolation
-- Regional workload distribution
-- Offloading CRDs to scalable and high capacity databases
-- Simplifying stateful microservice infrastructure
+HariKube supports four related application patterns. Shared state means a common resource and API model, not a requirement to put every workload in one physical database.
+
+### Scale Kubernetes Beyond etcd
+
+Route supported resource workloads to database backends to reduce pressure on etcd. Per-namespace isolation, regional placement, and resource-based sharding are topology choices to evaluate with your workload. Start with the [Kubernetes scaling guide](/topics/kubernetes-scaling/) and [database topology automation](/docs/automation/).
+
+### Build a Cloud-Native Application Platform
+
+Use Kubernetes APIs, RBAC, schemas, and watches as application foundations. Controllers, serverless functions, and custom APIs can implement business logic around resource state. Follow the [operators and custom APIs guide](/topics/kubernetes-operators/) and [developer experience overview](/features/developer-experience/).
+
+### Coordinate Event-Driven AI Agents
+
+Let agents, operators, and services share resource state and react to changes. Evaluate object churn, concurrency, and visibility delays rather than assuming a particular agent count or latency. See the [AI infrastructure guide](/topics/ai-infrastructure/).
+
+### Connect Shared State with Event Streams
+
+Explore Kubernetes APIs for state management alongside Kafka for asynchronous delivery. **Kafka integration is experimental**, not a blanket stable-release capability. Read the [streaming architecture and evaluation guidance](/features/event-streaming/) before planning a deployment.
 
 
 ## 🧠 How HariKube Works
 
-![HariKube overview](/images/harikube-high-view.png "HariKube overview")
-
-Here’s a clear bullet-point breakdown of the HariKube Overview diagram:
-
-- User initiates a CRUD operation on a Kubernetes resource (e.g., a Custom Resource).
-- The request is passed to Kubernetes API server, which forwards it through the midleware.
-- HariKube intercepts the request and determines where the data should be stored based on configured routing policies.
-- If a routing policy is found, the request is forwarded to the corresponding database (e.g., MySQL).
-- If no routing policy is defined, the request falls back to ETCD (the default Kubernetes data store).
-- The selected backend (MySQL or ETCD) processes the CRUD request.
-- Once the backend responds, the response is passed back through the chain, returning an <OK> to the user.
+<div style="text-align: center">
+  <a href="/images/harikube-architecture-overview.png" target="_blank"><img src="/images/harikube-architecture-overview.png" alt="Harikube Architecture Overview" /></a>
+</div>
 
 #### [Installation -->](/docs/installation/)

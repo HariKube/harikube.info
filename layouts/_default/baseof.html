@@ -1,49 +1,44 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en" }}" class="h-full">
+<html lang="{{ .Site.LanguageCode | default "en" }}" class="h-full no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Google Analytics -->
-    {{ partial "google-analytics" . }}
+    {{ $pageTitle := .Params.seo_title | default .Title }}
+    {{ $title := printf "%s | %s" $pageTitle .Site.Title }}
+    {{ if .IsHome }}{{ $title = $pageTitle }}{{ end }}
+    {{ $description := .Description | default .Site.Params.description }}
+    {{ $socialImage := .Params.image | default .Params.featured_image | default .Site.Params.image }}
 
-    {{ partial "chimp-static" . }}
-    
     <!-- Title -->
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <title>{{ $title }}</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="description" content="{{ $description }}">
     <meta name="author" content="{{ .Site.Params.author | default .Site.Title }}">
     <meta name="robots" content="{{ with .Params.robots }}{{ . }}{{ else }}index, follow{{ end }}">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
-    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
-    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:type" content="{{ if and .IsPage (eq .Section "blog") }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:site_name" content="{{ .Site.Title }}">
-    {{ with .Params.image }}
+    {{ with $socialImage }}
     <meta property="og:image" content="{{ . | absURL }}">
-    {{ else }}
-    {{ with .Site.Params.image }}
-    <meta property="og:image" content="{{ . | absURL }}">
-    {{ end }}
+    <meta property="og:image:alt" content="{{ $.Params.image_alt | default $.Title }}">
     {{ end }}
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
-    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
     {{ with .Site.Params.twitter }}
     <meta name="twitter:site" content="@{{ . }}">
     {{ end }}
-    {{ with .Params.image }}
+    {{ with $socialImage }}
     <meta name="twitter:image" content="{{ . | absURL }}">
-    {{ else }}
-    {{ with .Site.Params.image }}
-    <meta name="twitter:image" content="{{ . | absURL }}">
-    {{ end }}
+    <meta name="twitter:image:alt" content="{{ $.Params.image_alt | default $.Title }}">
     {{ end }}
     
     <!-- Favicon -->
@@ -65,6 +60,17 @@
     {{ end }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
+    {{ if .IsHome }}
+        {{ $homeCSS := resources.Get "css/home.css" | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ $homeCSS.RelPermalink }}" integrity="{{ $homeCSS.Data.Integrity }}">
+    {{ end }}
+
+    {{ $buttonsCSS := resources.Get "css/buttons.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $buttonsCSS.RelPermalink }}" integrity="{{ $buttonsCSS.Data.Integrity }}">
+
+    {{ $experienceCSS := resources.Get "css/experience.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $experienceCSS.RelPermalink }}" integrity="{{ $experienceCSS.Data.Integrity }}">
+
     <!-- Additional Meta Tags from Front Matter -->
     {{ with .Params.customMeta }}
         {{ range . }}
@@ -73,30 +79,21 @@
     {{ end }}
 </head>
 <body class="min-h-screen flex flex-col">
+    <a class="hk-skip-link" href="#main-content">Skip to content</a>
     <!-- Header -->
     <div class="fixed top-0 left-0 right-0 z-50">
         {{ partial "header" . }}
     </div>
 
     <!-- Main Content -->
-    <div class="pt-20">
+    <main id="main-content" class="pt-20" tabindex="-1">
         {{ block "main" . }}{{ end }}
-    </div>
+    </main>
 
     <!-- Footer -->
     {{ partial "footer" . }}
 
-    <!-- Mobile Menu Script -->
-    <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', function() {
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu) {
-                    mobileMenu.classList.toggle('hidden');
-                }
-            });
-        }
-    </script>
+    <script src="{{ "js/experience.js" | relURL }}" defer></script>
+    {{ if eq .Section "docs" }}<script src="{{ "js/docs-search.js" | relURL }}" defer></script>{{ end }}
 </body>
 </html>

@@ -1,4 +1,5 @@
 HUGO_ENV?=staging
+HUGO_BASEURL?="https://harikube.info/"
 
 shell:
 	@docker rm -f harikube-hugo-shell
@@ -26,6 +27,7 @@ gen: genCharts
 		-w /src \
   		-v $(PWD):/src \
 		-e HUGO_ENV=$(HUGO_ENV) \
+		-e HUGO_BASEURL=$(HUGO_BASEURL) \
   		hugomods/hugo:debian-node-git-0.151.1 \
   		npm run build
 
@@ -37,6 +39,11 @@ genCharts:
 
 validate: gen
 	@docker run --rm \
+		-w /workspace \
+		-v $(PWD):/workspace \
+		python:3.12-slim python3 scripts/check-seo.py public
+
+	@docker run --rm \
 		-v $(PWD)/public:/public \
 		-v $(PWD)/public/license/index.html:/public/pages/terms-conditions-mail.html \
 		wjdp/htmltest /public --skip-external
@@ -45,3 +52,4 @@ validate: gen
 		-v $(PWD)/public:/public \
 		--entrypoint=kubeconform \
 		stagex/kubeconform:0.6.4 -summary -ignore-missing-schemas -insecure-skip-tls-verify /public/manifests
+
