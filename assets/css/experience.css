@@ -19,7 +19,9 @@ body :focus-visible { outline: 3px solid var(--hk-focus, #6366f1); outline-offse
 .hk-nojs-nav nav { max-height: 65vh; overflow-y: auto; padding: 0 24px 20px; }
 .hk-nojs-nav a, .hk-nojs-nav strong { display: block; padding: 10px 0; }
 .no-js .hk-cookie-settings { display: none; }
-.hk-cookie-settings { display: block; margin: 20px auto 0; padding: 8px; color: var(--hk-indigo, #4f46e5); text-decoration: underline; font-size: .85rem; }
+.hk-cookie-settings { flex-shrink: 0; padding: 8px; color: #cbd5e1; text-decoration: underline; text-underline-offset: 3px; font-size: .85rem; }
+.hk-cookie-settings:hover { color: #fff; }
+.hk-cookie-settings:focus-visible { outline-color: #a5b4fc; }
 #cookie-banner { position: fixed; left: 20px; bottom: 20px; width: min(440px, calc(100% - 40px)); max-height: calc(100dvh - 40px); overflow-y: auto; padding: 22px; border: 1px solid #514885; border-radius: 14px; box-shadow: 0 8px 36px #14112e40; z-index: 1000; text-align: left; }
 #cookie-banner h2 { color: white; font-size: 1rem; margin: 0 0 8px; }
 #cookie-banner p { font-size: .85rem; line-height: 1.65; margin: 0 0 16px; }

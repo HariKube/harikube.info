@@ -25,6 +25,9 @@ jobs:
     - uses: actions/checkout@v4
     - uses: snickerbockers/submodules-init@v4
     - run: make gen
+      env:
+        HUGO_ENV: staging
+        HUGO_BASEURL: /
     - run: echo "branch=$(basename ${GITHUB_HEAD_REF:-${GITHUB_REF}})" >> $GITHUB_OUTPUT
       id: extract_branch
     - run: |

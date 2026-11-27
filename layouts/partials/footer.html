@@ -90,6 +90,7 @@
                 <p class="text-gray-600 text-sm">
                     © {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved. HariKube is a product of Inspirnation LP, registered in Hungary.
                 </p>
+                <button type="button" class="hk-cookie-settings" data-cookie-settings>Cookie preferences</button>
             </div>
         </div>
     </div>
@@ -101,7 +102,6 @@
     }
 </style>
 
-<button type="button" class="hk-cookie-settings" data-cookie-settings>Cookie preferences</button>
 <p class="hk-consent-status" id="cookie-status" role="status" aria-live="polite"></p>
 <noscript><p class="hk-consent-status">Optional analytics and marketing scripts stay disabled without JavaScript.</p></noscript>
 <aside id="cookie-banner" aria-labelledby="cookie-title" hidden>
@@ -120,4 +120,6 @@
     <script>(function(l) { if (!l) { window.lintrk = function(a,b) { window.lintrk.q.push([a,b]); }; window.lintrk.q = []; } var s = document.createElement('script'); s.async = true; s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js'; document.head.append(s); })(window.lintrk);</script>
     {{ end }}
 </template>
-<script src="{{ "js/cookiebar.js" | relURL }}" defer></script>
+{{/* Version the consent script so an older deployment cannot supply a stale handler. */}}
+{{ $consentJS := resources.FromString "js/privacy-controls.js" (readFile "static/js/cookiebar.js") | minify | fingerprint }}
+<script src="{{ $consentJS.RelPermalink }}" integrity="{{ $consentJS.Data.Integrity }}" defer></script>

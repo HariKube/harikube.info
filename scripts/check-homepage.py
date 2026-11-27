@@ -75,7 +75,18 @@ def check_homepage(root):
     assert css[0].get("integrity") == integrity, "Homepage stylesheet integrity mismatch"
     article = HomeParser(root / "blog/create-microservice-with-operator/index.html")
     assert not any(attrs.get("href") == css[0]["href"] for _, attrs in article.tags), "Homepage CSS leaked onto an article"
-    print("Homepage checks passed: landmarks, headings, links/fragments, list semantics, schema, and scoped CSS integrity.")
+    for page in (home, article):
+        consent = [attrs for tag, attrs in page.tags if tag == "script" and
+                   urlsplit(attrs.get("src", "")).path.startswith("/js/privacy-controls.min.")]
+        assert len(consent) == 1, "Expected one versioned consent script"
+        url = urlsplit(consent[0]["src"])
+        assert not url.netloc and not url.scheme, "Consent script must load from the current host"
+        source = root / url.path.lstrip("/")
+        integrity = "sha256-" + base64.b64encode(hashlib.sha256(source.read_bytes()).digest()).decode()
+        assert consent[0].get("integrity") == integrity, "Consent script integrity mismatch"
+        assert "data-cookie-settings" in source.read_text(), "Consent preferences handler missing"
+        assert "defer" in consent[0], "Consent script must run after the footer is parsed"
+    print("Homepage checks passed: landmarks, headings, links/fragments, list semantics, schema, scoped CSS integrity, and versioned consent handler.")
 
 
 if __name__ == "__main__":
