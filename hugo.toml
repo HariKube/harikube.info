@@ -10,7 +10,9 @@ pygmentsUseClasses = true
 enableEmoji = true
 enableGitInfo = true
 uglyURLs = false
-canonifyURLs = true
+# Keep assets and internal links on the current host (including preview domains).
+# Canonical and social URLs remain absolute via .Permalink and absURL.
+canonifyURLs = false
 
 # Lightweight local search; no hosted search service or extra dependencies.
 [outputFormats.Search]
