@@ -11,7 +11,7 @@
           <a class="hk-button hk-button-outline" href="{{ .Params.hero.secondary_url | relURL }}">{{ .Params.hero.secondary_text }}</a>
         </div>
         <p class="hk-hero-note">{{ .Params.hero.note }}</p>
-        <a class="hk-text-link hk-video-link" href="{{ .Params.hero.video_url }}"><span aria-hidden="true">▷</span> {{ .Params.hero.video_text }} <span class="hk-link-meta">on YouTube</span></a>
+        <a class="hk-text-link hk-video-link" href="#product-video"><span aria-hidden="true">▷</span> {{ .Params.hero.video_text }}</a>
       </div>
       <figure class="hk-architecture" aria-labelledby="architecture-title">
         <div class="hk-diagram-top"><span class="hk-status-dot" aria-hidden="true"></span><span id="architecture-title">Shared state for applications and agents</span></div>
@@ -27,13 +27,16 @@
     </div>
   </section>
 
-  <div class="hk-foundations">
-    <div class="hk-shell hk-foundations-grid">
-      <p><strong>Kubernetes workflows</strong><span>Custom resources, clients, and controllers</span></p>
-      <p><strong>Database choice</strong><span>Use supported SQL storage backends</span></p>
-      <p><strong>Workload-aware routing</strong><span>Place application data deliberately</span></p>
+  <section class="hk-partners" aria-labelledby="partners-title">
+    <div class="hk-shell hk-partners-grid">
+      <div>
+        <h2 id="partners-title">Partners &amp; certifications</h2>
+        <p>HariKube is a partner of and certified by both Red Hat and SUSE.</p>
+      </div>
+      <img src="{{ "images/logos/redhat.png" | relURL }}" alt="Red Hat" width="202" height="50">
+      <img src="{{ "images/logos/suse.png" | relURL }}" alt="SUSE" width="186" height="50">
     </div>
-  </div>
+  </section>
 
   <section class="hk-section" aria-labelledby="use-cases-title">
     <div class="hk-shell">
@@ -117,6 +120,19 @@
         <a href="{{ "/editions/" | relURL }}">Compare editions and licensing <span aria-hidden="true">→</span></a>
         <a href="{{ "/topics/" | relURL }}">Find a technical guide <span aria-hidden="true">→</span></a>
         <a href="{{ "/blog/" | relURL }}">Read engineering articles <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="product-video" class="hk-section hk-video-section" aria-labelledby="product-video-title">
+    <div class="hk-shell">
+      <div class="hk-section-heading">
+        <p class="hk-eyebrow">Meet HariKube</p>
+        <h2 id="product-video-title">Watch the product introduction</h2>
+      </div>
+      {{ $videoURL := urls.Parse .Params.hero.video_url }}
+      <div class="hk-video-player">
+        <iframe src="https://www.youtube-nocookie.com/embed/{{ $videoURL.Query.Get "v" }}" title="HariKube product introduction" width="960" height="540" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </section>
